@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Tape } from './Graphics.jsx'
 
-// A GitHub-style contribution grid (last ~6 months) fed by the user's real public GitHub activity.
+// A GitHub-style contribution grid (last ~5 months) fed by the user's real public GitHub activity.
 // Data comes from a free public endpoint that reads the profile's contribution graph (no token, so nothing
 // secret ships in the site). Results are cached for 6 hours in localStorage; if the request fails the grid
 // shows quiet empty cells and the card still links to the profile.
-const WEEKS = 26
+const WEEKS = 22
 const TTL = 6 * 60 * 60 * 1000
 const endpoint = (user) => `https://github-contributions-api.jogruber.de/v4/${encodeURIComponent(user)}?y=last`
 
@@ -21,7 +21,7 @@ export default function CommitGrid({ user }) {
   const [state, setState] = useState({ status: 'loading', cells: [], total: 0 })
 
   useEffect(() => {
-    const key = `commit-grid:${user}`
+    const key = `commit-grid:v2:${WEEKS}:${user}`
     try {
       const cached = JSON.parse(localStorage.getItem(key))
       if (cached && Date.now() - cached.t < TTL) {

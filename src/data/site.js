@@ -17,7 +17,7 @@ export const site = {
       "I build **software and systems** that take on the hard parts so the people using them don't have to.",
     ],
   },
-  heroStickers: ['flower', 'heart', 'cassette', 'constellation', 'vinyl'], // artistic stickers (see Stickers.jsx)
+  heroStickers: ['flower', 'heart', 'constellation', 'vinyl'], // artistic stickers (see Stickers.jsx)
   heroPhotos: {
     main: '/images/me.jpg', // big jagged frame in the centre; any photo works (cropped to fit)
     upper: '/images/cat.jpg', // upper starburst: the cat

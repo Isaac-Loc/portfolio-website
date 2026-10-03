@@ -14,8 +14,6 @@ export default function Hero({ site }) {
     <section id="top" className="hero">
       <div className="stage" ref={stageRef}>
         <Deco id="sparkle" className="sparkle sp1" />
-        <Deco id="sparkle" className="sparkle sp2" />
-        <Deco id="sparkle" className="sparkle sp3" />
         <Deco id="asterisk" className="sparkle sp4" />
 
         <h1 className="hero-title">
@@ -45,11 +43,9 @@ export default function Hero({ site }) {
         <Burst className="b-right" src={heroPhotos.upper} alt="My cat" />
 
         {site.heroStickers.map((name, i) => (
-          <Sticker key={name} name={name} className={`as${i + 1}`} />
+          <Sticker key={name} name={name} className={`as-${name}`} />
         ))}
 
-        <Deco id="arrow" className="a1" />
-        <Deco id="scribble" className="sc1" />
 
         <svg className="stamp" viewBox="0 0 100 100" aria-hidden="true">
           <defs><path id="circ" d="M50 50m-36 0a36 36 0 1 1 72 0a36 36 0 1 1-72 0" /></defs>

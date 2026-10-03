@@ -296,11 +296,8 @@ main { width: var(--page-w); margin: 0 auto; }
 
 /* Hero decorations */
 .sp1 { left: 2%;  top: 38%; width: 4cqw;  transform: rotate(-12deg); }
-.sp2 { left: 73%; top: 46%; width: 3.5cqw; }
-.sp3 { left: 2.5%; top: 66%; width: 4.5cqw; z-index: 6; }
 .sp4 { left: 46%; top: 3%;  width: 4cqw; z-index: 6; }
 .a1  { left: 36%; top: 34%; width: 9cqw; color: var(--green); z-index: 6; transform: scaleY(-1) rotate(-10deg); }
-.sc1 { left: 56%; top: 93.5%; width: 8cqw; z-index: 6; transform: rotate(-12deg); }
 .stamp { left: 28%; top: .5%; width: 7cqw; color: var(--green); z-index: 6; transform: rotate(14deg); opacity: .85; }
 
 @media (max-width: 760px) {
@@ -313,11 +310,8 @@ main { width: var(--page-w); margin: 0 auto; }
   .b-left  { left: 2%;  top: 36%; width: 32%; }
   .b-right { left: auto; right: 1%; top: 72%; width: 36%; }
         .sp1 { left: 3%;  top: 22%; width: 7cqw; }
-  .sp2 { left: auto; right: 8%; top: 40%; width: 6cqw; }
-  .sp3 { left: 44%; top: 84%; width: 8cqw; }
   .sp4 { left: auto; right: 40%; top: 29.5%; width: 7cqw; }
   .a1  { left: 30%; top: 87%; width: 16cqw; }
-  .sc1 { left: auto; right: 6%; top: 64%; width: 18cqw; }
   .stamp { left: auto; right: 4%; top: 40%; width: 17cqw; }
 }
 
@@ -470,19 +464,18 @@ main > section::before, .duo::before {
   animation: float 5.5s ease-in-out infinite;
 }
 .art-sticker svg { display: block; width: 100%; height: 100%; }
-.as1 { left: 91%;   top: 25%; width: 8cqw;   transform: rotate(-8deg); }
-.as2 { left: 92%;   top: 42%; width: 6cqw;   transform: rotate(6deg);  animation-delay: -1.5s; }
-.as3 { left: 89%;   top: 83%; width: 9.5cqw; transform: rotate(-7deg); animation-delay: -3s; }
-.as4 { left: 37.5%; top: 1%;  width: 7cqw;   transform: rotate(8deg);  animation-delay: -2s; }
-.as5 { left: 84%;   top: 41%; width: 7cqw; animation-delay: -4s; }
+.as-flower { left: 91%;   top: 25%; width: 8cqw;   transform: rotate(-8deg); }
+.as-heart { left: 92%;   top: 42%; width: 6cqw;   transform: rotate(6deg);  animation-delay: -1.5s; }
+.as-constellation { left: 37.5%; top: 1%;  width: 7cqw;   transform: rotate(8deg);  animation-delay: -2s; }
+.as-vinyl { left: 84%;   top: 41%; width: 7cqw; animation-delay: -4s; }
 .spin { transform-box: fill-box; transform-origin: center; animation: spin 5s linear infinite; }
 .spin.slow { animation-duration: 14s; }
 .led-twinkle { animation: twinkle 2.8s ease-in-out infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-width: 760px) {
   .art-sticker { width: 15cqw; }
-  .as1 { left: 82%; top: 31%; } .as2 { left: 3%; top: 87%; width: 14cqw; } .as3 { left: 78%; top: 62%; width: 19cqw; }
-  .as4, .as5 { display: none; }
+  .as-flower { left: 82%; top: 31%; } .as-heart { left: 3%; top: 87%; width: 14cqw; }
+  .as-constellation, .as-vinyl { display: none; }
 }
 
 /* Education + Leadership side by side */
@@ -628,7 +621,7 @@ html.is-scrolling .arrows-on .scroll-btn { opacity: 0; visibility: hidden; point
 
 /* ===== About note: short intro tucked under the hero title ===== */
 .stage .about-note {
-  left: 5%; top: 74.5%; width: 41cqw;
+  left: 5%; top: 73%; width: 41cqw;
   z-index: 7;
   padding: 1.5cqw 1.7cqw 1.4cqw;
   background: #fff;
@@ -637,10 +630,10 @@ html.is-scrolling .arrows-on .scroll-btn { opacity: 0; visibility: hidden; point
   transform: rotate(-1.2deg);
   user-select: text; -webkit-user-select: text;
 }
-.about-note p { margin: 0; font-size: clamp(.8rem, 1.12cqw, 1.5rem); line-height: 1.5; }
+.about-note p { margin: 0; font-size: clamp(.9rem, 1.3cqw, 1.7rem); line-height: 1.5; }
 .about-note strong { color: var(--green); }
 .about-note .tape { top: -1.1cqw; left: auto; right: 2cqw; width: 6cqw; height: 1.7cqw; transform: rotate(5deg); }
-.stage .about-note .about-tag { position: absolute; top: -1.9cqw; left: 1.2cqw; margin: 0; font-size: clamp(.55rem, .85cqw, 1rem); }
+.stage .about-note .about-tag { position: absolute; top: -1.9cqw; left: 1.2cqw; margin: 0; font-size: clamp(.65rem, 1cqw, 1.1rem); }
 .about-note { animation: pop .8s cubic-bezier(.2, .9, .3, 1.2) .6s backwards; }
 @media (prefers-reduced-motion: reduce) { .about-note { animation: none; } }
 
@@ -653,12 +646,9 @@ html.is-scrolling .arrows-on .scroll-btn { opacity: 0; visibility: hidden; point
   .main-cut { left: 27%; top: 57%; width: 46%; height: 38%; }
   .b-left  { left: 1%; top: 63%; width: 27%; }
   .b-right { left: auto; right: 1%; top: 58%; width: 29%; }
-  .as1 { left: 83%; top: 14%; }
-  .as2 { left: 3%; top: 88%; }
-  .as3 { left: 70%; top: 88%; }
+  .as-flower { left: 83%; top: 14%; }
+  .as-heart { left: 3%; top: 88%; }
   .stamp { left: 40%; right: auto; top: 90%; width: 16cqw; }
-  .sc1 { left: auto; right: 4%; top: 90%; }
-  .sp2 { left: auto; right: 8%; top: 54%; }
 }
 
 /* ===== Compact pinned header on phones ===== */
