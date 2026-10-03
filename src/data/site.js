@@ -8,6 +8,7 @@ export const site = {
   year: '2026',
   email: 'locisaac1223@gmail.com',
   github: 'https://github.com/Isaac-Loc',
+  githubUser: 'Isaac-Loc', // drives the commit grid in the hero
   linkedin: 'https://www.linkedin.com/in/isaac-loc',
   about: {
     // Shown under the hero title. Keep it to 2-3 short sentences (phones show the first two). **bold** works.

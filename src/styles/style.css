@@ -271,7 +271,7 @@ main { width: var(--page-w); margin: 0 auto; }
 /* Main jagged cutout */
 .main-cut {
   --shape: var(--shape-jag);
-  left: 47.5%; top: 18%; width: 28%; height: 65%;
+  left: 47.5%; top: 3%; width: 28%; height: 60%;
   z-index: 2;
   filter: drop-shadow(0 12px 16px rgba(13, 59, 34, .3));
 }
@@ -471,7 +471,7 @@ main > section::before, .duo::before {
 }
 .art-sticker svg { display: block; width: 100%; height: 100%; }
 .as1 { left: 91%;   top: 25%; width: 8cqw;   transform: rotate(-8deg); }
-.as2 { left: 69%;   top: 85%; width: 7cqw;   transform: rotate(6deg);  animation-delay: -1.5s; }
+.as2 { left: 92%;   top: 42%; width: 6cqw;   transform: rotate(6deg);  animation-delay: -1.5s; }
 .as3 { left: 89%;   top: 83%; width: 9.5cqw; transform: rotate(-7deg); animation-delay: -3s; }
 .as4 { left: 37.5%; top: 1%;  width: 7cqw;   transform: rotate(8deg);  animation-delay: -2s; }
 .as5 { left: 84%;   top: 41%; width: 7cqw; animation-delay: -4s; }
@@ -541,7 +541,7 @@ main > section::before, .duo::before {
 /* ===== Entrance animations ===== */
 /* Hero pieces pop in on load (scale/opacity only, so they don't fight the float + rotate transforms) */
 @keyframes pop { from { opacity: 0; scale: .8; } to { opacity: 1; scale: 1; } }
-.t-hi, .t-name, .t-welcome, .t-sub, .main-cut, .b-left, .b-right, .stamp, .a1, .sc1 {
+.t-hi, .t-name, .t-welcome, .t-sub, .main-cut, .commit-card, .b-left, .b-right, .stamp, .a1, .sc1 {
   animation: pop .8s cubic-bezier(.2, .9, .3, 1.2) backwards;
 }
 .t-hi { animation-delay: .1s; }
@@ -550,6 +550,7 @@ main > section::before, .duo::before {
 .t-sub { animation-delay: .5s; }
 .main-cut { animation-delay: .35s; }
 .b-right { animation-delay: .55s; }
+.commit-card { animation-delay: .8s; }
 .b-left { animation-delay: .7s; }
 .stamp, .a1, .sc1 { animation-delay: .85s; }
 .art-sticker, .sparkle { opacity: 1; }
@@ -569,7 +570,7 @@ main > section::before, .duo::before {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; translate: none; scale: none; transition: none; }
-  .t-hi, .t-name, .t-welcome, .t-sub, .main-cut, .b-left, .b-right, .stamp, .a1, .sc1, .scroll-btn { animation: none; }
+  .t-hi, .t-name, .t-welcome, .t-sub, .main-cut, .commit-card, .b-left, .b-right, .stamp, .a1, .sc1, .scroll-btn { animation: none; }
 }
 
 /* Scroll buttons */
@@ -670,3 +671,40 @@ html.is-scrolling .arrows-on .scroll-btn { opacity: 0; visibility: hidden; point
   .tag-logo { display: none; }
   .header-inner { justify-content: center; }
 }
+
+/* ===== Commit grid (real GitHub activity) under the hero photo ===== */
+.stage .commit-card {
+  left: 47.5%; top: 65.5%; width: 28%;
+  z-index: 7;
+  display: block;
+  padding: 1.1cqw 1.3cqw 1.2cqw;
+  background: #fff;
+  border: 2px solid var(--green);
+  box-shadow: .5cqw .5cqw 0 rgba(31, 138, 76, .25);
+  text-decoration: none;
+  color: var(--ink);
+  transform: rotate(1deg);
+  transition: scale .18s ease;
+}
+.commit-card:hover { scale: 1.04; }
+.commit-card .tape { top: -1.1cqw; left: auto; right: 2.2cqw; width: 5.5cqw; height: 1.6cqw; transform: rotate(4deg); }
+.commit-head { display: flex; align-items: center; justify-content: space-between; gap: 1cqw; margin-bottom: .9cqw; }
+.commit-card .tag { margin: 0; font-size: clamp(.5rem, .8cqw, .9rem); padding: .3em .6em; }
+.commit-total { font-weight: 600; font-size: clamp(.65rem, 1cqw, 1.1rem); color: var(--green); white-space: nowrap; }
+.commit-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, auto);
+  grid-auto-columns: 1fr;
+  gap: .22cqw;
+}
+.commit-grid .cell { aspect-ratio: 1; border-radius: 22%; background: rgba(31, 138, 76, .13); }
+.commit-grid .cell.blank { background: transparent; }
+.commit-grid .cell.l1 { background: #bff0d1; }
+.commit-grid .cell.l2 { background: #8be8ad; }
+.commit-grid .cell.l3 { background: #2fa05f; }
+.commit-grid .cell.l4 { background: #12502c; }
+.commit-card.loading .cell { animation: cellpulse 1.4s ease-in-out infinite; }
+@keyframes cellpulse { 0%, 100% { opacity: .5; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .commit-card, .commit-card.loading .cell { animation: none; transition: none; } }
+@media (max-width: 760px) { .stage .commit-card { display: none; } }

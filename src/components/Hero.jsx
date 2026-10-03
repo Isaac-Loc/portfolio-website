@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { Deco, Burst, Slot, Tape } from './Graphics.jsx'
 import Rich from './Rich.jsx'
+import CommitGrid from './CommitGrid.jsx'
 import Sticker from './Stickers.jsx'
 import ScrollButton from './ScrollButton.jsx'
 import useHeroInteractions from '../hooks/useHeroInteractions.js'
@@ -37,6 +38,8 @@ export default function Hero({ site }) {
         <div className="main-cut">
           <div className="main-cut-in"><Slot src={heroPhotos.main} alt={site.name} label={'YOUR\nPHOTO'} /></div>
         </div>
+
+        <CommitGrid user={site.githubUser} />
 
         <Burst className="b-left" src={heroPhotos.lower} />
         <Burst className="b-right" src={heroPhotos.upper} />
