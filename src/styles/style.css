@@ -263,8 +263,8 @@ main { width: var(--page-w); margin: 0 auto; }
 
 .hero-title { margin: 0; inset: 0; pointer-events: none; z-index: 8; }
 .hero-title .sticker-text { position: absolute; }
-.t-hi   { top: 5%;  left: 4%;  font-size: 6.5cqw; transform: rotate(-5deg); z-index: 2; }
-.t-name { top: 13%; left: 3%;  font-size: 15cqw;  transform: rotate(2deg); }
+.t-hi   { top: 29.5%; left: 4.5%; font-size: 6.5cqw; transform: rotate(-5deg); z-index: 2; }
+.t-name { top: 2.5%; left: 3%;  font-size: 15cqw;  transform: rotate(2deg); }
 .t-welcome { top: 47%; left: 8.5%; font-size: 4.4cqw; transform: rotate(-5deg); z-index: 2; }
 .t-sub  { top: 53.5%; left: 8%;  font-size: 8cqw;   transform: rotate(-5deg); }
 
@@ -296,20 +296,20 @@ main { width: var(--page-w); margin: 0 auto; }
 
 
 /* Hero decorations */
-.sp1 { left: 2%;  top: 38%; width: 4cqw;  transform: rotate(-12deg); }
+.sp1 { left: 2%;  top: 44%; width: 4cqw;  transform: rotate(-12deg); }
 .sp4 { left: 46%; top: 3%;  width: 4cqw; z-index: 6; }
-.stamp { left: 28%; top: .5%; width: 7cqw; color: var(--accent); z-index: 6; transform: rotate(14deg); opacity: .85; }
+.stamp { left: 24.5%; top: 28.5%; width: 7cqw; color: var(--accent); z-index: 6; transform: rotate(14deg); opacity: .85; }
 
 @media (max-width: 760px) {
   .stage { aspect-ratio: 9 / 14; width: min(96%, calc((100svh - var(--header-h)) * 9 / 14 * .96)); }
-  .t-hi   { top: 1.5%; left: 5%;  font-size: 12cqw; }
-  .t-name { top: 5.5%; left: 16%; font-size: 27cqw; }
+  .t-hi   { top: 18.5%; left: 5%;  font-size: 12cqw; }
+  .t-name { top: 2%; left: 16%; font-size: 27cqw; }
   .t-welcome { top: 23.5%; left: auto; right: 7%; font-size: 7cqw; transform: rotate(-6deg); }
   .t-sub  { top: 27%;  left: auto; right: 4%; font-size: 14cqw; transform: rotate(-6deg); }
   .main-cut { left: 21%; top: 38%; width: 58%; height: 45%; }
   .b-left  { left: 2%;  top: 36%; width: 32%; }
   .b-right { left: auto; right: 1%; top: 72%; width: 36%; }
-        .sp1 { left: 3%;  top: 22%; width: 7cqw; }
+        .sp1 { left: 3%;  top: 30%; width: 7cqw; }
   .sp4 { left: auto; right: 40%; top: 29.5%; width: 7cqw; }
   .stamp { left: auto; right: 4%; top: 40%; width: 17cqw; }
 }
@@ -463,10 +463,10 @@ main > section::before, .duo::before {
   animation: float 5.5s ease-in-out infinite;
 }
 .art-sticker svg { display: block; width: 100%; height: 100%; }
-.a1 { left: 38.5%; top: 39%; width: 9cqw; color: var(--accent); z-index: 6; transform: rotate(12deg); }
+.a1 { left: 41.8%; top: 41.5%; width: 8cqw; color: var(--accent); z-index: 6; transform: rotate(12deg); }
 .as-flower { left: 91%;   top: 25%; width: 8cqw;   transform: rotate(-8deg); }
 .as-heart { left: 92%;   top: 86.5%; width: 6cqw;   transform: rotate(6deg);  animation-delay: -1.5s; }
-.as-constellation { left: 37.5%; top: 1%;  width: 7cqw;   transform: rotate(8deg);  animation-delay: -2s; }
+.as-constellation { left: 33.5%; top: 29%;  width: 7cqw;   transform: rotate(8deg);  animation-delay: -2s; }
 .as-vinyl { left: 77.5%; top: 41%; width: 7cqw; animation-delay: -4s; }
 .spin { transform-box: fill-box; transform-origin: center; animation: spin 5s linear infinite; }
 .spin.slow { animation-duration: 14s; }
@@ -537,8 +537,8 @@ main > section::before, .duo::before {
 .t-hi, .t-name, .t-welcome, .t-sub, .main-cut, .commit-card, .b-left, .b-right, .stamp, .a1, .sc1 {
   animation: pop .8s cubic-bezier(.2, .9, .3, 1.2) backwards;
 }
-.t-hi { animation-delay: .1s; }
-.t-name { animation-delay: .25s; }
+.t-name { animation-delay: .1s; }
+.t-hi { animation-delay: .25s; }
 .t-welcome { animation-delay: .4s; }
 .t-sub { animation-delay: .5s; }
 .main-cut { animation-delay: .35s; }
@@ -646,7 +646,7 @@ html.is-scrolling .arrows-on .scroll-btn { opacity: 0; visibility: hidden; point
   .main-cut { left: 27%; top: 57%; width: 46%; height: 38%; }
   .b-left  { left: 1%; top: 63%; width: 27%; }
   .b-right { left: auto; right: 1%; top: 58%; width: 29%; }
-  .as-flower { left: 83%; top: 14%; }
+  .as-flower { left: 84%; top: 4%; }
   .as-heart { left: 3%; top: 88%; }
   .stamp { left: 40%; right: auto; top: 90%; width: 16cqw; }
 }
