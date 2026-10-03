@@ -36,7 +36,7 @@ export default function useNavInteractions() {
     }
 
     const onClick = (e) => {
-      const a = e.target.closest('a.tag')
+      const a = e.target.closest('a.tag, button.tag')
       if (!a || !header.contains(a)) return
       particles(null, e.clientX, e.clientY, 'sparkle', 8, { spread: 70, size: 2.4, fixed: true })
       wiggle(a)

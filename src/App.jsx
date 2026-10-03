@@ -35,7 +35,7 @@ export default function App() {
   return (
     <>
       <SvgDefs />
-      <Header name={site.firstName} />
+      <Header name={site.firstName} resume={site.resume} />
       <Hero site={site} />
       <main>
         <Experience items={experience} />

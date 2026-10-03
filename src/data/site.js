@@ -8,6 +8,7 @@ export const site = {
   year: '2026',
   email: 'locisaac1223@gmail.com',
   github: 'https://github.com/Isaac-Loc',
+  resume: '/Isaac_Loc_Resume.pdf', // file lives in /public; opened in a new tab from the nav
   githubUser: 'Isaac-Loc', // drives the commit grid in the hero
   linkedin: 'https://www.linkedin.com/in/isaac-loc',
   about: {
