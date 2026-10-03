@@ -1,36 +1,22 @@
-# Portfolio Website
+# **isaac.loc - portfolio**
 
-My personal portfolio site. React + Vite, with a cutout / scrapbook collage design.
+---
 
-## Run locally
+Hi, I'm Isaac, a senior Computer Science major at the University at Buffalo who loves building software and systems that take on the hard parts so the people using them don't have to. This is my personal portfolio, built to show what I've worked on, where I've worked, and a little about who I am. Here you'll find my experience, from full stack engineering at EZEsports to writing C++ firmware for an LED tile array at UB, along with my projects, skills, leadership with Theta Tau, and my live GitHub activity.
 
-```bash
-npm install
-npm run dev
-```
+The site is built using **React**, **Vite**, and hand-written **CSS**, with a cutout collage design, a light and dark mode, and scroll animations. Deployed with **Vercel**.
 
-Then visit http://localhost:5173.
+---
 
-## Build
+- [Resume](public/Isaac_Loc_Resume.pdf)
+- [LinkedIn](https://www.linkedin.com/in/isaac-loc)
+- [GitHub](https://github.com/Isaac-Loc)
+- [Contact](mailto:locisaac1223@gmail.com)
 
-```bash
-npm run build     # outputs to dist/
-npm run preview   # preview the build
-```
+---
 
-## Editing
-
-Content lives in `src/data/site.js`; styles in `src/styles/style.css`. See [SPEC.md](SPEC.md) and [CLAUDE.md](CLAUDE.md) for the design spec and project conventions.
-
-## Deploy (Vercel)
-
-The site is deployed to Vercel straight from this GitHub repo, so every push redeploys automatically.
-
-One-time setup (needs your Vercel account):
-
-1. Go to https://vercel.com/new and **Import** the `Isaac-Loc/portfolio-website` repository (sign in with GitHub and allow access to this repo).
-2. Leave the detected settings: Framework **Vite**, install `npm ci`, build `npm run build`, output `dist` (all also set in `vercel.json`). Click **Deploy**. You get a `*.vercel.app` URL.
-3. Make `dev` the branch that goes live: project **Settings -> Git -> Production Branch** -> `dev`. After that, every push to `dev` updates the live `*.vercel.app` site; other branches get their own preview URLs.
-4. Later, to use your own domain: project **Settings -> Domains** -> add it, then point your domain provider's DNS (or domain forwarding) at the records Vercel shows.
-
-Local production check: `npm run build && npm run preview`.
+**Tech Stack:**
+- React
+- Vite
+- CSS
+- Vercel
