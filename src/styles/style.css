@@ -270,9 +270,8 @@ main { width: var(--page-w); margin: 0 auto; }
 
 /* Main jagged cutout */
 .main-cut {
-  /* fuller than --shape-jag at the bottom-left so the laptop is not clipped */
-  --shape: polygon(30% 3%, 72% 0%, 98% 18%, 94% 62%, 84% 78%, 88% 97%, 20% 100%, 3% 87%, 7% 66%, 2% 44%, 6% 22%, 24% 12%);
-  left: 48%; top: 15%; width: 27%; height: 70%;
+  --shape: var(--shape-jag);
+  left: 47.5%; top: 20%; width: 28%; height: 60%;
   z-index: 2;
   filter: drop-shadow(0 12px 16px rgba(13, 59, 34, .3));
 }
