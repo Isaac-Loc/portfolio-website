@@ -1,14 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
 
-// Light/dark theme. The initial value is set before first paint by the inline script in index.html (saved choice,
-// otherwise the visitor's system setting). Only an explicit toggle is saved, so a visitor who never touches the
-// switch keeps following their system.
+// Light/dark theme. The initial value is set before first paint by the inline script in index.html: the visitor's
+// saved choice, otherwise LIGHT (the device's dark-mode setting is deliberately ignored). Only an explicit toggle
+// is saved.
 const KEY = 'theme'
 
-const systemTheme = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-
 export default function useTheme() {
-  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || systemTheme())
+  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'light')
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
