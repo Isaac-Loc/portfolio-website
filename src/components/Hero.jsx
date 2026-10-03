@@ -42,6 +42,8 @@ export default function Hero({ site }) {
         <Burst className="b-left" src={heroPhotos.lower} alt="My car in the snow" />
         <Burst className="b-right" src={heroPhotos.upper} alt="My cat" />
 
+        <Deco id="arrow" className="a1" />
+
         {site.heroStickers.map((name, i) => (
           <Sticker key={name} name={name} className={`as-${name}`} />
         ))}
