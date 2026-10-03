@@ -37,7 +37,7 @@ public/images/             User photos / project images (referenced as /images/<
 - Content goes in `src/data/site.js`, not hard-coded in components.
 - Plain CSS in one file; colors/fonts/shapes are CSS variables in `:root`. No CSS framework.
 - Keep text minimal: 1-2 short sentences per item; the user prefers pictures/graphics over words. Add visuals (illustrations, stat stickers, icons) before adding copy.
-- Only show content that is on the resume (`Isaac_Loc_Resume.pdf`); never publish the phone number.
+- Only show content that is on the resume (`Isaac_Loc_Resume.pdf`); NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. The public `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive.
 - The hero is exactly one viewport tall; its `.stage` is the largest 16:9 box that fits, with elements positioned in `%` and sized in `cqw`, so it scales as one piece. Keep new hero elements in that system. Sections after it must not be visible while on the hero.
 - Sizes use `rem`; the root font-size is fluid so large monitors scale up. Primary design target is a 1440p monitor.
 - Cutout shapes are `clip-path` polygons layered (white outer + deep-green inner) via `.cut` / `.burst`. Photos with transparent backgrounds use `.cutout-img` for the white sticker outline.
