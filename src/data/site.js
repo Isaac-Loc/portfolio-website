@@ -13,8 +13,8 @@ export const site = {
   about: {
     // Shown under the hero title. Keep it to 2-3 short sentences (phones show the first two). **bold** works.
     sentences: [
-      "I'm a senior **Computer Science** major at the University at Buffalo.",
-      "I love developing **software and systems** that make tricky things and problems easier.",
+      "I'm a senior at the University at Buffalo studying **Computer Science**, and I'm happiest when I'm untangling a messy problem.",
+      "I build **software and systems** that take on the hard parts so the people using them don't have to.",
     ],
   },
   heroStickers: ['flower', 'heart', 'cassette', 'constellation', 'vinyl'], // artistic stickers (see Stickers.jsx)
