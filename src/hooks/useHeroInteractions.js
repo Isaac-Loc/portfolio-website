@@ -3,7 +3,7 @@ import { particles, wiggle, reduced } from '../utils/fx.js'
 
 // Everything on the hero poster is a playful object: it pops on hover (CSS) and reacts when clicked or tapped
 // (sparkles, hearts, notes, wiggles). There is deliberately no dragging.
-const SELECTOR = '.sparkle, .art-sticker, .sticker-text, .main-cut, .main-img, .burst, .stamp, .a1, .sc1'
+const SELECTOR = '.sparkle, .art-sticker, .sticker-text, .main-cut, .burst, .stamp, .a1, .sc1'
 function speedUp(el) {
   el.classList.add('fast')
   setTimeout(() => el.classList.remove('fast'), 2500)

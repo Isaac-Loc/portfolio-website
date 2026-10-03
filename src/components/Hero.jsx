@@ -34,13 +34,9 @@ export default function Hero({ site }) {
           </p>
         </div>
 
-        {heroPhotos.main ? (
-          <img className="cutout-img main-img" src={heroPhotos.main} alt={site.name} />
-        ) : (
-          <div className="main-cut">
-            <div className="main-cut-in"><Slot label={'YOUR\nCUTOUT\nPHOTO'} /></div>
-          </div>
-        )}
+        <div className="main-cut">
+          <div className="main-cut-in"><Slot src={heroPhotos.main} alt={site.name} label={'YOUR\nPHOTO'} /></div>
+        </div>
 
         <Burst className="b-left" src={heroPhotos.lower} />
         <Burst className="b-right" src={heroPhotos.upper} />

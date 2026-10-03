@@ -288,7 +288,7 @@ main { width: var(--page-w); margin: 0 auto; }
   overflow: hidden;
 }
 .main-cut-in .slot { background-color: var(--green); }
-.main-img { left: 48%; top: 4%; width: 27%; height: 88%; object-fit: contain; z-index: 3; }
+.main-cut-in img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
 
 .b-left  { left: 77%; top: 53%; width: 21%; transform: rotate(-8deg); z-index: 4; }
 .b-right { left: 76%; top: 4%;  width: 20%; transform: rotate(7deg);  z-index: 4; }
@@ -309,7 +309,7 @@ main { width: var(--page-w); margin: 0 auto; }
   .t-name { top: 5.5%; left: 16%; font-size: 27cqw; }
   .t-welcome { top: 23.5%; left: auto; right: 7%; font-size: 7cqw; transform: rotate(-6deg); }
   .t-sub  { top: 27%;  left: auto; right: 4%; font-size: 14cqw; transform: rotate(-6deg); }
-      .main-cut, .main-img { left: 21%; top: 38%; width: 58%; height: 45%; }
+  .main-cut { left: 21%; top: 38%; width: 58%; height: 45%; }
   .b-left  { left: 2%;  top: 36%; width: 32%; }
   .b-right { left: auto; right: 1%; top: 72%; width: 36%; }
         .sp1 { left: 3%;  top: 22%; width: 7cqw; }
@@ -541,14 +541,14 @@ main > section::before, .duo::before {
 /* ===== Entrance animations ===== */
 /* Hero pieces pop in on load (scale/opacity only, so they don't fight the float + rotate transforms) */
 @keyframes pop { from { opacity: 0; scale: .8; } to { opacity: 1; scale: 1; } }
-.t-hi, .t-name, .t-welcome, .t-sub, .main-cut, .main-img, .b-left, .b-right, .stamp, .a1, .sc1 {
+.t-hi, .t-name, .t-welcome, .t-sub, .main-cut, .b-left, .b-right, .stamp, .a1, .sc1 {
   animation: pop .8s cubic-bezier(.2, .9, .3, 1.2) backwards;
 }
 .t-hi { animation-delay: .1s; }
 .t-name { animation-delay: .25s; }
 .t-welcome { animation-delay: .4s; }
 .t-sub { animation-delay: .5s; }
-.main-cut, .main-img { animation-delay: .35s; }
+.main-cut { animation-delay: .35s; }
 .b-right { animation-delay: .55s; }
 .b-left { animation-delay: .7s; }
 .stamp, .a1, .sc1 { animation-delay: .85s; }
@@ -569,7 +569,7 @@ main > section::before, .duo::before {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; translate: none; scale: none; transition: none; }
-  .t-hi, .t-name, .t-welcome, .t-sub, .main-cut, .main-img, .b-left, .b-right, .stamp, .a1, .sc1, .scroll-btn { animation: none; }
+  .t-hi, .t-name, .t-welcome, .t-sub, .main-cut, .b-left, .b-right, .stamp, .a1, .sc1, .scroll-btn { animation: none; }
 }
 
 /* Scroll buttons */
@@ -649,7 +649,7 @@ html.is-scrolling .arrows-on .scroll-btn { opacity: 0; visibility: hidden; point
   .about-note .s3 { display: none; }
   .about-note .tape { top: -2.4cqw; width: 14cqw; height: 4cqw; right: 6cqw; }
   .stage .about-note .about-tag { top: -6cqw; left: 3cqw; font-size: clamp(.55rem, 2.2cqw, .9rem); }
-  .main-cut, .main-img { left: 27%; top: 57%; width: 46%; height: 38%; }
+  .main-cut { left: 27%; top: 57%; width: 46%; height: 38%; }
   .b-left  { left: 1%; top: 63%; width: 27%; }
   .b-right { left: auto; right: 1%; top: 58%; width: 29%; }
   .as1 { left: 83%; top: 14%; }

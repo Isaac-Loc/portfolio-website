@@ -55,12 +55,12 @@ public/images/          user images
 ## 5. Content model (`src/data/site.js`)
 Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). **Only resume content is shown on the site, and text is kept to 1-2 short sentences per item (user prefers pictures over words).** `**double asterisks**` in strings render bold.
 - `site.about.sentences[]`: the 2-3 short sentence intro shown in a note card under the hero title (written from resume facts only; phones show the first two).
-- `site`: `name`, `firstName`, `year`, `email`, `github`, `linkedin`, `heroStickers[]` (names of artistic hero stickers: `flower | heart | cassette | constellation | vinyl`, drawn in `Stickers.jsx`), `heroPhotos {main, upper, lower}` (main = big jagged cutout; upper/lower = the two starbursts on the right).
+- `site`: `name`, `firstName`, `year`, `email`, `github`, `linkedin`, `heroStickers[]` (names of artistic hero stickers: `flower | heart | cassette | constellation | vinyl`, drawn in `Stickers.jsx`), `heroPhotos {main, upper, lower}` (main = big jagged frame in the centre; upper/lower = the two starbursts on the right). All are plain photos cropped to the shape with `object-fit: cover` (no cutout/transparent PNG needed)..
 - `experience[]`, `projects[]`, `leadership`: `{ title|role, org?, orgUrl?, dates?, place?, art, shape, image, summary, stats[{n,l}], tech[], url? }`.
 - `education`: `{ school, place, degree, dates, art, shape, image, coursework[] }` (only 4 key courses shown).
 - `skills[]`: `{ label, items[{ name, icon? }] }`; `icon` is a Simple Icons slug.
 - `art` picks a built-in SVG illustration drawn in `Art.jsx`: `ledwall | shield | kanban | auction | calendar | cap`. Setting `image` to a file in `public/images/` replaces the illustration with a real picture.
-- `heroPhotos.main` should be a transparent PNG cutout (white sticker outline via `.cutout-img`). Phone number is intentionally NOT published.
+- `heroPhotos.main` is `/images/me.jpg`: a tall crop (about 0.59 aspect, 520x881) of the user's own photo, framed on them plus their surroundings (brick wall, table), with other guests cropped out. The user explicitly said NO cutout is needed. Phone number is intentionally NOT published.
 - Skill-tile logos load from `https://cdn.simpleicons.org/<slug>/1f8a4c` (needs internet; a failed icon falls back to a green diamond).
 
 ## 6. Page sections (top to bottom)
@@ -127,3 +127,4 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). **Onl
 - **2026-10-03 (later 19)**: Correction: the About me text belongs ON THE HERO under the title, not in its own section. Removed the About section/nav tag/`About.jsx`; added a taped note card (`.about-note`) in the hero's lower-left with 3 short sentences (phones show 2). Moved the constellation sticker (top strip), vinyl (right side between the bursts), scribble and sparkle to make room. Hero down arrow goes to Experience again.
 - **2026-10-03 (later 20)**: Created the `dev` branch and pushed everything to `origin/dev`. Standing rule: all further work is committed and pushed to `dev` (not `main`).
 - **2026-10-03 (later 21)**: Header is now pinned while scrolling and its buttons are interactive (hover pop, active-section highlight, click sparkles; logo goes to the top). Sections now fill the area below the header, and arrows/anchors account for it.
+- **2026-10-03 (later 22)**: Put the user's own photo in the hero's main jagged frame (`public/images/me.jpg`, cropped around them and their surroundings; other guests cropped out). The user said a background-removal cutout is NOT needed, so the transparent-PNG path (`.main-img` / `.cutout-img` usage in the hero) was removed.

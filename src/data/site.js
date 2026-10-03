@@ -19,7 +19,7 @@ export const site = {
   },
   heroStickers: ['flower', 'heart', 'cassette', 'constellation', 'vinyl'], // artistic stickers (see Stickers.jsx)
   heroPhotos: {
-    main: null, // transparent PNG cutout, e.g. '/images/me.png'
+    main: '/images/me.jpg', // big jagged frame in the centre; any photo works (cropped to fit)
     upper: null, // upper starburst
     lower: null, // lower starburst
   },
