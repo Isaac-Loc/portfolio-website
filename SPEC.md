@@ -60,7 +60,7 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). **Onl
 - `education`: `{ school, place, degree, dates, art, shape, image, coursework[] }` (only 4 key courses shown).
 - `skills[]`: `{ label, items[{ name, icon? }] }`; `icon` is a Simple Icons slug.
 - `art` picks a built-in SVG illustration drawn in `Art.jsx`: `ledwall | shield | kanban | auction | calendar | cap`. Setting `image` to a file in `public/images/` replaces the illustration with a real picture.
-- `heroPhotos.main` is `/images/me.jpg`: a tall crop (about 0.59 aspect, 520x881) of the user's own photo, framed on them plus their surroundings (brick wall, table), with other guests cropped out. The user explicitly said NO cutout is needed. Phone number is intentionally NOT published.
+- `heroPhotos.main` is `/images/me.jpg`: a crop (520x759, aspect 0.685, matching the frame so nothing else is trimmed) of the user's own photo, centred on them with the laptop and glass fully in frame, trimmed tight (little ceiling/brick), other guests cropped out. The source crop box was (545,200)-(1065,959) of the 1552x1031 original. The user explicitly said NO cutout is needed. Phone number is intentionally NOT published.
 - Skill-tile logos load from `https://cdn.simpleicons.org/<slug>/1f8a4c` (needs internet; a failed icon falls back to a green diamond).
 
 ## 6. Page sections (top to bottom)
@@ -128,3 +128,4 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). **Onl
 - **2026-10-03 (later 20)**: Created the `dev` branch and pushed everything to `origin/dev`. Standing rule: all further work is committed and pushed to `dev` (not `main`).
 - **2026-10-03 (later 21)**: Header is now pinned while scrolling and its buttons are interactive (hover pop, active-section highlight, click sparkles; logo goes to the top). Sections now fill the area below the header, and arrows/anchors account for it.
 - **2026-10-03 (later 22)**: Put the user's own photo in the hero's main jagged frame (`public/images/me.jpg`, cropped around them and their surroundings; other guests cropped out). The user said a background-removal cutout is NOT needed, so the transparent-PNG path (`.main-img` / `.cutout-img` usage in the hero) was removed.
+- **2026-10-03 (later 23)**: Recropped the hero photo so the user is centred and the laptop is fully in frame, and shrank the main frame from 88% to 70% of the stage height (27% wide, vertically centred at top 15%). The frame uses its own fuller polygon (`--shape` on `.main-cut`) so the laptop isn't clipped by the jagged bottom-left corner.

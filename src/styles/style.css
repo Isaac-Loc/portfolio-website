@@ -270,8 +270,9 @@ main { width: var(--page-w); margin: 0 auto; }
 
 /* Main jagged cutout */
 .main-cut {
-  --shape: var(--shape-jag);
-  left: 48%; top: 4%; width: 27%; height: 88%;
+  /* fuller than --shape-jag at the bottom-left so the laptop is not clipped */
+  --shape: polygon(30% 3%, 72% 0%, 98% 18%, 94% 62%, 84% 78%, 88% 97%, 20% 100%, 3% 87%, 7% 66%, 2% 44%, 6% 22%, 24% 12%);
+  left: 48%; top: 15%; width: 27%; height: 70%;
   z-index: 2;
   filter: drop-shadow(0 12px 16px rgba(13, 59, 34, .3));
 }
@@ -288,7 +289,7 @@ main { width: var(--page-w); margin: 0 auto; }
   overflow: hidden;
 }
 .main-cut-in .slot { background-color: var(--green); }
-.main-cut-in img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
+.main-cut-in img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 
 .b-left  { left: 77%; top: 53%; width: 21%; transform: rotate(-8deg); z-index: 4; }
 .b-right { left: 76%; top: 4%;  width: 20%; transform: rotate(7deg);  z-index: 4; }
