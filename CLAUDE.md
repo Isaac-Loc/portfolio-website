@@ -46,6 +46,7 @@ public/images/             User photos / project images (referenced as /images/<
 - Fonts: Playfair Display (italic 900, sticker headings), Silkscreen (pixel labels), Inter (body).
 
 ## Gotchas
+- The header is sticky. Anything sized to the screen must subtract `var(--header-h)` (sections use `min-height: calc(100svh - var(--header-h))`, anchors rely on `scroll-padding-top`).
 - Scroll arrows are invisible by default and only show for the section you are settled in (>=60% of the screen, or Contact at the page bottom), hidden again while scrolling (`hooks/useSectionArrows.js`, `.arrows-on`, `html.is-scrolling`). New sections just need to be a `main > section` (or the `.duo` band) to be picked up.
 - Cursors and the text-selection highlight are custom (end of `style.css`). New clickable things get the sparkle-star pointer automatically if they're `a`/`button`/`.ix`; otherwise set `cursor: var(--cursor-pointer)`.
 - Hero widgets pop on hover and react on click (`useHeroInteractions.js`). The user explicitly does NOT want dragging; don't add it.

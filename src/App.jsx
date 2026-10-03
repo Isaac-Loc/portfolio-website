@@ -11,9 +11,11 @@ import Skills from './components/Skills.jsx'
 import Contact from './components/Contact.jsx'
 import ScrollButton from './components/ScrollButton.jsx'
 import useSectionArrows from './hooks/useSectionArrows.js'
+import useNavInteractions from './hooks/useNavInteractions.js'
 
 export default function App() {
   useSectionArrows()
+  useNavInteractions()
   useEffect(() => {
     const els = document.querySelectorAll('.reveal')
     if (!('IntersectionObserver' in window)) {

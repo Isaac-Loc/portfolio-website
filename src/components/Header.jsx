@@ -1,13 +1,21 @@
+const LINKS = [
+  { id: 'experience', label: 'EXPERIENCE' },
+  { id: 'projects', label: 'PROJECTS' },
+  { id: 'skills', label: 'SKILLS' },
+  { id: 'contact', label: 'CONTACT' },
+]
+
 export default function Header({ name }) {
   return (
     <header id="page-top" className="site-header">
-      <a className="tag tag-logo" href="#top">{name.toUpperCase()}.EXE</a>
-      <nav>
-        <a className="tag" href="#experience">EXPERIENCE</a>
-        <a className="tag" href="#projects">PROJECTS</a>
-        <a className="tag" href="#skills">SKILLS</a>
-        <a className="tag" href="#contact">CONTACT</a>
-      </nav>
+      <div className="header-inner">
+        <a className="tag tag-logo" href="#page-top" data-nav="top">{name.toUpperCase()}.EXE</a>
+        <nav>
+          {LINKS.map((l) => (
+            <a key={l.id} className="tag" href={`#${l.id}`} data-section={l.id}>{l.label}</a>
+          ))}
+        </nav>
+      </div>
     </header>
   )
 }

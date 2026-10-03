@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 // The scroll arrows are invisible by default. They fade in only for the section you are currently "in"
-// (it fills at least 60% of the screen; the short Contact band counts when you reach the page bottom),
+// (it fills at least 60% of the screen below the pinned header; the short Contact band counts when you reach the page bottom),
 // and they hide again while you are actively scrolling. CSS does the showing/hiding via `.arrows-on` on
 // the section and `.is-scrolling` on <html>.
 export default function useSectionArrows() {
@@ -12,16 +12,17 @@ export default function useSectionArrows() {
 
     const compute = () => {
       const vh = window.innerHeight
+      const headerH = document.querySelector('.site-header')?.getBoundingClientRect().height ?? 0
       let best = null
       let bestVisible = -1
       hosts.forEach((h) => {
         const r = h.getBoundingClientRect()
-        const visible = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0))
+        const visible = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, headerH))
         if (visible > bestVisible) { bestVisible = visible; best = h }
       })
       const atBottom = window.innerHeight + window.scrollY >= root.scrollHeight - 2
       if (atBottom) best = hosts[hosts.length - 1]
-      else if (bestVisible < vh * 0.6) best = null
+      else if (bestVisible < (vh - headerH) * 0.6) best = null
       hosts.forEach((h) => h.classList.toggle('arrows-on', h === best))
     }
 
