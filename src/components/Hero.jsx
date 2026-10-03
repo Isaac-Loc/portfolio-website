@@ -41,8 +41,8 @@ export default function Hero({ site }) {
 
         <CommitGrid user={site.githubUser} />
 
-        <Burst className="b-left" src={heroPhotos.lower} />
-        <Burst className="b-right" src={heroPhotos.upper} />
+        <Burst className="b-left" src={heroPhotos.lower} alt="My car in the snow" />
+        <Burst className="b-right" src={heroPhotos.upper} alt="My cat" />
 
         {site.heroStickers.map((name, i) => (
           <Sticker key={name} name={name} className={`as${i + 1}`} />

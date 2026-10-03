@@ -13,16 +13,15 @@ export const site = {
   about: {
     // Shown under the hero title. Keep it to 2-3 short sentences (phones show the first two). **bold** works.
     sentences: [
-      "I'm a **Computer Science** student at the University at Buffalo who builds across screens and hardware, from full-stack web apps to an **LED wall** driven by ESP32s.",
-      "I like turning tricky systems into things that feel simple and fun to use.",
-      "Outside of class, I help lead my Theta Tau chapter.",
+      "I'm a senior **Computer Science** major at the University at Buffalo.",
+      "I love developing **software and systems** that make tricky things and problems easier.",
     ],
   },
   heroStickers: ['flower', 'heart', 'cassette', 'constellation', 'vinyl'], // artistic stickers (see Stickers.jsx)
   heroPhotos: {
     main: '/images/me.jpg', // big jagged frame in the centre; any photo works (cropped to fit)
-    upper: null, // upper starburst
-    lower: null, // lower starburst
+    upper: '/images/cat.jpg', // upper starburst: the cat
+    lower: '/images/car.jpg', // lower starburst: the car (licence plate blurred in the file)
   },
 }
 
