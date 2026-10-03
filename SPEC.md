@@ -30,7 +30,8 @@ Visual language:
 
 ## 3. Tech stack
 - React 19 + Vite 8 (`@vitejs/plugin-react`), plain JavaScript (JSX), plain CSS. No router, no CSS framework.
-- `base: './'` in `vite.config.js` so the build works from any path (e.g. GitHub Pages).
+- `base: './'` in `vite.config.js` so the build works from any path.
+- **Hosting: Vercel**, auto-deployed from GitHub (see README "Deploy (Vercel)"). `vercel.json` sets framework/build/output plus security and cache headers; `package.json` sets `engines.node >= 20.19.0`. Plan: use the `*.vercel.app` URL for now, add the custom domain / domain forwarding later. The Vercel project's **Production Branch must be `dev`** (the repo's working branch) so pushes to `dev` go live.
 - Run: `npm install`, `npm run dev` (http://localhost:5173), `npm run build`.
 
 ## 4. Structure
@@ -137,3 +138,4 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). **Onl
 - **2026-10-03 (later 28)**: Rewrote the About text in original wording (user: write something *like* what they said, don't copy it): "I'm a senior at the University at Buffalo studying Computer Science, and I'm happiest when I'm untangling a messy problem. I build software and systems that take on the hard parts so the people using them don't have to."
 - **2026-10-03 (later 29)**: Decluttered the hero (user: "shrink the hero" after I flagged it as busy): removed the arrow doodle, the squiggle, two sparkles and the cassette sticker (kept: sparkle sp1, asterisk sp4, stamp, flower, pixel heart, constellation, vinyl). Stickers are now positioned by name (`.as-flower`, `.as-heart`, `.as-constellation`, `.as-vinyl`) instead of by index. Raised the About text/tag minimum sizes and cut the commit grid to 22 weeks so both read better on laptop screens.
 - **2026-10-03 (later 30)**: Restored the dotted arrow doodle (`.a1`) between "Isaac" and "Welcome to my", pointing up-right at the user's face in the photo frame (hidden on phones). Spread the right-hand widgets: flower stays on the cat star's lower-right corner, vinyl moved to the left of the gap between the two stars, pixel heart moved to the car star's bottom-right corner.
+- **2026-10-03 (later 31)**: Removed the header's dashed bottom border (it stacked with each section's dashed top divider into a double dotted line at every landing; now a soft shadow defines the header edge and the section divider is the only dashed line). Prepared the project for Vercel auto-deploy: `vercel.json`, `engines.node`, `.vercel/` ignored, README deploy steps. The user still has to import the repo in Vercel (CLI not signed in here) and set Production Branch to `dev`.
