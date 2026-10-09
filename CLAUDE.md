@@ -3,7 +3,7 @@
 Guidance for AI assistants (Claude Code or any other model) working in this repo.
 
 ## What this is
-Isaac's personal portfolio website. React + Vite single-page site with a clean **royal blue** theme: a flat solid blue background and giant section words that animate in on scroll.
+Isaac's personal portfolio website. React + Vite single-page site: a clean, professional version of the original layout (hero + full-screen section bands) in the colours of the user's Luffy tab icon (red, gold, teal, brown on cream), with Playfair Display / Silkscreen / Inter fonts and a light/dark toggle.
 
 **Read [SPEC.md](SPEC.md) first.** It is the source of truth for design decisions, structure, content, and history.
 
@@ -20,16 +20,16 @@ npm run dev        # dev server at http://localhost:5173
 npm run build      # production build to dist/
 npm run preview    # serve the production build
 ```
-Deploys: Vercel auto-deploys from GitHub (project Production Branch = `dev`), so pushing to `dev` publishes the site at the `*.vercel.app` URL. Details are in SPEC.md ("Deployment (Vercel)"). `README.md` is a personal profile-style intro (user request): keep setup/run/deploy instructions out of it.
+Deploys: Vercel auto-deploys from GitHub, so pushing publishes the site at the `*.vercel.app` URL. Details are in SPEC.md ("Deployment (Vercel)"). `README.md` is a personal profile-style intro (user request): keep setup/run/deploy instructions out of it.
 
 ## Layout
 ```
-index.html                 Vite entry (fonts loaded here)
+index.html                 Vite entry (fonts loaded here, theme set before paint)
 src/main.jsx               React mount + global CSS import
 src/App.jsx                Page composition
 src/data/site.js           ALL editable content (name, links, copy, projects, photo paths)
-src/hooks/useScrollFx.js   scroll-linked CSS vars + reveal observer
-src/components/            Header, Hero, Big (giant word), About, Experience, Projects, Crew, Skills, Contact, Rich (**bold** text)
+src/hooks/                 useTheme, useSectionArrows, useNavInteractions, useReveal
+src/components/            Header, Hero, StoryCard, Art (SVG illustrations), CommitGrid, ScrollButton, Experience, Projects, Education, Leadership, Skills, Contact, Rich (**bold** text)
 src/styles/style.css       All styling (single file, tokens at the top)
 public/images/             Photos (/images/<file>)
 ```
@@ -37,12 +37,13 @@ public/images/             Photos (/images/<file>)
 ## Conventions
 - Content goes in `src/data/site.js`, not hard-coded in components. Only show facts that are on the resume (`Isaac_Loc_Resume.pdf`).
 - NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive. The car photo's licence plate is blurred in the file; keep it that way.
-- Plain CSS in one file; colors/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem`.
-- Look: clean frosted white cards (`.panel`), royal-blue accents (`--royal`, `--tint`), Nunito (rounded, friendly) for everything; no condensed or all-caps display fonts. The One Piece theme was scrapped; don't bring it or red accents back. NO gradients, glows, blur, shadows or translucent tints: flat solid colors only (user: they look AI-generated).
-- Every section starts with `<Big word=... sub=... />` and uses `.reveal` on its blocks.
-- Scroll effects are driven by CSS vars set in `useScrollFx.js` (`--t` on `[data-big]`, `--out` on the hero).
+- Plain CSS in one file; colours/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem`.
+- Clean look: plain rectangles with 2px borders and small radii, thin lines, no rotation/tilt. NO cutout shapes (clip-path polygons), tape, stickers, sparkles, grain, custom cursors, drop shadows, gradients, glows, blur or translucent tints: flat solid colours only (user: they look AI-generated). The One Piece and royal-blue themes were tried and scrapped; don't bring them back.
+- Never hard-code surface/text colours: use `--paper`, `--card`, `--text`, `--line`, `--accent`. Check anything new in both themes.
+- Keep text short; the user likes pictures and graphics. Sections after the hero are full-screen bands with sticky scroll arrows (see `ScrollButton`, `useSectionArrows`); keep that pattern.
 - Respect `prefers-reduced-motion`. The user does NOT want dragging.
 
 ## Gotchas
-- Text sits on flat blue: big words and hero text are white, cards are white with navy text.
-- Nav is fixed (`--nav-h`); hero and anchors account for it via padding and `scroll-padding-top`.
+- The header is sticky: anything sized to the screen subtracts `var(--header-h)`.
+- Scroll arrows are invisible except in the section you are settled in; don't give them the `reveal` class (the observer ignores the bottom 6% of the screen).
+- The hero must stay one screen tall.

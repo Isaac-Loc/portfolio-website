@@ -1,17 +1,33 @@
+import Rich from './Rich.jsx'
+import CommitGrid from './CommitGrid.jsx'
+import ScrollButton from './ScrollButton.jsx'
+
 export default function Hero({ site }) {
-  const [first, last] = site.name.split(' ')
+  const { photos } = site
   return (
-    <section className="hero" data-hero>
-      <div className="hero-inner">
-        <p className="eyebrow">Portfolio · {site.year}</p>
-        <h1 className="hero-title"><span>{first}</span><span className="red">{last}</span></h1>
-        <p className="hero-tag">{site.tagline}</p>
-        <div className="hero-cta">
-          <a className="btn btn-red" href="#experience">See my work</a>
-          <a className="btn btn-ghost" href="#contact">Get in touch</a>
+    <section id="top" className="hero">
+      <div className="hero-grid">
+        <div className="hero-copy">
+          <h1 className="hero-title">
+            <span className="hi">Hi, I&rsquo;m</span>
+            <span className="name">{site.firstName}</span>
+            <span className="welcome">Welcome to my portfolio!</span>
+          </h1>
+          <div className="about-note">
+            <span className="tag">ABOUT ME</span>
+            {site.about.paragraphs.slice(0, 2).map((t) => <p key={t}><Rich text={t} /></p>)}
+          </div>
+        </div>
+        <div className="hero-media">
+          <div className="photo main"><img src={photos.me} alt={site.name} /></div>
+          <div className="photo-row">
+            <div className="photo"><img src={photos.cat} alt="My cat" /></div>
+            <div className="photo"><img src={photos.car} alt="My car in the snow" /></div>
+          </div>
+          <CommitGrid user={site.githubUser} />
         </div>
       </div>
-      <a className="hero-hint" href="#about" aria-label="Scroll down"><i /></a>
+      <ScrollButton to="experience" hero />
     </section>
   )
 }
