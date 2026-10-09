@@ -6,22 +6,22 @@
   --primary-deep: #2c666d;
   --soft: #a9d4d6;            /* resume button */
   --tint: #dcebeb;            /* stat circles, highlights */
-  --ink: #17353a;
+  --ink: #1b1b1b;           /* near-black for tag backgrounds / dark surfaces */
 
   /* themable surfaces */
   --paper: #fbf6ea;           /* creamy white backdrop */
   --card: #fffdf8;
   --white: #ffffff;           /* bubble outline */
-  --text: #17353a;
-  --muted: #52797e;
-  --line: #406c71;
+  --text: #1a1a1a;            /* body/heading text: near-black instead of teal-tinted */
+  --muted: #5a5a5a;
+  --line: #2a2a2a;
   --accent: #2f6f77;          /* teal used for text/decor on a surface */
   --border: #e4dcc8;
-  --cell0: #ece5d3;
-  --cell1: #cfe9ea;
-  --cell2: #8fc3c6;
-  --cell3: #3b7f86;
-  --cell4: #17353a;
+  --cell0: #e4ddc8;           /* no activity: faint */
+  --cell1: #bfe3e4;
+  --cell2: #6fb3b6;
+  --cell3: #2c666d;
+  --cell4: #102326;           /* most activity: near-black, pops hard */
 
   --font-display: "Playfair Display", Georgia, serif;
   --font-pixel: "Press Start 2P", "Courier New", monospace;
@@ -42,8 +42,11 @@
   --line: #85858b;
   --accent: #8fd0d3;
   --border: #303033;
-  --cell0: #353538;
-  --cell4: #ececee;
+  --cell0: #3a3a3d;
+  --cell1: #4f6f71;
+  --cell2: #6fa6a9;
+  --cell3: #8fd0d3;
+  --cell4: #f4fbfb;           /* most activity: near-white, pops hard on dark */
 }
 
 * { box-sizing: border-box; }
@@ -180,8 +183,8 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .commit-head { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-bottom: .6rem; }
 .commit-card .tag { margin: 0; font-size: .5rem; }
 .commit-total { font-weight: 600; font-size: .8rem; color: var(--accent); white-space: nowrap; }
-.commit-grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, auto); grid-auto-columns: 1fr; gap: 2px; }
-.commit-grid .cell { aspect-ratio: 1; border-radius: 22%; background: var(--cell0); }
+.commit-grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, auto); grid-auto-columns: 1fr; gap: 3px; }
+.commit-grid .cell { aspect-ratio: 1; border-radius: 22%; background: var(--cell0); box-shadow: inset 0 0 0 1px var(--border); }
 .commit-grid .cell.blank { background: transparent; }
 .commit-grid .cell.l1 { background: var(--cell1); }
 .commit-grid .cell.l2 { background: var(--cell2); }
