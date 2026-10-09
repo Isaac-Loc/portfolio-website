@@ -44,7 +44,7 @@ public/images/             me.png (portrait)
 - The hero is one screen tall (below the header). Only the Home page (hero) has content; the nav pages are empty placeholders. Build one page at a time and ask about layout/look as you go. Use the `.box` class for cards. Respect `prefers-reduced-motion`. The user does NOT want dragging.
 
 ## Gotchas
-- Light/dark theme is variable-driven. Never hard-code surface/text colours: use `--card`, `--text`, `--accent`, `--line`, `--white`. Check new UI in both themes.
+- Light/dark theme is variable-driven. Never hard-code surface/text colours: use `--card`, `--text`, `--accent`, `--line`, `--white`. Check new UI in both themes. Dark mode is soft gray surfaces with the blue only as the accent.
 - The header is sticky. Anything sized to the screen must subtract `var(--header-h)`.
 - There are no scroll arrows (user removed them); navigation is the header plus an always-visible themed scrollbar (end of the "Visible scrollbar" block in `style.css`).
 - Images are placeholders until paths are set in `site.js`. Placeholders are intentional.
