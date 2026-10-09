@@ -3,7 +3,7 @@
 Guidance for AI assistants (Claude Code or any other model) working in this repo.
 
 ## What this is
-Isaac's personal portfolio website. React + Vite single page, **being rebuilt from the ground up**: right now it is only the header and the hero. Look: clean and professional, patchy teal-blue palette from the user's Luffy tab icon, Playfair Display / Silkscreen / Inter, **retro pixel (Silkscreen) titles with a typing-animation hero**, white `.box` cards with a thin border and a teal top bar. No cutout shapes or decorative widgets.
+Isaac's personal portfolio website. React + Vite single page, **being rebuilt from the ground up**: right now it is only the header and the hero. Look: clean and professional, patchy teal-blue palette from the user's Luffy tab icon, Press Start 2P (pixel) + Inter, a creamy white backdrop with the teal-blue as the accent, **retro pixel titles with a typing-animation hero**, white `.box` cards with a thin border and a teal top bar. No cutout shapes or decorative widgets.
 
 **Read [SPEC.md](SPEC.md) first.** It is the source of truth for design decisions, structure, content, and history.
 
@@ -39,8 +39,8 @@ public/images/             me.png (portrait)
 - Content goes in `src/data/site.js`, not hard-coded in components. Only show facts on the resume (`Isaac_Loc_Resume.pdf`).
 - NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive.
 - Plain CSS in one file; colours/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem` (fluid root font-size; primary target is a 1440p monitor).
-- Professional look: clean white `.box` cards (1px `--border`, 4px `--primary` top bar, .75rem radius). NO cutout/clip-path shapes, tape, stickers, sparkles, stamps, doodles, custom cursors, paper grain, tilt or hero click widgets (user scratched them). Keep colours flat (no gradients/glows). The signature look is the retro **pixel font** (Silkscreen) for titles and labels; the hero title is a typed animation (`useTyper`). The bubbled/outlined text was scrapped: do not bring it back.
-- Palette is the patchy teal-blue of the user's Luffy tab icon (`--primary`, `--teal`, `--tint`, `--paper`, `--ink`). Fonts: Playfair Display (italic 900, titles), Silkscreen (pixel labels), Inter (body).
+- Professional look: clean white `.box` cards (1px `--border`, 4px `--primary` top bar, .75rem radius). NO cutout/clip-path shapes, tape, stickers, sparkles, stamps, doodles, custom cursors, paper grain, tilt or hero click widgets (user scratched them). Keep colours flat (no gradients/glows). The signature look is the retro **pixel font** (Press Start 2P) for titles and labels; the hero title is a typed animation (`useTyper`). The bubbled/outlined text was scrapped: do not bring it back.
+- Palette is the patchy teal-blue of the user's Luffy tab icon (`--primary`, `--teal`, `--tint`, `--paper`, `--ink`). Fonts: Press Start 2P (all titles, tags and labels; it only has weight 400, so never set bold on it) and Inter (body). The light-theme backdrop is a creamy white (`--paper`); the teal-blue is the accent only.
 - The hero is one screen tall (below the header). Only the Home page (hero) has content; the nav pages are empty placeholders. Build one page at a time and ask about layout/look as you go. Use the `.box` class for cards. Respect `prefers-reduced-motion`. The user does NOT want dragging.
 
 ## Gotchas
