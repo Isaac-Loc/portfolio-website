@@ -6,11 +6,11 @@ Living spec. Any AI/model starting a new chat should read this plus [CLAUDE.md](
 A personal portfolio for Isaac (GitHub: [Isaac-Loc](https://github.com/Isaac-Loc)). Clean and professional but with personality: a **royal blue** theme with big scroll-animated type. (History: green collage -> One Piece ocean/sky -> royal blue, all on 2026-10-03 / 2026-10-09. The One Piece theme was scrapped at the user's request; keep it out.)
 
 ## 2. Design direction
-- **Fixed royal-blue backdrop** (`Scene.jsx`): blue gradient with three soft blurred blobs and a faint grid that drift with scroll (`--p`, set by `hooks/useScrollFx.js`).
+- **Flat solid royal blue background** (`--royal`). NO gradients, blurred glows/blobs, shadows, text-shadows, translucency or tinted hues (user: they look AI-generated). Solid colors only.
 - **Big text**: each section opens with a giant white Anton word that slides in and fades up as it rises through the screen (`Big.jsx`, `--t` per `[data-big]`): ABOUT, EXPERIENCE, PROJECTS, EDUCATION (+ leadership), SKILLS, LET'S TALK, each with a small plain subtitle.
-- **Content panels**: white frosted cards with a royal-blue top border, navy text, blue stat numbers and chips. Photos (me, cat, car) sit in round frames with an ice-blue ring.
-- Hero: huge "ISAAC / LOC" (white / ice blue) that scales and fades as you scroll away (`--out`).
-- Tokens in `:root` of `style.css`: `--royal #2350e0`, `--royal-deep`, `--royal-dark`, `--ice #a9c0ff`, `--navy`. Fonts: Anton (display), Inter (body). Single theme, no toggle. Keep the palette to blues + white (no red).
+- **Content panels**: solid white cards with a royal-blue top border, navy text, blue stat numbers, flat pale-tint chips. Photos (me, cat, car) sit in round frames with a white border.
+- Hero: huge "ISAAC / LOC" (white / navy) that scales and fades as you scroll away (`--out`).
+- Tokens in `:root` of `style.css`: `--royal #2350e0`, `--royal-deep`, `--royal-dark`, `--tint #e8eeff`, `--navy`. Fonts: Anton (display), Inter (body). Single theme, no toggle. Palette: royal blue, navy, white (+ the pale `--tint`); no red.
 
 ## 3. Tech stack
 - React 19 + Vite 8, plain JS (JSX), plain CSS in one file. No router yet (user may add routing later; page is a single scroll for now).
@@ -27,8 +27,8 @@ index.html              Vite entry, loads Anton + Inter
 src/main.jsx            React mount
 src/App.jsx             Scene, Header, Hero, About, Experience, Projects, Crew, Skills, Contact
 src/data/site.js        ALL content
-src/hooks/useScrollFx.js  scroll vars (--p/--t/--out) + .reveal observer
-src/components/         Scene, Header, Hero, Big, About, Experience, Projects, Crew (education + leadership), Skills, Contact, Rich (**bold** text)
+src/hooks/useScrollFx.js  scroll vars (--t/--out) + .reveal observer
+src/components/         Header, Hero, Big, About, Experience, Projects, Crew (education + leadership), Skills, Contact, Rich (**bold** text)
 src/styles/style.css    all styling
 public/images/          me.jpg, cat.jpg, car.jpg
 ```
@@ -46,7 +46,7 @@ Source of truth is the resume (`Isaac_Loc_Resume.pdf`). Only resume facts are sh
 - Dragging of elements was previously rejected by the user; don't add it.
 
 ## 7. Open items
-- [ ] Eyeball on real devices (phones, 1440p); tune big-word sizes and backdrop motion.
+- [ ] Eyeball on real devices (phones, 1440p); tune big-word sizes.
 - [ ] Optional: project/experience detail pages (router), real project screenshots, a Bidit link.
 - [ ] Record the confirmed public Vercel URL in README and the repo homepage field.
 
@@ -54,3 +54,4 @@ Source of truth is the resume (`Isaac_Loc_Resume.pdf`). Only resume facts are sh
 - **2026-10-03**: Original build (green cutout-collage portfolio, React + Vite, Vercel deploy, resume with phone number redacted and purged from git history, favicon, README rewrite, light-default theme). Full history of that design is in git before the 2026-10-09 revamp.
 - **2026-10-09**: Complete revamp to a One Piece-themed ocean + sky design in red and blue. New fixed `Scene` (day -> sunset -> night with scroll, ship, waves, clouds, sun, stars), scroll-linked giant section words, frosted content cards, round photo portholes, minimal fixed nav with Resume button. Added more About copy. Removed the old components/hooks/styles. Added `.claude/launch.json`.
 - **2026-10-09 (later)**: Scrapped the One Piece theme. Backdrop is now royal blue (gradient + drifting blobs + grid); removed the ship/sea/sky, nautical section names and red accents; nav ids are now `experience`, `education`, etc.
+- **2026-10-09 (later 2)**: Removed every gradient, blur, glow, shadow and translucent tint (user: "no hues or gradients"). Background is now flat `--royal`; deleted `Scene.jsx` and its blobs/grid. Cards are solid white, the nav is solid blue, buttons are flat.

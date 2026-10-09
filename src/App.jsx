@@ -1,5 +1,4 @@
 import { site, experience, projects, education, leadership, skills } from './data/site.js'
-import Scene from './components/Scene.jsx'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
@@ -14,7 +13,6 @@ export default function App() {
   useScrollFx()
   return (
     <>
-      <Scene />
       <Header name={site.firstName} resume={site.resume} />
       <Hero site={site} />
       <main>
