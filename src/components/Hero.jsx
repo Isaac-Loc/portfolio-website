@@ -12,7 +12,7 @@ export default function Hero({ site }) {
   return (
     <section id="top" className="hero">
       <div className="hero-grid">
-        <div className="hero-copy">
+        <div className="hero-copy reveal">
           <h1 className="hero-title" aria-label={title.replace('\n', ' ')}>
             <span className="line" aria-hidden="true">{line1}{typingTitle && !titleText.includes('\n') && <i className="cursor" />}</span>
             <span className="line name" aria-hidden="true">{line2}{typingTitle && titleText.includes('\n') && <i className="cursor" />}</span>
@@ -20,12 +20,15 @@ export default function Hero({ site }) {
           <p className="role" aria-label={site.roles.join(', ')}>
             <span aria-hidden="true">&gt; {roleText}{!typingTitle && <i className="cursor" />}</span>
           </p>
+          <a className="tag tag-cta" href="#experience" onClick={(e) => { e.preventDefault(); document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }) }}>
+            SEE WHAT I'M UP TO! &#9660;
+          </a>
           <div className="box about-note">
             <span className="tag">ABOUT ME</span>
             {site.about.paragraphs.slice(0, 2).map((t) => <p key={t}><Rich text={t} /></p>)}
           </div>
         </div>
-        <div className="hero-media">
+        <div className="hero-media reveal">
           <figure className="window">
             <div className="window-bar">
               <span>{site.name.replace(' ', '_').toUpperCase()}.PNG</span>

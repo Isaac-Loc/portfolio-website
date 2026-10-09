@@ -12,7 +12,7 @@ export const site = {
   githubUser: 'Isaac-Loc', // drives the commit grid in the hero
   linkedin: 'https://www.linkedin.com/in/isaac-loc',
   tagline: 'Software engineer from embedded firmware to full stack.',
-  roles: ['Software Engineer', 'Full Stack Developer', 'Embedded Developer', 'Computer Science @ University at Buffalo'], // typed under the hero title
+  roles: ['Software Engineer', 'Full Stack Developer', 'Embedded Developer', 'Computer Science @\nUniversity at Buffalo'], // typed under the hero title
   about: {
     // Paragraphs shown in the About section. **bold** works.
     paragraphs: [

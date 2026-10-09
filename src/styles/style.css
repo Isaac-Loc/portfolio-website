@@ -61,7 +61,7 @@ body {
   line-height: 1.55;
   color: var(--text);
   background: var(--paper);
-  overflow-x: hidden;
+  overflow-x: clip; /* clip, not hidden: hidden makes body a second scroller next to the html one */
 }
 a { color: inherit; }
 ::selection { background: var(--tint); color: var(--ink); }
@@ -131,7 +131,7 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .hero-title .line { display: block; min-height: 1.3em; font-size: clamp(1.4rem, 3.4vw, 3.2rem); }
 .hero-title .name { color: var(--primary); font-size: clamp(2rem, 5.4vw, 5rem); }
 :root[data-theme="dark"] .hero-title .name { color: var(--accent); }
-.role { margin: 1.2rem 0 1.8rem; max-width: 20rem; min-height: 1.6em; font-family: var(--font-pixel); font-weight: 400; font-size: clamp(.65rem, 1.1vw, 1rem); line-height: 1.5; color: var(--muted); }
+.role { margin: 1.2rem 0 1.8rem; max-width: 26rem; white-space: pre-line; min-height: 1.6em; font-family: var(--font-pixel); font-weight: 400; font-size: clamp(.65rem, 1.1vw, 1rem); line-height: 1.5; color: var(--muted); }
 .cursor { display: inline-block; width: .55em; height: 1em; margin-left: .12em; vertical-align: -.12em; background: currentColor; animation: blink 1s steps(1) infinite; }
 .hero-title .cursor { background: var(--primary); }
 @keyframes blink { 50% { opacity: 0; } }
@@ -242,6 +242,41 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .page { width: var(--page-w); margin: 0 auto; min-height: calc(100svh - var(--header-h)); padding: 3rem 0; }
 .page-title { margin: 0; font-family: var(--font-pixel); font-weight: 400; line-height: 1.3; font-size: clamp(1.3rem, 3vw, 2.6rem); color: var(--text); }
 
+/* ===== Home sections (scroll down) ===== */
+.tag-cta { margin: 0 0 1.8rem; padding: .95rem 1.1rem .8rem; font-size: .65rem; background: var(--primary); color: #fff; }
+:root[data-theme="dark"] .tag-cta { background: var(--primary); color: #fff; }
+a.tag.tag-cta:hover { background: var(--primary-deep); }
+.section { padding: 4rem 0; border-top: 1px solid var(--border); }
+.section-inner { width: var(--page-w); margin: 0 auto; }
+.section-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; }
+.section-title { margin: 0; font-family: var(--font-pixel); font-weight: 400; line-height: 1.3; font-size: clamp(1.1rem, 2.4vw, 2rem); color: var(--text); }
+.tag-archive { margin: 0; }
+.entry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 2rem; }
+.entry { margin: 4px; }
+.entry-title { margin: 0 0 .4rem; font-family: var(--font-pixel); font-weight: 400; font-size: .8rem; line-height: 1.5; color: var(--primary); }
+:root[data-theme="dark"] .entry-title { color: var(--accent); }
+.entry-title a { text-decoration: none; }
+.entry-title a:hover { text-decoration: underline; }
+.entry-meta { margin: 0 0 .8rem; font-size: .85rem; color: var(--muted); }
+.entry-summary { margin: 0 0 1rem; line-height: 1.65; }
+.entry-tech { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0; padding: 0; list-style: none; }
+.entry-tech li { padding: .25rem .55rem; font-size: .75rem; background: var(--tint); border: 1px solid var(--border); }
+.skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1.8rem 2rem; }
+.skill-label { margin: 0 0 .7rem; font-family: var(--font-pixel); font-weight: 400; font-size: .6rem; line-height: 1.5; color: var(--muted); }
+.contact { padding: 1.2rem 0; background: var(--card); border-top: 1px solid var(--border); }
+.contact-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .6rem 1.5rem; }
+.contact .section-title { font-size: clamp(.8rem, 1.4vw, 1.1rem); }
+.contact-links { display: flex; flex-wrap: wrap; }
+.contact-links .tag { margin: 2px 4px 2px 0; font-size: .5rem; padding: .55rem .65rem .45rem; }
+.contact-copy { margin: 0; font-size: .75rem; color: var(--muted); }
+
+/* Scroll reveal: elements fade/slide up once when they enter the viewport (see useReveal) */
+.reveal { opacity: 0; transform: translateY(1.5rem); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: .12s; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: .24s; }
+.hero-media.reveal { transition-delay: .15s; }
+
 /* ===== Visible scrollbar on the side (themed) ===== */
 html { scrollbar-width: auto; scrollbar-color: var(--primary) var(--tint); overflow-y: scroll; }
 ::-webkit-scrollbar { width: 14px; }
@@ -261,5 +296,26 @@ html { scrollbar-width: auto; scrollbar-color: var(--primary) var(--tint); overf
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
   .commit-card.loading .cell, .cursor, .pixel-glyph { animation: none; }
 }
+
+/* Section titles: typed in with stepped (pixel) wipe, offset red shadow, then a blinking block cursor */
+.section-title { display: inline-block; position: relative; text-shadow: 3px 3px 0 color-mix(in srgb, var(--primary) 35%, transparent); clip-path: inset(-6px 100% -6px -6px); }
+.section-title::after { content: ""; display: inline-block; width: .5em; height: .9em; margin-left: .25em; vertical-align: -.1em; background: var(--primary); animation: blink 1s steps(1) infinite; }
+:root[data-theme="dark"] .section-title::after { background: var(--accent); }
+.in .section-title, .in.section-title { animation: title-type 1s steps(14) .15s forwards; }
+@keyframes title-type { to { clip-path: inset(-6px -12px -6px -6px); } }
+@media (prefers-reduced-motion: reduce) {
+  .section-title { clip-path: none; }
+  .in .section-title { animation: none; }
+}
+
+/* Section-title cursor only shows while the title is typing: blinks 3 times after the wipe, then is gone */
+.section-title::after { opacity: 0; animation: none; }
+.in .section-title::after { animation: cursor-life 1s steps(1) 1.15s 3; }
+@keyframes cursor-life { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .in .section-title::after { animation: none; } }
+
+/* Hero title gets the same offset red shadow as the section titles */
+.hero-title .line { text-shadow: 3px 3px 0 color-mix(in srgb, var(--primary) 35%, transparent); }
