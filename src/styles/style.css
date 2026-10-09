@@ -1,27 +1,27 @@
-/* ===== Theme: clean portfolio in the patchy teal-blue of the Luffy tab icon =====
+/* ===== Theme: clean portfolio with a rich red accent on a creamy backdrop =====
    Flat solid colours; the one playful touch is the bubbled (outlined) title lettering. */
 :root {
-  --teal: #7ebabb;            /* icon's light patch: photo + illustration frames */
-  --primary: #3b7f86;         /* mid teal: titles, arrows, tags on hover */
-  --primary-deep: #2c666d;
-  --soft: #a9d4d6;            /* resume button */
-  --tint: #dcebeb;            /* stat circles, highlights */
+  --teal: #e3a79e;             /* warm terracotta: photo placeholder bg */
+  --primary: #b3281f;          /* rich red: titles, arrows, tags on hover */
+  --primary-deep: #841e17;
+  --soft: #f0c9c3;             /* resume button */
+  --tint: #f7e4e0;             /* stat circles, highlights */
   --ink: #1b1b1b;           /* near-black for tag backgrounds / dark surfaces */
 
   /* themable surfaces */
   --paper: #fbf6ea;           /* creamy white backdrop */
   --card: #fffdf8;
   --white: #ffffff;           /* bubble outline */
-  --text: #1a1a1a;            /* body/heading text: near-black instead of teal-tinted */
+  --text: #1a1a1a;            /* body/heading text: near-black instead of accent-tinted */
   --muted: #5a5a5a;
   --line: #2a2a2a;
-  --accent: #2f6f77;          /* teal used for text/decor on a surface */
+  --accent: #9c2b22;           /* red used for text/decor on a surface */
   --border: #e4dcc8;
   --cell0: #e4ddc8;           /* no activity: faint */
-  --cell1: #bfe3e4;
-  --cell2: #6fb3b6;
-  --cell3: #2c666d;
-  --cell4: #102326;           /* most activity: near-black, pops hard */
+  --cell1: #f2c9c1;
+  --cell2: #d97b6c;
+  --cell3: #a3291f;
+  --cell4: #1a0604;           /* most activity: near-black, pops hard */
 
   --font-display: "Playfair Display", Georgia, serif;
   --font-pixel: "Press Start 2P", "Courier New", monospace;
@@ -32,7 +32,7 @@
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  /* soft gray surfaces; the blue stays only as the accent */
+  /* soft gray surfaces; the red stays only as the accent */
   --paper: #1c1c1e;
   --card: #272729;
   --white: #ececee;
@@ -40,13 +40,13 @@
   --text: #ececee;
   --muted: #a9a9af;
   --line: #85858b;
-  --accent: #8fd0d3;
+  --accent: #e8766a;
   --border: #303033;
   --cell0: #3a3a3d;
-  --cell1: #4f6f71;
-  --cell2: #6fa6a9;
-  --cell3: #8fd0d3;
-  --cell4: #f4fbfb;           /* most activity: near-white, pops hard on dark */
+  --cell1: #6e4038;
+  --cell2: #a84f41;
+  --cell3: #e8766a;
+  --cell4: #fdf0ee;           /* most activity: near-white, pops hard on dark */
 }
 
 * { box-sizing: border-box; }
