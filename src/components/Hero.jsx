@@ -26,9 +26,14 @@ export default function Hero({ site }) {
           </div>
         </div>
         <div className="hero-media">
-          <figure className="frame">
-            <div className="frame-pic"><PixelPhoto src={photos.me} alt={site.name} /></div>
-            <figcaption><span className="tag">{site.name.toUpperCase()}</span></figcaption>
+          <figure className="window">
+            <div className="window-bar">
+              <span>{site.name.replace(' ', '_').toUpperCase()}.PNG</span>
+              <i className="dots" aria-hidden="true"><b /><b /><b /></i>
+            </div>
+            <div className="window-body">
+              <div className="frame-pic"><PixelPhoto src={photos.me} alt={site.name} /></div>
+            </div>
           </figure>
           <CommitGrid user={site.githubUser} />
         </div>

@@ -152,18 +152,25 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .hero-media {
   display: grid; grid-template-columns: 1fr; gap: 1.2rem; justify-self: center; width: min(100%, 25rem);
 }
-/* Portrait: a plain circle, no frame, with the name plate underneath */
-.frame { margin: 0; width: min(100%, 18rem); justify-self: center; text-align: center; }
-.frame-pic { aspect-ratio: 1; overflow: hidden; border-radius: 50%; background: var(--teal); }
+/* Portrait: a retro "window" (title bar + notched pixel frame) around a square photo */
+.window {
+  --frame: var(--ink);
+  margin: 4px auto;
+  width: min(100%, 19rem);
+  background: var(--card);
+  box-shadow: 0 -4px 0 0 var(--frame), 0 4px 0 0 var(--frame), -4px 0 0 0 var(--frame), 4px 0 0 0 var(--frame);
+}
+:root[data-theme="dark"] .window { --frame: var(--line); }
+.window-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: .6rem;
+  padding: .6rem .7rem .5rem; background: var(--primary); color: #fff;
+  font-family: var(--font-pixel); font-size: .5rem; line-height: 1; letter-spacing: 0;
+}
+.window-bar .dots { display: inline-flex; gap: 4px; }
+.window-bar .dots b { width: 6px; height: 6px; background: #fff; }
+.window-body { padding: .6rem; }
+.frame-pic { aspect-ratio: 1; overflow: hidden; background: var(--teal); box-shadow: 0 0 0 2px var(--frame); }
 .frame-pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
-/* Photo loading animation: a pixelated, grainy canvas sits on top of the original and fades away when it is sharp */
-.pixel-wrap { position: relative; width: 100%; height: 100%; }
-.pixel-wrap img, .pixel-wrap canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-.pixel-wrap canvas { image-rendering: pixelated; transition: opacity .3s ease; }
-.pixel-wrap:not(.done) img { visibility: hidden; }
-.pixel-wrap.done canvas { opacity: 0; pointer-events: none; }
-.frame figcaption { padding-top: 1rem; }
-.frame .tag { margin: 0; }
 
 /* Commit grid (real GitHub activity) */
 .commit-card {
