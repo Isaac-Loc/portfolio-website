@@ -8,9 +8,11 @@ import EmptyPage from './pages/EmptyPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
 
-// Routes are hash-based ("#/experience"). The tab pages are switched off for now: the whole resume lives on Home.
-// Add entries here (and links in Header.jsx) to bring a page back.
-const PAGES = {}
+// Routes are hash-based ("#/experience"). Home has the whole resume; the tab pages are empty placeholders to build out.
+const PAGES = {
+  '/experience': 'Experience',
+  '/projects': 'Projects',
+}
 
 export default function App() {
   const route = useRoute()
