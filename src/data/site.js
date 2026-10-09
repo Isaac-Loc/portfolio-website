@@ -20,7 +20,7 @@ export const site = {
     ],
   },
   photos: {
-    me: '/images/me.jpg',
+    me: '/images/me.png',
   },
 }
 
