@@ -36,7 +36,7 @@ export const experience = [
     art: 'shield',
     shape: 'burst',
     image: null,
-    summary: 'Secure resume uploads, on-request data erasure and site-wide security headers for a **Next.js + Supabase** app.',
+    summary: 'Currently spearheading the migration of ezesports.org to a more modern stack with **Next.js**. Overseeing the initiative to normalize all player, staff and match data into **Supabase**.',
     stats: [
       { n: '100%', l: 'server-side validated' },
       { n: '5', l: 'security headers' },
@@ -53,7 +53,7 @@ export const experience = [
     art: 'ledwall',
     shape: 'jag',
     image: null,
-    summary: '**C++ firmware** that keeps video playing in sync across an LED tile array, with a **Flask** API for the web frontend.',
+    summary: 'Embedded development in **C++** on ESP32s, from firmware to the network commands that drive an LED tile array. A **Flask** API connects it all to the web frontend.',
     stats: [
       { n: '50+', l: 'LED tiles' },
       { n: '4', l: 'ESP32s' },
@@ -72,7 +72,7 @@ export const projects = [
     shape: 'burst8',
     image: null,
     url: 'https://github.com/Theta-Tau-Mu-Gamma/Theta-Tau-Scrum',
-    summary: 'Kanban board with a dependency graph and **Google Drive** file access, used by teams across the chapter.',
+    summary: 'Full-stack development using **React** and **PHP/Slim**, from schema design to the API. A shared Kanban workspace for the whole chapter, with **Google Drive** built in.',
     stats: [
       { n: '20+', l: 'members' },
       { n: '68', l: 'API endpoints' },
@@ -87,7 +87,7 @@ export const projects = [
     shape: 'jag',
     image: null,
     url: null,
-    summary: 'Peer-to-peer marketplace with live auctions, buy-it-now, and **real-time bid updates**.',
+    summary: 'A peer-to-peer marketplace built with **React**, **PHP** and **MySQL**. Handling listings, auctions and **real-time bidding** end to end.',
     stats: [
       { n: '2', l: 'listing types' },
       { n: 'live', l: 'bid updates' },

@@ -32,21 +32,24 @@
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  /* soft gray surfaces; the red stays only as the accent */
-  --paper: #1c1c1e;
-  --card: #272729;
-  --white: #ececee;
-  --tint: #353538;
-  --text: #ececee;
-  --muted: #a9a9af;
-  --line: #85858b;
-  --accent: #e8766a;
-  --border: #303033;
-  --cell0: #3a3a3d;
-  --cell1: #6e4038;
-  --cell2: #a84f41;
-  --cell3: #e8766a;
-  --cell4: #fdf0ee;           /* most activity: near-white, pops hard on dark */
+  /* true dark: near-black surfaces, and a vivid true red (not a pale salmon) for accents */
+  --paper: #0a0a0b;
+  --card: #131315;
+  --white: #f2f2f4;
+  --tint: #1d1d20;
+  --soft: #2a0f0d;
+  --text: #f2f2f4;
+  --muted: #9a9aa2;
+  --line: #4a4a52;
+  --primary: #d9291c;
+  --primary-deep: #a81d13;
+  --accent: #ff3b2e;
+  --border: #232327;
+  --cell0: #1d1d20;
+  --cell1: #4a1511;
+  --cell2: #8f2118;
+  --cell3: #ff3b2e;
+  --cell4: #ffffff;           /* most activity: pure white, pops hard on black */
 }
 
 * { box-sizing: border-box; }
@@ -87,7 +90,7 @@ a { color: inherit; }
   transition: background .2s ease, color .2s ease;
 }
 a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
-:root[data-theme="dark"] .tag { background: #e4e4e7; color: #1c1c1e; }
+:root[data-theme="dark"] .tag { background: #232327; color: #f2f2f4; }
 :root[data-theme="dark"] ::selection { background: var(--primary); color: #fff; }
 :root[data-theme="dark"] a.tag:hover, :root[data-theme="dark"] a.tag.active { background: var(--primary); color: #fff; }
 
@@ -112,7 +115,8 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .theme-toggle .sun { display: none; }
 :root[data-theme="dark"] .theme-toggle .moon { display: none; }
 :root[data-theme="dark"] .theme-toggle .sun { display: block; }
-.tag-resume, :root[data-theme="dark"] .tag-resume { background: var(--soft); color: var(--ink); }
+.tag-resume { background: var(--soft); color: var(--ink); }
+:root[data-theme="dark"] .tag-resume { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
 .tag-resume svg { width: 1.1em; height: 1.1em; margin-right: .6em; flex: 0 0 auto; }
 
 /* ===== Hero: exactly one screen tall (below the header) ===== */
@@ -319,3 +323,11 @@ html { scrollbar-width: auto; scrollbar-color: var(--primary) var(--tint); overf
 
 /* Hero title gets the same offset red shadow as the section titles */
 .hero-title .line { text-shadow: 3px 3px 0 color-mix(in srgb, var(--primary) 35%, transparent); }
+
+/* "Press start" CTA: the button flashes between solid red and an outlined state in hard steps like an arcade prompt; hover/focus holds it solid */
+.tag-cta { gap: .7em; }
+.tag-cta span { display: inline-block; }
+.tag-cta { animation: press-start 1.1s steps(1) infinite; }
+.tag-cta:hover, .tag-cta:focus-visible { animation: none; }
+@keyframes press-start { 50% { background: var(--card); color: var(--primary); box-shadow: inset 0 0 0 3px var(--primary); } }
+@media (prefers-reduced-motion: reduce) { .tag-cta { animation: none; } }

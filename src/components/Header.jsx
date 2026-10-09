@@ -12,7 +12,7 @@ export default function Header({ name, resume, route }) {
   return (
     <header id="page-top" className="site-header">
       <div className="header-inner">
-        <a className="tag tag-logo" href="#/">{name.toUpperCase()}.EXE</a>
+        <a className="tag tag-logo" href="#/" onClick={route === '/' ? (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) } : undefined}>{name.toUpperCase()}.EXE</a>
         <nav>
           {LINKS.map((l) => (
             <a key={l.path} className={`tag${route === l.path ? ' active' : ''}`} href={`#${l.path}`}>{l.label}</a>

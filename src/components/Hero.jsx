@@ -21,7 +21,7 @@ export default function Hero({ site }) {
             <span aria-hidden="true">&gt; {roleText}{!typingTitle && <i className="cursor" />}</span>
           </p>
           <a className="tag tag-cta" href="#experience" onClick={(e) => { e.preventDefault(); document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }) }}>
-            SEE WHAT I'M UP TO! &#9660;
+            &#9654; SEE WHAT I'M UP TO!
           </a>
           <div className="box about-note">
             <span className="tag">ABOUT ME</span>
