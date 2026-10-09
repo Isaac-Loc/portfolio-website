@@ -3,7 +3,7 @@ import Big from './Big.jsx'
 export default function Skills({ skills }) {
   return (
     <section id="skills" className="sec">
-      <Big word="SUPPLIES" sub="Skills" />
+      <Big word="SKILLS" sub="What I work with" />
       <div className="grid-2">
         {skills.map((g, i) => (
           <div key={g.label} className="panel reveal" style={{ '--d': `${(i % 2) * 0.1}s` }}>

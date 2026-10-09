@@ -11,7 +11,7 @@ export const site = {
   resume: '/Isaac_Loc_Resume.pdf', // file lives in /public; opened in a new tab from the nav
   githubUser: 'Isaac-Loc', // drives the commit grid in the hero
   linkedin: 'https://www.linkedin.com/in/isaac-loc',
-  tagline: 'Software engineer charting a course from firmware to full stack.',
+  tagline: 'Software engineer from embedded firmware to full stack.',
   about: {
     // Paragraphs shown in the About section. **bold** works.
     paragraphs: [

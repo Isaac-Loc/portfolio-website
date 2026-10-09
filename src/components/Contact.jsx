@@ -3,7 +3,7 @@ import Big from './Big.jsx'
 export default function Contact({ email, github, linkedin, name, year }) {
   return (
     <section id="contact" className="sec sec-end">
-      <Big word="SET SAIL" sub="Let's build something together" />
+      <Big word="LET'S TALK" sub="Get in touch" />
       <div className="panel contact reveal">
         <p>Open to software engineering roles and interesting problems. The fastest way to reach me is email.</p>
         <div className="hero-cta">

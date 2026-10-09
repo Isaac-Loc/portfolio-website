@@ -3,7 +3,7 @@
 Guidance for AI assistants (Claude Code or any other model) working in this repo.
 
 ## What this is
-Isaac's personal portfolio website. React + Vite single-page site with a clean, One Piece-inspired **ocean + sky** theme in red and blue: a fixed backdrop that shifts from day to sunset to night as you scroll, and giant section words that animate in.
+Isaac's personal portfolio website. React + Vite single-page site with a clean **royal blue** theme: a fixed blue backdrop that drifts as you scroll, and giant section words that animate in.
 
 **Read [SPEC.md](SPEC.md) first.** It is the source of truth for design decisions, structure, content, and history.
 
@@ -38,12 +38,11 @@ public/images/             Photos (/images/<file>)
 - Content goes in `src/data/site.js`, not hard-coded in components. Only show facts that are on the resume (`Isaac_Loc_Resume.pdf`).
 - NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive. The car photo's licence plate is blurred in the file; keep it that way.
 - Plain CSS in one file; colors/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem`.
-- Look: clean frosted white cards (`.panel`), red + blue accents, Anton for big words, Inter for text. Don't copy One Piece logos/characters.
+- Look: clean frosted white cards (`.panel`), royal-blue accents (`--royal`, `--ice`), Anton for big words, Inter for text. The One Piece theme was scrapped; don't bring it or red accents back.
 - Every section starts with `<Big word=... sub=... />` and uses `.reveal` on its blocks.
-- Scroll effects are driven by CSS vars set in `useScrollFx.js` (`--p`, `--dusk`, `--night` on `<html>`, `--t` on `[data-big]`, `--out` on the hero). Add new scene pieces by reading those vars in CSS.
+- Scroll effects are driven by CSS vars set in `useScrollFx.js` (`--p` on `<html>`, `--t` on `[data-big]`, `--out` on the hero). Add new scene pieces by reading those vars in CSS.
 - Respect `prefers-reduced-motion`. The user does NOT want dragging.
 
 ## Gotchas
-- The scene is `position: fixed; z-index: -1`; page content must stay transparent over it, with text readable at day, sunset and night (cards are light, big words have a white stroke).
-- `.waves` paths repeat seamlessly only if `1200 / wavelength` is an integer (240, 300, 400 are used). Keep that when changing them.
+- The scene is `position: fixed; z-index: -1`; page content must stay transparent over it, with readable text (cards are white, big words are white).
 - Nav is fixed (`--nav-h`); hero and anchors account for it via padding and `scroll-padding-top`.

@@ -1,8 +1,8 @@
 const links = [
   ['about', 'About'],
-  ['experience', 'Voyages'],
+  ['experience', 'Experience'],
   ['projects', 'Projects'],
-  ['crew', 'Crew'],
+  ['education', 'Education'],
   ['skills', 'Skills'],
   ['contact', 'Contact'],
 ]

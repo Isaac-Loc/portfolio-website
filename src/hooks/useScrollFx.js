@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 const clamp = (n, a = 0, b = 1) => Math.min(b, Math.max(a, n))
 
 // Drives the scroll-linked look:
-//  --p / --dusk / --night on <html>: page progress and the sky's time of day
+//  --p on <html>: page progress (0..1) that moves the background
 //  --t on [data-big]: 0 -> 1 as a big word rises through the screen
 //  .reveal -> .in once on screen
 export default function useScrollFx() {
@@ -20,8 +20,6 @@ export default function useScrollFx() {
       const max = Math.max(1, root.scrollHeight - vh)
       const p = clamp(window.scrollY / max)
       root.style.setProperty('--p', p.toFixed(4))
-      root.style.setProperty('--dusk', clamp((p - 0.1) * 2.2).toFixed(3)) // day -> sunset through the middle
-      root.style.setProperty('--night', clamp((p - 0.55) * 2.4).toFixed(3)) // sunset -> night near the end
       for (const el of bigs) {
         const r = el.getBoundingClientRect()
         const t = reduce ? 1 : clamp((vh - r.top) / (vh * 0.7))
