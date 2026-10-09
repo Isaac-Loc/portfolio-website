@@ -1,13 +1,23 @@
 import useTheme from '../hooks/useTheme.js'
 
-export default function Header({ name, resume }) {
+const LINKS = [
+  { path: '/experience', label: 'EXPERIENCE' },
+  { path: '/projects', label: 'PROJECTS' },
+  { path: '/skills', label: 'SKILLS' },
+  { path: '/contact', label: 'CONTACT' },
+]
+
+export default function Header({ name, resume, route }) {
   const [theme, toggleTheme] = useTheme()
   const dark = theme === 'dark'
   return (
     <header id="page-top" className="site-header">
       <div className="header-inner">
-        <a className="tag tag-logo" href="#page-top" data-nav="top">{name.toUpperCase()}.EXE</a>
+        <a className="tag tag-logo" href="#/">{name.toUpperCase()}.EXE</a>
         <nav>
+          {LINKS.map((l) => (
+            <a key={l.path} className={`tag${route === l.path ? ' active' : ''}`} href={`#${l.path}`}>{l.label}</a>
+          ))}
           <a className="tag tag-resume" href={resume} target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M6 2h8l5 5v15H6z" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round" />

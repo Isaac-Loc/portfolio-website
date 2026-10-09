@@ -26,9 +26,10 @@ Deploys: Vercel auto-deploys from GitHub (project Production Branch = `dev`), so
 ```
 index.html                 Vite entry (fonts loaded here, theme set before paint)
 src/main.jsx               React mount + global CSS import
-src/App.jsx                Header + Hero (add new sections after Hero)
+src/App.jsx                Header + route switch (hash routes: / = Hero, /experience, /projects, /skills, /contact = empty pages)
 src/data/site.js           ALL editable content, including resume data for sections not built yet
-src/hooks/useTheme.js      light/dark toggle
+src/hooks/                 useTheme (light/dark), useRoute (hash router)
+src/pages/                 EmptyPage placeholder; build each real page here
 src/components/            Header, Hero, CommitGrid, Rich (**bold** text)
 src/styles/style.css       All styling (single file, tokens at the top)
 public/images/             me.png (portrait)
@@ -40,7 +41,7 @@ public/images/             me.png (portrait)
 - Plain CSS in one file; colours/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem` (fluid root font-size; primary target is a 1440p monitor).
 - Professional look: clean white `.box` cards (1px `--border`, 4px `--primary` top bar, .75rem radius). NO cutout/clip-path shapes, tape, stickers, sparkles, stamps, doodles, custom cursors, paper grain, tilt or hero click widgets (user scratched them). Keep colours flat (no gradients/glows). The one playful element is the **bubbled title text** (`.sticker-text`: white `-webkit-text-stroke` + `paint-order: stroke fill` + soft offset); keep it on the hero title and section titles.
 - Palette is the patchy teal-blue of the user's Luffy tab icon (`--primary`, `--teal`, `--tint`, `--paper`, `--ink`). Fonts: Playfair Display (italic 900, titles), Silkscreen (pixel labels), Inter (body).
-- The hero is one screen tall (below the header). The page is intentionally just header + hero until the user asks for the next section; build sections one at a time and ask about layout/look as you go. Use the `.box` class for cards. Respect `prefers-reduced-motion`. The user does NOT want dragging.
+- The hero is one screen tall (below the header). Only the Home page (hero) has content; the nav pages are empty placeholders. Build one page at a time and ask about layout/look as you go. Use the `.box` class for cards. Respect `prefers-reduced-motion`. The user does NOT want dragging.
 
 ## Gotchas
 - Light/dark theme is variable-driven. Never hard-code surface/text colours: use `--card`, `--text`, `--accent`, `--line`, `--white`. Check new UI in both themes.
