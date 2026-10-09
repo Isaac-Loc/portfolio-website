@@ -3,7 +3,7 @@
 Guidance for AI assistants (Claude Code or any other model) working in this repo.
 
 ## What this is
-Isaac's personal portfolio website. React + Vite single page, **being rebuilt from the ground up**: right now it is only the header and the hero. Look: clean and professional, patchy teal-blue palette from the user's Luffy tab icon, Playfair Display / Silkscreen / Inter, **bubbled (outlined) title lettering**, white `.box` cards with a thin border and a teal top bar. No cutout shapes or decorative widgets.
+Isaac's personal portfolio website. React + Vite single page, **being rebuilt from the ground up**: right now it is only the header and the hero. Look: clean and professional, patchy teal-blue palette from the user's Luffy tab icon, Playfair Display / Silkscreen / Inter, **retro pixel (Silkscreen) titles with a typing-animation hero**, white `.box` cards with a thin border and a teal top bar. No cutout shapes or decorative widgets.
 
 **Read [SPEC.md](SPEC.md) first.** It is the source of truth for design decisions, structure, content, and history.
 
@@ -28,7 +28,7 @@ index.html                 Vite entry (fonts loaded here, theme set before paint
 src/main.jsx               React mount + global CSS import
 src/App.jsx                Header + route switch (hash routes: / = Hero, /experience, /projects, /skills, /contact = empty pages)
 src/data/site.js           ALL editable content, including resume data for sections not built yet
-src/hooks/                 useTheme (light/dark), useRoute (hash router)
+src/hooks/                 useTheme (light/dark), useRoute (hash router), useTyper (hero typing)
 src/pages/                 EmptyPage placeholder; build each real page here
 src/components/            Header, Hero, CommitGrid, Rich (**bold** text)
 src/styles/style.css       All styling (single file, tokens at the top)
@@ -39,7 +39,7 @@ public/images/             me.png (portrait)
 - Content goes in `src/data/site.js`, not hard-coded in components. Only show facts on the resume (`Isaac_Loc_Resume.pdf`).
 - NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive.
 - Plain CSS in one file; colours/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem` (fluid root font-size; primary target is a 1440p monitor).
-- Professional look: clean white `.box` cards (1px `--border`, 4px `--primary` top bar, .75rem radius). NO cutout/clip-path shapes, tape, stickers, sparkles, stamps, doodles, custom cursors, paper grain, tilt or hero click widgets (user scratched them). Keep colours flat (no gradients/glows). The one playful element is the **bubbled title text** (`.sticker-text`: white `-webkit-text-stroke` + `paint-order: stroke fill` + soft offset); keep it on the hero title and section titles.
+- Professional look: clean white `.box` cards (1px `--border`, 4px `--primary` top bar, .75rem radius). NO cutout/clip-path shapes, tape, stickers, sparkles, stamps, doodles, custom cursors, paper grain, tilt or hero click widgets (user scratched them). Keep colours flat (no gradients/glows). The signature look is the retro **pixel font** (Silkscreen) for titles and labels; the hero title is a typed animation (`useTyper`). The bubbled/outlined text was scrapped: do not bring it back.
 - Palette is the patchy teal-blue of the user's Luffy tab icon (`--primary`, `--teal`, `--tint`, `--paper`, `--ink`). Fonts: Playfair Display (italic 900, titles), Silkscreen (pixel labels), Inter (body).
 - The hero is one screen tall (below the header). Only the Home page (hero) has content; the nav pages are empty placeholders. Build one page at a time and ask about layout/look as you go. Use the `.box` class for cards. Respect `prefers-reduced-motion`. The user does NOT want dragging.
 
