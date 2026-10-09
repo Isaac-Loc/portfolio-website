@@ -174,7 +174,7 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
     calc(var(--px) * 3) calc(var(--px) * 3) 0 0 var(--accent),
     calc(var(--px) * 2) calc(var(--px) * 4) 0 0 var(--accent);
 }
-.glyph-1 { --px: 5px; top: -1.1rem; left: .5rem; }
+.glyph-1 { --px: 5px; top: -1.1rem; right: .5rem; }
 .glyph-2 { --px: 4px; left: -.2rem; bottom: -.8rem; animation-delay: .9s; }
 @keyframes twinkle { 50% { opacity: .25; } }
 
@@ -251,7 +251,7 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .page-title .name { font-size: clamp(1.4rem, 3.4vw, 3.2rem); }
 
 /* ===== Home sections (scroll down) ===== */
-.tag-cta { margin: 0 0 1.8rem; padding: .95rem 1.1rem .8rem; font-size: .65rem; background: var(--primary); color: #fff; }
+.tag-cta { margin: 0; padding: .95rem 1.1rem .8rem; font-size: .65rem; background: var(--primary); color: #fff; }
 :root[data-theme="dark"] .tag-cta { background: var(--primary); color: #fff; }
 a.tag.tag-cta:hover { background: var(--primary-deep); }
 .section { padding: 4rem 0; border-top: 1px solid var(--border); }
@@ -351,8 +351,9 @@ html { scrollbar-width: auto; scrollbar-color: var(--primary) var(--tint); overf
 
 
 /* Notification socials widget: red and white */
-/* Above the portrait window, right-aligned with its right edge (the window is 19rem wide, centred in .hero-media) */
-.socials { position: absolute; z-index: 3; top: -3.8rem; right: calc(50% - 9.5rem - 4px); display: flex; justify-content: flex-end; align-items: center; }
+/* Row next to the flashing CTA in the hero text column */
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.2rem; margin: 0 0 1.8rem; min-height: 3.2rem; }
+.socials { position: relative; display: flex; align-items: center; }
 .tag-click, .social-tag { background: var(--primary); color: #fff; }
 :root[data-theme="dark"] .tag.tag-click, :root[data-theme="dark"] .tag.social-tag { background: var(--primary); color: #fff; }
 a.tag.social-tag:hover, :root[data-theme="dark"] a.tag.social-tag:hover, .tag-click:hover, :root[data-theme="dark"] .tag.tag-click:hover { background: #fff; color: var(--primary); box-shadow: inset 0 0 0 3px var(--primary); }
@@ -368,7 +369,7 @@ a.tag.social-tag:hover, :root[data-theme="dark"] a.tag.social-tag:hover, .tag-cl
 .social-tag svg { display: block; width: 1.3rem; height: 1.3rem; }
 @keyframes pop-out { 0% { transform: translateX(-1.2rem) scale(.2); opacity: 0; } 70% { transform: translateX(.4rem) scale(1.15); opacity: 1; } 100% { transform: none; opacity: 1; } }
 /* Pixel sparks fly out from the button, red and white, then vanish */
-.sparks { position: absolute; right: 1.5rem; top: 50%; width: 0; height: 0; pointer-events: none; }
+.sparks { position: absolute; left: 1.5rem; top: 50%; width: 0; height: 0; pointer-events: none; }
 .sparks i { position: absolute; width: 6px; height: 6px; margin: -3px; background: var(--primary); animation: spark .7s steps(7) forwards; }
 .sparks i:nth-child(3n) { background: #fff; box-shadow: 0 0 0 1px var(--primary); }
 @keyframes spark { to { transform: translate(var(--dx), var(--dy)); opacity: 0; } }

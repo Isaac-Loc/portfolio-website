@@ -21,16 +21,18 @@ export default function Hero({ site }) {
           <p className="role" aria-label={site.roles.join(', ')}>
             <span aria-hidden="true">&gt; {roleText}{!typingTitle && <i className="cursor" />}</span>
           </p>
+          <div className="hero-actions">
           <a className="tag tag-cta" href="#experience" onClick={(e) => { e.preventDefault(); document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }) }}>
             &#9654; SEE WHAT I'M UP TO!
           </a>
+          <Socials site={site} />
+          </div>
           <div className="box about-note">
             <span className="tag">ABOUT ME</span>
             {site.about.paragraphs.slice(0, 2).map((t) => <p key={t}><Rich text={t} /></p>)}
           </div>
         </div>
         <div className="hero-media reveal">
-          <Socials site={site} />
           <figure className="window">
             <div className="window-bar">
               <span>{site.name.replace(' ', '_').toUpperCase()}.PNG</span>
