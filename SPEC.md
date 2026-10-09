@@ -3,111 +3,88 @@
 Living spec. Any AI/model starting a new chat should read this plus [CLAUDE.md](CLAUDE.md). Keep it current: add to the Changelog whenever something is implemented.
 
 ## 1. Goal
-A personal portfolio for Isaac (GitHub: [Isaac-Loc](https://github.com/Isaac-Loc)) that showcases projects with a distinctive, highly-graphic, layered look instead of a plain template.
+A personal portfolio for Isaac (GitHub: [Isaac-Loc](https://github.com/Isaac-Loc)). Direction as of 2026-10-09: clean, professional, retro-pixel look with a rich red accent on a creamy backdrop. **The site is being rebuilt from the ground up, one section at a time** (user request): the live page today is only the header and the hero. The old green cutout/scrapbook-collage design, a later One Piece ocean theme, and a royal-blue theme were all tried and scrapped; don't bring any of them back (see Changelog for that history).
 
 ## 2. Design direction
-**Pinterest board "cutout / scrapbook collage"**, inspired by a reference poster (stickered photo cutouts on crumpled paper, with layered graphics). Palette is the **patchy teal-blue of the user's Luffy tab icon** (switched from green on 2026-10-09; the variable names still say green/mint/deep) on pale blue paper.
-
-Visual language:
-- **Paper background**: pale mint (`--paper`), soft radial lighting, fixed noise grain overlay (SVG feTurbulence, `mix-blend-mode: multiply`).
-- **Sticker lettering**: Playfair Display italic 900, blue fill with a thick white paper outline and a hard offset shadow.
-- **Cutout shapes**: jagged / starburst `clip-path` polygons with a white sticker border over a navy fill and drop shadow. Variants: `burst` (12-point), `burst8`, `jag`, `polaroid`.
-- **Pixel labels** (`.tag`): Silkscreen font, dark-blue box with a double white/blue frame, slightly rotated.
-- **Notes** (`.note`): white paper strips, italic, blue border, offset shadow.
-- **Extras**: washi tape, sparkles/asterisks (float animation), dotted arrow, scribble, circular "PORTFOLIO" stamp, frosted "View my GitHub" pill.
-- Everything is slightly rotated and overlapping to feel hand-assembled.
-- Single light theme (no dark mode).
+- **Backdrop**: flat creamy white (`--paper #fbf6ea` light / soft charcoal gray `#1c1c1e` dark). No gradients, blurs, glows or soft shadows anywhere - flat solid colours only.
+- **Accent**: a rich red (`--primary`, `--accent`) used sparingly - "Isaac" in the hero, links/highlighted words, the active nav tag, the window title bar, the Resume button, hover states, and the GitHub commit-grid squares. Body and heading text is near-black (`--text`), not accent-tinted.
+- **Typography**: **Press Start 2P** (8-bit pixel font, weight 400 only - never set it bold) for every title, tag, nav link and label; **Inter** for paragraph text. The hero title ("Hi, I'm / Isaac") and the role line underneath it type themselves out letter by letter with a blinking block cursor (`useTyper.js`), then the role line cycles through `site.roles`.
+- **Frames**: the signature visual motif is a retro 8-bit "window"/dialog-box frame - a 4px notched border drawn from four stacked `box-shadow`s (no `border-radius`), used for the About card, the GitHub commits card (`.box`) and the hero portrait (`.window`, which adds a coloured title bar reading `ISAAC_LOC.PNG` above the photo). No cutout/clip-path shapes, stickers, tape, sparkles, custom cursors, paper grain or rotation/tilt.
+- **Hero portrait**: `PixelPhoto.jsx` plays a one-time load animation - the real photo (`public/images/me.png`) is drawn to a tiny, grain-added canvas and sharpened in steps (~0.6s) before handing off to the untouched original image. Respects `prefers-reduced-motion` (shows the clear photo immediately).
+- **Navigation**: a small sticky header (`--header-h`) with a logo tag, EXPERIENCE/PROJECTS/SKILLS/CONTACT nav tags, a Resume button and a light/dark toggle. Nav tags route via a tiny hash router (see Tech stack) to pages that, except Home, are still empty placeholders. No on-page scroll arrows; the page uses the browser's own (CSS-themed) scrollbar.
+- **Dark mode**: soft neutral gray surfaces, not a dark tint of the accent; the red stays the accent in dark mode too. Toggle is `useTheme.js`, persisted in `localStorage`, default light.
 
 ### Design tokens (`src/styles/style.css` `:root`)
-| Token | Value | Use |
-|---|---|---|
-| `--paper` / `--paper-2` | `#cfe6e7` / `#eaf5f6` | background / tag frame |
-| `--white` | `#fff` | sticker edges, notes |
-| `--green` | `#3b7f86` | text fill, tags, accents |
-| `--deep` | `#406c71` | cutout fill |
-| `--ink` | `#17353a` | body text |
-| `--font-display / pixel / body` | Playfair Display / Silkscreen / Inter | |
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `--paper` | `#fbf6ea` | `#1c1c1e` | page background |
+| `--card` | `#fffdf8` | `#272729` | box/window surfaces |
+| `--text` | `#1a1a1a` | `#ececee` | body/heading text |
+| `--ink` | `#1b1b1b` | - | tag backgrounds |
+| `--primary` / `--accent` | `#b3281f` / `#9c2b22` | `#e8766a` | the red accent |
+| `--border` / `--line` | `#e4dcc8` / `#2a2a2a` | `#303033` / `#85858b` | hairlines, frame colour |
+| `--cell0`...`--cell4` | tan -> near-black | gray -> near-white | GitHub commit-grid steps |
+| fonts | `--font-pixel` = Press Start 2P, `--font-body` = Inter | | |
+
+Variable names like `--teal` and `--soft` are historical (left over from an earlier teal-blue palette) and no longer teal-coloured - only their hex values changed when the palette moved to red. Don't rename them without reason; just update the value.
 
 ## 3. Tech stack
-- React 19 + Vite 8 (`@vitejs/plugin-react`), plain JavaScript (JSX), plain CSS. No router, no CSS framework.
+- React 19 + Vite 8 (`@vitejs/plugin-react`), plain JavaScript (JSX), plain CSS (one file, `src/styles/style.css`, imported from `main.jsx`). No CSS framework, no CSS-in-JS - the user explicitly asked to keep the stylesheet as a `.css` file, not convert it to JS.
+- **Routing**: a tiny dependency-free hash router (`src/hooks/useRoute.js`), e.g. `/#/projects`. No package like react-router is installed; swap it in later if real nested routing is needed. Works on any static host (Vercel included) with zero rewrite-rule config.
 - `base: './'` in `vite.config.js` so the build works from any path.
-- **Hosting: Vercel**, auto-deployed from GitHub (see "Deployment (Vercel)" below). `vercel.json` sets framework/build/output plus security and cache headers; `package.json` sets `engines.node >= 20.19.0`. Plan: use the `*.vercel.app` URL for now, add the custom domain / domain forwarding later. The Vercel project's **Production Branch must be `dev`** (the repo's working branch) so pushes to `dev` go live.
-- Run: `npm install`, `npm run dev` (http://localhost:5173), `npm run build`.
+- **Hosting: Vercel**, auto-deployed from GitHub (see "Deployment (Vercel)" below). `vercel.json` sets framework/build/output plus security and cache headers; `package.json` sets `engines.node >= 20.19.0`.
+- Run: `npm install`, `npm run dev` (http://localhost:5173), `npm run build`. `.claude/launch.json` defines the `dev` preview server used by the in-app browser pane.
 
 ### Deployment (Vercel)
-Auto-deployed from GitHub: every push redeploys. **Public URL not confirmed yet**: as of 2026-10-03 the repo's GitHub homepage field points at `portfolio-website-three-gold-77.vercel.app`, which returns Vercel's DEPLOYMENT_NOT_FOUND. CORRECTION: the user confirmed on 2026-10-03, by opening the live site on their phone, that it IS reachable without a Vercel sign-in. My earlier check only hit the project alias (`portfolio-website-isaac-locs-projects.vercel.app`) and per-deployment URLs, which Vercel protects by default, so it was testing the wrong addresses. Do not claim the site is login-gated. Once the real public production URL is known, add it to the README links list and the repo homepage field. Settings: framework Vite, install `npm ci`, build `npm run build`, output `dist` (also set in `vercel.json`). The project's **Production Branch is `dev`**; other branches get preview URLs. Custom domain (later): project Settings -> Domains, then point the domain's DNS (or forwarding) at the records Vercel shows. Local production check: `npm run build && npm run preview`.
+Auto-deployed from GitHub: every push to `dev` redeploys. Settings: framework Vite, install `npm ci`, build `npm run build`, output `dist` (also set in `vercel.json`). The Production Branch has been both `dev` and (briefly, at the user's explicit request) `main` over this project's history - check the live Vercel project settings rather than assuming; the standing day-to-day rule is still "commit and push to `dev`, never touch `main` unless asked." The confirmed-reachable public URL has not been re-verified since the redesign; the repo's GitHub homepage field points at `portfolio-website-three-gold-77.vercel.app` (last known, unverified post-redesign). Custom domain (later): project Settings -> Domains. Local production check: `npm run build && npm run preview`.
 
 ## 4. Structure
 ```
-index.html              mounts #root, loads Google Fonts
-src/main.jsx            entry
-src/App.jsx             SvgDefs, Header, Hero, Projects, About, Contact, footer
-src/data/site.js        content (see section 5)
+index.html                 Vite entry: fonts (Press Start 2P, Inter), favicons, theme-init inline script
+src/main.jsx                React mount + global CSS import
+src/App.jsx                 Header + route switch: "/" (or no hash) = Hero, /experience|/projects|/skills|/contact = EmptyPage placeholders
+src/data/site.js             ALL content: site info, experience[], projects[], education, leadership, skills[] (most not wired into a page yet)
+src/hooks/
+  useTheme.js                light/dark toggle, persisted in localStorage
+  useRoute.js                tiny hash router
+  useTyper.js                hero's type-on-load + cycling-role animation
 src/components/
-  Graphics.jsx          SvgDefs (symbols: sparkle, asterisk, arrow, scribble, link), Deco, Slot, Tape, Burst, Cut
-  Header.jsx            logo tag + nav tags
-  Hero.jsx              poster collage (section#top > .stage)
-  StoryCard.jsx         shared card (art + summary + stats + tags)
-  Art.jsx               built-in SVG illustrations (cards)
-  Stickers.jsx          artistic die-cut hero stickers (circuit flower, pixel heart, cassette, constellation, vinyl)
-  Experience.jsx / Projects.jsx / Education.jsx / Leadership.jsx / Skills.jsx / Contact.jsx
-  Rich.jsx              renders **bold** markup
-src/styles/style.css    all styles
-public/images/          user images
+  Header.jsx                 logo tag, nav tags (routed), Resume button, theme toggle
+  Hero.jsx                   typed title + role line, About box, portrait window, CommitGrid
+  PixelPhoto.jsx              grain-to-sharp photo reveal (draws to a canvas, then hands off to the real <img>)
+  CommitGrid.jsx              live GitHub contribution grid (fetched client-side, cached 6h in localStorage)
+  Rich.jsx                    renders **bold** markup
+src/pages/
+  EmptyPage.jsx                placeholder: just a pixel-font title; replace per-route as each page gets built
+src/styles/style.css         all styling, tokens at the top (plain CSS, not CSS-in-JS)
+public/images/me.png         hero portrait (cat/car photos were removed at the user's request and are only in git history)
 ```
 
 ## 5. Content model (`src/data/site.js`)
-Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). **Only resume content is shown on the site, and text is kept to 1-2 short sentences per item (user prefers pictures over words).** `**double asterisks**` in strings render bold.
-- `site.about.sentences[]`: the 2-3 short sentence intro shown in a note card under the hero title (written from resume facts only; phones show the first two).
-- `site.githubUser`: GitHub username that feeds the hero commit grid.
-- `site`: `name`, `firstName`, `year`, `email`, `github`, `linkedin`, `heroStickers[]` (names of artistic hero stickers: `flower | heart | cassette | constellation | vinyl`, drawn in `Stickers.jsx`), `heroPhotos {main, upper, lower}` (main = big jagged frame in the centre; upper/lower = the two starbursts on the right). All are plain photos cropped to the shape with `object-fit: cover` (no cutout/transparent PNG needed)..
-- `experience[]`, `projects[]`, `leadership`: `{ title|role, org?, orgUrl?, dates?, place?, art, shape, image, summary, stats[{n,l}], tech[], url? }`.
-- `education`: `{ school, place, degree, dates, art, shape, image, coursework[] }` (only 4 key courses shown).
-- `skills[]`: `{ label, items[{ name, icon? }] }`; `icon` is a Simple Icons slug.
-- `art` picks a built-in SVG illustration drawn in `Art.jsx`: `ledwall | shield | kanban | auction | calendar | cap`. Setting `image` to a file in `public/images/` replaces the illustration with a real picture.
-- `heroPhotos.main` is `/images/me.jpg`: a simple head-and-shoulders profile crop (1225x1610, aspect 0.76) of a headshot the user supplied, centred on the face; the stranger's sleeve, name tag and bottle at the photo's edges are cropped out (crop box (0,20)-(1225,1630) of the 1378x2000 original, as wide as the photo allows: the stranger's sleeve starts at x~1230 and a bottle at y~1640). The user said it does not need to be vertical or a cutout, only a simple profile photo in the jagged frame. Phone number is intentionally NOT published.
-- Skill-tile logos load from `https://cdn.simpleicons.org/<slug>/3b7f86` (needs internet; a failed icon falls back to a green diamond).
+Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only resume content should be shown. `**double asterisks**` in strings render bold (via `Rich.jsx`).
+- `site`: `name`, `firstName`, `year`, `email`, `github`, `linkedin`, `resume`, `githubUser` (feeds the commit grid), `tagline`, `roles[]` (typed under the hero title), `about.paragraphs[]` (shown in the hero's About box, first two paragraphs), `photos.me` (hero portrait path).
+- `experience[]`, `projects[]`, `leadership`: `{ id, role|title, org?, orgUrl?, place?, dates?, art, shape, image, summary, stats[{n,l}], tech[], url? }`. **Not yet rendered anywhere** - waiting on the Experience/Projects/Leadership pages to be built. `art`/`shape` were illustration/cutout-frame picks from the old design; may or may not carry over when those pages are built.
+- `education`: `{ school, place, degree, dates, art, shape, image, coursework[] }`. Also not yet rendered.
+- `skills[]`: `{ label, items[{ name, icon? }] }`; `icon` is a Simple Icons slug, loaded from `https://cdn.simpleicons.org/<slug>/<hex>`. Not yet rendered.
+- Privacy: the user's phone number must NEVER be published, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; never replace it with the original from OneDrive.
 
-## 6. Page sections (top to bottom)
-1. **Header**: pinned (`position: sticky; top: 0`) full-width bar that stays visible while scrolling: `ISAAC.EXE` tag (scrolls to the very top, clears the hash) + EXPERIENCE / PROJECTS / SKILLS / CONTACT. Buttons are interactive (`hooks/useNavInteractions.js`): hover pop, `.active` highlight for the section you are in, sparkle burst + wiggle on click. `--header-h` (4.5rem, 3.6rem on phones) is subtracted everywhere: `html { scroll-padding-top }`, hero height, section `min-height: calc(100svh - var(--header-h))`, and the up arrows pin at `top: calc(var(--header-h) + 1.1rem)`. Shared effects live in `utils/fx.js`.
-2. **Hero poster**: exactly one viewport tall (`100svh - --header-h`) so no other section is visible while on it. Inside, a `.stage` is the largest 16:9 box that fits (9:14 on phones <=760px) and everything in it is positioned in `%` and sized in `cqw`. Contains the "Hi, I'm / Isaac / Welcome to my / Portfolio!" sticker lettering, big jagged photo slot, two starburst photo slots, pixel tags, notes, stamp, decorations, GitHub pill, and a round bouncing scroll button at the bottom centre that jumps to the next section (`#experience`). The hero also has an "ABOUT ME" note card under the title (`.about-note`). The "View my GitHub" pill was removed (GitHub is in Contact). Under the photo is a **commit grid card** (`CommitGrid.jsx`): the last 22 weeks of the user's real GitHub contribution graph, fetched client-side from the free public endpoint `github-contributions-api.jogruber.de/v4/<user>?y=last` (no token, so no secret ships; cached 6h in localStorage; shows quiet empty cells if the fetch fails). The whole card links to the GitHub profile. It is hidden on phones (no room). No technical word labels in the hero.
-3. **Experience**, 4. **Projects**, 5. **Education** + **Leadership** (side by side in `.duo-grid` inside the `.duo` band): all use one `StoryCard` = illustration in a cutout frame + title + 1-2 sentence summary + round stat stickers (e.g. 50+ LED tiles) + tech tags.
-6. **Skills**: four labelled groups of logo tiles (icon over name).
-7. **Contact**: compact band: email, LinkedIn, GitHub tags + copyright + back-to-top arrow.
-
-### Full-screen sections + scroll buttons
-- Every section after the hero is its own band: `min-height: 100svh`, content vertically centred (auto margins), `overflow: clip` (not `hidden`, which would break sticky). The hero is `100svh - header`, so on every landing a section's top is at the top of the screen and the previous/next section never bleed in.
-- Every section ends with a round `ScrollButton` (`ScrollButton.jsx`) that is `position: sticky; bottom: 1.1rem`, so it sits in the **same spot on screen (centred, 1.1rem above the bottom edge) every time you land in a section**, and stays there while scrolling through a section taller than the screen. The hero uses an absolute version (`hero` prop) at the same spot.
-- Each section after the hero ALSO has an up arrow (`edge="top"` variant of `ScrollButton`) pinned `top: 1.1rem`, centred, which jumps to the previous section (Experience -> `#page-top` (the original page-load view: header + hero, user request), Projects -> Experience, Education/Leadership band -> Projects, Skills -> Education band, Contact -> Skills). Section top padding is 1.1rem so it sits in the same spot on every landing, mirroring the down arrow.
-- Order: Hero -> Experience -> Projects -> Education/Leadership band (`#education` is the `.duo` wrapper, with an inner `.duo-grid`) -> Skills -> Contact. Contact is the exception: a compact closing band (not full-screen) with the "Say hi!" header, tags and copyright (the old footer was folded into it); its up-arrow targets `#page-top` (the site `<header>`), so it scrolls all the way to the very top and shows the top header.
-- Scroll buttons are NOT `reveal` elements: they sit inside the bottom 6% of the screen, which the reveal observer's `rootMargin` excludes, so a `reveal` button would never become visible. They are always visible. Verified at 2560x1300: every landing puts it 21px above the bottom edge. New sections should follow this pattern.
-
-### Selection + cursor
-- `::selection` is a light mint green (`rgba(139,232,173,.6)`, text stays `--ink`).
-- Custom cursors are inline SVG data URIs in `:root` (`--cursor-default`: green arrow with a mint sparkle, hotspot 5,3; `--cursor-pointer`: green sparkle star over links/buttons/hero widgets, hotspot 16,16; `--cursor-text`: green I-beam over text). Each falls back to the normal cursor. They are applied at the end of `style.css`.
-
-### Motion
-- Hero pieces pop in on load (`pop` keyframes using only `scale`/`opacity`, so they do not fight rotate/float transforms).
-- Everything below the hero has class `reveal` and fades/slides up when scrolled into view (IntersectionObserver in `App.jsx` adds `.in`; stagger via `--d` CSS var). Uses the individual `translate`/`scale` properties so it composes with existing `transform` rotations. Disabled under `prefers-reduced-motion`. New sections/cards should add the `reveal` class.
-
-### Responsive / scaling
-- Root font-size is fluid: 16px up to 1600px wide, growing to ~19.4px at 2560px (so all `rem` sizes scale on big monitors). `--page-w: min(90vw, 82rem)` is the content width.
-- Primary target: the user's 1440p monitor (2560x1440, ~2560x1300 browser area). Tune proportions there first, then replicate for other sizes once the user approves.
+## 6. Page sections (current, built)
+1. **Header**: sticky, small (`--header-h: 3.25rem`, 4.4rem on phones where it wraps). Logo tag goes home; EXPERIENCE/PROJECTS/SKILLS/CONTACT route to (currently empty) pages and highlight when active; Resume opens the PDF; a toggle switches light/dark.
+2. **Hero** (`id="top"`, route `/`): one viewport tall. Left column: typed "Hi, I'm / Isaac" title + cycling role line + the About box (`.box`, pixel-frame, resume-sourced paragraphs). Right column: the portrait window (`.window`: title bar + pixel-frame + `PixelPhoto`) and the GitHub commits box (`.box`, live contribution grid, links to the GitHub profile).
+3. **Empty pages** (routes `/experience`, `/projects`, `/skills`, `/contact`): just a pixel-font `<h1>` via `EmptyPage.jsx`. Build each one's real content here, one at a time, using the resume data already in `site.js`.
 
 ## 7. Decisions
-- Chose the cutout-collage look over a clean Pinterest masonry grid (user wanted "a ton of graphics and layers").
-- Migrated from plain HTML/CSS to React + Vite so the user can run locally and iterate on richer designs.
-- Name is Isaac Loc (from the resume); hero lettering uses the first name.
-- Site shows only what is on the resume (user request): the placeholder About section and the non-resume repo cards (Pacman, Burger Flipper, Theta Tau Game, OT LED Wall) were removed. The LED wall appears only in the Leadership bullets.
-- Switched palette from blue to green (user request); page widened to 1280px and hero changed from a single tall column to a wide landscape layout.
-- Sections must not bleed into each other: each is its own clipped band (`overflow: clip`, 4rem padding) with a dashed divider. Keep new decorations inside their section.
-- Light theme only; the original template's `prefers-color-scheme` dark mode was removed.
+- 2026-10-09: After trying (and scrapping, all same day) a One Piece ocean theme and a flat royal-blue theme, the user asked to go back to something closer to the ORIGINAL site's spirit but cleaner: no cutout shapes, a retro pixel font, a typing-animation hero, and colours sampled from the user's Luffy browser-tab icon (first a patchy teal-blue, later changed to a rich red). The site was then intentionally stripped down to just header + hero so it could be **rebuilt from the ground up, one section at a time** - do not add Experience/Projects/Education/Leadership/Skills/Contact content back in bulk; build and confirm one page at a time.
+- Keep `src/styles/style.css` as a plain `.css` file. The user was asked whether "entirely JavaScript" meant dropping the separate stylesheet (CSS-in-JS) and said no - leave it as CSS; it already works.
+- Routing is a minimal hand-rolled hash router, not a package. Fine to swap for a real router later if the site needs real multi-page navigation (query params, nested routes, etc.).
+- Dragging of hero elements was rejected by the user in the old design; don't add it here either.
+- No scroll arrows; the user removed them in favour of the browser's own (themed) scrollbar.
 
 ## 8. Open items / TODO
-- [ ] Add real photos (they replace the illustrations when `image` is set): transparent-PNG main cutout, two burst photos, project images.
-- [ ] Add a link for Bidit if there is a repo/demo.
-- [ ] Confirm hero/section proportions on the 1440p monitor, then replicate for other screen sizes (1080p, laptops, tablets, phones).
-- [ ] Deploy (e.g. GitHub Pages / Netlify / Vercel).
+- [ ] Build the Experience, Projects, Education + Leadership, Skills and Contact pages (content already in `site.js`), one at a time with the user.
+- [ ] Decide whether `art`/`shape` illustration picks carry over to the rebuilt cards, or whether cards go photo-only / icon-only.
+- [ ] Re-verify the live Vercel URL and Production Branch setting post-redesign; update README/repo homepage once confirmed.
+- [ ] Check the hero and header on a real phone and on the user's 1440p monitor.
 
 ## 9. Changelog
 - **2026-10-03**: Cloned repo (was a bare HTML/CSS template). Tried a Pinterest masonry card layout, then replaced it with the cutout-collage design. Converted to React + Vite (components, `site.js` content file, single stylesheet). Added CLAUDE.md and SPEC.md.
