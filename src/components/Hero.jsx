@@ -14,10 +14,13 @@ export default function Hero({ site }) {
     <section id="top" className="hero">
       <div className="hero-grid">
         <div className="hero-copy reveal">
+          <div className="title-wrap">
           <h1 className="hero-title" aria-label={title.replace('\n', ' ')}>
             <span className="line" aria-hidden="true">{line1}{typingTitle && !titleText.includes('\n') && <i className="cursor" />}</span>
             <span className="line name" aria-hidden="true">{line2}{typingTitle && titleText.includes('\n') && <i className="cursor" />}</span>
           </h1>
+          <Socials site={site} />
+          </div>
           <p className="role" aria-label={site.roles.join(', ')}>
             <span aria-hidden="true">&gt; {roleText}{!typingTitle && <i className="cursor" />}</span>
           </p>
@@ -39,7 +42,6 @@ export default function Hero({ site }) {
               <div className="frame-pic"><PixelPhoto src={photos.me} alt={site.name} /></div>
             </div>
           </figure>
-          <Socials site={site} />
           <CommitGrid user={site.githubUser} />
           <span className="pixel-glyph glyph-1" aria-hidden="true" />
         </div>

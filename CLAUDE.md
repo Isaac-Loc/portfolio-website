@@ -30,7 +30,7 @@ src/App.jsx                Header + route switch (hash routes: / = Hero + Experi
 src/data/site.js           ALL editable content, including resume data for sections not built yet
 src/hooks/                 useTheme (light/dark), useRoute (hash router), useTyper (hero typing)
 src/pages/                 EmptyPage placeholder; build each real page here
-src/components/            Header, Hero (retro window portrait), Socials (CLICK ME! widget), PixelPhoto (grain-to-sharp reveal), CommitGrid, Rich (**bold** text)
+src/components/            Header, Hero (retro window portrait), Socials (new-message widget beside the name), PixelPhoto (grain-to-sharp reveal), CommitGrid, Rich (**bold** text)
 src/styles/style.css       All styling (single file, tokens at the top)
 public/images/             me.png (portrait)
 ```
