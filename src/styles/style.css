@@ -18,10 +18,10 @@
   --accent: #9c2b22;           /* red used for text/decor on a surface */
   --border: #e4dcc8;
   --cell0: #e4ddc8;           /* no activity: faint */
-  --cell1: #f2c9c1;
-  --cell2: #d97b6c;
-  --cell3: #a3291f;
-  --cell4: #1a0604;           /* most activity: near-black, pops hard */
+  --cell1: #e8998d;
+  --cell2: #d4493a;
+  --cell3: #b3261b;
+  --cell4: #ff1a0a;           /* most activity: the reddest red */
 
   --font-display: "Playfair Display", Georgia, serif;
   --font-pixel: "Press Start 2P", "Courier New", monospace;
@@ -46,10 +46,10 @@
   --accent: #ff3b2e;
   --border: #232327;
   --cell0: #1d1d20;
-  --cell1: #4a1511;
-  --cell2: #8f2118;
-  --cell3: #ff3b2e;
-  --cell4: #ffffff;           /* most activity: pure white, pops hard on black */
+  --cell1: #3d100c;
+  --cell2: #7a1a12;
+  --cell3: #c4231a;
+  --cell4: #ff1a0a;           /* most activity: the reddest red */
 }
 
 * { box-sizing: border-box; }
@@ -228,11 +228,13 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .commit-card {
   display: block; text-decoration: none; color: var(--text);
 }
-.commit-card:hover { --frame: var(--primary); }
 .commit-head { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-bottom: .6rem; }
 .commit-card .tag { margin: 0; font-size: .5rem; }
-.commit-total { font-weight: 600; font-size: .8rem; color: var(--accent); white-space: nowrap; }
-.commit-grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, auto); grid-auto-columns: 1fr; gap: 3px; }
+.commit-total { font-weight: 600; font-size: .8rem; color: var(--accent); white-space: nowrap; min-height: 1.2em; }
+.commit-grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, auto); grid-template-columns: max-content; grid-auto-columns: 1fr; gap: 3px; }
+.commit-grid .day-label { align-self: center; padding-right: .35rem; font-family: var(--font-pixel); font-size: .38rem; line-height: 1; color: var(--muted); }
+.commit-grid .cell:not(.blank) { transition: transform .12s ease, box-shadow .12s ease; }
+.commit-grid .cell:not(.blank):hover { transform: scale(1.35); position: relative; z-index: 1; box-shadow: 0 0 0 2px var(--primary); }
 .commit-grid .cell { aspect-ratio: 1; border-radius: 22%; background: var(--cell0); box-shadow: inset 0 0 0 1px var(--border); }
 .commit-grid .cell.blank { background: transparent; }
 .commit-grid .cell.l1 { background: var(--cell1); }
@@ -244,7 +246,7 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 
 /* ===== Empty pages (placeholders to build out) ===== */
 .page { width: var(--page-w); margin: 0 auto; min-height: calc(100svh - var(--header-h)); padding: 3rem 0; }
-.page-title { margin: 0; font-family: var(--font-pixel); font-weight: 400; line-height: 1.3; font-size: clamp(1.3rem, 3vw, 2.6rem); color: var(--text); }
+.page-title .name { font-size: clamp(1.4rem, 3.4vw, 3.2rem); }
 
 /* ===== Home sections (scroll down) ===== */
 .tag-cta { margin: 0 0 1.8rem; padding: .95rem 1.1rem .8rem; font-size: .65rem; background: var(--primary); color: #fff; }
@@ -331,3 +333,16 @@ html { scrollbar-width: auto; scrollbar-color: var(--primary) var(--tint); overf
 .tag-cta:hover, .tag-cta:focus-visible { animation: none; }
 @keyframes press-start { 50% { background: var(--card); color: var(--primary); box-shadow: inset 0 0 0 3px var(--primary); } }
 @media (prefers-reduced-motion: reduce) { .tag-cta { animation: none; } }
+
+/* Day popup: floats above the hovered cell (positioned in the card, so the header's yearly total never changes) */
+.commit-pop {
+  position: absolute; z-index: 5; pointer-events: none; white-space: nowrap;
+  display: grid; gap: .15rem; padding: .45rem .6rem; font-size: .7rem; line-height: 1.2;
+  background: var(--ink); color: #f2f2f4; box-shadow: 0 0 0 2px var(--primary);
+  transform: translate(-50%, calc(-100% - .55rem));
+}
+.commit-pop.left { transform: translate(-.6rem, calc(-100% - .55rem)); }
+.commit-pop.right { transform: translate(calc(-100% + .6rem), calc(-100% - .55rem)); }
+.commit-pop b { font-family: var(--font-pixel); font-weight: 400; font-size: .55rem; color: #ff6b5e; }
+:root[data-theme="dark"] .commit-pop { background: #f2f2f4; color: #0a0a0b; }
+:root[data-theme="dark"] .commit-pop b { color: var(--primary); }
