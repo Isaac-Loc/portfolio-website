@@ -1,4 +1,4 @@
-import { site, experience, projects, skills } from './data/site.js'
+import { site, experience, projects, education, leadership, skills } from './data/site.js'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import Section from './components/Section.jsx'
@@ -8,35 +8,42 @@ import EmptyPage from './pages/EmptyPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
 
-// Routes are hash-based ("#/experience"). Only Home has content so far; the others are empty pages to fill in.
-const PAGES = {
-  '/experience': 'Experience',
-  '/projects': 'Projects',
-}
+// Routes are hash-based ("#/experience"). The tab pages are switched off for now: the whole resume lives on Home.
+// Add entries here (and links in Header.jsx) to bring a page back.
+const PAGES = {}
 
 export default function App() {
   const route = useRoute()
   useReveal(route)
   const title = PAGES[route]
-  const present = experience.filter((e) => /present/i.test(e.dates)) // current roles only; the full list lives on /experience
   return (
     <>
       <Header name={site.firstName} resume={site.resume} route={route} />
       {title ? <EmptyPage title={title} /> : (
         <>
           <Hero site={site} />
-          <Section id="experience" title="Experience" archive="/experience">
+          <Section id="experience" title="Experience">
             <div className="entry-grid reveal-stagger">
-              {present.map((e) => (
-                <Entry key={e.id} title={e.role} href={e.orgUrl} meta={`${e.org} · ${e.dates}`} summary={e.summary} tech={e.tech} />
+              {experience.map((e) => (
+                <Entry key={e.id} title={e.role} href={e.orgUrl} meta={`${e.org} · ${e.place} · ${e.dates}`} summary={e.summary} stats={e.stats} tech={e.tech} />
               ))}
             </div>
           </Section>
-          <Section id="projects" title="Projects" archive="/projects">
-            <div className="entry-grid">
-              {projects.slice(0, 2).map((p) => (
-                <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} tech={p.tech} />
+          <Section id="projects" title="Projects">
+            <div className="entry-grid reveal-stagger">
+              {projects.map((p) => (
+                <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} />
               ))}
+            </div>
+          </Section>
+          <Section id="leadership" title="Leadership">
+            <div className="entry-grid">
+              <Entry title={leadership.role} meta={`${leadership.org} · ${leadership.dates}`} summary={leadership.summary} stats={leadership.stats} tech={leadership.tech} />
+            </div>
+          </Section>
+          <Section id="education" title="Education">
+            <div className="entry-grid">
+              <Entry title={education.degree} meta={`${education.school} · ${education.place} · ${education.dates}`} tagsLabel="Coursework" tech={education.coursework} />
             </div>
           </Section>
           <Section id="skills" title="Skills">

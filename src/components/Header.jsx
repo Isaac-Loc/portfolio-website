@@ -1,9 +1,7 @@
 import useTheme from '../hooks/useTheme.js'
 
-const LINKS = [
-  { path: '/experience', label: 'EXPERIENCE' },
-  { path: '/projects', label: 'PROJECTS' },
-]
+// Tab links are switched off for now (the whole resume is on the home page). Add { path, label } entries to bring them back.
+const LINKS = []
 
 export default function Header({ name, resume, route }) {
   const [theme, toggleTheme] = useTheme()

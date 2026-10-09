@@ -26,7 +26,7 @@ Deploys: Vercel auto-deploys from GitHub (project Production Branch = `dev`), so
 ```
 index.html                 Vite entry (fonts loaded here, theme set before paint)
 src/main.jsx               React mount + global CSS import
-src/App.jsx                Header + route switch (hash routes: / = Hero + Experience/Projects/Skills sections + Contact footer; /experience, /projects = empty pages)
+src/App.jsx                Header + route switch (tab routes are off for now: Home = Hero + Experience/Projects/Leadership/Education/Skills + Contact footer)
 src/data/site.js           ALL editable content, including resume data for sections not built yet
 src/hooks/                 useTheme (light/dark), useRoute (hash router), useTyper (hero typing)
 src/pages/                 EmptyPage placeholder; build each real page here
