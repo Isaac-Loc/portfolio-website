@@ -1,22 +1,21 @@
 import useTheme from '../hooks/useTheme.js'
 
 const LINKS = [
-  { id: 'experience', label: 'EXPERIENCE' },
-  { id: 'projects', label: 'PROJECTS' },
-  { id: 'skills', label: 'SKILLS' },
-  { id: 'contact', label: 'CONTACT' },
+  { path: '/experience', label: 'EXPERIENCE' },
+  { path: '/projects', label: 'PROJECTS' },
+  { path: '/contact', label: 'CONTACT' },
 ]
 
-export default function Header({ name, resume }) {
+export default function Header({ name, resume, route }) {
   const [theme, toggleTheme] = useTheme()
   const dark = theme === 'dark'
   return (
     <header id="page-top" className="site-header">
       <div className="header-inner">
-        <a className="tag tag-logo" href="#page-top" data-nav="top">{name.toUpperCase()}.EXE</a>
+        <a className="tag tag-logo" href="#/" onClick={route === '/' ? (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) } : undefined}>{name.toUpperCase()}.EXE</a>
         <nav>
           {LINKS.map((l) => (
-            <a key={l.id} className="tag" href={`#${l.id}`} data-section={l.id}>{l.label}</a>
+            <a key={l.path} className={`tag${route === l.path ? ' active' : ''}`} href={`#${l.path}`}>{l.label}</a>
           ))}
           <a className="tag tag-resume" href={resume} target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true">

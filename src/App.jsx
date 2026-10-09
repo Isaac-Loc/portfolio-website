@@ -1,56 +1,58 @@
-import { useEffect } from 'react'
-import { site, experience, projects, education, leadership, skills } from './data/site.js'
-import { SvgDefs } from './components/Graphics.jsx'
+import { site, experience, projects, skills } from './data/site.js'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
-import Experience from './components/Experience.jsx'
-import Projects from './components/Projects.jsx'
-import Education from './components/Education.jsx'
-import Leadership from './components/Leadership.jsx'
-import Skills from './components/Skills.jsx'
+import Section from './components/Section.jsx'
+import Entry from './components/Entry.jsx'
 import Contact from './components/Contact.jsx'
-import ScrollButton from './components/ScrollButton.jsx'
-import useSectionArrows from './hooks/useSectionArrows.js'
-import useNavInteractions from './hooks/useNavInteractions.js'
+import EmptyPage from './pages/EmptyPage.jsx'
+import useRoute from './hooks/useRoute.js'
+import useReveal from './hooks/useReveal.js'
+
+// Routes are hash-based ("#/experience"). Only Home has content so far; the others are empty pages to fill in.
+const PAGES = {
+  '/experience': 'Experience',
+  '/projects': 'Projects',
+  '/contact': 'Contact',
+}
 
 export default function App() {
-  useSectionArrows()
-  useNavInteractions()
-  useEffect(() => {
-    const els = document.querySelectorAll('.reveal')
-    if (!('IntersectionObserver' in window)) {
-      els.forEach((e) => e.classList.add('in'))
-      return undefined
-    }
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((en) => {
-        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target) }
-      }),
-      { threshold: 0.15, rootMargin: '0px 0px -6% 0px' },
-    )
-    els.forEach((e) => io.observe(e))
-    return () => io.disconnect()
-  }, [])
-
+  const route = useRoute()
+  useReveal(route)
+  const title = PAGES[route]
+  const present = experience.filter((e) => /present/i.test(e.dates)) // current roles only; the full list lives on /experience
   return (
     <>
-      <SvgDefs />
-      <Header name={site.firstName} resume={site.resume} />
-      <Hero site={site} />
-      <main>
-        <Experience items={experience} />
-        <Projects projects={projects} />
-        <div id="education" className="duo">
-          <ScrollButton to="projects" up edge="top" />
-          <div className="duo-grid">
-            <Education education={education} />
-            <Leadership leadership={leadership} />
-          </div>
-          <ScrollButton to="skills" />
-        </div>
-        <Skills skills={skills} />
-        <Contact email={site.email} github={site.github} linkedin={site.linkedin} name={site.name} year={site.year} />
-      </main>
+      <Header name={site.firstName} resume={site.resume} route={route} />
+      {title ? <EmptyPage title={title} /> : (
+        <>
+          <Hero site={site} />
+          <Section id="experience" title="Experience" archive="/experience">
+            <div className="entry-grid reveal-stagger">
+              {present.map((e) => (
+                <Entry key={e.id} title={e.role} href={e.orgUrl} meta={`${e.org} · ${e.dates}`} summary={e.summary} tech={e.tech} />
+              ))}
+            </div>
+          </Section>
+          <Section id="projects" title="Projects" archive="/projects">
+            <div className="entry-grid">
+              {projects.slice(0, 2).map((p) => (
+                <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} tech={p.tech} />
+              ))}
+            </div>
+          </Section>
+          <Section id="skills" title="Skills">
+            <div className="skill-groups">
+              {skills.map((g) => (
+                <div key={g.label} className="skill-group reveal">
+                  <h3 className="skill-label">{g.label}</h3>
+                  <ul className="entry-tech">{g.items.map((i) => <li key={i.name}>{i.name}</li>)}</ul>
+                </div>
+              ))}
+            </div>
+          </Section>
+          <Contact site={site} />
+        </>
+      )}
     </>
   )
 }

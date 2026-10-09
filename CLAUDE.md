@@ -3,7 +3,7 @@
 Guidance for AI assistants (Claude Code or any other model) working in this repo.
 
 ## What this is
-Isaac's personal portfolio website. React + Vite single-page site with a Pinterest-board "cutout / scrapbook collage" look (layered sticker lettering, jagged cut-out shapes, pixel-font labels, paper texture, green + white palette).
+Isaac's personal portfolio website. React + Vite single page, **being rebuilt from the ground up**: right now it is only the header and the hero. Look: clean and professional, patchy teal-blue palette from the user's Luffy tab icon, Press Start 2P (pixel) + Inter, a creamy white backdrop with the teal-blue as the accent, **retro pixel titles with a typing-animation hero**, white `.box` cards with a thin border and a teal top bar. No cutout shapes or decorative widgets.
 
 **Read [SPEC.md](SPEC.md) first.** It is the source of truth for design decisions, structure, content, and history.
 
@@ -24,34 +24,27 @@ Deploys: Vercel auto-deploys from GitHub (project Production Branch = `dev`), so
 
 ## Layout
 ```
-index.html                 Vite entry (fonts loaded here)
+index.html                 Vite entry (fonts loaded here, theme set before paint)
 src/main.jsx               React mount + global CSS import
-src/App.jsx                Page composition
-src/data/site.js           ALL editable content (name, links, notes, projects, photo paths)
-src/components/            Header, Hero, Experience, Projects, Education, Leadership (all via StoryCard), Skills, Contact, Art (SVG illustrations), Graphics (shared SVG + blocks), Rich (**bold** text)
-src/styles/style.css       All styling (single file, design tokens at the top)
-public/images/             User photos / project images (referenced as /images/<file>)
+src/App.jsx                Header + route switch (hash routes: / = Hero + Experience/Projects/Skills sections + Contact footer; /experience, /projects, /contact = empty pages)
+src/data/site.js           ALL editable content, including resume data for sections not built yet
+src/hooks/                 useTheme (light/dark), useRoute (hash router), useTyper (hero typing)
+src/pages/                 EmptyPage placeholder; build each real page here
+src/components/            Header, Hero (retro window portrait), PixelPhoto (grain-to-sharp reveal), CommitGrid, Rich (**bold** text)
+src/styles/style.css       All styling (single file, tokens at the top)
+public/images/             me.png (portrait)
 ```
 
 ## Conventions
-- Content goes in `src/data/site.js`, not hard-coded in components.
-- Plain CSS in one file; colors/fonts/shapes are CSS variables in `:root`. No CSS framework.
-- Keep text minimal: 1-2 short sentences per item; the user prefers pictures/graphics over words. Add visuals (illustrations, stat stickers, icons) before adding copy.
-- Only show content that is on the resume (`Isaac_Loc_Resume.pdf`); NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. The public `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive.
-- The hero is exactly one viewport tall; its `.stage` is the largest 16:9 box that fits, with elements positioned in `%` and sized in `cqw`, so it scales as one piece. Keep new hero elements in that system. Sections after it must not be visible while on the hero.
-- Sizes use `rem`; the root font-size is fluid so large monitors scale up. Primary design target is a 1440p monitor.
-- Cutout shapes are `clip-path` polygons layered (white outer + deep-green inner) via `.cut` / `.burst`. Photos with transparent backgrounds use `.cutout-img` for the white sticker outline.
-- Sections after the hero are full-screen bands (`min-height: 100svh`, `overflow: clip`) that start with a sticky up `ScrollButton edge="top"` (previous section) and end with a sticky `ScrollButton` to the next section (Contact is the exception: a compact closing band whose up-arrow scrolls to `#page-top`, the header), so the button lands in the same screen spot every time. Keep that pattern for new sections.
-- Respect `prefers-reduced-motion`.
-- Content below the hero should carry the `reveal` class so it animates in on scroll (see SPEC "Motion"). Avoid technical word labels in the hero; prefer artistic graphics.
-- Fonts: Playfair Display (italic 900, sticker headings), Silkscreen (pixel labels), Inter (body).
+- Content goes in `src/data/site.js`, not hard-coded in components. Only show facts on the resume (`Isaac_Loc_Resume.pdf`).
+- NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive.
+- Plain CSS in one file; colours/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem` (fluid root font-size; primary target is a 1440p monitor).
+- Professional look: pixel-frame `.box` cards (square corners, 4px notched border via four box-shadows in `--frame`). NO cutout/clip-path shapes, tape, stickers, sparkles, stamps, doodles, custom cursors, paper grain, tilt or hero click widgets (user scratched them). Keep colours flat (no gradients/glows). The signature look is the retro **pixel font** (Press Start 2P) for titles and labels; the hero title is a typed animation (`useTyper`). The bubbled/outlined text was scrapped: do not bring it back.
+- Palette: a rich red accent (`--primary`, `--accent`) on a creamy backdrop (`--paper`, `--ink`); variable names like `--teal` are historical and no longer teal-colored, just change their hex values. Fonts: Press Start 2P (all titles, tags and labels; it only has weight 400, so never set bold on it) and Inter (body). The light-theme backdrop is a creamy white (`--paper`); the red is the accent only.
+- The hero is one screen tall (below the header). Only the Home page (hero) has content; the nav pages are empty placeholders. Build one page at a time and ask about layout/look as you go. Use the `.box` class for cards. Respect `prefers-reduced-motion`. The user does NOT want dragging.
 
 ## Gotchas
-- Light/dark theme is variable-driven. Never hard-code `#fff`/greens for surfaces or text: use `--card` (surfaces), `--text`, `--accent` (green text/decor on a surface), `--white` (sticker edges/rings). Check any new UI in both themes.
-- The header is sticky. Anything sized to the screen must subtract `var(--header-h)` (sections use `min-height: calc(100svh - var(--header-h))`, anchors rely on `scroll-padding-top`).
-- Scroll arrows are invisible by default and only show for the section you are settled in (>=60% of the screen, or Contact at the page bottom), hidden again while scrolling (`hooks/useSectionArrows.js`, `.arrows-on`, `html.is-scrolling`). New sections just need to be a `main > section` (or the `.duo` band) to be picked up.
-- Cursors and the text-selection highlight are custom (end of `style.css`). New clickable things get the sparkle-star pointer automatically if they're `a`/`button`/`.ix`; otherwise set `cursor: var(--cursor-pointer)`.
-- Hero widgets pop on hover and react on click (`useHeroInteractions.js`). The user explicitly does NOT want dragging; don't add it.
-- Don't give elements that sit near the bottom edge of the screen (like the sticky scroll buttons) the `reveal` class: the IntersectionObserver ignores the bottom 6% of the viewport, so they would stay invisible. When testing reveal, don't force `.in` on everything.
-- `-webkit-text-stroke` + `paint-order: stroke fill` makes the sticker outline; a neighbouring element's outline can cover small glyphs (e.g. the comma in "Hi, I'm") so mind `z-index` between title pieces.
+- Light/dark theme is variable-driven. Never hard-code surface/text colours: use `--card`, `--text`, `--accent`, `--line`, `--white`. Check new UI in both themes. Dark mode is soft gray surfaces with the blue only as the accent. Body/heading text is near-black (`--text`), not teal-tinted; keep the teal/`--primary` as a small accent, not the main text color.
+- The header is sticky. Anything sized to the screen must subtract `var(--header-h)`.
+- There are no scroll arrows (user removed them); navigation is the header plus an always-visible themed scrollbar (end of the "Visible scrollbar" block in `style.css`).
 - Images are placeholders until paths are set in `site.js`. Placeholders are intentional.

@@ -11,18 +11,17 @@ export const site = {
   resume: '/Isaac_Loc_Resume.pdf', // file lives in /public; opened in a new tab from the nav
   githubUser: 'Isaac-Loc', // drives the commit grid in the hero
   linkedin: 'https://www.linkedin.com/in/isaac-loc',
+  tagline: 'Software engineer from embedded firmware to full stack.',
+  roles: ['Software Engineer', 'Full Stack Developer', 'Embedded Developer', 'Computer Science @\nUniversity at Buffalo'], // typed under the hero title
   about: {
-    // Shown under the hero title. Keep it to 2-3 short sentences (phones show the first two). **bold** works.
-    sentences: [
-      "I'm a senior at the University at Buffalo studying **Computer Science**, and I'm happiest when I'm untangling a messy problem.",
-      "I build **software and systems** that take on the hard parts so the people using them don't have to.",
+    // Paragraphs shown in the About section. **bold** works.
+    paragraphs: [
+      "I'm a senior at the University at Buffalo studying **Computer Science** with a minor in Math, and I'm happiest when I'm untangling a messy problem.",
+      "I build **software and systems** that take on the hard parts so the people using them don't have to: from C++ firmware driving a wall of LEDs to secure, full-stack web apps.",
     ],
   },
-  heroStickers: ['flower', 'heart', 'constellation', 'vinyl'], // artistic stickers (see Stickers.jsx)
-  heroPhotos: {
-    main: '/images/me.jpg', // big jagged frame in the centre; any photo works (cropped to fit)
-    upper: '/images/cat.jpg', // upper starburst: the cat
-    lower: '/images/car.jpg', // lower starburst: the car (licence plate blurred in the file)
+  photos: {
+    me: '/images/me.png',
   },
 }
 
@@ -37,7 +36,7 @@ export const experience = [
     art: 'shield',
     shape: 'burst',
     image: null,
-    summary: 'Secure resume uploads, on-request data erasure and site-wide security headers for a **Next.js + Supabase** app.',
+    summary: 'Currently spearheading the migration of ezesports.org to a more modern stack with **Next.js**. Overseeing the initiative to normalize all player, staff and match data into **Supabase**.',
     stats: [
       { n: '100%', l: 'server-side validated' },
       { n: '5', l: 'security headers' },
@@ -54,7 +53,7 @@ export const experience = [
     art: 'ledwall',
     shape: 'jag',
     image: null,
-    summary: '**C++ firmware** that keeps video playing in sync across an LED tile array, with a **Flask** API for the web frontend.',
+    summary: 'Embedded development in **C++** on ESP32s, from firmware to the network commands that drive an LED tile array. A **Flask** API connects it all to the web frontend.',
     stats: [
       { n: '50+', l: 'LED tiles' },
       { n: '4', l: 'ESP32s' },
@@ -73,7 +72,7 @@ export const projects = [
     shape: 'burst8',
     image: null,
     url: 'https://github.com/Theta-Tau-Mu-Gamma/Theta-Tau-Scrum',
-    summary: 'Kanban board with a dependency graph and **Google Drive** file access, used by teams across the chapter.',
+    summary: 'Full-stack development using **React** and **PHP/Slim**, from schema design to the API. A shared Kanban workspace for the whole chapter, with **Google Drive** built in.',
     stats: [
       { n: '20+', l: 'members' },
       { n: '68', l: 'API endpoints' },
@@ -88,7 +87,7 @@ export const projects = [
     shape: 'jag',
     image: null,
     url: null,
-    summary: 'Peer-to-peer marketplace with live auctions, buy-it-now, and **real-time bid updates**.',
+    summary: 'A peer-to-peer marketplace built with **React**, **PHP** and **MySQL**. Handling listings, auctions and **real-time bidding** end to end.',
     stats: [
       { n: '2', l: 'listing types' },
       { n: 'live', l: 'bid updates' },
