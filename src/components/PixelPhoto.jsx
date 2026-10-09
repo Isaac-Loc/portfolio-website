@@ -6,6 +6,10 @@ import { useEffect, useRef, useState } from 'react'
 const STEPS = [6, 10, 16, 26, 40, 64, 100, 160, 256] // pixels per side at each step
 const STEP_MS = 60
 const SIZE = 320 // canvas backing size
+// Zoom on the subject: the square crop is 1/ZOOM of the short side, centred horizontally and at CY (fraction of height).
+// Keep in sync with `.pixel-wrap img` in style.css (same scale and transform-origin).
+const ZOOM = 1.36
+const CY = 0.533
 
 export default function PixelPhoto({ src, alt }) {
   const imgRef = useRef(null)
@@ -25,11 +29,13 @@ export default function PixelPhoto({ src, alt }) {
 
     const draw = (i) => {
       const res = STEPS[i]
-      const side = Math.min(img.naturalWidth, img.naturalHeight)
+      const side = Math.min(img.naturalWidth, img.naturalHeight) / ZOOM
+      const sx = (img.naturalWidth - side) / 2
+      const sy = Math.min(Math.max(img.naturalHeight * CY - side / 2, 0), img.naturalHeight - side)
       tiny.width = res
       tiny.height = res
       tctx.imageSmoothingQuality = 'high'
-      tctx.drawImage(img, (img.naturalWidth - side) / 2, (img.naturalHeight - side) / 2, side, side, 0, 0, res, res)
+      tctx.drawImage(img, sx, sy, side, side, 0, 0, res, res)
       const amp = 70 * (1 - i / (STEPS.length - 1)) // grain fades as it sharpens
       if (amp > 1) {
         const d = tctx.getImageData(0, 0, res, res)
