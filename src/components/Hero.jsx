@@ -24,6 +24,11 @@ export default function Hero({ site }) {
             <span className="tag">ABOUT ME</span>
             {site.about.paragraphs.slice(0, 2).map((t) => <p key={t}><Rich text={t} /></p>)}
           </div>
+          <nav className="hero-links" aria-label="Contact">
+            <a className="tag link-tag" href={`mailto:${site.email}`}>EMAIL</a>
+            <a className="tag link-tag" href={site.github} target="_blank" rel="noopener noreferrer">GITHUB</a>
+            <a className="tag link-tag" href={site.linkedin} target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+          </nav>
         </div>
         <div className="hero-media">
           <figure className="window">
@@ -36,7 +41,9 @@ export default function Hero({ site }) {
             </div>
           </figure>
           <CommitGrid user={site.githubUser} />
+          <span className="pixel-glyph glyph-1" aria-hidden="true" />
         </div>
+        <span className="pixel-glyph glyph-2" aria-hidden="true" />
       </div>
     </section>
   )

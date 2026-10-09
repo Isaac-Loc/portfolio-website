@@ -123,6 +123,7 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
   padding: 1.5rem 0 3rem;
 }
 .hero-grid {
+  position: relative;
   width: var(--page-w); margin: 0 auto;
   display: grid; grid-template-columns: 1.15fr 1fr; gap: 3rem; align-items: center;
 }
@@ -134,6 +135,44 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .cursor { display: inline-block; width: .55em; height: 1em; margin-left: .12em; vertical-align: -.12em; background: currentColor; animation: blink 1s steps(1) infinite; }
 .hero-title .cursor { background: var(--primary); }
 @keyframes blink { 50% { opacity: 0; } }
+
+/* Decorative 8-bit sparkle: a 5x5 bitmap drawn with stacked box-shadow "pixels", no SVG/image needed. */
+.pixel-glyph {
+  --px: 4px;
+  position: absolute;
+  width: var(--px); height: var(--px);
+  background: transparent;
+  box-shadow:
+    calc(var(--px) * 2) 0 0 0 var(--primary),
+    var(--px) var(--px) 0 0 var(--primary),
+    calc(var(--px) * 3) var(--px) 0 0 var(--primary),
+    0 calc(var(--px) * 2) 0 0 var(--primary),
+    var(--px) calc(var(--px) * 2) 0 0 var(--primary),
+    calc(var(--px) * 2) calc(var(--px) * 2) 0 0 var(--primary),
+    calc(var(--px) * 3) calc(var(--px) * 2) 0 0 var(--primary),
+    calc(var(--px) * 4) calc(var(--px) * 2) 0 0 var(--primary),
+    var(--px) calc(var(--px) * 3) 0 0 var(--primary),
+    calc(var(--px) * 3) calc(var(--px) * 3) 0 0 var(--primary),
+    calc(var(--px) * 2) calc(var(--px) * 4) 0 0 var(--primary);
+  animation: twinkle 2.4s steps(2) infinite;
+}
+:root[data-theme="dark"] .pixel-glyph { --glyph-color: var(--accent); }
+:root[data-theme="dark"] .pixel-glyph { box-shadow:
+    calc(var(--px) * 2) 0 0 0 var(--accent),
+    var(--px) var(--px) 0 0 var(--accent),
+    calc(var(--px) * 3) var(--px) 0 0 var(--accent),
+    0 calc(var(--px) * 2) 0 0 var(--accent),
+    var(--px) calc(var(--px) * 2) 0 0 var(--accent),
+    calc(var(--px) * 2) calc(var(--px) * 2) 0 0 var(--accent),
+    calc(var(--px) * 3) calc(var(--px) * 2) 0 0 var(--accent),
+    calc(var(--px) * 4) calc(var(--px) * 2) 0 0 var(--accent),
+    var(--px) calc(var(--px) * 3) 0 0 var(--accent),
+    calc(var(--px) * 3) calc(var(--px) * 3) 0 0 var(--accent),
+    calc(var(--px) * 2) calc(var(--px) * 4) 0 0 var(--accent);
+}
+.glyph-1 { --px: 5px; top: -1.1rem; right: .5rem; }
+.glyph-2 { --px: 4px; left: -.2rem; bottom: -.8rem; animation-delay: .9s; }
+@keyframes twinkle { 50% { opacity: .25; } }
 
 /* Pixel frame: a 4px stepped (notched-corner) border drawn with box-shadows, like an 8-bit dialog box */
 .box {
@@ -152,7 +191,15 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .about-note p:last-child { margin-bottom: 0; }
 .about-note strong, .summary strong { color: var(--accent); }
 
+.hero-links { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 1rem; }
+.hero-links .tag { margin: 0; }
+.link-tag { display: inline-flex; align-items: center; gap: .5rem; }
+.link-tag::before { content: ""; width: 6px; height: 6px; background: var(--primary); flex: 0 0 auto; }
+:root[data-theme="dark"] .link-tag::before { background: var(--accent); }
+a.link-tag:hover::before { background: #fff; }
+
 .hero-media {
+  position: relative;
   display: grid; grid-template-columns: 1fr; gap: 1.2rem; justify-self: center; width: min(100%, 25rem);
 }
 /* Portrait: a retro "window" (title bar + notched pixel frame) around a square photo */
@@ -216,5 +263,5 @@ html { scrollbar-width: auto; scrollbar-color: var(--primary) var(--tint); overf
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .commit-card.loading .cell, .cursor { animation: none; }
+  .commit-card.loading .cell, .cursor, .pixel-glyph { animation: none; }
 }
