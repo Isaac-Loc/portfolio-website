@@ -1,17 +1,30 @@
-import ScrollButton from './ScrollButton.jsx'
-import StoryCard from './StoryCard.jsx'
+import Big from './Big.jsx'
+import Rich from './Rich.jsx'
 
 export default function Experience({ items }) {
   return (
-    <section id="experience" className="experience">
-      <ScrollButton to="page-top" up edge="top" />
-      <h2 className="section-title reveal"><span className="sticker-text">Experience</span></h2>
-      <div className="card-grid two">
-        {items.map((job, i) => (
-          <StoryCard key={job.id} {...job} title={job.role} tilt={i % 2 ? 'c2' : 'c1'} delay={i * 0.15} />
+    <section id="experience" className="sec">
+      <Big word="VOYAGES" sub="Experience" />
+      <div className="stack">
+        {items.map((e, i) => (
+          <article key={e.id} className="panel card reveal" style={{ '--d': `${i * 0.1}s` }}>
+            <div className="card-head">
+              <div>
+                <h3>{e.role}</h3>
+                <p className="org">
+                  {e.orgUrl ? <a href={e.orgUrl} target="_blank" rel="noreferrer">{e.org}</a> : e.org} · {e.place}
+                </p>
+              </div>
+              <span className="dates">{e.dates}</span>
+            </div>
+            <p><Rich text={e.summary} /></p>
+            <ul className="stats">
+              {e.stats.map((s) => <li key={s.l}><b>{s.n}</b><span>{s.l}</span></li>)}
+            </ul>
+            <ul className="chips">{e.tech.map((t) => <li key={t}>{t}</li>)}</ul>
+          </article>
         ))}
       </div>
-      <ScrollButton to="projects" />
     </section>
   )
 }

@@ -1,36 +1,27 @@
-import ScrollButton from './ScrollButton.jsx'
-function SkillTile({ item, i }) {
-  return (
-    <span className="skill-tile reveal" style={{ '--d': `${i * 0.04}s` }}>
-      {item.icon ? (
-        <img
-          src={`https://cdn.simpleicons.org/${item.icon}/1f8a4c`}
-          alt=""
-          loading="lazy"
-          onError={(e) => { e.currentTarget.replaceWith(Object.assign(document.createElement('i'), { className: 'dot' })) }}
-        />
-      ) : <i className="dot" />}
-      <span>{item.name}</span>
-    </span>
-  )
-}
+import Big from './Big.jsx'
 
 export default function Skills({ skills }) {
   return (
-    <section id="skills" className="skills">
-      <ScrollButton to="education" up edge="top" />
-      <h2 className="section-title reveal"><span className="sticker-text">Skills</span></h2>
-      <div className="skill-groups">
-        {skills.map((g) => (
-          <div key={g.label} className="skill-group reveal">
-            <span className="tag">{g.label.toUpperCase()}</span>
-            <div className="tiles">
-              {g.items.map((s, i) => <SkillTile key={s.name} item={s} i={i} />)}
-            </div>
+    <section id="skills" className="sec">
+      <Big word="SUPPLIES" sub="Skills" />
+      <div className="grid-2">
+        {skills.map((g, i) => (
+          <div key={g.label} className="panel reveal" style={{ '--d': `${(i % 2) * 0.1}s` }}>
+            <p className="label">{g.label}</p>
+            <ul className="chips chips-lg">
+              {g.items.map((s) => (
+                <li key={s.name}>
+                  {s.icon && (
+                    <img src={`https://cdn.simpleicons.org/${s.icon}`} alt="" width="16" height="16" loading="lazy"
+                      onError={(e) => { e.currentTarget.style.display = 'none' }} />
+                  )}
+                  {s.name}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>
-      <ScrollButton to="contact" />
     </section>
   )
 }

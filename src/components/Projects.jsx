@@ -1,20 +1,23 @@
-import ScrollButton from './ScrollButton.jsx'
-import { Deco } from './Graphics.jsx'
-import StoryCard from './StoryCard.jsx'
+import Big from './Big.jsx'
+import Rich from './Rich.jsx'
 
 export default function Projects({ projects }) {
   return (
-    <section id="projects" className="projects">
-      <ScrollButton to="experience" up edge="top" />
-      <h2 className="section-title reveal"><span className="sticker-text">Projects</span></h2>
-      <div className="card-grid two">
+    <section id="projects" className="sec">
+      <Big word="TREASURE" sub="Projects" />
+      <div className="grid-2">
         {projects.map((p, i) => (
-          <StoryCard key={p.id} {...p} tilt={i % 2 ? 'c2' : 'c1'} delay={i * 0.15} />
+          <article key={p.id} className="panel card reveal" style={{ '--d': `${i * 0.1}s` }}>
+            <h3>{p.title}</h3>
+            <p><Rich text={p.summary} /></p>
+            <ul className="stats">
+              {p.stats.map((s) => <li key={s.l}><b>{s.n}</b><span>{s.l}</span></li>)}
+            </ul>
+            <ul className="chips">{p.tech.map((t) => <li key={t}>{t}</li>)}</ul>
+            {p.url && <a className="link" href={p.url} target="_blank" rel="noreferrer">View on GitHub →</a>}
+          </article>
         ))}
       </div>
-      <Deco id="sparkle" className="sparkle sp5" />
-      <Deco id="asterisk" className="sparkle sp6" />
-      <ScrollButton to="education" />
     </section>
   )
 }
