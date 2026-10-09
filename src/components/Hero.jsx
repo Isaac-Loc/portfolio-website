@@ -20,10 +20,6 @@ export default function Hero({ site }) {
         </div>
         <div className="hero-media">
           <div className="photo main"><img src={photos.me} alt={site.name} /></div>
-          <div className="photo-row">
-            <div className="photo"><img src={photos.cat} alt="My cat" /></div>
-            <div className="photo"><img src={photos.car} alt="My car in the snow" /></div>
-          </div>
           <CommitGrid user={site.githubUser} />
         </div>
       </div>

@@ -36,7 +36,7 @@ public/images/             Photos (/images/<file>)
 
 ## Conventions
 - Content goes in `src/data/site.js`, not hard-coded in components. Only show facts on the resume (`Isaac_Loc_Resume.pdf`).
-- NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive. The car photo's licence plate is blurred in the file; keep it that way.
+- NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive.
 - Plain CSS in one file; colours/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem` (fluid root font-size; primary target is a 1440p monitor).
 - Professional look: plain rectangles with 2px borders and small radii. NO cutout/clip-path shapes, tape, stickers, sparkles, stamps, doodles, custom cursors, paper grain, tilt or hero click widgets (user scratched them). Keep colours flat (no gradients/glows). The one playful element is the **bubbled title text** (`.sticker-text`: white `-webkit-text-stroke` + `paint-order: stroke fill` + soft offset); keep it on the hero title and section titles.
 - Palette is the patchy teal-blue of the user's Luffy tab icon (`--primary`, `--teal`, `--tint`, `--paper`, `--ink`). Fonts: Playfair Display (italic 900, titles), Silkscreen (pixel labels), Inter (body).

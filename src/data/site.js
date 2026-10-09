@@ -17,13 +17,10 @@ export const site = {
     paragraphs: [
       "I'm a senior at the University at Buffalo studying **Computer Science** with a minor in Math, and I'm happiest when I'm untangling a messy problem.",
       "I build **software and systems** that take on the hard parts so the people using them don't have to: from C++ firmware driving a wall of LEDs to secure, full-stack web apps.",
-      "Away from the keyboard you'll find me with my cat and my car.",
     ],
   },
   photos: {
     me: '/images/me.jpg',
-    cat: '/images/cat.jpg',
-    car: '/images/car.jpg', // licence plate blurred in the file
   },
 }
 

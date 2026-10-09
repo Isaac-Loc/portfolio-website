@@ -152,14 +152,11 @@ a.link-note:hover { background: var(--primary); border-color: var(--primary); co
 .about-note strong, .summary strong { color: var(--accent); }
 
 .hero-media {
-  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .8rem; justify-self: center; width: min(100%, 31rem);
+  display: grid; grid-template-columns: 1fr; gap: .8rem; justify-self: center; width: min(100%, 25rem);
 }
 .photo { overflow: hidden; border: 2px solid var(--line); border-radius: .6rem; background: var(--teal); }
 .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.photo.main { grid-row: span 2; height: min(48vh, 26rem); aspect-ratio: .8; }
-.photo-row { display: contents; }
-.photo-row .photo { min-height: 0; }
-.hero-media .commit-card { grid-column: 1 / -1; }
+.photo.main { height: min(50vh, 27rem); }
 
 /* Commit grid (real GitHub activity) */
 .commit-card {
