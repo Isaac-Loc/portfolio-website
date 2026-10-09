@@ -195,10 +195,6 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .about-note p:last-child { margin-bottom: 0; }
 .about-note strong, .summary strong { color: var(--accent); }
 
-/* Social icon row: sits like a status bar under the portrait window, using the window's own frame colour */
-.hero-social { display: flex; justify-content: center; gap: 2px; padding: .55rem .6rem .6rem; border-top: 3px solid var(--frame); }
-.social-tag { margin: 0; padding: .45rem; }
-.social-tag svg { display: block; width: 1.1rem; height: 1.1rem; }
 
 .hero-media {
   position: relative;
@@ -255,7 +251,7 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .page-title .name { font-size: clamp(1.4rem, 3.4vw, 3.2rem); }
 
 /* ===== Home sections (scroll down) ===== */
-.tag-cta { margin: 0 0 1.8rem; padding: .95rem 1.1rem .8rem; font-size: .65rem; background: var(--primary); color: #fff; }
+.tag-cta { margin: 0; padding: .95rem 1.1rem .8rem; font-size: .65rem; background: var(--primary); color: #fff; }
 :root[data-theme="dark"] .tag-cta { background: var(--primary); color: #fff; }
 a.tag.tag-cta:hover { background: var(--primary-deep); }
 .section { padding: 4rem 0; border-top: 1px solid var(--border); }
@@ -352,3 +348,24 @@ html { scrollbar-width: auto; scrollbar-color: var(--primary) var(--tint); overf
 .commit-pop b { font-family: var(--font-pixel); font-weight: 400; font-size: .55rem; color: #ff6b5e; }
 :root[data-theme="dark"] .commit-pop { background: #f2f2f4; color: #0a0a0b; }
 :root[data-theme="dark"] .commit-pop b { color: var(--primary); }
+
+
+/* Hero actions row: the flashing CTA plus the "CLICK ME!" socials widget */
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.2rem; margin: 0 0 1.8rem; min-height: 3.2rem; }
+.socials { position: relative; display: flex; align-items: center; }
+.tag-click { margin: 0; gap: .7em; padding: .95rem 1.1rem .8rem; font-size: .65rem; cursor: pointer; border: 0; animation: bob 1.2s steps(1) infinite; }
+.tag-click:hover { animation: none; background: var(--primary); color: #fff; }
+.qblock { display: inline-flex; align-items: center; justify-content: center; width: 1.5em; height: 1.5em; margin: -.3em 0; background: var(--primary); color: #fff; box-shadow: inset -3px -3px 0 var(--primary-deep), 0 0 0 2px currentColor; }
+:root[data-theme="dark"] .tag-click { background: #232327; color: #f2f2f4; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.social-row { display: flex; gap: .5rem; }
+.social-tag { margin: 0; padding: .7rem; animation: pop-out .5s steps(5) both; animation-delay: calc(var(--i) * .12s + .1s); }
+.social-tag svg { display: block; width: 1.3rem; height: 1.3rem; }
+@keyframes pop-out { 0% { transform: translateY(1.2rem) scale(.2); opacity: 0; } 70% { transform: translateY(-.5rem) scale(1.15); opacity: 1; } 100% { transform: none; opacity: 1; } }
+/* Pixel sparks fly out from where the button was, then vanish */
+.sparks { position: absolute; left: 1.6rem; top: 50%; width: 0; height: 0; pointer-events: none; }
+.sparks i { position: absolute; width: 6px; height: 6px; margin: -3px; background: var(--primary); animation: spark .7s steps(7) forwards; }
+.sparks i:nth-child(3n) { background: var(--ink); }
+:root[data-theme="dark"] .sparks i:nth-child(3n) { background: #f2f2f4; }
+@keyframes spark { to { transform: translate(var(--dx), var(--dy)); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .tag-click, .social-tag, .sparks i { animation: none; } .sparks { display: none; } }
