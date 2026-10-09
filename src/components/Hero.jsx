@@ -1,6 +1,5 @@
 import Rich from './Rich.jsx'
 import CommitGrid from './CommitGrid.jsx'
-import ScrollButton from './ScrollButton.jsx'
 
 export default function Hero({ site }) {
   const { photos } = site
@@ -26,7 +25,6 @@ export default function Hero({ site }) {
           <CommitGrid user={site.githubUser} />
         </div>
       </div>
-      <ScrollButton to="experience" hero />
     </section>
   )
 }

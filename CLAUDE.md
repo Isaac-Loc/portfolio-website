@@ -29,7 +29,7 @@ src/main.jsx               React mount + global CSS import
 src/App.jsx                Page composition
 src/data/site.js           ALL editable content (name, links, copy, projects, photo paths)
 src/hooks/                 useTheme, useSectionArrows, useNavInteractions, useReveal
-src/components/            Header, Hero, StoryCard, Art (SVG illustrations), CommitGrid, ScrollButton, Experience, Projects, Education, Leadership, Skills, Contact, Rich (**bold** text)
+src/components/            Header, Hero, StoryCard, Art (SVG illustrations), CommitGrid, Experience, Projects, Education, Leadership, Skills, Contact, Rich (**bold** text)
 src/styles/style.css       All styling (single file, tokens at the top)
 public/images/             Photos (/images/<file>)
 ```
@@ -40,11 +40,11 @@ public/images/             Photos (/images/<file>)
 - Plain CSS in one file; colours/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem` (fluid root font-size; primary target is a 1440p monitor).
 - Professional look: plain rectangles with 2px borders and small radii. NO cutout/clip-path shapes, tape, stickers, sparkles, stamps, doodles, custom cursors, paper grain, tilt or hero click widgets (user scratched them). Keep colours flat (no gradients/glows). The one playful element is the **bubbled title text** (`.sticker-text`: white `-webkit-text-stroke` + `paint-order: stroke fill` + soft offset); keep it on the hero title and section titles.
 - Palette is the patchy teal-blue of the user's Luffy tab icon (`--primary`, `--teal`, `--tint`, `--paper`, `--ink`). Fonts: Playfair Display (italic 900, titles), Silkscreen (pixel labels), Inter (body).
-- The hero is one screen tall (below the header). Sections after it are full-screen bands that start with a sticky up `ScrollButton edge="top"` and end with a sticky down `ScrollButton` (Contact is a compact closing band whose up-arrow goes to `#page-top`). Keep that pattern for new sections.
+- The hero is one screen tall (below the header). Sections after it are full-screen bands (no arrows). Contact is a compact closing band.
 - Content below the hero carries `.reveal` so it animates in on scroll. Respect `prefers-reduced-motion`. The user does NOT want dragging.
 
 ## Gotchas
 - Light/dark theme is variable-driven. Never hard-code surface/text colours: use `--card`, `--text`, `--accent`, `--line`, `--white`. Check new UI in both themes.
 - The header is sticky. Anything sized to the screen must subtract `var(--header-h)`.
-- Scroll arrows are invisible except in the section you are settled in (`hooks/useSectionArrows.js`). Don't give them (or anything near the bottom edge) the `reveal` class: the observer ignores the bottom 6% of the viewport.
+- There are no scroll arrows (user removed them); navigation is the header plus an always-visible themed scrollbar (end of the "Visible scrollbar" block in `style.css`).
 - Images are placeholders until paths are set in `site.js`. Placeholders are intentional.

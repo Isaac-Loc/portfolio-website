@@ -1,4 +1,3 @@
-import ScrollButton from './ScrollButton.jsx'
 function SkillTile({ item, i }) {
   return (
     <span className="skill-tile reveal" style={{ '--d': `${i * 0.04}s` }}>
@@ -18,7 +17,6 @@ function SkillTile({ item, i }) {
 export default function Skills({ skills }) {
   return (
     <section id="skills" className="skills">
-      <ScrollButton to="education" up edge="top" />
       <h2 className="section-title reveal"><span className="sticker-text">Skills</span></h2>
       <div className="skill-groups">
         {skills.map((g) => (
@@ -30,7 +28,6 @@ export default function Skills({ skills }) {
           </div>
         ))}
       </div>
-      <ScrollButton to="contact" />
     </section>
   )
 }
