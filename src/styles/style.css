@@ -131,7 +131,7 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .hero-title .line { display: block; min-height: 1.3em; font-size: clamp(1.4rem, 3.4vw, 3.2rem); }
 .hero-title .name { color: var(--primary); font-size: clamp(2rem, 5.4vw, 5rem); }
 :root[data-theme="dark"] .hero-title .name { color: var(--accent); }
-.role { margin: 1.2rem 0 1.8rem; min-height: 1.6em; font-family: var(--font-pixel); font-weight: 400; font-size: clamp(.65rem, 1.1vw, 1rem); line-height: 1.5; color: var(--muted); }
+.role { margin: 1.2rem 0 1.8rem; max-width: 20rem; min-height: 1.6em; font-family: var(--font-pixel); font-weight: 400; font-size: clamp(.65rem, 1.1vw, 1rem); line-height: 1.5; color: var(--muted); }
 .cursor { display: inline-block; width: .55em; height: 1em; margin-left: .12em; vertical-align: -.12em; background: currentColor; animation: blink 1s steps(1) infinite; }
 .hero-title .cursor { background: var(--primary); }
 @keyframes blink { 50% { opacity: 0; } }
@@ -191,12 +191,10 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .about-note p:last-child { margin-bottom: 0; }
 .about-note strong, .summary strong { color: var(--accent); }
 
-.hero-links { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 1rem; }
-.hero-links .tag { margin: 0; }
-.link-tag { display: inline-flex; align-items: center; gap: .5rem; }
-.link-tag::before { content: ""; width: 6px; height: 6px; background: var(--primary); flex: 0 0 auto; }
-:root[data-theme="dark"] .link-tag::before { background: var(--accent); }
-a.link-tag:hover::before { background: #fff; }
+/* Social icon row: sits like a status bar under the portrait window, using the window's own frame colour */
+.hero-social { display: flex; justify-content: center; gap: 2px; padding: .55rem .6rem .6rem; border-top: 3px solid var(--frame); }
+.social-tag { margin: 0; padding: .45rem; }
+.social-tag svg { display: block; width: 1.1rem; height: 1.1rem; }
 
 .hero-media {
   position: relative;
