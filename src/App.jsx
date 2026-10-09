@@ -12,7 +12,6 @@ import useReveal from './hooks/useReveal.js'
 const PAGES = {
   '/experience': 'Experience',
   '/projects': 'Projects',
-  '/contact': 'Contact',
 }
 
 export default function App() {

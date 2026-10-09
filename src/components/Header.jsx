@@ -3,7 +3,6 @@ import useTheme from '../hooks/useTheme.js'
 const LINKS = [
   { path: '/experience', label: 'EXPERIENCE' },
   { path: '/projects', label: 'PROJECTS' },
-  { path: '/contact', label: 'CONTACT' },
 ]
 
 export default function Header({ name, resume, route }) {
