@@ -28,7 +28,7 @@ index.html                 Vite entry (fonts loaded here, theme set before paint
 src/main.jsx               React mount + global CSS import
 src/App.jsx                Page composition
 src/data/site.js           ALL editable content (name, links, copy, projects, photo paths)
-src/hooks/                 useTheme, useSectionArrows, useNavInteractions, useReveal
+src/hooks/                 useTheme, useNavInteractions, useReveal
 src/components/            Header, Hero, StoryCard, Art (SVG illustrations), CommitGrid, Experience, Projects, Education, Leadership, Skills, Contact, Rich (**bold** text)
 src/styles/style.css       All styling (single file, tokens at the top)
 public/images/             Photos (/images/<file>)
