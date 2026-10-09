@@ -1,4 +1,4 @@
-import { site, experience, projects, education, leadership, skills } from './data/site.js'
+import { site, experience, projects, leadership, skills } from './data/site.js'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import Section from './components/Section.jsx'
@@ -39,11 +39,6 @@ export default function App() {
           <Section id="leadership" title="Leadership">
             <div className="entry-grid">
               <Entry title={leadership.role} meta={`${leadership.org} · ${leadership.dates}`} summary={leadership.summary} stats={leadership.stats} tech={leadership.tech} />
-            </div>
-          </Section>
-          <Section id="education" title="Education">
-            <div className="entry-grid">
-              <Entry title={education.degree} meta={`${education.school} · ${education.place} · ${education.dates}`} tagsLabel="Coursework" tech={education.coursework} />
             </div>
           </Section>
           <Section id="skills" title="Skills">
