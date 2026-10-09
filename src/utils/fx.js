@@ -25,7 +25,7 @@ export function particles(parent, x, y, symbol, count, { rise = false, spread = 
     } else {
       p.style.width = `${size * scale}cqw`
     }
-    p.style.fill = i % 2 ? '#8be8ad' : '#1f8a4c'
+    p.style.fill = i % 2 ? '#a9d4d6' : '#3b7f86'
     host.appendChild(p)
     const angle = rise ? -Math.PI / 2 + (Math.random() - 0.5) * 1.2 : Math.random() * Math.PI * 2
     const dist = spread * (0.5 + Math.random())

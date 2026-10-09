@@ -6,7 +6,7 @@ Living spec. Any AI/model starting a new chat should read this plus [CLAUDE.md](
 A personal portfolio for Isaac (GitHub: [Isaac-Loc](https://github.com/Isaac-Loc)) that showcases projects with a distinctive, highly-graphic, layered look instead of a plain template.
 
 ## 2. Design direction
-**Pinterest board "cutout / scrapbook collage"**, inspired by a reference poster (stickered photo cutouts on crumpled paper, with layered graphics). Palette is **green and white** on pale mint paper.
+**Pinterest board "cutout / scrapbook collage"**, inspired by a reference poster (stickered photo cutouts on crumpled paper, with layered graphics). Palette is the **patchy teal-blue of the user's Luffy tab icon** (switched from green on 2026-10-09; the variable names still say green/mint/deep) on pale blue paper.
 
 Visual language:
 - **Paper background**: pale mint (`--paper`), soft radial lighting, fixed noise grain overlay (SVG feTurbulence, `mix-blend-mode: multiply`).
@@ -21,11 +21,11 @@ Visual language:
 ### Design tokens (`src/styles/style.css` `:root`)
 | Token | Value | Use |
 |---|---|---|
-| `--paper` / `--paper-2` | `#e2eee6` / `#f2f8f4` | background / tag frame |
+| `--paper` / `--paper-2` | `#cfe6e7` / `#eaf5f6` | background / tag frame |
 | `--white` | `#fff` | sticker edges, notes |
-| `--green` | `#1f8a4c` | text fill, tags, accents |
-| `--deep` | `#12502c` | cutout fill |
-| `--ink` | `#0d3b22` | body text |
+| `--green` | `#3b7f86` | text fill, tags, accents |
+| `--deep` | `#406c71` | cutout fill |
+| `--ink` | `#17353a` | body text |
 | `--font-display / pixel / body` | Playfair Display / Silkscreen / Inter | |
 
 ## 3. Tech stack
@@ -66,7 +66,7 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). **Onl
 - `skills[]`: `{ label, items[{ name, icon? }] }`; `icon` is a Simple Icons slug.
 - `art` picks a built-in SVG illustration drawn in `Art.jsx`: `ledwall | shield | kanban | auction | calendar | cap`. Setting `image` to a file in `public/images/` replaces the illustration with a real picture.
 - `heroPhotos.main` is `/images/me.jpg`: a simple head-and-shoulders profile crop (1225x1610, aspect 0.76) of a headshot the user supplied, centred on the face; the stranger's sleeve, name tag and bottle at the photo's edges are cropped out (crop box (0,20)-(1225,1630) of the 1378x2000 original, as wide as the photo allows: the stranger's sleeve starts at x~1230 and a bottle at y~1640). The user said it does not need to be vertical or a cutout, only a simple profile photo in the jagged frame. Phone number is intentionally NOT published.
-- Skill-tile logos load from `https://cdn.simpleicons.org/<slug>/1f8a4c` (needs internet; a failed icon falls back to a green diamond).
+- Skill-tile logos load from `https://cdn.simpleicons.org/<slug>/3b7f86` (needs internet; a failed icon falls back to a green diamond).
 
 ## 6. Page sections (top to bottom)
 1. **Header**: pinned (`position: sticky; top: 0`) full-width bar that stays visible while scrolling: `ISAAC.EXE` tag (scrolls to the very top, clears the hash) + EXPERIENCE / PROJECTS / SKILLS / CONTACT. Buttons are interactive (`hooks/useNavInteractions.js`): hover pop, `.active` highlight for the section you are in, sparkle burst + wiggle on click. `--header-h` (4.5rem, 3.6rem on phones) is subtracted everywhere: `html { scroll-padding-top }`, hero height, section `min-height: calc(100svh - var(--header-h))`, and the up arrows pin at `top: calc(var(--header-h) + 1.1rem)`. Shared effects live in `utils/fx.js`.
@@ -152,3 +152,4 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). **Onl
 - **2026-10-03 (later 38)**: Rewrote `README.md` as a short profile-style intro in the style of github.com/amaanomo/personal-portfolio (bold title, `---` dividers, intro paragraph, stack sentence, links list, tech stack list), at the user's request. It deliberately has NO setup/run/deploy steps; those live in CLAUDE.md (commands) and this file (deployment). The resume link points at the phone-free `public/Isaac_Loc_Resume.pdf`. A "Portfolio Live" link (the reference README's first link) is intentionally left out until the public Vercel URL is confirmed.
 - **2026-10-03 (later 39)**: Added the browser-tab icon (favicon) from the user's cartoon-face picture: `public/favicon.ico` (16/32/48), `favicon-32.png`, `icon-192.png`, `apple-touch-icon.png` (180), linked from `index.html`. Cropped square to the face badge exactly as supplied (the artwork is upside-down in the original and was left that way; flip it if the user asks). To change it later, regenerate those four files from a square crop of the new image.
 - **2026-10-03 (later 40)**: Theme now DEFAULTS TO LIGHT for every visitor (user request), instead of following the device's dark-mode setting. A visitor's own toggle is still remembered in localStorage. Made directly on `main` at the user's request so it goes live (Vercel's production branch is `main`), then `dev` was fast-forwarded to match.
+- **2026-10-09 (after revert)**: The user reverted all earlier redesign attempts back to `b51b9c0` (the green collage), then asked to switch the colours to the nice patchy blue of their Luffy tab icon. Recoloured every green to teal-blue sampled from the icon (light `#84c0c3`/`#7ebabb`, dark patch `#406c71`): paper `#cfe6e7`, accent `--green` `#3b7f86`, `--deep` `#406c71`, `--mint` `#a9d4d6`, plus dark-theme, cursor, particle, sticker and skill-icon colours. Layout, fonts and cutout look are unchanged.

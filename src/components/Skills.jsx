@@ -4,7 +4,7 @@ function SkillTile({ item, i }) {
     <span className="skill-tile reveal" style={{ '--d': `${i * 0.04}s` }}>
       {item.icon ? (
         <img
-          src={`https://cdn.simpleicons.org/${item.icon}/1f8a4c`}
+          src={`https://cdn.simpleicons.org/${item.icon}/3b7f86`}
           alt=""
           loading="lazy"
           onError={(e) => { e.currentTarget.replaceWith(Object.assign(document.createElement('i'), { className: 'dot' })) }}

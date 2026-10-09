@@ -3,7 +3,7 @@
 Guidance for AI assistants (Claude Code or any other model) working in this repo.
 
 ## What this is
-Isaac's personal portfolio website. React + Vite single-page site with a Pinterest-board "cutout / scrapbook collage" look (layered sticker lettering, jagged cut-out shapes, pixel-font labels, paper texture, green + white palette).
+Isaac's personal portfolio website. React + Vite single-page site with a Pinterest-board "cutout / scrapbook collage" look (layered sticker lettering, jagged cut-out shapes, pixel-font labels, paper texture, patchy teal-blue palette from the user's Luffy tab icon; variable names still say green/mint).
 
 **Read [SPEC.md](SPEC.md) first.** It is the source of truth for design decisions, structure, content, and history.
 

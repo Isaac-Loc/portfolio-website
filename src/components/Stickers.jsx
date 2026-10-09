@@ -13,7 +13,7 @@ function CircuitFlower() {
   return (
     <svg viewBox="0 0 100 100" aria-hidden="true">
       <circle cx="50" cy="50" r="47" className="art-deep" />
-      <g fill="none" stroke="#8be8ad" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+      <g fill="none" stroke="#a9d4d6" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
         <path d="M50 92V58" />
         <path d="M50 82H33V72" />
         <path d="M50 75H67V66" />
@@ -55,7 +55,7 @@ function Cassette() {
       <rect x="4" y="20" width="92" height="60" rx="7" className="art-deep" />
       <rect x="12" y="26" width="76" height="30" rx="3.5" className="art-white" />
       <text x="16" y="34" fontSize="5.5" fontFamily="Silkscreen, monospace" className="art-green">SIDE A</text>
-      <path d="M16 38h68" stroke="#8be8ad" strokeWidth="1.4" />
+      <path d="M16 38h68" stroke="#a9d4d6" strokeWidth="1.4" />
       {[34, 66].map((cx) => (
         <g key={cx}>
           <circle cx={cx} cy="46" r="7.5" className="art-deep" />
@@ -77,7 +77,7 @@ function Constellation() {
   return (
     <svg viewBox="0 0 100 100" aria-hidden="true">
       <circle cx="50" cy="50" r="47" className="art-deep" />
-      <g stroke="#8be8ad" strokeWidth="1.6" strokeLinecap="round" opacity=".85">
+      <g stroke="#a9d4d6" strokeWidth="1.6" strokeLinecap="round" opacity=".85">
         {lines.map(([a, b]) => <line key={`${a}${b}`} x1={pts[a][0]} y1={pts[a][1]} x2={pts[b][0]} y2={pts[b][1]} />)}
       </g>
       {pts.map(([x, y], i) => (
@@ -95,11 +95,11 @@ function Vinyl() {
   return (
     <svg viewBox="0 0 100 100" aria-hidden="true">
       <g className="spin slow">
-        <circle cx="50" cy="50" r="47" fill="#0d3b22" />
+        <circle cx="50" cy="50" r="47" fill="#17353a" />
         {[40, 34, 28, 22].map((r) => <circle key={r} cx="50" cy="50" r={r} fill="none" stroke="rgba(255,255,255,.14)" strokeWidth="1.2" />)}
         <path d="M50 8a42 42 0 0 1 36 20" fill="none" stroke="rgba(255,255,255,.35)" strokeWidth="3" strokeLinecap="round" />
         <circle cx="50" cy="50" r="15" className="art-fill" />
-        <path d="M50 37v26" stroke="#12502c" strokeWidth="2" opacity=".35" />
+        <path d="M50 37v26" stroke="#406c71" strokeWidth="2" opacity=".35" />
         <circle cx="50" cy="50" r="3" className="art-deep" />
       </g>
     </svg>
