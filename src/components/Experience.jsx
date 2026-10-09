@@ -4,7 +4,7 @@ import Rich from './Rich.jsx'
 export default function Experience({ items }) {
   return (
     <section id="experience" className="sec">
-      <Big word="EXPERIENCE" sub="Where I've worked" />
+      <Big word="Experience" sub="Where I've worked" />
       <div className="stack">
         {items.map((e, i) => (
           <article key={e.id} className="panel card reveal" style={{ '--d': `${i * 0.1}s` }}>

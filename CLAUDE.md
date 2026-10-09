@@ -38,7 +38,7 @@ public/images/             Photos (/images/<file>)
 - Content goes in `src/data/site.js`, not hard-coded in components. Only show facts that are on the resume (`Isaac_Loc_Resume.pdf`).
 - NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive. The car photo's licence plate is blurred in the file; keep it that way.
 - Plain CSS in one file; colors/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem`.
-- Look: clean frosted white cards (`.panel`), royal-blue accents (`--royal`, `--tint`), Anton for big words, Inter for text. The One Piece theme was scrapped; don't bring it or red accents back. NO gradients, glows, blur, shadows or translucent tints: flat solid colors only (user: they look AI-generated).
+- Look: clean frosted white cards (`.panel`), royal-blue accents (`--royal`, `--tint`), Nunito (rounded, friendly) for everything; no condensed or all-caps display fonts. The One Piece theme was scrapped; don't bring it or red accents back. NO gradients, glows, blur, shadows or translucent tints: flat solid colors only (user: they look AI-generated).
 - Every section starts with `<Big word=... sub=... />` and uses `.reveal` on its blocks.
 - Scroll effects are driven by CSS vars set in `useScrollFx.js` (`--t` on `[data-big]`, `--out` on the hero).
 - Respect `prefers-reduced-motion`. The user does NOT want dragging.

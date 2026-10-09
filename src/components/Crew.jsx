@@ -4,7 +4,7 @@ import Rich from './Rich.jsx'
 export default function Crew({ education, leadership }) {
   return (
     <section id="education" className="sec">
-      <Big word="EDUCATION" sub="& leadership" />
+      <Big word="Education" sub="& leadership" />
       <div className="grid-2">
         <article className="panel card reveal">
           <div className="card-head">

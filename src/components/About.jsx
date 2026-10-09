@@ -4,7 +4,7 @@ import Rich from './Rich.jsx'
 export default function About({ site }) {
   return (
     <section id="about" className="sec">
-      <Big word="ABOUT" sub="Hello" />
+      <Big word="About" sub="Hello" />
       <div className="about-grid">
         <div className="panel reveal">
           {site.about.paragraphs.map((p, i) => <p key={i}><Rich text={p} /></p>)}

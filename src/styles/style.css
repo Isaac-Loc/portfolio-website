@@ -5,8 +5,8 @@
   --royal-dark: #0c1f6b;
   --tint: #e8eeff;
   --navy: #0b1b4d;
-  --font-display: 'Anton', 'Impact', sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Nunito', system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --nav-h: 4rem;
   --page-w: min(92vw, 72rem);
 }
@@ -33,7 +33,7 @@ a { color: inherit; }
   padding: 0 clamp(1rem, 4vw, 3rem);
   background: var(--royal); border-bottom: 1px solid #fff;
 }
-.nav-logo { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; }
+.nav-logo { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.04em; text-decoration: none; font-weight: 900; }
 .nav nav { display: flex; gap: clamp(0.8rem, 2vw, 1.8rem); }
 .nav nav a { text-decoration: none; font-size: 0.9rem; font-weight: 500; opacity: 0.85; transition: opacity 0.2s, color 0.2s; }
 .nav nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 0.3em; }
@@ -59,8 +59,8 @@ a { color: inherit; }
 }
 .eyebrow { font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; font-size: 0.85rem; }
 .hero-title {
-  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
-  font-size: clamp(4.5rem, 14vw, 12rem); line-height: 0.9; letter-spacing: 0.01em; margin: 0.5rem 0 1.2rem;
+  font-family: var(--font-display); font-weight: 900;
+  font-size: clamp(4rem, 12vw, 10rem); line-height: 0.95; letter-spacing: -0.03em; margin: 0.5rem 0 1.2rem;
  
 }
 .hero-title span { display: block; }
@@ -77,10 +77,10 @@ a { color: inherit; }
 
 .big { margin-bottom: 2rem; }
 .big h2 {
-  font-family: var(--font-display); font-weight: 400; color: #fff; text-transform: uppercase;
-  font-size: clamp(4rem, 15vw, 13rem); line-height: 0.95;
+  font-family: var(--font-display); font-weight: 900; color: #fff;
+  font-size: clamp(3rem, 10vw, 8.5rem); line-height: 1.05; letter-spacing: -0.03em;
   opacity: var(--t, 1); transform: translateX(calc((1 - var(--t, 1)) * -22vw));
-  letter-spacing: calc((1 - var(--t, 1)) * 0.25em);
+  letter-spacing: calc(-0.03em + (1 - var(--t, 1)) * 0.2em);
  
 }
 .big p {
@@ -114,7 +114,7 @@ a { color: inherit; }
 
 .stats { list-style: none; display: flex; flex-wrap: wrap; gap: 0.6rem 1.8rem; }
 .stats li { display: flex; flex-direction: column; }
-.stats b { font-family: var(--font-display); font-weight: 400; font-size: 2rem; line-height: 1.1; color: var(--royal); }
+.stats b { font-family: var(--font-display); font-weight: 900; font-size: 2rem; line-height: 1.1; color: var(--royal); }
 .stats span { font-size: 0.78rem; opacity: 0.7; }
 
 .chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.45rem; }

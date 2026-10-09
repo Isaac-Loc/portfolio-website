@@ -7,10 +7,10 @@ A personal portfolio for Isaac (GitHub: [Isaac-Loc](https://github.com/Isaac-Loc
 
 ## 2. Design direction
 - **Flat solid royal blue background** (`--royal`). NO gradients, blurred glows/blobs, shadows, text-shadows, translucency or tinted hues (user: they look AI-generated). Solid colors only.
-- **Big text**: each section opens with a giant white Anton word that slides in and fades up as it rises through the screen (`Big.jsx`, `--t` per `[data-big]`): ABOUT, EXPERIENCE, PROJECTS, EDUCATION (+ leadership), SKILLS, LET'S TALK, each with a small plain subtitle.
+- **Big text**: each section opens with a giant white Nunito 900 word that slides in and fades up as it rises through the screen (`Big.jsx`, `--t` per `[data-big]`): About, Experience, Projects, Education (+ leadership), Skills, Let's talk, each with a small plain subtitle.
 - **Content panels**: solid white cards with a royal-blue top border, navy text, blue stat numbers, flat pale-tint chips. Photos (me, cat, car) sit in round frames with a white border.
 - Hero: huge "ISAAC / LOC" (white / navy) that scales and fades as you scroll away (`--out`).
-- Tokens in `:root` of `style.css`: `--royal #2350e0`, `--royal-deep`, `--royal-dark`, `--tint #e8eeff`, `--navy`. Fonts: Anton (display), Inter (body). Single theme, no toggle. Palette: royal blue, navy, white (+ the pale `--tint`); no red.
+- Tokens in `:root` of `style.css`: `--royal #2350e0`, `--royal-deep`, `--royal-dark`, `--tint #e8eeff`, `--navy`. Font: Nunito (rounded, friendly) everywhere, weight 900 for big words/stats. Anton and Inter were dropped (user: Anton looked ugly); no all-caps big words. Single theme, no toggle. Palette: royal blue, navy, white (+ the pale `--tint`); no red.
 
 ## 3. Tech stack
 - React 19 + Vite 8, plain JS (JSX), plain CSS in one file. No router yet (user may add routing later; page is a single scroll for now).
@@ -23,9 +23,9 @@ Every push redeploys. Settings: framework Vite, install `npm ci`, build `npm run
 
 ## 4. Structure
 ```
-index.html              Vite entry, loads Anton + Inter
+index.html              Vite entry, loads Nunito
 src/main.jsx            React mount
-src/App.jsx             Scene, Header, Hero, About, Experience, Projects, Crew, Skills, Contact
+src/App.jsx             Header, Hero, About, Experience, Projects, Crew, Skills, Contact
 src/data/site.js        ALL content
 src/hooks/useScrollFx.js  scroll vars (--t/--out) + .reveal observer
 src/components/         Header, Hero, Big, About, Experience, Projects, Crew (education + leadership), Skills, Contact, Rich (**bold** text)
@@ -55,3 +55,4 @@ Source of truth is the resume (`Isaac_Loc_Resume.pdf`). Only resume facts are sh
 - **2026-10-09**: Complete revamp to a One Piece-themed ocean + sky design in red and blue. New fixed `Scene` (day -> sunset -> night with scroll, ship, waves, clouds, sun, stars), scroll-linked giant section words, frosted content cards, round photo portholes, minimal fixed nav with Resume button. Added more About copy. Removed the old components/hooks/styles. Added `.claude/launch.json`.
 - **2026-10-09 (later)**: Scrapped the One Piece theme. Backdrop is now royal blue (gradient + drifting blobs + grid); removed the ship/sea/sky, nautical section names and red accents; nav ids are now `experience`, `education`, etc.
 - **2026-10-09 (later 2)**: Removed every gradient, blur, glow, shadow and translucent tint (user: "no hues or gradients"). Background is now flat `--royal`; deleted `Scene.jsx` and its blobs/grid. Cards are solid white, the nav is solid blue, buttons are flat.
+- **2026-10-09 (later 3)**: Swapped the fonts (Anton + Inter) for Nunito (user: the font was ugly, wants friendlier). Big words are now title case at weight 900, slightly smaller and tighter.

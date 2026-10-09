@@ -4,7 +4,7 @@ import Rich from './Rich.jsx'
 export default function Projects({ projects }) {
   return (
     <section id="projects" className="sec">
-      <Big word="PROJECTS" sub="Things I've built" />
+      <Big word="Projects" sub="Things I've built" />
       <div className="grid-2">
         {projects.map((p, i) => (
           <article key={p.id} className="panel card reveal" style={{ '--d': `${i * 0.1}s` }}>
