@@ -46,7 +46,7 @@ export default function CommitGrid({ user }) {
 
   return (
     <a
-      className={`commit-card ${state.status}`}
+      className={`box commit-card ${state.status}`}
       href={`https://github.com/${user}`}
       target="_blank"
       rel="noopener noreferrer"

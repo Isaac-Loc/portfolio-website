@@ -12,7 +12,7 @@ export default function Hero({ site }) {
             <span className="sticker-text name">{site.firstName}</span>
             <span className="sticker-text welcome">Welcome to my portfolio!</span>
           </h1>
-          <div className="about-note">
+          <div className="box about-note">
             <span className="tag">ABOUT ME</span>
             {site.about.paragraphs.slice(0, 2).map((t) => <p key={t}><Rich text={t} /></p>)}
           </div>

@@ -1,34 +1,13 @@
-import { site, experience, projects, education, leadership, skills } from './data/site.js'
+import { site } from './data/site.js'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
-import Experience from './components/Experience.jsx'
-import Projects from './components/Projects.jsx'
-import Education from './components/Education.jsx'
-import Leadership from './components/Leadership.jsx'
-import Skills from './components/Skills.jsx'
-import Contact from './components/Contact.jsx'
-import useNavInteractions from './hooks/useNavInteractions.js'
-import useReveal from './hooks/useReveal.js'
 
+// The page is being rebuilt from the ground up: header + hero only. Add new sections below the hero.
 export default function App() {
-  useNavInteractions()
-  useReveal()
   return (
     <>
       <Header name={site.firstName} resume={site.resume} />
       <Hero site={site} />
-      <main>
-        <Experience items={experience} />
-        <Projects projects={projects} />
-        <div id="education" className="duo">
-          <div className="duo-grid">
-            <Education education={education} />
-            <Leadership leadership={leadership} />
-          </div>
-        </div>
-        <Skills skills={skills} />
-        <Contact email={site.email} github={site.github} linkedin={site.linkedin} name={site.name} year={site.year} />
-      </main>
     </>
   )
 }
