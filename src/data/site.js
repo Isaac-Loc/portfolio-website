@@ -21,7 +21,7 @@ export const site = {
     ],
   },
   photos: {
-    me: '/images/me.png',
+    me: '/images/me.webp',
   },
 }
 
