@@ -33,16 +33,16 @@
 :root[data-theme="dark"] {
   color-scheme: dark;
   /* soft gray surfaces; the blue stays only as the accent */
-  --paper: #2a2a2d;
-  --card: #353538;
+  --paper: #1c1c1e;
+  --card: #272729;
   --white: #ececee;
-  --tint: #47474b;
+  --tint: #353538;
   --text: #ececee;
   --muted: #a9a9af;
-  --line: #909096;
+  --line: #85858b;
   --accent: #8fd0d3;
-  --border: #48484d;
-  --cell0: #47474b;
+  --border: #303033;
+  --cell0: #353538;
   --cell4: #ececee;
 }
 
@@ -84,7 +84,7 @@ a { color: inherit; }
   transition: background .2s ease, color .2s ease;
 }
 a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
-:root[data-theme="dark"] .tag { background: #e4e4e7; color: #2a2a2d; }
+:root[data-theme="dark"] .tag { background: #e4e4e7; color: #1c1c1e; }
 :root[data-theme="dark"] ::selection { background: var(--primary); color: #fff; }
 :root[data-theme="dark"] a.tag:hover, :root[data-theme="dark"] a.tag.active { background: var(--primary); color: #fff; }
 
@@ -93,7 +93,7 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
   position: sticky; top: 0; z-index: 50;
   height: var(--header-h);
   background: var(--paper);
-  border-bottom: 2px solid var(--line);
+  border-bottom: 1px solid var(--border);
 }
 .header-inner {
   width: var(--page-w); height: 100%; margin: 0 auto;
