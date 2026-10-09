@@ -21,12 +21,9 @@ export default function Hero({ site }) {
           <p className="role" aria-label={site.roles.join(', ')}>
             <span aria-hidden="true">&gt; {roleText}{!typingTitle && <i className="cursor" />}</span>
           </p>
-          <div className="hero-actions">
           <a className="tag tag-cta" href="#experience" onClick={(e) => { e.preventDefault(); document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }) }}>
             &#9654; SEE WHAT I'M UP TO!
           </a>
-          <Socials site={site} />
-          </div>
           <div className="box about-note">
             <span className="tag">ABOUT ME</span>
             {site.about.paragraphs.slice(0, 2).map((t) => <p key={t}><Rich text={t} /></p>)}
@@ -42,6 +39,7 @@ export default function Hero({ site }) {
               <div className="frame-pic"><PixelPhoto src={photos.me} alt={site.name} /></div>
             </div>
           </figure>
+          <Socials site={site} />
           <CommitGrid user={site.githubUser} />
           <span className="pixel-glyph glyph-1" aria-hidden="true" />
         </div>
