@@ -1,5 +1,6 @@
 import Rich from './Rich.jsx'
 import CommitGrid from './CommitGrid.jsx'
+import PixelPhoto from './PixelPhoto.jsx'
 import useTyper from '../hooks/useTyper.js'
 
 export default function Hero({ site }) {
@@ -26,7 +27,7 @@ export default function Hero({ site }) {
         </div>
         <div className="hero-media">
           <figure className="frame">
-            <div className="frame-pic"><img src={photos.me} alt={site.name} /></div>
+            <div className="frame-pic"><PixelPhoto src={photos.me} alt={site.name} /></div>
             <figcaption><span className="tag">{site.name.toUpperCase()}</span></figcaption>
           </figure>
           <CommitGrid user={site.githubUser} />
