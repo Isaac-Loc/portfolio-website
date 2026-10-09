@@ -154,11 +154,13 @@ a.link-note:hover { background: var(--primary); border-color: var(--primary); co
 .hero-media {
   display: grid; grid-template-columns: 1fr; gap: .8rem; justify-self: center; width: min(100%, 25rem);
 }
-/* Framed portrait: card-coloured mat with a thin outer border, an inner picture border and a name plate */
-.frame { margin: 0; width: min(100%, 19rem); justify-self: center; padding: .8rem .8rem .5rem; background: var(--card); border: 2px solid var(--line); border-radius: .6rem; text-align: center; }
-.frame-pic { aspect-ratio: 1; overflow: hidden; border: 2px solid var(--line); border-radius: .3rem; background: var(--teal); }
+/* Framed portrait: square photo with a solid teal panel offset behind it, name plate underneath */
+.frame { margin: 0 0 0 -.9rem; width: min(100%, 18rem); justify-self: center; text-align: center; }
+.frame-block { position: relative; margin: 0 .9rem .9rem 0; }
+.frame-block::before { content: ""; position: absolute; inset: .9rem -.9rem -.9rem .9rem; background: var(--teal); border: 2px solid var(--line); border-radius: .4rem; }
+.frame-pic { position: relative; aspect-ratio: 1; overflow: hidden; border: 2px solid var(--line); border-radius: .4rem; background: var(--card); }
 .frame-pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.frame figcaption { padding-top: .4rem; }
+.frame figcaption { padding-top: 1.2rem; }
 .frame .tag { margin: 0; }
 
 /* Commit grid (real GitHub activity) */
