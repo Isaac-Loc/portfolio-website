@@ -352,20 +352,21 @@ html { scrollbar-width: auto; scrollbar-color: var(--primary) var(--tint); overf
 
 /* Notification socials widget: red and white */
 /* Row next to the flashing CTA in the hero text column */
-.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.2rem; margin: 0 0 1.8rem; min-height: 3.2rem; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.2rem; margin: 0 0 1.8rem; }
 .socials { position: relative; display: flex; align-items: center; }
 .tag-click, .social-tag { background: var(--primary); color: #fff; }
 :root[data-theme="dark"] .tag.tag-click, :root[data-theme="dark"] .tag.social-tag { background: var(--primary); color: #fff; }
 a.tag.social-tag:hover, :root[data-theme="dark"] a.tag.social-tag:hover, .tag-click:hover, :root[data-theme="dark"] .tag.tag-click:hover { background: #fff; color: var(--primary); box-shadow: inset 0 0 0 3px var(--primary); }
-.tag-click { position: relative; margin: 0; padding: .8rem; cursor: pointer; border: 0; }
+/* Heights match the CTA (2.4rem): .55rem padding + a 1.3rem glyph/icon */
+.tag-click { position: relative; margin: 0; padding: .6rem .55rem .5rem; cursor: pointer; border: 0; }
 .tag-click { animation: blink-icon 1.1s steps(1) infinite; }
-.tag-click .bell { display: block; width: 1.5rem; height: 1.5rem; }
+.tag-click .bell { display: block; font-size: 1.3rem; line-height: 1; }
 .tag-click:hover { animation: none; }
 .badge { position: absolute; top: -.45rem; right: -.45rem; min-width: 1.15rem; padding: .3rem .25rem .2rem; background: #fff; color: var(--primary); font-family: var(--font-pixel); font-size: .5rem; line-height: 1; text-align: center; box-shadow: 0 0 0 2px var(--primary); }
 /* the tile flashes between solid red and an outlined state, like the hero CTA */
 @keyframes blink-icon { 50% { background: var(--card); color: var(--primary); box-shadow: inset 0 0 0 3px var(--primary); } }
 .social-row { display: flex; gap: .5rem; }
-.social-tag { margin: 0; padding: .7rem; animation: pop-out .5s steps(5) both; animation-delay: calc(var(--i) * .12s + .1s); }
+.social-tag { margin: 0; padding: .55rem; animation: pop-out .5s steps(5) both; animation-delay: calc(var(--i) * .12s + .1s); }
 .social-tag svg { display: block; width: 1.3rem; height: 1.3rem; }
 @keyframes pop-out { 0% { transform: translateX(-1.2rem) scale(.2); opacity: 0; } 70% { transform: translateX(.4rem) scale(1.15); opacity: 1; } 100% { transform: none; opacity: 1; } }
 /* Pixel sparks fly out from the button, red and white, then vanish */
