@@ -14,13 +14,10 @@ export default function Hero({ site }) {
     <section id="top" className="hero">
       <div className="hero-grid">
         <div className="hero-copy reveal">
-          <div className="title-wrap">
           <h1 className="hero-title" aria-label={title.replace('\n', ' ')}>
             <span className="line" aria-hidden="true">{line1}{typingTitle && !titleText.includes('\n') && <i className="cursor" />}</span>
             <span className="line name" aria-hidden="true">{line2}{typingTitle && titleText.includes('\n') && <i className="cursor" />}</span>
           </h1>
-          <Socials site={site} />
-          </div>
           <p className="role" aria-label={site.roles.join(', ')}>
             <span aria-hidden="true">&gt; {roleText}{!typingTitle && <i className="cursor" />}</span>
           </p>
@@ -33,6 +30,7 @@ export default function Hero({ site }) {
           </div>
         </div>
         <div className="hero-media reveal">
+          <Socials site={site} />
           <figure className="window">
             <div className="window-bar">
               <span>{site.name.replace(' ', '_').toUpperCase()}.PNG</span>
