@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
+import { particles, wiggle } from '../utils/fx.js'
 
-// Header nav: highlights the section you are in, and the logo scrolls to the very top (clearing the URL hash).
+// The header nav is pinned while you scroll and its buttons are alive: they pop on hover, light up for the
+// section you are in, throw sparkles when clicked, and the logo scrolls to the very top (clearing the URL hash).
 const SECTION_IDS = ['experience', 'projects', 'skills', 'contact']
 
 export default function useNavInteractions() {
@@ -25,16 +27,25 @@ export default function useNavInteractions() {
       if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) active = 'contact'
       links.forEach((a) => a.classList.toggle('active', a.dataset.section === active))
     }
+
     const onScroll = () => {
-      if (!ticking) { ticking = true; window.requestAnimationFrame(updateActive) }
+      if (!ticking) {
+        ticking = true
+        window.requestAnimationFrame(updateActive)
+      }
     }
+
     const onClick = (e) => {
-      const a = e.target.closest('a.tag')
-      if (!a || a.dataset.nav !== 'top') return
-      e.preventDefault()
-      const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      window.scrollTo({ top: 0, behavior: calm ? 'auto' : 'smooth' })
-      window.history.replaceState(null, '', window.location.pathname + window.location.search)
+      const a = e.target.closest('a.tag, button.tag')
+      if (!a || !header.contains(a)) return
+      particles(null, e.clientX, e.clientY, 'sparkle', 8, { spread: 70, size: 2.4, fixed: true })
+      wiggle(a)
+      if (a.dataset.nav === 'top') {
+        e.preventDefault()
+        const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        window.scrollTo({ top: 0, behavior: calm ? 'auto' : 'smooth' })
+        window.history.replaceState(null, '', window.location.pathname + window.location.search)
+      }
     }
 
     updateActive()

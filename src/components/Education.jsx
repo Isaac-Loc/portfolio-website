@@ -13,6 +13,7 @@ export default function Education({ education }) {
         image={education.image}
         summary={`**${education.degree}**`}
         chips={education.coursework}
+        tilt="c1"
       />
     </section>
   )

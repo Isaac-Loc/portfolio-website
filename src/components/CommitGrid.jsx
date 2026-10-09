@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Tape } from './Graphics.jsx'
 
 // A GitHub-style contribution grid (last ~5 months) fed by the user's real public GitHub activity.
 // Data comes from a free public endpoint that reads the profile's contribution graph (no token, so nothing
@@ -52,6 +53,7 @@ export default function CommitGrid({ user }) {
       rel="noopener noreferrer"
       aria-label={`${user} on GitHub: ${label}`}
     >
+      <Tape className="tape-c" />
       <div className="commit-head">
         <span className="tag">GITHUB COMMITS</span>
         <span className="commit-total">{state.status === 'ok' ? `${state.total} this year` : state.status === 'error' ? 'offline' : '...'}</span>

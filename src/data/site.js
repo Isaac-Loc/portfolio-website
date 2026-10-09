@@ -11,19 +11,18 @@ export const site = {
   resume: '/Isaac_Loc_Resume.pdf', // file lives in /public; opened in a new tab from the nav
   githubUser: 'Isaac-Loc', // drives the commit grid in the hero
   linkedin: 'https://www.linkedin.com/in/isaac-loc',
-  tagline: 'Software engineer from embedded firmware to full stack.',
   about: {
-    // Paragraphs shown in the About section. **bold** works.
-    paragraphs: [
-      "I'm a senior at the University at Buffalo studying **Computer Science** with a minor in Math, and I'm happiest when I'm untangling a messy problem.",
-      "I build **software and systems** that take on the hard parts so the people using them don't have to: from C++ firmware driving a wall of LEDs to secure, full-stack web apps.",
-      "Away from the keyboard you'll find me with my cat and my car.",
+    // Shown under the hero title. Keep it to 2-3 short sentences (phones show the first two). **bold** works.
+    sentences: [
+      "I'm a senior at the University at Buffalo studying **Computer Science**, and I'm happiest when I'm untangling a messy problem.",
+      "I build **software and systems** that take on the hard parts so the people using them don't have to.",
     ],
   },
-  photos: {
-    me: '/images/me.jpg',
-    cat: '/images/cat.jpg',
-    car: '/images/car.jpg', // licence plate blurred in the file
+  heroStickers: ['flower', 'heart', 'constellation', 'vinyl'], // artistic stickers (see Stickers.jsx)
+  heroPhotos: {
+    main: '/images/me.jpg', // big jagged frame in the centre; any photo works (cropped to fit)
+    upper: '/images/cat.jpg', // upper starburst: the cat
+    lower: '/images/car.jpg', // lower starburst: the car (licence plate blurred in the file)
   },
 }
 

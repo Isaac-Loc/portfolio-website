@@ -1,14 +1,18 @@
+import { Cut, Tape } from './Graphics.jsx'
 import Art from './Art.jsx'
 import Rich from './Rich.jsx'
 
-// One card = illustration (or photo) + title + short summary + stats + tech tags.
+// One card = illustration in a cutout + title + short summary + stat stickers + tech tags.
 export default function StoryCard({
-  title, org, orgUrl, dates, place, art, image, summary, stats = [], tech = [], chips = [], url, delay = 0,
+  title, org, orgUrl, dates, place, art, shape = 'burst', image, summary, stats = [], tech = [], chips = [], url, tilt = 'c1', delay = 0,
 }) {
   return (
-    <article className="card story reveal" style={{ '--d': `${delay}s` }}>
+    <article className={`paper-card story reveal ${tilt}`} style={{ '--d': `${delay}s` }}>
+      <Tape className="tape-c" />
       <div className="story-top">
-        <div className="story-art">{image ? <img src={image} alt={title} /> : <Art name={art} />}</div>
+        <div className="story-art">
+          <Cut shape={shape} src={image} alt={title}><Art name={art} /></Cut>
+        </div>
         <div className="story-head">
           <h3 className="card-title">{title}</h3>
           <div className="meta">
@@ -26,8 +30,8 @@ export default function StoryCard({
 
       {stats.length > 0 && (
         <div className="stats">
-          {stats.map((s) => (
-            <div key={s.l} className="stat">
+          {stats.map((s, i) => (
+            <div key={s.l} className={`stat reveal s${(i % 3) + 1}`} style={{ '--d': `${0.25 + i * 0.12}s` }}>
               <span className="stat-n">{s.n}</span>
               <span className="stat-l">{s.l}</span>
             </div>
