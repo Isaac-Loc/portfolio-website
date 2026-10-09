@@ -65,18 +65,21 @@ a { color: inherit; }
 
 /* ===== Reusable pieces ===== */
 .tag {
-  display: inline-block;
-  padding: .5rem .7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: .72rem .8rem .6rem; /* Press Start 2P sits high in its box, so a little extra on top centres the caps */
   margin: 3px;
   background: var(--ink);
   color: #f0fbfc;
   font-family: var(--font-pixel);
   font-weight: 400;
   font-size: .6rem;
-  line-height: 1.4;
+  line-height: 1;
   letter-spacing: 0;
   text-decoration: none;
-  border-radius: .3rem;
+  border-radius: 0;
   transition: background .2s ease, color .2s ease;
 }
 a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
@@ -97,14 +100,14 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .site-header nav { display: flex; align-items: center; flex-wrap: wrap; }
 .site-header button.tag { border: 0; cursor: pointer; font: inherit; font-family: var(--font-pixel); font-weight: 400; }
 .site-header button.tag:hover { background: var(--primary); color: #fff; }
-.tag-logo { font-size: .95rem; }
-.theme-toggle { display: inline-grid; place-items: center; padding: .35rem .55rem; }
+.tag-logo { font-size: .8rem; padding: .85rem 1rem .72rem; }
+.theme-toggle { padding: .6rem .7rem; }
 .theme-toggle svg { width: 1.1em; height: 1.1em; }
 .theme-toggle .sun { display: none; }
 :root[data-theme="dark"] .theme-toggle .moon { display: none; }
 :root[data-theme="dark"] .theme-toggle .sun { display: block; }
 .tag-resume, :root[data-theme="dark"] .tag-resume { background: var(--soft); color: var(--ink); }
-.tag-resume svg { width: 1em; height: 1em; margin-right: .4em; vertical-align: -.15em; }
+.tag-resume svg { width: 1.1em; height: 1.1em; margin-right: .6em; flex: 0 0 auto; }
 
 /* ===== Hero: exactly one screen tall (below the header) ===== */
 .hero {
@@ -126,7 +129,17 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .hero-title .cursor { background: var(--primary); }
 @keyframes blink { 50% { opacity: 0; } }
 
-.box { background: var(--card); border: 1px solid var(--border); border-top: 4px solid var(--primary); border-radius: .75rem; padding: 1.5rem 1.6rem; }
+/* Pixel frame: a 4px stepped (notched-corner) border drawn with box-shadows, like an 8-bit dialog box */
+.box {
+  --frame: var(--ink);
+  position: relative;
+  margin: 4px;
+  padding: 1.5rem 1.6rem;
+  background: var(--card);
+  border-radius: 0;
+  box-shadow: 0 -4px 0 0 var(--frame), 0 4px 0 0 var(--frame), -4px 0 0 0 var(--frame), 4px 0 0 0 var(--frame);
+}
+:root[data-theme="dark"] .box { --frame: var(--line); }
 .about-note { max-width: 36rem; }
 .about-note .tag { margin: 0 0 .9rem; }
 .about-note p { margin: 0 0 .7rem; font-size: 1rem; line-height: 1.65; }
@@ -153,7 +166,7 @@ a.tag:hover, a.tag.active { background: var(--primary); color: #fff; }
 .commit-card {
   display: block; text-decoration: none; color: var(--text);
 }
-.commit-card:hover { border-top-color: var(--primary-deep); }
+.commit-card:hover { --frame: var(--primary); }
 .commit-head { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-bottom: .6rem; }
 .commit-card .tag { margin: 0; font-size: .5rem; }
 .commit-total { font-weight: 600; font-size: .8rem; color: var(--accent); white-space: nowrap; }

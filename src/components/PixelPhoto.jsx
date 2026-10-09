@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 // The original photo, revealed by a "loading" animation: it starts as a few coarse, grainy pixels and
 // sharpens step by step (more pixels, less noise) until it hands over to the untouched original image.
 // Under prefers-reduced-motion the original shows immediately.
-const STEPS = [6, 8, 12, 16, 24, 32, 48, 72, 110, 170, 256] // pixels per side at each step
-const STEP_MS = 150
+const STEPS = [6, 10, 16, 26, 40, 64, 100, 160, 256] // pixels per side at each step
+const STEP_MS = 60
 const SIZE = 320 // canvas backing size
 
 export default function PixelPhoto({ src, alt }) {
