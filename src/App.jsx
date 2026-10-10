@@ -22,11 +22,15 @@ export default function App() {
       <Header name={site.firstName} resume={site.resume} route={route} />
       {title ? (
         <EmptyPage title={title}>
-          <div className="entry-grid archive-grid reveal-stagger">
+          <ol className="timeline">
             {projects.map((p) => (
-              <Entry key={p.id} title={p.title} href={p.url} meta={p.date} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} badge={p.recent ? 'MOST RECENT' : undefined} />
+              <li key={p.id} className="tl-item">
+                <span className="tl-date">{p.date}</span>
+                <span className="tl-node" aria-hidden="true" />
+                <Entry title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} badge={p.recent ? 'MOST RECENT' : undefined} />
+              </li>
             ))}
-          </div>
+          </ol>
         </EmptyPage>
       ) : (
         <>
