@@ -412,8 +412,11 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 /* "MOST RECENT" badge above a project title */
 .entry-badge { display: inline-block; margin: 0 0 .8rem; padding: .5rem .6rem .4rem; background: var(--primary); color: #fff; font-family: var(--font-pixel); font-size: .5rem; line-height: 1; }
 
-/* Cards are capped well below the page width so they sit in proportion with the hero visuals (left-aligned with the section titles) */
-.section .entry-grid { max-width: 62rem; gap: 1.5rem; }
-.page .archive-grid { max-width: 62rem; }
+/* Cards are capped well below the page width so they sit in proportion with the hero visuals */
+.entry-grid { gap: 1.5rem; }
+.entry-grid > .entry { width: min(100%, 62rem); justify-self: start; }
+/* Zig-zag: every second card sits on the right, and its screenshot flips to the left side */
+.entry-grid > .entry:nth-child(even) { justify-self: end; }
+.entry-grid > .entry.has-image:nth-child(even) .entry-shot { order: -1; }
 .entry-summary { margin-bottom: .8rem; }
 .entry-stats { margin-bottom: .8rem; }
