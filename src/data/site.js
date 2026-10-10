@@ -11,6 +11,7 @@ export const site = {
   resume: '/Isaac_Loc_Resume.pdf', // file lives in /public; opened in a new tab from the nav
   githubUser: 'Isaac-Loc', // drives the commit grid in the hero
   linkedin: 'https://www.linkedin.com/in/isaac-loc',
+  location: 'NYC / Buffalo, NY', // shown under the hero portrait as "Based in ..."
   tagline: 'Software engineer from embedded firmware to full stack.',
   roles: ['Software Engineer', 'Full Stack Developer', 'Embedded Developer', 'Computer Science @\nUniversity at Buffalo'], // typed under the hero title
   about: {

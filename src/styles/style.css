@@ -382,3 +382,8 @@ a.tag.social-tag:hover, :root[data-theme="dark"] a.tag.social-tag:hover, .tag-cl
 
 .entry-grid.single { grid-template-columns: 1fr; }
 .archive-grid { margin-top: 2.5rem; }
+
+/* Location caption under the portrait, like a status bar in the retro window */
+.window-caption { display: flex; align-items: center; justify-content: center; gap: .55rem; padding: .7rem .6rem .6rem; border-top: 3px solid var(--frame); font-family: var(--font-pixel); font-size: .5rem; line-height: 1.4; text-transform: uppercase; color: var(--text); }
+.window-caption svg { flex: 0 0 auto; width: .95rem; height: .95rem; color: var(--primary); }
+:root[data-theme="dark"] .window-caption svg { color: var(--accent); }
