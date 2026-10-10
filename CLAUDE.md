@@ -20,7 +20,7 @@ npm run dev        # dev server at http://localhost:5173
 npm run build      # production build to dist/
 npm run preview    # serve the production build
 ```
-Deploys: Vercel auto-deploys from GitHub (project Production Branch = `dev`), so pushing to `dev` publishes the site at the `*.vercel.app` URL. Details are in SPEC.md ("Deployment (Vercel)"). `README.md` is a personal profile-style intro (user request): keep setup/run/deploy instructions out of it.
+Deploys: the live site is **https://isaac-loc.dev** on Azure Static Web Apps, auto-built by GitHub Actions from **`main`** only. Pushing to `dev` does NOT publish; it goes live when `dev` is merged to `main` (only when the user asks). Details are in SPEC.md ("Deployment (Azure Static Web Apps)"). `README.md` is a personal profile-style intro (user request): keep setup/run/deploy instructions out of it.
 
 ## Layout
 ```
