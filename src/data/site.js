@@ -144,7 +144,7 @@ export const skills = [
     { name: 'PostgreSQL', icon: 'postgresql' }, { name: 'MySQL', icon: 'mysql' }, { name: 'Supabase', icon: 'supabase' },
   ] },
   { label: 'Tools & Platforms', items: [
-    { name: 'Git', icon: 'git' }, { name: 'Linux', icon: 'linux' }, { name: 'SSH' }, { name: 'Vercel', icon: 'vercel' },
+    { name: 'Git', icon: 'git' }, { name: 'Linux', icon: 'linux' }, { name: 'SSH' }, { name: 'Microsoft Azure (Static Web Apps)', icon: 'microsoftazure' }, { name: 'GitHub Actions', icon: 'githubactions' }, { name: 'Vercel', icon: 'vercel' },
     { name: 'Vitest', icon: 'vitest' }, { name: 'CMake', icon: 'cmake' }, { name: 'PlatformIO', icon: 'platformio' },
     { name: 'ESP32', icon: 'espressif' }, { name: 'HUB75' }, { name: 'REST APIs' }, { name: 'OAuth 2.0' },
     { name: 'Agile/Scrum' }, { name: 'Claude Code', icon: 'claude' }, { name: 'AI-Assisted Development' },
