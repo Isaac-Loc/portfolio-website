@@ -8,9 +8,10 @@ import EmptyPage from './pages/EmptyPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
 
-// Routes are hash-based ("#/experience"). The tab pages are switched off for now: the whole resume lives on Home.
-// Add entries here (and links in Header.jsx) to bring a page back.
-const PAGES = {}
+// Routes are hash-based ("#/experience"). Home has the whole resume; the only tab is the Projects Archive.
+const PAGES = {
+  '/projects': 'Projects Archive',
+}
 
 export default function App() {
   const route = useRoute()
@@ -19,20 +20,28 @@ export default function App() {
   return (
     <>
       <Header name={site.firstName} resume={site.resume} route={route} />
-      {title ? <EmptyPage title={title} /> : (
+      {title ? (
+        <EmptyPage title={title}>
+          <div className="entry-grid archive-grid reveal-stagger">
+            {projects.map((p) => (
+              <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} badge={p.recent ? 'MOST RECENT' : undefined} />
+            ))}
+          </div>
+        </EmptyPage>
+      ) : (
         <>
           <Hero site={site} />
           <Section id="experience" title="Experience">
-            <div className="entry-grid reveal-stagger">
+            <div className="entry-grid single reveal-stagger">
               {experience.map((e) => (
-                <Entry key={e.id} title={e.role} href={e.orgUrl} meta={`${e.org} · ${e.place} · ${e.dates}`} summary={e.summary} stats={e.stats} tech={e.tech} />
+                <Entry key={e.id} title={e.role} href={e.orgUrl} meta={`${e.org} · ${e.place} · ${e.dates}`} summary={e.summary} stats={e.stats} tech={e.tech} image={e.image} imageAlt={e.imageAlt} imageLabel={e.orgUrl ? new URL(e.orgUrl).host.toUpperCase() : e.org.toUpperCase()} />
               ))}
             </div>
           </Section>
-          <Section id="projects" title="Projects">
+          <Section id="projects" title="Projects" archive="/projects" archiveLabel="VIEW ARCHIVE">
             <div className="entry-grid reveal-stagger">
-              {projects.map((p) => (
-                <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} />
+              {projects.filter((p) => p.recent).map((p) => (
+                <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} badge={p.recent ? 'MOST RECENT' : undefined} />
               ))}
             </div>
           </Section>

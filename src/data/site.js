@@ -11,13 +11,13 @@ export const site = {
   resume: '/Isaac_Loc_Resume.pdf', // file lives in /public; opened in a new tab from the nav
   githubUser: 'Isaac-Loc', // drives the commit grid in the hero
   linkedin: 'https://www.linkedin.com/in/isaac-loc',
+  location: 'NYC / Buffalo, NY', // shown under the hero portrait as "Based in ..."
   tagline: 'Software engineer from embedded firmware to full stack.',
   roles: ['Software Engineer', 'Full Stack Developer', 'Embedded Developer', 'Computer Science @\nUniversity at Buffalo'], // typed under the hero title
   about: {
     // Paragraphs shown in the About section. **bold** works.
     paragraphs: [
-      "I'm a senior at the University at Buffalo studying **Computer Science** with a minor in Math, and I'm happiest when I'm untangling a messy problem.",
-      "I build **software and systems** that take on the hard parts so the people using them don't have to: from C++ firmware driving a wall of LEDs to secure, full-stack web apps.",
+      "I'm a **Computer Science** student at the University at Buffalo with a minor in Math, driven by building reliable solutions to real-world problems. My focus is **full-stack web development** and **embedded systems**, and I'm always open to learning something new.",
     ],
   },
   photos: {
@@ -35,7 +35,8 @@ export const experience = [
     dates: 'Sept 2026 – Present',
     art: 'shield',
     shape: 'burst',
-    image: null,
+    image: '/images/ezesports.webp', // screenshot of the public ezesports.org home page (shown in a window frame on the card)
+    imageAlt: 'The ezesports.org home page: New York City High School Esports League',
     summary: 'Currently spearheading the migration of ezesports.org to a more modern stack with **Next.js**. Overseeing the initiative to normalize all player, staff and match data into **Supabase**.',
     stats: [
       { n: '100%', l: 'server-side validated' },
@@ -67,10 +68,12 @@ export const experience = [
 export const projects = [
   {
     id: 'pm-tool',
+    recent: true, // shown on the main page; every project (recent or not) is in the Projects Archive tab
     title: 'Project Management Tool',
     art: 'kanban',
     shape: 'burst8',
-    image: null,
+    image: '/images/project-tracker.jpg', // the project page; click it on the card for a bigger view. Shows member names (no emails): see SPEC.md
+    imageAlt: 'A project page with its goal, latest status report, linked Google Drive folder and members',
     url: 'https://github.com/Theta-Tau-Mu-Gamma/Theta-Tau-Scrum',
     summary: 'Full-stack development using **React** and **PHP/Slim**, from schema design to the API. A shared Kanban workspace for the whole chapter, with **Google Drive** built in.',
     stats: [
@@ -82,10 +85,12 @@ export const projects = [
   },
   {
     id: 'bidit',
+    recent: false,
     title: 'Bidit Auction Marketplace',
     art: 'auction',
     shape: 'jag',
-    image: null,
+    image: '/images/bidit.webp', // the marketplace browse page (sample listings, no personal data); click it for a bigger view
+    imageAlt: 'The Bidit marketplace home page: category and condition filters, a price range, and a grid of listings with prices',
     url: null,
     summary: 'A peer-to-peer marketplace built with **React**, **PHP** and **MySQL**. Handling listings, auctions and **real-time bidding** end to end.',
     stats: [
@@ -144,9 +149,11 @@ export const skills = [
     { name: 'PostgreSQL', icon: 'postgresql' }, { name: 'MySQL', icon: 'mysql' }, { name: 'Supabase', icon: 'supabase' },
   ] },
   { label: 'Tools & Platforms', items: [
-    { name: 'Git', icon: 'git' }, { name: 'Linux', icon: 'linux' }, { name: 'SSH' }, { name: 'Vercel', icon: 'vercel' },
+    { name: 'Git', icon: 'git' }, { name: 'GitHub', icon: 'github' }, { name: 'Docker', icon: 'docker' }, { name: 'Linux', icon: 'linux' }, { name: 'SSH' },
+    { name: 'Microsoft Azure (Static Web Apps)', icon: 'microsoftazure' }, { name: 'CI/CD (GitHub Actions)', icon: 'githubactions' },
+    { name: 'Vite', icon: 'vite' }, { name: 'Node.js', icon: 'nodedotjs' }, { name: 'Vercel', icon: 'vercel' },
     { name: 'Vitest', icon: 'vitest' }, { name: 'CMake', icon: 'cmake' }, { name: 'PlatformIO', icon: 'platformio' },
-    { name: 'ESP32', icon: 'espressif' }, { name: 'HUB75' }, { name: 'REST APIs' }, { name: 'OAuth 2.0' },
+    { name: 'ESP32', icon: 'espressif' }, { name: 'HUB75' }, { name: 'REST APIs' }, { name: 'OAuth 2.0' }, { name: 'DNS/HTTPS' },
     { name: 'Agile/Scrum' }, { name: 'Claude Code', icon: 'claude' }, { name: 'AI-Assisted Development' },
   ] },
 ]
