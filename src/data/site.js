@@ -89,7 +89,8 @@ export const projects = [
     title: 'Bidit Auction Marketplace',
     art: 'auction',
     shape: 'jag',
-    image: null,
+    image: '/images/bidit.webp', // the marketplace browse page (sample listings, no personal data); click it for a bigger view
+    imageAlt: 'The Bidit marketplace home page: category and condition filters, a price range, and a grid of listings with prices',
     url: null,
     summary: 'A peer-to-peer marketplace built with **React**, **PHP** and **MySQL**. Handling listings, auctions and **real-time bidding** end to end.',
     stats: [
