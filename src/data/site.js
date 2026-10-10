@@ -72,12 +72,8 @@ export const projects = [
     title: 'Project Management Tool',
     art: 'kanban',
     shape: 'burst8',
-    // Screenshots cycled with arrows on the card (login -> dashboard -> project page). Names/emails: see SPEC.md before adding more.
-    images: [
-      { src: '/images/pm-1-login.jpg', alt: 'The Project Tracker sign-in page with a Sign in with Google button' },
-      { src: '/images/pm-2-dashboard.jpg', alt: 'The dashboard with a pinned project and a list of assigned work' },
-      { src: '/images/pm-3-project.jpg', alt: 'A project page with its goal, latest status report, linked Google Drive folder and members' },
-    ],
+    image: '/images/project-tracker.jpg', // the project page; click it on the card for a bigger view. Shows member names (no emails): see SPEC.md
+    imageAlt: 'A project page with its goal, latest status report, linked Google Drive folder and members',
     url: 'https://github.com/Theta-Tau-Mu-Gamma/Theta-Tau-Scrum',
     summary: 'Full-stack development using **React** and **PHP/Slim**, from schema design to the API. A shared Kanban workspace for the whole chapter, with **Google Drive** built in.',
     stats: [

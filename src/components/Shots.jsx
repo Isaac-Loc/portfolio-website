@@ -1,41 +1,47 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-// Screenshot window for a card: one image, or several with arrow buttons and pips to cycle through them.
-// `shots` is [{ src, alt }]. The window bar shows the label, plus a "2/3" counter when there is more than one.
-export default function Shots({ shots, label }) {
-  const [i, setI] = useState(0)
-  const many = shots.length > 1
-  const go = (d) => setI((n) => (n + d + shots.length) % shots.length)
-  const onKey = (e) => {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1) }
-    if (e.key === 'ArrowRight') { e.preventDefault(); go(1) }
-  }
+// Screenshot in a retro window frame. Clicking it opens a larger view in a modal <dialog>
+// (Esc, the X button or a click on the dark backdrop closes it; the browser traps focus while it is open).
+export default function Shots({ src, alt, label }) {
+  const [open, setOpen] = useState(false)
+  const dialogRef = useRef(null)
+
+  useEffect(() => {
+    const d = dialogRef.current
+    if (!d) return
+    if (open && !d.open) d.showModal()
+    if (!open && d.open) d.close()
+  }, [open])
+
   return (
-    <figure className="window entry-shot" onKeyDown={many ? onKey : undefined}>
-      <div className="window-bar">
-        <span>{label}</span>
-        {many ? <span aria-hidden="true">{i + 1}/{shots.length}</span> : <i className="dots" aria-hidden="true"><b /><b /><b /></i>}
-      </div>
-      <div className="window-body">
-        <div className="shot-pic">
-          {shots.map((s, n) => (
-            <img key={s.src} src={s.src} alt={s.alt} loading="lazy" className={n === i ? 'on' : ''} aria-hidden={n === i ? undefined : 'true'} />
-          ))}
-          {many && (
-            <>
-              <button type="button" className="shot-arrow prev" onClick={() => go(-1)} aria-label="Previous screenshot">&lt;</button>
-              <button type="button" className="shot-arrow next" onClick={() => go(1)} aria-label="Next screenshot">&gt;</button>
-            </>
-          )}
+    <>
+      <figure className="window entry-shot">
+        <div className="window-bar">
+          <span>{label}</span>
+          <i className="dots" aria-hidden="true"><b /><b /><b /></i>
         </div>
-        {many && (
-          <div className="shot-pips" role="group" aria-label="Choose a screenshot">
-            {shots.map((s, n) => (
-              <button key={s.src} type="button" className={n === i ? 'on' : ''} onClick={() => setI(n)} aria-label={`Screenshot ${n + 1} of ${shots.length}`} aria-current={n === i ? 'true' : undefined} />
-            ))}
+        <div className="window-body">
+          <button type="button" className="shot-pic shot-zoom" onClick={() => setOpen(true)} aria-label={`Enlarge screenshot: ${alt}`}>
+            <img src={src} alt="" loading="lazy" />
+            <span className="shot-hint" aria-hidden="true">CLICK TO ENLARGE</span>
+          </button>
+        </div>
+      </figure>
+      <dialog
+        ref={dialogRef}
+        className="lightbox"
+        aria-label={label}
+        onClose={() => setOpen(false)}
+        onClick={(e) => { if (e.target === e.currentTarget) setOpen(false) }}
+      >
+        <figure className="window lightbox-window">
+          <div className="window-bar">
+            <span>{label}</span>
+            <button type="button" className="lightbox-close" onClick={() => setOpen(false)} aria-label="Close enlarged screenshot">X</button>
           </div>
-        )}
-      </div>
-    </figure>
+          <div className="window-body">{open && <img className="lightbox-img" src={src} alt={alt} />}</div>
+        </figure>
+      </dialog>
+    </>
   )
 }
