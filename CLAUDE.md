@@ -26,7 +26,7 @@ Deploys: the live site is **https://isaac-loc.dev** on Azure Static Web Apps, au
 ```
 index.html                 Vite entry (fonts loaded here, theme set before paint)
 src/main.jsx               React mount + global CSS import
-src/App.jsx                Header + route switch (/experience and /projects are empty placeholder tabs; Home = Hero + Experience/Projects/Leadership/Skills + Contact footer)
+src/App.jsx                Header + route switch (the only tab is /projects (Projects Archive); Home = Hero + Experience/Projects/Leadership/Skills + Contact footer)
 src/data/site.js           ALL editable content, including resume data for sections not built yet
 src/hooks/                 useTheme (light/dark), useRoute (hash router), useTyper (hero typing)
 src/pages/                 EmptyPage placeholder; build each real page here

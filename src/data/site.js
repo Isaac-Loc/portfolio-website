@@ -67,6 +67,7 @@ export const experience = [
 export const projects = [
   {
     id: 'pm-tool',
+    recent: true, // shown on the main page; every project (recent or not) is in the Projects Archive tab
     title: 'Project Management Tool',
     art: 'kanban',
     shape: 'burst8',
@@ -82,6 +83,7 @@ export const projects = [
   },
   {
     id: 'bidit',
+    recent: false,
     title: 'Bidit Auction Marketplace',
     art: 'auction',
     shape: 'jag',

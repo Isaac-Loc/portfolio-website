@@ -8,10 +8,9 @@ import EmptyPage from './pages/EmptyPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
 
-// Routes are hash-based ("#/experience"). Home has the whole resume; the tab pages are empty placeholders to build out.
+// Routes are hash-based ("#/experience"). Home has the whole resume; the only tab is the Projects Archive.
 const PAGES = {
-  '/experience': 'Experience',
-  '/projects': 'Projects',
+  '/projects': 'Projects Archive',
 }
 
 export default function App() {
@@ -21,19 +20,27 @@ export default function App() {
   return (
     <>
       <Header name={site.firstName} resume={site.resume} route={route} />
-      {title ? <EmptyPage title={title} /> : (
+      {title ? (
+        <EmptyPage title={title}>
+          <div className="entry-grid archive-grid reveal-stagger">
+            {projects.map((p) => (
+              <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} />
+            ))}
+          </div>
+        </EmptyPage>
+      ) : (
         <>
           <Hero site={site} />
           <Section id="experience" title="Experience">
-            <div className="entry-grid reveal-stagger">
+            <div className="entry-grid single reveal-stagger">
               {experience.map((e) => (
                 <Entry key={e.id} title={e.role} href={e.orgUrl} meta={`${e.org} · ${e.place} · ${e.dates}`} summary={e.summary} stats={e.stats} tech={e.tech} />
               ))}
             </div>
           </Section>
-          <Section id="projects" title="Projects">
+          <Section id="projects" title="Projects" archive="/projects" archiveLabel="VIEW ARCHIVE">
             <div className="entry-grid reveal-stagger">
-              {projects.map((p) => (
+              {projects.filter((p) => p.recent).map((p) => (
                 <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} />
               ))}
             </div>

@@ -1,8 +1,7 @@
 import useTheme from '../hooks/useTheme.js'
 
 const LINKS = [
-  { path: '/experience', label: 'EXPERIENCE' },
-  { path: '/projects', label: 'PROJECTS' },
+  { path: '/projects', label: 'PROJECTS ARCHIVE' },
 ]
 
 export default function Header({ name, resume, route }) {
