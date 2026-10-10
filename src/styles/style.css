@@ -421,28 +421,9 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .entry-summary { margin-bottom: .8rem; }
 .entry-stats { margin-bottom: .8rem; }
 
-/* Projects Archive timeline: a center line with square date nodes; cards alternate sides, newest on top */
-.timeline { position: relative; list-style: none; margin: 2.5rem 0 0; padding: 0; }
-.timeline::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 4px; margin-left: -2px; background: var(--ink); }
-:root[data-theme="dark"] .timeline::before { background: var(--line); }
-.tl-item { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; margin-bottom: 2.5rem; }
-.tl-item:last-child { margin-bottom: 0; }
-.tl-item .entry, .tl-item .entry.has-image { grid-column: 1; grid-row: 1; grid-template-columns: 1fr; width: auto; margin: 4px 2.4rem 4px 4px; }
-.tl-item:nth-child(even) .entry, .tl-item:nth-child(even) .entry.has-image { grid-column: 2; margin: 4px 4px 4px 2.4rem; }
-.tl-item .entry-shot { margin-top: 1.2rem; }
-.tl-item::before { content: ""; position: absolute; top: 50%; right: 50%; width: 2.4rem; height: 4px; margin-top: -2px; background: var(--ink); }
-:root[data-theme="dark"] .tl-item::before { background: var(--line); }
-.tl-item:nth-child(even)::before { right: auto; left: 50%; }
-.tl-node { position: absolute; z-index: 2; top: 50%; left: 50%; width: 1.3rem; height: 1.3rem; margin: -.65rem 0 0 -.65rem; background: var(--primary); box-shadow: 0 0 0 4px var(--paper), 0 0 0 7px var(--ink); }
-:root[data-theme="dark"] .tl-node { box-shadow: 0 0 0 4px var(--paper), 0 0 0 7px var(--line); }
-.tl-date { grid-row: 1; grid-column: 2; justify-self: start; margin-left: 2.4rem; padding: .7rem .8rem .6rem; background: var(--ink); color: #f0fbfc; font-family: var(--font-pixel); font-size: .6rem; line-height: 1; text-transform: uppercase; }
-:root[data-theme="dark"] .tl-date { background: #e4e4e7; color: #1c1c1e; }
-.tl-item:nth-child(even) .tl-date { grid-column: 1; justify-self: end; margin: 0 2.4rem 0 0; }
-@media (max-width: 900px) {
-  .timeline::before { left: .65rem; margin-left: -2px; }
-  .tl-item { grid-template-columns: 1fr; }
-  .tl-item::before, .tl-item:nth-child(even)::before { display: none; }
-  .tl-node { left: .65rem; top: 1.1rem; }
-  .tl-date, .tl-item:nth-child(even) .tl-date { grid-column: 1; grid-row: 1; justify-self: start; margin: 0 0 .8rem 2.4rem; }
-  .tl-item .entry, .tl-item .entry.has-image, .tl-item:nth-child(even) .entry, .tl-item:nth-child(even) .entry.has-image { grid-column: 1; grid-row: 2; margin: 4px 4px 4px 2.4rem; }
-}
+/* Projects Archive: zig-zag cards separated by a short, subtle vertical line centered on the page */
+.archive-list { list-style: none; margin: 2rem 0 0; padding: 0; }
+.arch-item + .arch-item::before { content: ""; display: block; width: 2px; height: 2.5rem; margin: 0 auto 1.5rem; background: color-mix(in srgb, var(--text) 22%, transparent); }
+.arch-item .entry { width: min(100%, 62rem); margin-left: 4px; }
+.arch-item:nth-child(even) .entry { margin-left: auto; margin-right: 4px; }
+.arch-item:nth-child(even) .entry.has-image .entry-shot { order: -1; }
