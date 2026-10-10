@@ -387,3 +387,10 @@ a.tag.social-tag:hover, :root[data-theme="dark"] a.tag.social-tag:hover, .tag-cl
 .window-caption { display: flex; align-items: center; justify-content: center; gap: .55rem; padding: .7rem .6rem .6rem; border-top: 3px solid var(--frame); font-family: var(--font-pixel); font-size: .5rem; line-height: 1.4; text-transform: uppercase; color: var(--text); }
 .window-caption svg { flex: 0 0 auto; width: .95rem; height: .95rem; color: var(--primary); }
 :root[data-theme="dark"] .window-caption svg { color: var(--accent); }
+
+/* Cards with a screenshot: text on the left, the shot in a retro window on the right (stacks on narrow screens) */
+.entry.has-image { display: grid; grid-template-columns: 1fr minmax(0, 1.15fr); gap: 2rem; align-items: center; }
+.entry-shot { width: 100%; margin: 4px; }
+.shot-pic { aspect-ratio: 19 / 10; overflow: hidden; background: var(--teal); box-shadow: 0 0 0 2px var(--frame); }
+.shot-pic img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+@media (max-width: 900px) { .entry.has-image { grid-template-columns: 1fr; } }

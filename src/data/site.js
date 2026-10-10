@@ -35,7 +35,8 @@ export const experience = [
     dates: 'Sept 2026 – Present',
     art: 'shield',
     shape: 'burst',
-    image: null,
+    image: '/images/ezesports.webp', // screenshot of the public ezesports.org home page (shown in a window frame on the card)
+    imageAlt: 'The ezesports.org home page: New York City High School Esports League',
     summary: 'Currently spearheading the migration of ezesports.org to a more modern stack with **Next.js**. Overseeing the initiative to normalize all player, staff and match data into **Supabase**.',
     stats: [
       { n: '100%', l: 'server-side validated' },
