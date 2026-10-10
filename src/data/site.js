@@ -17,7 +17,7 @@ export const site = {
   about: {
     // Paragraphs shown in the About section. **bold** works.
     paragraphs: [
-      "I'm a **Computer Science** student at the University at Buffalo with a minor in Math, and I love building things that bridge hardware and software. My focus is **full-stack web development** and **embedded systems**, from C++ firmware driving a wall of LEDs to secure web apps, and I'm always open to learning new corners of software and engineering.",
+      "I'm a **Computer Science** student at the University at Buffalo with a minor in Math, and I love building things that solve problems. My focus is **full-stack web development** and **embedded systems**, and I'm always open to learning something new.",
     ],
   },
   photos: {
