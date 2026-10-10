@@ -69,6 +69,7 @@ export const projects = [
   {
     id: 'pm-tool',
     recent: true, // shown on the main page; every project (recent or not) is in the Projects Archive tab
+    date: 'August 2026', // shown under the title on the card and in the Projects Archive
     title: 'Project Management Tool',
     art: 'kanban',
     shape: 'burst8',
@@ -86,6 +87,7 @@ export const projects = [
   {
     id: 'bidit',
     recent: false,
+    date: 'March 2026', // shown under the title on the card and in the Projects Archive
     title: 'Bidit Auction Marketplace',
     art: 'auction',
     shape: 'jag',

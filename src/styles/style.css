@@ -420,3 +420,10 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .entry-grid > .entry.has-image:nth-child(even) .entry-shot { order: -1; }
 .entry-summary { margin-bottom: .8rem; }
 .entry-stats { margin-bottom: .8rem; }
+
+/* Projects Archive: zig-zag cards separated by a subtle vertical line centered on the page, with a gap above and below it */
+.archive-list { list-style: none; margin: 2rem 0 0; padding: 0; }
+.arch-item + .arch-item::before { content: ""; display: block; width: 2px; height: 5rem; margin: 1.4rem auto; background: color-mix(in srgb, var(--text) 22%, transparent); }
+.arch-item .entry { width: min(100%, 62rem); margin-left: 4px; }
+.arch-item:nth-child(even) .entry { margin-left: auto; margin-right: 4px; }
+.arch-item:nth-child(even) .entry.has-image .entry-shot { order: -1; }

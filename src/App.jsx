@@ -22,11 +22,13 @@ export default function App() {
       <Header name={site.firstName} resume={site.resume} route={route} />
       {title ? (
         <EmptyPage title={title}>
-          <div className="entry-grid archive-grid reveal-stagger">
+          <ol className="archive-list">
             {projects.map((p) => (
-              <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} badge={p.recent ? 'MOST RECENT' : undefined} />
+              <li key={p.id} className="arch-item">
+                <Entry title={p.title} href={p.url} meta={p.date} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} badge={p.recent ? 'MOST RECENT' : undefined} />
+              </li>
             ))}
-          </div>
+          </ol>
         </EmptyPage>
       ) : (
         <>
@@ -41,7 +43,7 @@ export default function App() {
           <Section id="projects" title="Projects" archive="/projects" archiveLabel="VIEW ARCHIVE">
             <div className="entry-grid reveal-stagger">
               {projects.filter((p) => p.recent).map((p) => (
-                <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} badge={p.recent ? 'MOST RECENT' : undefined} />
+                <Entry key={p.id} title={p.title} href={p.url} meta={p.date} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} badge={p.recent ? 'MOST RECENT' : undefined} />
               ))}
             </div>
           </Section>
