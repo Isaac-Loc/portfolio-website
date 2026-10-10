@@ -261,7 +261,7 @@ a.tag.tag-cta:hover { background: var(--primary-deep); }
 .tag-archive { margin: 0; }
 .entry-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 2rem; }
 .entry { margin: 4px; }
-.entry-title { margin: 0 0 .4rem; font-family: var(--font-pixel); font-weight: 400; font-size: .8rem; line-height: 1.5; color: var(--primary); }
+.entry-title { margin: 0 0 .6rem; font-family: var(--font-pixel); font-weight: 400; font-size: clamp(1rem, 1.5vw, 1.4rem); line-height: 1.5; color: var(--primary); }
 :root[data-theme="dark"] .entry-title { color: var(--accent); }
 .entry-title a { text-decoration: none; }
 .entry-title a:hover { text-decoration: underline; }
