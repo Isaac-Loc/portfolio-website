@@ -24,7 +24,7 @@ export default function App() {
         <EmptyPage title={title}>
           <div className="entry-grid archive-grid reveal-stagger">
             {projects.map((p) => (
-              <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} />
+              <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} />
             ))}
           </div>
         </EmptyPage>
@@ -41,7 +41,7 @@ export default function App() {
           <Section id="projects" title="Projects" archive="/projects" archiveLabel="VIEW ARCHIVE">
             <div className="entry-grid reveal-stagger">
               {projects.filter((p) => p.recent).map((p) => (
-                <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} />
+                <Entry key={p.id} title={p.title} href={p.url} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} />
               ))}
             </div>
           </Section>

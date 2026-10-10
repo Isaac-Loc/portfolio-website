@@ -72,7 +72,8 @@ export const projects = [
     title: 'Project Management Tool',
     art: 'kanban',
     shape: 'burst8',
-    image: null,
+    image: '/images/project-tracker.jpg', // cropped to the main column on purpose: the full screenshot shows member names and emails
+    imageAlt: 'The Project Tracker project page: goal, latest status report and a linked Google Drive folder',
     url: 'https://github.com/Theta-Tau-Mu-Gamma/Theta-Tau-Scrum',
     summary: 'Full-stack development using **React** and **PHP/Slim**, from schema design to the API. A shared Kanban workspace for the whole chapter, with **Google Drive** built in.',
     stats: [
