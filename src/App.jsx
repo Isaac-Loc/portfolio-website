@@ -4,6 +4,7 @@ import Hero from './components/Hero.jsx'
 import Section from './components/Section.jsx'
 import Entry from './components/Entry.jsx'
 import Contact from './components/Contact.jsx'
+import Background from './components/Background.jsx'
 import EmptyPage from './pages/EmptyPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
@@ -19,6 +20,7 @@ export default function App() {
   const title = PAGES[route]
   return (
     <>
+      <Background />
       <Header name={site.firstName} resume={site.resume} route={route} />
       {title ? (
         <EmptyPage title={title}>

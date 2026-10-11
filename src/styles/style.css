@@ -427,3 +427,21 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .arch-item .entry { width: min(100%, 62rem); margin-left: 4px; }
 .arch-item:nth-child(even) .entry { margin-left: auto; margin-right: 4px; }
 .arch-item:nth-child(even) .entry.has-image .entry-shot { order: -1; }
+
+/* ===== Open layout after the hero: no boxes, content sits directly on the moving background ===== */
+.bg-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
+#root { position: relative; z-index: 1; }
+.site-header { background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(2px); }
+.section { border-top: 0; padding: 3.5rem 0; }
+.entry-grid > .entry, .entry-grid > .entry:nth-child(even) { justify-self: start; width: min(100%, 62rem); }
+.entry { margin: 0; padding: 1.4rem 0 1.4rem 1.2rem; background: none; box-shadow: none; border-left: 4px solid var(--primary); }
+.entry-grid > .entry.has-image:nth-child(even) .entry-shot { order: 0; }
+.entry-tech { gap: .3rem .9rem; }
+.entry-tech li { padding: 0; font-size: .8rem; background: none; border: 0; color: var(--muted); }
+.entry-tech li::before { content: "+ "; color: var(--primary); font-weight: 600; }
+:root[data-theme="dark"] .entry-tech li::before { color: var(--accent); }
+.contact { background: none; border-top: 0; }
+.arch-item + .arch-item::before { display: none; }
+.arch-item { margin-bottom: 2.4rem; }
+.arch-item .entry, .arch-item:nth-child(even) .entry { margin: 0; width: min(100%, 62rem); }
+.arch-item:nth-child(even) .entry.has-image .entry-shot { order: 0; }

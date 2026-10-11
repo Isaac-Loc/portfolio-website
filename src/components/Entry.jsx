@@ -6,7 +6,7 @@ import Shots from './Shots.jsx'
 // clicking the screenshot opens a larger view.
 export default function Entry({ title, meta, summary, stats = [], tech = [], tagsLabel, href, image, imageAlt = '', imageLabel, badge }) {
   return (
-    <article className={`box entry reveal${image ? ' has-image' : ''}`}>
+    <article className={`entry reveal${image ? ' has-image' : ''}`}>
       <div className="entry-body">
       {badge && <span className="entry-badge">{badge}</span>}
       <h3 className="entry-title">{href ? <a href={href} target="_blank" rel="noopener noreferrer">{title}</a> : title}</h3>
