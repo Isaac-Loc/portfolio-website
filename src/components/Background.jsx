@@ -10,9 +10,9 @@ const SHAPES = {
   box: [[0, 0], [1, 0], [0, 1], [1, 1]],
 }
 const LAYERS = [
-  { depth: 0.12, px: 3, alpha: 0.22, share: 0.5 },
-  { depth: 0.3, px: 4, alpha: 0.35, share: 0.33 },
-  { depth: 0.6, px: 5, alpha: 0.55, share: 0.17 },
+  { depth: 0.12, px: 3, alpha: 0.1, share: 0.55 },
+  { depth: 0.3, px: 3, alpha: 0.16, share: 0.33 },
+  { depth: 0.6, px: 4, alpha: 0.26, share: 0.12 },
 ]
 
 function rng(seed) {
@@ -45,13 +45,13 @@ export default function Background() {
       canvas.height = h * dpr
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
       const rand = rng(7)
-      const total = Math.round((w * h) / 7000)
+      const total = Math.round((w * h) / 14000)
       parts = []
       LAYERS.forEach((L, li) => {
         const n = Math.round(total * L.share)
         for (let i = 0; i < n; i++) {
           const r = rand()
-          const shape = r < 0.3 ? 'plus' : r < 0.45 ? 'spark' : r < 0.8 ? 'dot' : 'box'
+          const shape = r < 0.15 ? 'plus' : r < 0.25 ? 'spark' : r < 0.85 ? 'dot' : 'box'
           parts.push({ li, shape, x: rand() * w, y: rand() * h, red: rand() < 0.4, phase: rand() * 6, speed: 0.6 + rand() * 1.4 })
         }
       })
@@ -68,7 +68,7 @@ export default function Background() {
       const gap = 56
       const gy = -((sy * 0.2) % gap)
       const gx = -(mx * 6) % gap
-      ctx.globalAlpha = 0.16
+      ctx.globalAlpha = 0.07
       ctx.fillStyle = colors.ink
       for (let y = gy; y < h; y += gap) for (let x = gx; x < w; x += gap) ctx.fillRect(snap(x), snap(y), 2, 2)
 
