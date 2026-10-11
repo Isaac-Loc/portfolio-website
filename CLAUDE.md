@@ -11,7 +11,7 @@ Isaac's personal portfolio website. React + Vite single page, **being rebuilt fr
 1. **Update SPEC.md whenever you change something**: add a dated entry to its Changelog, and update any section (structure, tokens, content model, open items) that the change affects.
 2. If a design/tech decision was made in conversation, record it in SPEC.md "Decisions" so the next chat has it.
 3. Keep this file short. Put detail in SPEC.md.
-4. **Git workflow:** work on the `dev` branch and, from now on, commit and push every change to `origin/dev` (user's standing instruction). Never push to `main` unless the user explicitly says so. Don't create PRs unless asked.
+4. **Git workflow:** work on the `dev` branch. After EVERY task the user gives you, commit and push to `origin/dev` without asking (user's standing instruction, 2026-10-11). Never push to `main` unless the user explicitly says so. Don't create PRs unless asked.
 
 ## Commands
 ```bash
@@ -20,7 +20,7 @@ npm run dev        # dev server at http://localhost:5173
 npm run build      # production build to dist/
 npm run preview    # serve the production build
 ```
-Deploys: the live site is **https://isaac-loc.dev** on Azure Static Web Apps, auto-built by GitHub Actions from **`main`** only. Pushing to `dev` does NOT publish; it goes live when `dev` is merged to `main` (only when the user asks). Details are in SPEC.md ("Deployment (Azure Static Web Apps)"). `README.md` is a personal profile-style intro (user request): keep setup/run/deploy instructions out of it.
+Deploys are split by branch: **`main` -> Azure Static Web Apps** (production, **https://isaac-loc.dev**, GitHub Actions; only `main` deploys there) and **`dev` -> Vercel** (staging `*.vercel.app` URL; `vercel.json` disables `main` builds). Production changes go live only when `dev` is merged to `main` (only when the user asks). Details are in SPEC.md ("Deployment"). `README.md` is a personal profile-style intro (user request): keep setup/run/deploy instructions out of it.
 
 ## Layout
 ```
