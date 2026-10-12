@@ -154,8 +154,8 @@ export const projects = [
     title: 'Autonomous Burger Flipping System',
     art: 'burger',
     shape: 'jag',
-    image: '/images/burger-flipper.jpg', // cropped from a crowded event photo to the three people at the front and part of the machine
-    imageAlt: 'Three teammates presenting next to the burger flipping machine, with its spatula rails, motors and wiring',
+    image: '/images/burger-flipper.jpg', // the machine only, cropped from a crowded event photo (people cropped out)
+    imageAlt: 'The burger flipping machine on its tripod: a wooden base with the spatula rails, motors, and wiring underneath',
     url: 'https://github.com/Isaac-Loc/Autonomous-Burger-Flipping-System',
     summary: 'Arduino firmware in **C++** for a robotic grill assistant. **DC motors** slide a spatula and temperature probe across the grill, laser sensors locate the patty, and a **servo** flips it.',
     stats: [
