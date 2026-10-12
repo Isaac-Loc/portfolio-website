@@ -38,7 +38,7 @@ export default function App() {
           <Section id="experience" title="Experience">
             <div className="entry-grid single reveal-stagger">
               {experience.map((e) => (
-                <Entry key={e.id} title={e.role} href={e.orgUrl} meta={`${e.org} · ${e.place} · ${e.dates}`} summary={e.summary} stats={e.stats} tech={e.tech} image={e.image} imageAlt={e.imageAlt} imageLabel={e.orgUrl ? new URL(e.orgUrl).host.toUpperCase() : e.org.toUpperCase()} />
+                <Entry key={e.id} title={e.role} at={e.orgUrl ? { label: new URL(e.orgUrl).host, href: e.orgUrl } : undefined} meta={`${e.org} · ${e.place} · ${e.dates}`} summary={e.summary} stats={e.stats} tech={e.tech} image={e.image} imageAlt={e.imageAlt} imageLabel={e.orgUrl ? new URL(e.orgUrl).host.toUpperCase() : e.org.toUpperCase()} />
               ))}
             </div>
           </Section>

@@ -462,3 +462,10 @@ a.tag:has(.lock):hover .lock-body, a.tag:has(.lock):focus-visible .lock-body { a
 /* On the Project Archive tab the padlock stays open (and stops rattling) */
 a.tag.active:has(.lock) { animation: none; }
 a.tag.active .lock-shackle { transform: translateY(-1.6px) rotate(-22deg); }
+
+/* "Role @ domain.org": the domain is an obvious underlined link */
+.entry-at { color: var(--muted); }
+.entry-at-link { color: var(--primary); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .25em; }
+.entry-at-link:hover { background: var(--primary); color: #fff; text-decoration: none; }
+:root[data-theme="dark"] .entry-at-link { color: var(--accent); }
+:root[data-theme="dark"] .entry-at-link:hover { background: var(--primary); color: #fff; }
