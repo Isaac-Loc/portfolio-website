@@ -1,4 +1,5 @@
 import useTheme from '../hooks/useTheme.js'
+import Lock from './Lock.jsx'
 
 const LINKS = [
   { path: '/projects', label: 'PROJECTS ARCHIVE' },
@@ -13,7 +14,7 @@ export default function Header({ name, resume, route }) {
         <a className="tag tag-logo" href="#/" onClick={route === '/' ? (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) } : undefined}>{name.toUpperCase()}.EXE</a>
         <nav>
           {LINKS.map((l) => (
-            <a key={l.path} className={`tag${route === l.path ? ' active' : ''}`} href={`#${l.path}`}>{l.label}</a>
+            <a key={l.path} className={`tag${route === l.path ? ' active' : ''}`} href={`#${l.path}`}><Lock />{l.label}</a>
           ))}
           <a className="tag tag-resume" href={resume} target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true">

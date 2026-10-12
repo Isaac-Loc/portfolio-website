@@ -445,3 +445,16 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .arch-item { margin-bottom: 2.4rem; }
 .arch-item .entry, .arch-item:nth-child(even) .entry { margin: 0; width: min(100%, 62rem); }
 .arch-item:nth-child(even) .entry.has-image .entry-shot { order: 0; }
+
+/* Pixel padlock on the archive buttons: idles with a little rattle, and the shackle pops open (in hard steps) on hover/focus */
+.lock { width: 1.1em; height: 1.21em; margin-right: .75em; flex: 0 0 auto; overflow: visible; }
+.lock-shackle { transform-box: view-box; transform-origin: 2.5px 4px; }
+.lock-body { transform-box: view-box; transform-origin: 5px 11px; }
+a.tag:has(.lock) { animation: lock-rattle 4s steps(1) infinite; }
+a.tag:has(.lock):hover, a.tag:has(.lock):focus-visible { animation: none; }
+a.tag:has(.lock):hover .lock-shackle, a.tag:has(.lock):focus-visible .lock-shackle { animation: lock-open .4s steps(4) forwards; }
+a.tag:has(.lock):hover .lock-body, a.tag:has(.lock):focus-visible .lock-body { animation: lock-pop .4s steps(4); }
+@keyframes lock-open { to { transform: translateY(-1.6px) rotate(-22deg); } }
+@keyframes lock-pop { 40% { transform: scale(1.12, .9); } }
+@keyframes lock-rattle { 0%, 88% { transform: none; } 90%, 94% { transform: translateX(-1px); } 92%, 96% { transform: translateX(1px); } 98%, 100% { transform: none; } }
+@media (prefers-reduced-motion: reduce) { a.tag:has(.lock), .lock-shackle, .lock-body { animation: none !important; } a.tag:has(.lock):hover .lock-shackle { transform: translateY(-1.6px) rotate(-22deg); } }
