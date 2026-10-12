@@ -51,7 +51,7 @@ export const experience = [
     org: 'Self-employed',
     orgUrl: 'https://isaac-loc.dev', // this site is the live example
     place: 'Remote',
-    dates: 'Oct 2026 – Present',
+    dates: 'Sept 2026 – Present',
     art: 'web',
     shape: 'jag',
     image: null,
