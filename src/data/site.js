@@ -68,6 +68,20 @@ export const experience = [
 // shape: 'burst' | 'burst8' | 'jag' | 'polaroid'
 export const projects = [
   {
+    id: 'vending-controller',
+    recent: false,
+    inProgress: true, // listed under the IN PROGRESS tab of the Project Archive (and under 2026)
+    date: 'Fall 2026', // CSE 493 (Intro to VLSI) group project, proposed October 2026
+    title: 'Vending Machine Controller',
+    art: 'vending',
+    shape: 'jag',
+    image: null,
+    url: null,
+    summary: 'A vending machine controller for an Intro to **VLSI** course. It accepts coin inputs, tracks the total, dispenses the product once paid, and returns change, all modeled with **transistor and gate logic** and tested in simulation.',
+    stats: [],
+    tech: ['VLSI', 'Gate logic', 'Transistor-level design', 'Simulation'],
+  },
+  {
     id: 'medalert',
     recent: false,
     inProgress: true, // listed under the IN PROGRESS tab of the Project Archive (and under 2026)
