@@ -10,8 +10,7 @@ export default function Entry({ title, meta, summary, stats = [], tech = [], tag
       <div className="entry-body">
       {badge && <span className="entry-badge">{badge}</span>}
       <h3 className="entry-title">
-        {href ? <a href={href} target="_blank" rel="noopener noreferrer">{title}</a> : title}
-        {at && <> <span className="entry-at">@</span> <a className="entry-at-link" href={at.href} target="_blank" rel="noopener noreferrer">{at.label}<span aria-hidden="true"> ↗</span></a></>}
+        {href ? <a href={href} target="_blank" rel="noopener noreferrer">{title}{at && ` @ ${at}`}</a> : <>{title}{at && ` @ ${at}`}</>}
       </h3>
       {meta && <p className="entry-meta">{meta}</p>}
       {summary && <p className="entry-summary"><Rich text={summary} /></p>}
