@@ -1,18 +1,24 @@
 import { useEffect, useState } from 'react'
 import Entry from './Entry.jsx'
 
-// Archive tabs: one per year (taken from each project's `date`, e.g. "August 2026") plus IN PROGRESS
-// (projects with `inProgress: true` in site.js). Add a year here when a project from that year exists.
+// Archive tabs: ALL, COMING SOON (projects with `inProgress: true` in site.js), then one tab per year (taken
+// from each project's `date`, e.g. "August 2026"). ALL lists everything in the order coming soon, 2026, 2025,
+// each project once. Add a year here when a project from that year exists.
+const wip = (p) => !!p.inProgress
+const in2026 = (p) => /2026/.test(p.date || '')
+const in2025 = (p) => /2025/.test(p.date || '')
 const TABS = [
-  { id: 'wip', label: 'IN PROGRESS', match: (p) => !!p.inProgress },
-  { id: '2026', label: '2026', match: (p) => /2026/.test(p.date || '') },
-  { id: '2025', label: '2025', match: (p) => /2025/.test(p.date || '') },
+  { id: 'all', label: 'ALL', match: () => true, order: (list) => [...new Set([...list.filter(wip), ...list.filter(in2026), ...list.filter(in2025), ...list])] },
+  { id: 'wip', label: 'COMING SOON', match: wip },
+  { id: '2026', label: '2026', match: in2026 },
+  { id: '2025', label: '2025', match: in2025 },
 ]
 
 export default function ProjectArchive({ projects }) {
-  const [tab, setTab] = useState('2026')
+  const [tab, setTab] = useState('all')
   const current = TABS.find((t) => t.id === tab)
-  const shown = projects.filter(current.match)
+  const matched = projects.filter(current.match)
+  const shown = current.order ? current.order(matched) : matched
 
   // Cards for a newly picked tab mount after useReveal ran, so show them right away (the click is the trigger)
   useEffect(() => {
