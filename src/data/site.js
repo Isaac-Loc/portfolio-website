@@ -46,6 +46,20 @@ export const experience = [
     tech: ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'React'],
   },
   {
+    id: 'freelance',
+    role: 'Freelance Web Developer',
+    org: 'Self-employed',
+    orgUrl: 'https://isaac-loc.dev', // this site is the live example
+    place: 'Remote',
+    dates: 'Oct 2026 – Present',
+    art: 'web',
+    shape: 'jag',
+    image: null,
+    summary: 'Building fast, low-maintenance **personal and static websites** for clients, from design and content to hosting and a custom domain. This portfolio is a live example: **React** and **Vite**, deployed on **Azure Static Web Apps** with automatic builds from **GitHub**.',
+    stats: [],
+    tech: ['React', 'Vite', 'HTML/CSS', 'Azure Static Web Apps', 'GitHub Actions'],
+  },
+  {
     id: 'ub-embedded',
     role: 'Embedded Software Engineer',
     org: 'University at Buffalo',
