@@ -53,7 +53,8 @@ export const experience = [
     dates: 'Aug 2025 – Dec 2025',
     art: 'ledwall',
     shape: 'jag',
-    image: null,
+    image: '/images/led-wall.jpg', // cropped to the LED wall and laptop (teammates' faces cropped out)
+    imageAlt: 'The LED tile wall showing "LED Wall" next to the laptop running its control panel',
     summary: 'Embedded development in **C++** on ESP32s, from firmware to the network commands that drive an LED tile array. A **Flask** API connects it all to the web frontend.',
     stats: [
       { n: '50+', l: 'LED tiles' },
