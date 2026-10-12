@@ -469,3 +469,9 @@ a.tag.active .lock-shackle { transform: translateY(-1.6px) rotate(-22deg); }
 .entry-at-link:hover { background: var(--primary); color: #fff; text-decoration: none; }
 :root[data-theme="dark"] .entry-at-link { color: var(--accent); }
 :root[data-theme="dark"] .entry-at-link:hover { background: var(--primary); color: #fff; }
+
+/* Inline links inside card text */
+.rich-link { color: var(--primary); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; }
+.rich-link:hover { background: var(--primary); color: #fff; text-decoration: none; }
+:root[data-theme="dark"] .rich-link { color: var(--accent); }
+:root[data-theme="dark"] .rich-link:hover { background: var(--primary); color: #fff; }

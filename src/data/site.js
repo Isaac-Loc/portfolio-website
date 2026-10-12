@@ -37,7 +37,7 @@ export const experience = [
     shape: 'burst',
     image: '/images/ezesports.webp', // screenshot of the public ezesports.org home page (shown in a window frame on the card)
     imageAlt: 'The ezesports.org home page: New York City High School Esports League',
-    summary: 'Currently spearheading the migration of ezesports.org to a more modern stack with **Next.js**. Overseeing the initiative to normalize all player, staff and match data into **Supabase**.',
+    summary: 'Currently spearheading the migration of [ezesports.org](https://ezesports.org) to a more modern stack with **Next.js**. Overseeing the initiative to normalize all player, staff and match data into **Supabase**.',
     stats: [
       { n: '100%', l: 'server-side validated' },
       { n: '5', l: 'security headers' },
@@ -53,8 +53,8 @@ export const experience = [
     dates: 'Aug 2025 – Dec 2025',
     art: 'ledwall',
     shape: 'jag',
-    image: '/images/led-wall.jpg', // cropped to the LED wall and laptop (teammates' faces cropped out)
-    imageAlt: 'The LED tile wall showing "LED Wall" next to the laptop running its control panel',
+    image: '/images/led-wall.jpg', // the full team photo with the LED wall
+    imageAlt: 'The team with the LED tile wall and the laptop running its control panel',
     summary: 'Embedded development in **C++** on ESP32s, from firmware to the network commands that drive an LED tile array. A **Flask** API connects it all to the web frontend.',
     stats: [
       { n: '50+', l: 'LED tiles' },
