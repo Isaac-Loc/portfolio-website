@@ -2,7 +2,7 @@ import useTheme from '../hooks/useTheme.js'
 import Lock from './Lock.jsx'
 
 const LINKS = [
-  { path: '/projects', label: 'PROJECTS ARCHIVE' },
+  { path: '/projects', label: 'PROJECT ARCHIVE' },
 ]
 
 export default function Header({ name, resume, route }) {

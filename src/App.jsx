@@ -9,9 +9,9 @@ import EmptyPage from './pages/EmptyPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
 
-// Routes are hash-based ("#/experience"). Home has the whole resume; the only tab is the Projects Archive.
+// Routes are hash-based ("#/experience"). Home has the whole resume; the only tab is the Project Archive.
 const PAGES = {
-  '/projects': 'Projects Archive',
+  '/projects': 'Project Archive',
 }
 
 export default function App() {
