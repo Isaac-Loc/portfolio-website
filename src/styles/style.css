@@ -480,3 +480,9 @@ a.tag.active .lock-shackle { transform: translateY(-1.6px) rotate(-22deg); }
 .arch-tab:not(.active) .arch-count { background: color-mix(in srgb, var(--text) 14%, transparent); }
 .arch-empty { margin: 2.5rem 0; font-family: var(--font-pixel); font-size: .7rem; line-height: 1.6; color: var(--muted); }
 .arch-tabs + div .archive-list { margin-top: 1.5rem; }
+
+/* Enlarged view: every screenshot opens in the same 3:2 frame (images are fitted inside, never cropped or stretched) */
+.lightbox-window { width: min(94vw, 62rem, calc((100vh - 9rem) * 1.5)); }
+.lightbox-body { aspect-ratio: 3 / 2; display: flex; }
+.lightbox-img { width: 100%; height: 100%; max-width: none; max-height: none; object-fit: contain; background: var(--ink); box-shadow: 0 0 0 2px var(--frame); }
+:root[data-theme="dark"] .lightbox-img { background: #000; }

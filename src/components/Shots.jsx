@@ -39,7 +39,7 @@ export default function Shots({ src, alt, label }) {
             <span>{label}</span>
             <button type="button" className="lightbox-close" onClick={() => setOpen(false)} aria-label="Close enlarged screenshot">X</button>
           </div>
-          <div className="window-body">{open && <img className="lightbox-img" src={src} alt={alt} />}</div>
+          <div className="window-body lightbox-body">{open && <img className="lightbox-img" src={src} alt={alt} />}</div>
         </figure>
       </dialog>
     </>
