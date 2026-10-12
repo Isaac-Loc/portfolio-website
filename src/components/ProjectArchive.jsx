@@ -4,9 +4,9 @@ import Entry from './Entry.jsx'
 // Archive tabs: one per year (taken from each project's `date`, e.g. "August 2026") plus IN PROGRESS
 // (projects with `inProgress: true` in site.js). Add a year here when a project from that year exists.
 const TABS = [
-  { id: '2025', label: '2025', match: (p) => /2025/.test(p.date || '') },
-  { id: '2026', label: '2026', match: (p) => /2026/.test(p.date || '') },
   { id: 'wip', label: 'IN PROGRESS', match: (p) => !!p.inProgress },
+  { id: '2026', label: '2026', match: (p) => /2026/.test(p.date || '') },
+  { id: '2025', label: '2025', match: (p) => /2025/.test(p.date || '') },
 ]
 
 export default function ProjectArchive({ projects }) {
