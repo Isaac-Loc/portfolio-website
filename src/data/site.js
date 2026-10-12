@@ -70,7 +70,7 @@ export const projects = [
   {
     id: 'automated-locker',
     recent: false,
-    inProgress: true, // listed under the COMING SOON tab of the Project Archive (and under 2026)
+    inProgress: true, // listed under the IN PROGRESS tab, with a COMING SOON badge of the Project Archive (and under 2026)
     date: 'Fall 2026 – Spring 2027', // CSE 450 (design) then CSE 453 (build), a two-semester project
     title: 'Automated Locker',
     art: 'locker',
@@ -84,7 +84,7 @@ export const projects = [
   {
     id: 'vending-controller',
     recent: false,
-    inProgress: true, // listed under the COMING SOON tab of the Project Archive (and under 2026)
+    inProgress: true, // listed under the IN PROGRESS tab, with a COMING SOON badge of the Project Archive (and under 2026)
     date: 'Fall 2026', // CSE 493 (Intro to VLSI) group project, proposed October 2026
     title: 'Vending Machine Controller',
     art: 'vending',
@@ -98,7 +98,7 @@ export const projects = [
   {
     id: 'medalert',
     recent: false,
-    inProgress: true, // listed under the COMING SOON tab of the Project Archive (and under 2026)
+    inProgress: true, // listed under the IN PROGRESS tab, with a COMING SOON badge of the Project Archive (and under 2026)
     date: 'Fall 2026', // CSE 321 semester project, due Nov 2026
     title: 'MedAlert',
     art: 'pill',
