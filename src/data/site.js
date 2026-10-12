@@ -68,6 +68,23 @@ export const experience = [
 // shape: 'burst' | 'burst8' | 'jag' | 'polaroid'
 export const projects = [
   {
+    id: 'medalert',
+    recent: false,
+    inProgress: true, // listed under the IN PROGRESS tab of the Project Archive (and under 2026)
+    date: 'Fall 2026', // CSE 321 semester project, due Nov 2026
+    title: 'MedAlert',
+    art: 'pill',
+    shape: 'jag',
+    image: null,
+    url: null,
+    summary: 'A two-stage medication reminder on an **ESP32** running **FreeRTOS**. It beeps and lights an LED at dose time, and if nobody confirms within 10 minutes it sends a missed-dose alert to a caregiver over **Wi-Fi**.',
+    stats: [
+      { n: '4', l: 'RTOS tasks' },
+      { n: '10 min', l: 'miss timeout' },
+    ],
+    tech: ['C++', 'ESP32', 'FreeRTOS', 'PlatformIO'],
+  },
+  {
     id: 'pm-tool',
     recent: true, // shown on the main page; every project (recent or not) is in the Project Archive tab
     date: 'August 2026', // shown under the title on the card and in the Project Archive
