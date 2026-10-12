@@ -102,6 +102,23 @@ export const projects = [
     ],
     tech: ['React', 'PHP', 'MySQL'],
   },
+  {
+    id: 'burger-flipper',
+    recent: false,
+    date: 'February 2025', // the repo was created Feb 2025 (last pushed Aug 2025)
+    title: 'Autonomous Burger Flipping System',
+    art: 'burger',
+    shape: 'jag',
+    image: null,
+    url: 'https://github.com/Isaac-Loc/Autonomous-Burger-Flipping-System',
+    summary: 'Arduino firmware in **C++** for a robotic grill assistant. **DC motors** slide a spatula and temperature probe across the grill, laser sensors locate the patty, and a **servo** flips it.',
+    stats: [
+      { n: '2', l: 'DC motors' },
+      { n: '1', l: 'servo flipper' },
+      { n: '1', l: 'temp probe' },
+    ],
+    tech: ['C++', 'Arduino', 'Arduino Mega'],
+  },
 ]
 
 export const education = {
