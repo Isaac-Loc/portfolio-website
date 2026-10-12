@@ -4,6 +4,7 @@ import Hero from './components/Hero.jsx'
 import Section from './components/Section.jsx'
 import Entry from './components/Entry.jsx'
 import Contact from './components/Contact.jsx'
+import ProjectArchive from './components/ProjectArchive.jsx'
 import Background from './components/Background.jsx'
 import EmptyPage from './pages/EmptyPage.jsx'
 import useRoute from './hooks/useRoute.js'
@@ -24,13 +25,7 @@ export default function App() {
       <Header name={site.firstName} resume={site.resume} route={route} />
       {title ? (
         <EmptyPage title={title}>
-          <ol className="archive-list">
-            {projects.map((p) => (
-              <li key={p.id} className="arch-item">
-                <Entry title={p.title} href={p.url} meta={p.date} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} badge={p.recent ? 'MOST RECENT' : undefined} />
-              </li>
-            ))}
-          </ol>
+          <ProjectArchive projects={projects} />
         </EmptyPage>
       ) : (
         <>
