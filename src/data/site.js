@@ -55,9 +55,9 @@ export const experience = [
     art: 'web',
     shape: 'jag',
     image: null,
-    summary: 'Building fast, low-maintenance **personal and static websites** for clients, from design and content to hosting and a custom domain. This portfolio is a live example: **React** and **Vite**, deployed on **Azure Static Web Apps** with automatic builds from **GitHub**.',
+    summary: 'Building fast, low-maintenance **personal and static websites** for clients, from design and content to hosting and a custom domain. This portfolio is a live example: **React** and **Vite**, deployed on **Azure** with automatic builds from **GitHub**.',
     stats: [],
-    tech: ['React', 'Vite', 'HTML/CSS', 'Azure Static Web Apps', 'GitHub Actions'],
+    tech: ['React', 'Vite', 'HTML/CSS', 'Azure', 'GitHub Actions'],
   },
   {
     id: 'ub-embedded',
