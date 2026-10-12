@@ -91,7 +91,7 @@ export const projects = [
     shape: 'jag',
     image: null,
     url: null,
-    summary: 'A vending machine controller for an Intro to **VLSI** course. It accepts coin inputs, tracks the total, dispenses the product once paid, and returns change, all modeled with **transistor and gate logic** and tested in simulation.',
+    summary: 'A vending machine controller that accepts coin inputs, tracks the total, dispenses the product once paid, and returns change. It is modeled with **transistor and gate logic** and tested in simulation.',
     stats: [],
     tech: ['VLSI', 'Gate logic', 'Transistor-level design', 'Simulation'],
   },
