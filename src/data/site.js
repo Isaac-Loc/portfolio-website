@@ -47,7 +47,7 @@ export const experience = [
   },
   {
     id: 'freelance',
-    role: 'Freelance Web Developer',
+    role: 'Freelance Software Engineer',
     org: 'Self-employed',
     orgUrl: 'https://isaac-loc.dev', // this site is the live example
     place: 'Remote',
