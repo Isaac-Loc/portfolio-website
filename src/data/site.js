@@ -68,6 +68,20 @@ export const experience = [
 // shape: 'burst' | 'burst8' | 'jag' | 'polaroid'
 export const projects = [
   {
+    id: 'automated-locker',
+    recent: false,
+    inProgress: true, // listed under the IN PROGRESS tab of the Project Archive (and under 2026)
+    date: 'Fall 2026 – Spring 2027', // CSE 450 (design) then CSE 453 (build), a two-semester project
+    title: 'Automated Locker',
+    art: 'locker',
+    shape: 'jag',
+    image: null,
+    url: null,
+    summary: 'A two-semester **hardware/software** capstone for a real client, a high school special education teacher. The goal is a locker that students with special needs can open easily, without a combination lock.',
+    stats: [],
+    tech: ['Hardware/Software Integration', 'Assistive Technology'],
+  },
+  {
     id: 'vending-controller',
     recent: false,
     inProgress: true, // listed under the IN PROGRESS tab of the Project Archive (and under 2026)
