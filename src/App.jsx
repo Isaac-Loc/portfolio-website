@@ -4,14 +4,15 @@ import Hero from './components/Hero.jsx'
 import Section from './components/Section.jsx'
 import Entry from './components/Entry.jsx'
 import Contact from './components/Contact.jsx'
+import ProjectArchive from './components/ProjectArchive.jsx'
 import Background from './components/Background.jsx'
 import EmptyPage from './pages/EmptyPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
 
-// Routes are hash-based ("#/experience"). Home has the whole resume; the only tab is the Projects Archive.
+// Routes are hash-based ("#/experience"). Home has the whole resume; the only tab is the Project Archive.
 const PAGES = {
-  '/projects': 'Projects Archive',
+  '/projects': 'Project Archive',
 }
 
 export default function App() {
@@ -24,13 +25,7 @@ export default function App() {
       <Header name={site.firstName} resume={site.resume} route={route} />
       {title ? (
         <EmptyPage title={title}>
-          <ol className="archive-list">
-            {projects.map((p) => (
-              <li key={p.id} className="arch-item">
-                <Entry title={p.title} href={p.url} meta={p.date} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} badge={p.recent ? 'MOST RECENT' : undefined} />
-              </li>
-            ))}
-          </ol>
+          <ProjectArchive projects={projects} />
         </EmptyPage>
       ) : (
         <>
@@ -38,7 +33,7 @@ export default function App() {
           <Section id="experience" title="Experience">
             <div className="entry-grid single reveal-stagger">
               {experience.map((e) => (
-                <Entry key={e.id} title={e.role} href={e.orgUrl} meta={`${e.org} · ${e.place} · ${e.dates}`} summary={e.summary} stats={e.stats} tech={e.tech} image={e.image} imageAlt={e.imageAlt} imageLabel={e.orgUrl ? new URL(e.orgUrl).host.toUpperCase() : e.org.toUpperCase()} />
+                <Entry key={e.id} title={e.role} href={e.orgUrl} at={e.orgUrl ? new URL(e.orgUrl).host : undefined} meta={`${e.org} · ${e.place} · ${e.dates}`} summary={e.summary} stats={e.stats} tech={e.tech} image={e.image} imageAlt={e.imageAlt} imageLabel={e.orgUrl ? new URL(e.orgUrl).host.toUpperCase() : e.org.toUpperCase()} />
               ))}
             </div>
           </Section>

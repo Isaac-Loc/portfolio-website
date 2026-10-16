@@ -421,7 +421,7 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .entry-summary { margin-bottom: .8rem; }
 .entry-stats { margin-bottom: .8rem; }
 
-/* Projects Archive: zig-zag cards separated by a subtle vertical line centered on the page, with a gap above and below it */
+/* Project Archive: zig-zag cards separated by a subtle vertical line centered on the page, with a gap above and below it */
 .archive-list { list-style: none; margin: 2rem 0 0; padding: 0; }
 .arch-item + .arch-item::before { content: ""; display: block; width: 2px; height: 5rem; margin: 1.4rem auto; background: color-mix(in srgb, var(--text) 22%, transparent); }
 .arch-item .entry { width: min(100%, 62rem); margin-left: 4px; }
@@ -445,3 +445,44 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .arch-item { margin-bottom: 2.4rem; }
 .arch-item .entry, .arch-item:nth-child(even) .entry { margin: 0; width: min(100%, 62rem); }
 .arch-item:nth-child(even) .entry.has-image .entry-shot { order: 0; }
+
+/* Pixel padlock on the archive buttons: idles with a little rattle, and the shackle pops open (in hard steps) on hover/focus */
+.lock { width: 1.1em; height: 1.21em; margin-right: .75em; flex: 0 0 auto; overflow: visible; }
+.lock-shackle { transform-box: view-box; transform-origin: 2.5px 4px; }
+.lock-body { transform-box: view-box; transform-origin: 5px 11px; }
+a.tag:has(.lock) { animation: lock-rattle 4s steps(1) infinite; }
+a.tag:has(.lock):hover, a.tag:has(.lock):focus-visible { animation: none; }
+a.tag:has(.lock):hover .lock-shackle, a.tag:has(.lock):focus-visible .lock-shackle { animation: lock-open .4s steps(4) forwards; }
+a.tag:has(.lock):hover .lock-body, a.tag:has(.lock):focus-visible .lock-body { animation: lock-pop .4s steps(4); }
+@keyframes lock-open { to { transform: translateY(-1.6px) rotate(-22deg); } }
+@keyframes lock-pop { 40% { transform: scale(1.12, .9); } }
+@keyframes lock-rattle { 0%, 88% { transform: none; } 90%, 94% { transform: translateX(-1px); } 92%, 96% { transform: translateX(1px); } 98%, 100% { transform: none; } }
+@media (prefers-reduced-motion: reduce) { a.tag:has(.lock), .lock-shackle, .lock-body { animation: none !important; } a.tag:has(.lock):hover .lock-shackle { transform: translateY(-1.6px) rotate(-22deg); } }
+
+/* On the Project Archive tab the padlock stays open (and stops rattling) */
+a.tag.active:has(.lock) { animation: none; }
+a.tag.active .lock-shackle { transform: translateY(-1.6px) rotate(-22deg); }
+
+/* Inline links inside card text */
+.rich-link { color: var(--primary); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .2em; }
+.rich-link:hover { background: var(--primary); color: #fff; text-decoration: none; }
+:root[data-theme="dark"] .rich-link { color: var(--accent); }
+:root[data-theme="dark"] .rich-link:hover { background: var(--primary); color: #fff; }
+
+/* Project Archive tabs (2025 / 2026 / IN PROGRESS) */
+.arch-tabs { display: flex; flex-wrap: wrap; gap: .2rem; margin: 2rem 0 .5rem; }
+.arch-tab { margin: 3px; border: 0; cursor: pointer; font-size: .6rem; gap: .7em; }
+.arch-tab:not(.active) { background: transparent; color: var(--text); box-shadow: inset 0 0 0 2px var(--text); }
+:root[data-theme="dark"] .arch-tab:not(.active) { background: transparent; color: var(--text); }
+.arch-tab:not(.active):hover { background: var(--ink); color: #fff; }
+.arch-tab.active { background: var(--primary); color: #fff; }
+.arch-count { display: inline-block; min-width: 1.4em; padding: .25em .35em .15em; background: rgba(255, 255, 255, .22); font-size: .85em; text-align: center; }
+.arch-tab:not(.active) .arch-count { background: color-mix(in srgb, var(--text) 14%, transparent); }
+.arch-empty { margin: 2.5rem 0; font-family: var(--font-pixel); font-size: .7rem; line-height: 1.6; color: var(--muted); }
+.arch-tabs + div .archive-list { margin-top: 1.5rem; }
+
+/* Enlarged view: every screenshot opens at the same large width, no bars: the picture shows whole at its own height
+   (a tall one scrolls inside the window instead of being cropped or shrunk) */
+.lightbox-window { width: min(96vw, 84rem); }
+.lightbox-body { max-height: calc(100vh - 6.5rem); overflow-y: auto; }
+.lightbox-img { display: block; width: 100%; height: auto; max-width: none; max-height: none; background: none; box-shadow: 0 0 0 2px var(--frame); }
