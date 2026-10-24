@@ -548,3 +548,11 @@ a.tag.active .lock-shackle { transform: translateY(-1.6px) rotate(-22deg); }
 .proj .entry-badge { margin-bottom: .2rem; }
 @media (max-width: 800px) { .proj-body.has-image { grid-template-columns: 1fr; gap: 1rem; } .about-facts div { grid-template-columns: 1fr; gap: .2rem; } }
 
+/* Roomier spacing between sections and entries, like the reference site: lots of white space, nothing crowded */
+.section { padding: 7rem 0; }
+.section-head { margin-bottom: 3rem; }
+.entry-grid { gap: 4rem; }
+.skill-groups { gap: 2.8rem 3rem; }
+.archive-list { margin-top: 2.5rem; }
+@media (max-width: 700px) { .section { padding: 4.5rem 0; } .section-head { margin-bottom: 2rem; } .entry-grid { gap: 2.8rem; } }
+
