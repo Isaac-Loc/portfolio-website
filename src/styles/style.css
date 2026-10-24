@@ -486,3 +486,24 @@ a.tag.active .lock-shackle { transform: translateY(-1.6px) rotate(-22deg); }
 .lightbox-window { width: min(96vw, 84rem); }
 .lightbox-body { max-height: calc(100vh - 6.5rem); overflow-y: auto; }
 .lightbox-img { display: block; width: 100%; height: auto; max-width: none; max-height: none; background: none; box-shadow: 0 0 0 2px var(--frame); }
+
+/* Compact, airy cards (scaled like a simple portfolio list): a small thumbnail beside a short text block, no window
+   chrome, no stat chips. Stats stay in site.js; show them again by deleting the `.entry-stats` rule below. */
+.entry-grid { gap: 2.6rem; }
+.entry-grid > .entry, .entry-grid > .entry:nth-child(even), .arch-item .entry, .arch-item:nth-child(even) .entry { width: min(100%, 56rem); }
+.entry { padding: 1rem 0 1rem 1.2rem; border-left-width: 3px; }
+.entry.has-image { grid-template-columns: 19rem minmax(0, 1fr); gap: 1.8rem; align-items: start; }
+.entry.has-image .entry-body { order: 1; }
+.entry .entry-shot { width: 100%; margin: 0; background: none; box-shadow: none; }
+.entry .entry-shot .window-bar { display: none; }
+.entry .entry-shot .window-body { padding: 0; }
+.entry .shot-pic { aspect-ratio: 16 / 10; }
+.entry .shot-pic img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.entry-title { margin: 0 0 .4rem; font-size: 1rem; line-height: 1.45; }
+.entry-meta { margin: 0 0 .6rem; font-size: .8rem; }
+.entry-summary { margin: 0 0 .6rem; font-size: .92rem; line-height: 1.6; }
+.entry-stats { display: none; }
+.entry-tech li { font-size: .75rem; }
+.entry-badge { margin-bottom: .5rem; padding: .4rem .5rem .3rem; font-size: .45rem; }
+@media (max-width: 800px) { .entry.has-image { grid-template-columns: 1fr; gap: 1rem; } }
+
