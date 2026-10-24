@@ -31,24 +31,24 @@ export default function App() {
       ) : (
         <>
           <Hero site={site} />
-          <Section id="experience" no="01" title="Experience">
+          <Section id="experience" no="02" title="Experience">
             <div className="entry-grid single reveal-stagger">
               {experience.map((e) => (
                 <Entry key={e.id} title={e.role} href={e.orgUrl} at={e.orgUrl ? new URL(e.orgUrl).host : undefined} meta={`${e.org} · ${e.place} · ${e.dates}`} summary={e.summary} stats={e.stats} tech={e.tech} image={e.image} imageAlt={e.imageAlt} imageLabel={e.orgUrl ? new URL(e.orgUrl).host.toUpperCase() : e.org.toUpperCase()} />
               ))}
             </div>
           </Section>
-          <Section id="projects" no="02" title="Projects" archive="/projects" archiveLabel="VIEW ARCHIVE">
+          <Section id="projects" no="03" title="Projects" archive="/projects" archiveLabel="VIEW ARCHIVE">
             <div className="proj-list">
               {projects.filter((p) => p.recent).map((p) => (<ProjectRow key={p.id} project={p} badge="MOST RECENT" />))}
             </div>
           </Section>
-          <Section id="leadership" no="03" title="Leadership">
+          <Section id="leadership" no="04" title="Leadership">
             <div className="entry-grid">
               <Entry title={leadership.role} meta={`${leadership.org} · ${leadership.dates}`} summary={leadership.summary} stats={leadership.stats} tech={leadership.tech} />
             </div>
           </Section>
-          <Section id="skills" no="04" title="Skills">
+          <Section id="skills" no="05" title="Skills">
             <div className="skill-groups">
               {skills.map((g) => (
                 <div key={g.label} className="skill-group reveal">

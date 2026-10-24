@@ -27,7 +27,8 @@ export default function Hero({ site }) {
           </a>
           <Socials site={site} />
           </div>
-          <div className="box about-note">
+          <div className="about-note">
+            <div className="section-kicker">01 / ABOUT ME</div>
             {site.about.paragraphs.slice(0, 2).map((t) => <p key={t}><Rich text={t} /></p>)}
             <dl className="about-facts">
               {site.about.facts.map((f) => <div key={f.label}><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
