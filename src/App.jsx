@@ -3,32 +3,19 @@ import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import Section from './components/Section.jsx'
 import Entry from './components/Entry.jsx'
-import ProjectRow from './components/ProjectRow.jsx'
+import ProjectList from './components/ProjectList.jsx'
 import Contact from './components/Contact.jsx'
-import ProjectArchive from './components/ProjectArchive.jsx'
 import Background from './components/Background.jsx'
-import EmptyPage from './pages/EmptyPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
-
-// Routes are hash-based ("#/experience"). Home has the whole resume; the only tab is the Project Archive.
-const PAGES = {
-  '/projects': 'Project Archive',
-}
 
 export default function App() {
   const route = useRoute()
   useReveal(route)
-  const title = PAGES[route]
   return (
     <>
       <Background />
       <Header name={site.firstName} resume={site.resume} route={route} />
-      {title ? (
-        <EmptyPage title={title}>
-          <ProjectArchive projects={projects} />
-        </EmptyPage>
-      ) : (
         <>
           <Hero site={site} />
           <Section id="experience" no="02" title="Experience">
@@ -38,10 +25,8 @@ export default function App() {
               ))}
             </div>
           </Section>
-          <Section id="projects" no="03" title="Projects" archive="/projects" archiveLabel="VIEW ARCHIVE">
-            <div className="proj-list">
-              {projects.filter((p) => p.recent).map((p) => (<ProjectRow key={p.id} project={p} badge="MOST RECENT" />))}
-            </div>
+          <Section id="projects" no="03" title="Projects">
+            <ProjectList projects={projects} />
           </Section>
           <Section id="leadership" no="04" title="Leadership">
             <div className="entry-grid">
@@ -60,7 +45,6 @@ export default function App() {
           </Section>
           <Contact site={site} />
         </>
-      )}
     </>
   )
 }

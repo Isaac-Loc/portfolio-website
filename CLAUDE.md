@@ -26,11 +26,11 @@ Deploys are split by branch: **`main` -> Azure Static Web Apps** (production, **
 ```
 index.html                 Vite entry (fonts loaded here, theme set before paint)
 src/main.jsx               React mount + global CSS import
-src/App.jsx                Header + route switch (the only tab is /projects (Project Archive); Home = Hero + Experience/Projects/Leadership/Skills + Contact footer)
+src/App.jsx                One page, no tabs: Header + Home = Hero + Experience/Projects/Leadership/Skills + Contact footer (hash routes exist but none are in use)
 src/data/site.js           ALL editable content, including resume data for sections not built yet
 src/hooks/                 useTheme (light/dark), useRoute (hash router), useTyper (hero typing)
 src/pages/                 EmptyPage placeholder; build each real page here
-src/components/            Header, Hero (retro window portrait), Socials (blinking @ widget next to the CTA), PixelPhoto (grain-to-sharp reveal), CommitGrid, ProjectRow (expandable project row), Rich (link text)
+src/components/            Header, Hero (retro window portrait), Socials (blinking @ widget next to the CTA), PixelPhoto (grain-to-sharp reveal), CommitGrid, ProjectList (Projects tabs + hover preview), Rich (link text)
 src/styles/style.css       All styling (single file, tokens at the top)
 public/images/             me.png (portrait)
 ```

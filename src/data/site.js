@@ -87,8 +87,8 @@ export const experience = [
 export const projects = [
   {
     id: 'automated-locker',
-    recent: false,
-    inProgress: true, // listed under the IN PROGRESS tab, with a COMING SOON badge of the Project Archive (and under 2026)
+    category: 'embedded', // which Projects tab it is under: 'fullstack' or 'embedded'
+    inProgress: true, // shows a COMING SOON badge next to the title in the Projects list
     date: 'Fall 2026 – Spring 2027', // CSE 450 (design) then CSE 453 (build), a two-semester project
     title: 'Automated Locker',
     art: 'locker',
@@ -101,8 +101,8 @@ export const projects = [
   },
   {
     id: 'vending-controller',
-    recent: false,
-    inProgress: true, // listed under the IN PROGRESS tab, with a COMING SOON badge of the Project Archive (and under 2026)
+    category: 'embedded', // which Projects tab it is under: 'fullstack' or 'embedded'
+    inProgress: true, // shows a COMING SOON badge next to the title in the Projects list
     date: 'Fall 2026', // CSE 493 (Intro to VLSI) group project, proposed October 2026
     title: 'Vending Machine Controller',
     art: 'vending',
@@ -115,8 +115,8 @@ export const projects = [
   },
   {
     id: 'medalert',
-    recent: false,
-    inProgress: true, // listed under the IN PROGRESS tab, with a COMING SOON badge of the Project Archive (and under 2026)
+    category: 'embedded', // which Projects tab it is under: 'fullstack' or 'embedded'
+    inProgress: true, // shows a COMING SOON badge next to the title in the Projects list
     date: 'Fall 2026', // CSE 321 semester project, due Nov 2026
     title: 'MedAlert',
     art: 'pill',
@@ -132,8 +132,8 @@ export const projects = [
   },
   {
     id: 'pm-tool',
-    recent: true, // shown on the main page; every project (recent or not) is in the Project Archive tab
-    date: 'August 2026', // shown under the title on the card and in the Project Archive
+    category: 'fullstack', // which Projects tab it is under: 'fullstack' or 'embedded'
+    date: 'August 2026', // first item of the caption line under the preview picture
     title: 'Project Management Tool',
     art: 'kanban',
     shape: 'burst8',
@@ -150,8 +150,8 @@ export const projects = [
   },
   {
     id: 'bidit',
-    recent: false,
-    date: 'March 2026', // shown under the title on the card and in the Project Archive
+    category: 'fullstack', // which Projects tab it is under: 'fullstack' or 'embedded'
+    date: 'March 2026', // first item of the caption line under the preview picture
     title: 'Bidit Auction Marketplace',
     art: 'auction',
     shape: 'jag',
@@ -167,7 +167,7 @@ export const projects = [
   },
   {
     id: 'burger-flipper',
-    recent: false,
+    category: 'embedded', // which Projects tab it is under: 'fullstack' or 'embedded'
     date: 'February 2025', // the repo was created Feb 2025 (last pushed Aug 2025)
     title: 'Autonomous Burger Flipping System',
     art: 'burger',
