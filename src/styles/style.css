@@ -529,3 +529,6 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 @media (max-width: 800px) { .proj-split { grid-template-columns: 1fr; gap: 0; } .proj-side { display: none; } .proj-inline { display: block; padding: 0 0 1.5rem; } .preview-text { margin-bottom: .6rem; } }
 @media (prefers-reduced-motion: reduce) { .preview { animation: none; } }
 
+/* Separator line above the contact footer, and spacing for the View on GitHub link on cards */
+.contact { border-top: 2px solid color-mix(in srgb, var(--text) 22%, transparent); padding: 2.2rem 0; }
+.entry .entry-repo { display: inline-block; margin-top: .5rem; }

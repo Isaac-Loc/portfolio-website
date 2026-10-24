@@ -4,7 +4,7 @@ import Shots from './Shots.jsx'
 // One resume card for the home page: title, meta line, optional summary, stat chips, and tag list (tech or coursework).
 // With `image`, the card becomes two columns and shows the screenshot in a retro window frame (title bar = imageLabel);
 // clicking the screenshot opens a larger view.
-export default function Entry({ title, meta, summary, stats = [], tech = [], tagsLabel, href, at, image, imageAlt = '', imageLabel, badge }) {
+export default function Entry({ title, meta, summary, stats = [], tech = [], tagsLabel, href, at, repo, image, imageAlt = '', imageLabel, badge }) {
   return (
     <article className={`entry reveal${image ? ' has-image' : ''}`}>
       <div className="entry-body">
@@ -17,6 +17,7 @@ export default function Entry({ title, meta, summary, stats = [], tech = [], tag
       {stats.length > 0 && <ul className="entry-stats">{stats.map((s) => <li key={s.l}><b>{s.n}</b> {s.l}</li>)}</ul>}
       {tagsLabel && <p className="entry-tags-label">{tagsLabel}</p>}
       <ul className="entry-tech">{tech.map((t) => <li key={t}>{t}</li>)}</ul>
+      {repo && <a className="preview-link entry-repo" href={repo} target="_blank" rel="noopener noreferrer">View on GitHub</a>}
       </div>
       {image && <Shots src={image} alt={imageAlt} label={imageLabel} />}
     </article>

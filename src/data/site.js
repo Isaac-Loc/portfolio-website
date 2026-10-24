@@ -17,7 +17,7 @@ export const site = {
   about: {
     // The About box in the hero: one plain paragraph, then short label/value rows.
     paragraphs: [
-      "I'm a Computer Science student at the University at Buffalo with a minor in Math. I mostly work on web apps and embedded projects, and I like picking up whatever a project needs.",
+      "I'm a Computer Science student at the University at Buffalo with a minor in Math. My focus is full-stack web development and embedded systems, and I'm always open to learning new areas of software and engineering.",
     ],
     facts: [
       { label: 'Studying', value: 'B.S. Computer Science, minor in Math, University at Buffalo (expected May 2027)' },
@@ -32,6 +32,7 @@ export const site = {
 export const experience = [
   {
     id: 'ezesports',
+    repo: 'https://github.com/EZ-Esports/website', // public repo, shown as a View on GitHub link
     role: 'Full Stack Software Engineer',
     org: 'EZEsports',
     orgUrl: 'https://ezesports.org',
@@ -41,7 +42,7 @@ export const experience = [
     shape: 'burst',
     image: '/images/ezesports.webp', // screenshot of the public ezesports.org home page (shown in a window frame on the card)
     imageAlt: 'The ezesports.org home page: New York City High School Esports League',
-    summary: "I'm moving [ezesports.org](https://ezesports.org) to Next.js and moving its player, staff and match data into Supabase.",
+    summary: "Full-stack development on the EZ Esports website ([ezesports.org](https://ezesports.org)) using Next.js, TypeScript and Supabase (PostgreSQL). Built PDF resume uploads with server-side validation, moved application data to a versioned JSONB schema, added site-wide security headers, and shipped the school manager portal's guided tour, season roster lock and student handbook page.",
     stats: [
       { n: '100%', l: 'server-side validated' },
       { n: '5', l: 'security headers' },
@@ -51,6 +52,7 @@ export const experience = [
   },
   {
     id: 'freelance',
+    repo: 'https://github.com/Isaac-Loc/portfolio-website',
     role: 'Freelance Software Engineer',
     org: 'Self-employed',
     orgUrl: 'https://isaac-loc.dev', // this site is the live example
@@ -59,12 +61,13 @@ export const experience = [
     art: 'web',
     shape: 'jag',
     image: null,
-    summary: "I build personal and static websites for clients, including the design, hosting and a custom domain. This site is an example: it's built with React and Vite and hosted on Azure, with GitHub Actions building it on every change.",
+    summary: "Design and development of personal and static websites for clients, including hosting and custom domains. This portfolio is a live reference: a React and Vite site on Azure Static Web Apps, deployed through GitHub Actions on a custom domain with managed HTTPS.",
     stats: [],
     tech: ['React', 'Vite', 'HTML/CSS', 'Azure', 'GitHub Actions'],
   },
   {
     id: 'ub-embedded',
+    repo: 'https://github.com/UB-CSE/LED-Video-Wall',
     role: 'Embedded Software Engineer',
     org: 'University at Buffalo',
     place: 'Buffalo, NY',
@@ -73,7 +76,7 @@ export const experience = [
     shape: 'jag',
     image: '/images/led-wall.webp', // the full team photo with the LED wall
     imageAlt: 'The team with the LED tile wall and the laptop running its control panel',
-    summary: "I wrote C++ firmware for ESP32s that keeps an LED tile wall in sync, and a Flask API so a web page can control it.",
+    summary: "Contributed to the UB LED Video Wall, a modular wall of WS2812B LED matrices driven by ESP32 microcontrollers. Developed C++ server features for text rendering, image scaling and real-time layer movement from the web interface, wrote the Python class that wraps the wall's commands for the Flask API, and updated the microcontroller client's host connection.",
     stats: [
       { n: '50+', l: 'LED tiles' },
       { n: '4', l: 'ESP32s' },
@@ -95,7 +98,7 @@ export const projects = [
     shape: 'jag',
     image: null,
     url: null,
-    summary: "A two-semester capstone for a high school special education teacher. We're building a locker that students with special needs can open easily, without a combination lock.",
+    summary: "Two-semester capstone building a locker that students with special needs can open without a combination lock. Developed for a real client, a high school special education teacher.",
     stats: [],
     tech: ['Hardware/Software Integration', 'Assistive Technology'],
   },
@@ -109,7 +112,7 @@ export const projects = [
     shape: 'jag',
     image: null,
     url: null,
-    summary: "A vending machine controller that takes coins, keeps the total, gives out the product once it's paid for, and returns change. It's modeled with transistor and gate logic and tested in simulation.",
+    summary: "Vending machine controller that accepts coin inputs, tracks the running total, dispenses the product once paid and returns change. Modeled with transistor and gate logic and verified in simulation.",
     stats: [],
     tech: ['VLSI', 'Gate logic', 'Transistor-level design', 'Simulation'],
   },
@@ -123,7 +126,7 @@ export const projects = [
     shape: 'jag',
     image: null,
     url: null,
-    summary: "A medication reminder on an ESP32 running FreeRTOS. At dose time it beeps and lights an LED. If nobody confirms within 10 minutes, it sends a missed-dose alert to a caregiver over Wi-Fi.",
+    summary: "Two-stage medication reminder on an ESP32 running FreeRTOS. A beep and an LED signal each dose, and if nobody confirms within 10 minutes a missed-dose alert is sent to a caregiver over Wi-Fi.",
     stats: [
       { n: '4', l: 'RTOS tasks' },
       { n: '10 min', l: 'miss timeout' },
@@ -140,13 +143,13 @@ export const projects = [
     image: '/images/project-tracker.jpg', // the project page; click it on the card for a bigger view. Shows member names (no emails): see SPEC.md
     imageAlt: 'A project page with its goal, latest status report, linked Google Drive folder and members',
     url: 'https://github.com/Theta-Tau-Mu-Gamma/Theta-Tau-Scrum',
-    summary: "A Kanban workspace for my fraternity chapter, with Google Drive file access built in. I built the React front end and the PHP/Slim API.",
+    summary: "Project tracker for the Theta Tau chapter with scrum boards, task delegation, time tracking and Google Drive integration. React and Vite front end, PHP/Slim API and MySQL database, with Google Sign-In for authentication.",
     stats: [
       { n: '20+', l: 'members' },
       { n: '68', l: 'API endpoints' },
       { n: '6', l: 'Kanban stages' },
     ],
-    tech: ['React', 'PHP/Slim', 'MySQL'],
+    tech: ['React', 'Vite', 'PHP/Slim', 'MySQL', 'Google Drive API'],
   },
   {
     id: 'bidit',
@@ -158,7 +161,7 @@ export const projects = [
     image: '/images/bidit.webp', // the marketplace browse page (sample listings, no personal data); click it for a bigger view
     imageAlt: 'The Bidit marketplace home page: category and condition filters, a price range, and a grid of listings with prices',
     url: null,
-    summary: "A marketplace where people list items for sale or auction, with bids that update live. Built with React, PHP and MySQL.",
+    summary: "Peer-to-peer marketplace with live auctions and buy-it-now listings, built by a team of five in React, PHP and MySQL. Implemented the accepted-bid checkout with a 24-hour exclusive purchase window, order cancellation with seller approval, listing price adjustments and the seller messaging interface.",
     stats: [
       { n: '2', l: 'listing types' },
       { n: 'live', l: 'bid updates' },
@@ -175,7 +178,7 @@ export const projects = [
     image: '/images/burger-flipper.jpg', // the machine only, cropped from a crowded event photo (people cropped out)
     imageAlt: 'The burger flipping machine on its tripod: a wooden base with the spatula rails, motors, and wiring underneath',
     url: 'https://github.com/Isaac-Loc/Autonomous-Burger-Flipping-System',
-    summary: "Arduino firmware in C++ for a machine that flips burgers on a grill. DC motors slide a spatula and a temperature probe across the grill, laser sensors find the patty, and a servo flips it.",
+    summary: "Arduino Mega firmware in C++ for an automated grill assistant. Two DC motors move a spatula and temperature probe across the grill, laser sensors locate the patty, and a servo flips it.",
     stats: [
       { n: '2', l: 'DC motors' },
       { n: '1', l: 'servo flipper' },
@@ -203,12 +206,13 @@ export const education = {
 
 export const leadership = {
   role: 'Brotherhood Outreach & Software Lead',
+  repo: 'https://github.com/Isaac-Loc/OT-LED-Wall',
   org: 'Theta Tau – Engineering Fraternity',
   dates: 'May 2025 – Present',
   art: 'calendar',
   shape: 'burst8',
   image: null,
-  summary: "I plan events for the chapter and built an LED wall with C++ and ESP32s to bring people to our tabling.",
+  summary: "Plans chapter events and built the chapter's tabling LED wall: an ESP32-S3 driving four chained 64x64 HUB75 panels as a 256x64 display, programmed in C++ with PlatformIO.",
   stats: [
     { n: '15+', l: 'events' },
     { n: '40+', l: 'per event' },

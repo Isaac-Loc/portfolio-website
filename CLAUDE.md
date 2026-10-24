@@ -36,7 +36,7 @@ public/images/             me.png (portrait)
 ```
 
 ## Conventions
-- Content goes in `src/data/site.js`, not hard-coded in components. Only show facts on the resume (`Isaac_Loc_Resume.pdf`).
+- Content goes in `src/data/site.js`, not hard-coded in components. Only show facts from the resume (`Isaac_Loc_Resume.pdf`) or the user's own GitHub repos for each role/project (allowed 2026-10-24); never private repo details, and credit only what Isaac did in team repos. Write in a formal, concise, impersonal register (verb-led sentences, no first-person chatter, no bold highlights).
 - NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive.
 - Plain CSS in one file; colours/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem` (fluid root font-size; primary target is a 1440p monitor).
 - Professional look: pixel-frame `.box` cards (square corners, 4px notched border via four box-shadows in `--frame`). NO cutout/clip-path shapes, tape, stickers, sparkles, stamps, doodles, custom cursors, paper grain, tilt or hero click widgets (user scratched them). Keep colours flat (no gradients/glows). The signature look is the retro **pixel font** (Press Start 2P) for titles and labels; the hero title is a typed animation (`useTyper`). The bubbled/outlined text was scrapped: do not bring it back.

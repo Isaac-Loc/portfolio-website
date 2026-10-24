@@ -23,7 +23,7 @@ export default function Hero({ site }) {
           </p>
           <div className="hero-actions">
           <a className="tag tag-cta" href="#experience" onClick={(e) => { e.preventDefault(); document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }) }}>
-            &#9654; SEE WHAT I'M UP TO!
+            &#9654; VIEW MY WORK
           </a>
           <Socials site={site} />
           </div>

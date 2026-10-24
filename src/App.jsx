@@ -21,7 +21,7 @@ export default function App() {
           <Section id="experience" no="02" title="Experience">
             <div className="entry-grid single reveal-stagger">
               {experience.map((e) => (
-                <Entry key={e.id} title={e.role} href={e.orgUrl} at={e.orgUrl ? new URL(e.orgUrl).host : undefined} meta={`${e.org} · ${e.place} · ${e.dates}`} summary={e.summary} stats={e.stats} tech={e.tech} image={e.image} imageAlt={e.imageAlt} imageLabel={e.orgUrl ? new URL(e.orgUrl).host.toUpperCase() : e.org.toUpperCase()} />
+                <Entry key={e.id} title={e.role} href={e.orgUrl} at={e.orgUrl ? new URL(e.orgUrl).host : undefined} meta={`${e.org} · ${e.place} · ${e.dates}`} summary={e.summary} stats={e.stats} tech={e.tech} repo={e.repo} image={e.image} imageAlt={e.imageAlt} imageLabel={e.orgUrl ? new URL(e.orgUrl).host.toUpperCase() : e.org.toUpperCase()} />
               ))}
             </div>
           </Section>
@@ -30,7 +30,7 @@ export default function App() {
           </Section>
           <Section id="leadership" no="04" title="Leadership">
             <div className="entry-grid">
-              <Entry title={leadership.role} meta={`${leadership.org} · ${leadership.dates}`} summary={leadership.summary} stats={leadership.stats} tech={leadership.tech} />
+              <Entry title={leadership.role} meta={`${leadership.org} · ${leadership.dates}`} summary={leadership.summary} stats={leadership.stats} tech={leadership.tech} repo={leadership.repo} />
             </div>
           </Section>
           <Section id="skills" no="05" title="Skills">
