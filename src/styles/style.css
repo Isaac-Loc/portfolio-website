@@ -507,3 +507,44 @@ a.tag.active .lock-shackle { transform: translateY(-1.6px) rotate(-22deg); }
 .entry-badge { margin-bottom: .5rem; padding: .4rem .5rem .3rem; font-size: .45rem; }
 @media (max-width: 800px) { .entry.has-image { grid-template-columns: 1fr; gap: 1rem; } }
 
+/* Numbered section labels ("02 / EXPERIENCE") and the About fact rows */
+.section-kicker { margin: 0 0 .7rem; font-family: var(--font-pixel); font-size: .55rem; line-height: 1.4; color: var(--accent); }
+.about-facts { margin: 1rem 0 0; padding: 0; }
+.about-facts div { display: grid; grid-template-columns: 5.5rem 1fr; gap: .8rem; padding: .6rem 0; border-top: 1px solid var(--border); }
+.about-facts dt { font-family: var(--font-pixel); font-size: .5rem; line-height: 1.6; text-transform: uppercase; color: var(--muted); }
+.about-facts dd { margin: 0; font-size: .88rem; line-height: 1.5; }
+
+/* Projects as short rows that open on click (native <details>); the screenshot and text sit inside */
+.proj-list, .archive-list .arch-item { width: min(100%, 56rem); }
+.proj { border-top: 1px solid var(--border); }
+.proj-list .proj:last-child, .arch-item .proj { border-bottom: 1px solid var(--border); }
+.proj-head { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; padding: 1.2rem 0; cursor: pointer; list-style: none; }
+.proj-head::-webkit-details-marker { display: none; }
+.proj-head:hover .proj-title, .proj-head:focus-visible .proj-title { text-decoration: underline; }
+.proj-main { display: grid; gap: .35rem; justify-items: start; }
+.proj-title { font-family: var(--font-pixel); font-size: 1rem; line-height: 1.45; color: var(--primary); }
+:root[data-theme="dark"] .proj-title { color: var(--accent); }
+.proj-date { font-size: .8rem; color: var(--muted); }
+.proj-tease { font-size: .92rem; line-height: 1.55; color: var(--text); }
+.proj-toggle { position: relative; width: 1.7rem; height: 1.7rem; background: var(--ink); color: #f0fbfc; }
+:root[data-theme="dark"] .proj-toggle { background: #e4e4e7; color: #1c1c1e; }
+.proj-toggle::before, .proj-toggle::after { content: ""; position: absolute; top: 50%; left: 50%; width: .8rem; height: 3px; margin: -1.5px 0 0 -.4rem; background: currentColor; }
+.proj-toggle::after { transform: rotate(90deg); }
+.proj[open] .proj-toggle::after { display: none; }
+.proj[open] .proj-tease { display: none; }
+.proj-head:hover .proj-toggle { background: var(--primary); color: #fff; }
+.proj-body { display: grid; gap: 1.8rem; padding: 0 0 1.6rem; }
+.proj-body.has-image { grid-template-columns: 19rem minmax(0, 1fr); align-items: start; }
+.proj-body .entry-shot { width: 100%; margin: 0; background: none; box-shadow: none; }
+.proj-body .entry-shot .window-bar { display: none; }
+.proj-body .entry-shot .window-body { padding: 0; }
+.proj-body .shot-pic { aspect-ratio: 16 / 10; }
+.proj-body .shot-pic img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.proj-text .entry-summary { margin-top: 0; }
+.proj-link { display: inline-block; margin-top: .8rem; font-size: .85rem; color: var(--primary); }
+:root[data-theme="dark"] .proj-link { color: var(--accent); }
+.arch-item { margin-bottom: 0; }
+.archive-list { margin-top: 1.5rem; }
+.proj .entry-badge { margin-bottom: .2rem; }
+@media (max-width: 800px) { .proj-body.has-image { grid-template-columns: 1fr; gap: 1rem; } .about-facts div { grid-template-columns: 1fr; gap: .2rem; } }
+

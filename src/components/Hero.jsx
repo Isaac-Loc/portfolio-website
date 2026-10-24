@@ -28,8 +28,11 @@ export default function Hero({ site }) {
           <Socials site={site} />
           </div>
           <div className="box about-note">
-            <span className="tag">ABOUT ME</span>
+            <span className="tag">01 / ABOUT</span>
             {site.about.paragraphs.slice(0, 2).map((t) => <p key={t}><Rich text={t} /></p>)}
+            <dl className="about-facts">
+              {site.about.facts.map((f) => <div key={f.label}><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+            </dl>
           </div>
         </div>
         <div className="hero-media reveal">

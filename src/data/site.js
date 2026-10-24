@@ -15,9 +15,13 @@ export const site = {
   tagline: 'Software engineer from embedded firmware to full stack.',
   roles: ['Software Engineer', 'Full Stack Developer', 'Embedded Developer', 'Computer Science @\nUniversity at Buffalo'], // typed under the hero title
   about: {
-    // Paragraphs shown in the About section. **bold** works.
+    // The About box in the hero: one plain paragraph, then short label/value rows.
     paragraphs: [
-      "I'm a **Computer Science** student at the University at Buffalo with a minor in Math, driven by building reliable solutions to real-world problems. My focus is **full-stack web development** and **embedded systems**, and I'm always open to learning something new.",
+      "I'm a Computer Science student at the University at Buffalo with a minor in Math. I mostly work on web apps and embedded projects, and I like picking up whatever a project needs.",
+    ],
+    facts: [
+      { label: 'Studying', value: 'B.S. Computer Science, minor in Math, University at Buffalo (expected May 2027)' },
+      { label: 'Focus', value: 'Full-stack web development and embedded systems' },
     ],
   },
   photos: {
@@ -37,7 +41,7 @@ export const experience = [
     shape: 'burst',
     image: '/images/ezesports.webp', // screenshot of the public ezesports.org home page (shown in a window frame on the card)
     imageAlt: 'The ezesports.org home page: New York City High School Esports League',
-    summary: 'Currently spearheading the migration of [ezesports.org](https://ezesports.org) to a more modern stack with **Next.js**. Overseeing the initiative to normalize all player, staff and match data into **Supabase**.',
+    summary: "I'm moving [ezesports.org](https://ezesports.org) to Next.js and moving its player, staff and match data into Supabase.",
     stats: [
       { n: '100%', l: 'server-side validated' },
       { n: '5', l: 'security headers' },
@@ -55,7 +59,7 @@ export const experience = [
     art: 'web',
     shape: 'jag',
     image: null,
-    summary: 'Building fast, low-maintenance **personal and static websites** for clients, from design and content to hosting and a custom domain. This portfolio is a live example: **React** and **Vite**, deployed on **Azure** with automatic builds from **GitHub**.',
+    summary: "I build personal and static websites for clients, including the design, hosting and a custom domain. This site is an example: it's built with React and Vite and hosted on Azure, with GitHub Actions building it on every change.",
     stats: [],
     tech: ['React', 'Vite', 'HTML/CSS', 'Azure', 'GitHub Actions'],
   },
@@ -69,7 +73,7 @@ export const experience = [
     shape: 'jag',
     image: '/images/led-wall.webp', // the full team photo with the LED wall
     imageAlt: 'The team with the LED tile wall and the laptop running its control panel',
-    summary: 'Embedded development in **C++** on ESP32s, from firmware to the network commands that drive an LED tile array. A **Flask** API connects it all to the web frontend.',
+    summary: "I wrote C++ firmware for ESP32s that keeps an LED tile wall in sync, and a Flask API so a web page can control it.",
     stats: [
       { n: '50+', l: 'LED tiles' },
       { n: '4', l: 'ESP32s' },
@@ -91,7 +95,7 @@ export const projects = [
     shape: 'jag',
     image: null,
     url: null,
-    summary: 'A two-semester **hardware/software** capstone for a real client, a high school special education teacher. The goal is a locker that students with special needs can open easily, without a combination lock.',
+    summary: "A two-semester capstone for a high school special education teacher. We're building a locker that students with special needs can open easily, without a combination lock.",
     stats: [],
     tech: ['Hardware/Software Integration', 'Assistive Technology'],
   },
@@ -105,7 +109,7 @@ export const projects = [
     shape: 'jag',
     image: null,
     url: null,
-    summary: 'A vending machine controller that accepts coin inputs, tracks the total, dispenses the product once paid, and returns change. It is modeled with **transistor and gate logic** and tested in simulation.',
+    summary: "A vending machine controller that takes coins, keeps the total, gives out the product once it's paid for, and returns change. It's modeled with transistor and gate logic and tested in simulation.",
     stats: [],
     tech: ['VLSI', 'Gate logic', 'Transistor-level design', 'Simulation'],
   },
@@ -119,7 +123,7 @@ export const projects = [
     shape: 'jag',
     image: null,
     url: null,
-    summary: 'A two-stage medication reminder on an **ESP32** running **FreeRTOS**. It beeps and lights an LED at dose time, and if nobody confirms within 10 minutes it sends a missed-dose alert to a caregiver over **Wi-Fi**.',
+    summary: "A medication reminder on an ESP32 running FreeRTOS. At dose time it beeps and lights an LED. If nobody confirms within 10 minutes, it sends a missed-dose alert to a caregiver over Wi-Fi.",
     stats: [
       { n: '4', l: 'RTOS tasks' },
       { n: '10 min', l: 'miss timeout' },
@@ -136,7 +140,7 @@ export const projects = [
     image: '/images/project-tracker.jpg', // the project page; click it on the card for a bigger view. Shows member names (no emails): see SPEC.md
     imageAlt: 'A project page with its goal, latest status report, linked Google Drive folder and members',
     url: 'https://github.com/Theta-Tau-Mu-Gamma/Theta-Tau-Scrum',
-    summary: 'Full-stack development using **React** and **PHP/Slim**, from schema design to the API. A shared Kanban workspace for the whole chapter, with **Google Drive** built in.',
+    summary: "A Kanban workspace for my fraternity chapter, with Google Drive file access built in. I built the React front end and the PHP/Slim API.",
     stats: [
       { n: '20+', l: 'members' },
       { n: '68', l: 'API endpoints' },
@@ -154,7 +158,7 @@ export const projects = [
     image: '/images/bidit.webp', // the marketplace browse page (sample listings, no personal data); click it for a bigger view
     imageAlt: 'The Bidit marketplace home page: category and condition filters, a price range, and a grid of listings with prices',
     url: null,
-    summary: 'A peer-to-peer marketplace built with **React**, **PHP** and **MySQL**. Handling listings, auctions and **real-time bidding** end to end.',
+    summary: "A marketplace where people list items for sale or auction, with bids that update live. Built with React, PHP and MySQL.",
     stats: [
       { n: '2', l: 'listing types' },
       { n: 'live', l: 'bid updates' },
@@ -171,7 +175,7 @@ export const projects = [
     image: '/images/burger-flipper.jpg', // the machine only, cropped from a crowded event photo (people cropped out)
     imageAlt: 'The burger flipping machine on its tripod: a wooden base with the spatula rails, motors, and wiring underneath',
     url: 'https://github.com/Isaac-Loc/Autonomous-Burger-Flipping-System',
-    summary: 'Arduino firmware in **C++** for a robotic grill assistant. **DC motors** slide a spatula and temperature probe across the grill, laser sensors locate the patty, and a **servo** flips it.',
+    summary: "Arduino firmware in C++ for a machine that flips burgers on a grill. DC motors slide a spatula and a temperature probe across the grill, laser sensors find the patty, and a servo flips it.",
     stats: [
       { n: '2', l: 'DC motors' },
       { n: '1', l: 'servo flipper' },
@@ -204,7 +208,7 @@ export const leadership = {
   art: 'calendar',
   shape: 'burst8',
   image: null,
-  summary: 'Plan chapter events and built an **LED wall** with C++ and ESP32s to draw people to our tabling.',
+  summary: "I plan events for the chapter and built an LED wall with C++ and ESP32s to bring people to our tabling.",
   stats: [
     { n: '15+', l: 'events' },
     { n: '40+', l: 'per event' },

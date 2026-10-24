@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Entry from './Entry.jsx'
+import ProjectRow from './ProjectRow.jsx'
 
 // Archive tabs: ALL, IN PROGRESS (projects with `inProgress: true` in site.js, which also get a COMING SOON badge on their card), then one tab per year (taken
 // from each project's `date`, e.g. "August 2026"). ALL lists everything in the order in progress, 2026, 2025,
@@ -51,7 +51,7 @@ export default function ProjectArchive({ projects }) {
           <ol className="archive-list" key={tab}>
             {shown.map((p) => (
               <li key={p.id} className="arch-item">
-                <Entry title={p.title} href={p.url} meta={p.date} summary={p.summary} stats={p.stats} tech={p.tech} image={p.image} imageAlt={p.imageAlt} imageLabel={p.title.toUpperCase()} badge={p.inProgress ? 'COMING SOON' : p.recent ? 'MOST RECENT' : undefined} />
+                <ProjectRow project={p} badge={p.inProgress ? 'COMING SOON' : p.recent ? 'MOST RECENT' : undefined} />
               </li>
             ))}
           </ol>
