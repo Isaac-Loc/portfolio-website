@@ -23,13 +23,16 @@ export default function Hero({ site }) {
           </p>
           <div className="hero-actions">
           <a className="tag tag-cta" href="#experience" onClick={(e) => { e.preventDefault(); document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }) }}>
-            &#9654; SEE WHAT I'M UP TO!
+            &#9654; VIEW MY WORK
           </a>
           <Socials site={site} />
           </div>
-          <div className="box about-note">
-            <span className="tag">ABOUT ME</span>
+          <div className="about-note">
+            <div className="section-kicker">01 / ABOUT ME</div>
             {site.about.paragraphs.slice(0, 2).map((t) => <p key={t}><Rich text={t} /></p>)}
+            <dl className="about-facts">
+              {site.about.facts.map((f) => <div key={f.label}><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+            </dl>
           </div>
         </div>
         <div className="hero-media reveal">

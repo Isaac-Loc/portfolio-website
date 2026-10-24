@@ -15,9 +15,13 @@ export const site = {
   tagline: 'Software engineer from embedded firmware to full stack.',
   roles: ['Software Engineer', 'Full Stack Developer', 'Embedded Developer', 'Computer Science @\nUniversity at Buffalo'], // typed under the hero title
   about: {
-    // Paragraphs shown in the About section. **bold** works.
+    // The About box in the hero: one plain paragraph, then short label/value rows.
     paragraphs: [
-      "I'm a **Computer Science** student at the University at Buffalo with a minor in Math, driven by building reliable solutions to real-world problems. My focus is **full-stack web development** and **embedded systems**, and I'm always open to learning something new.",
+      "I'm a Computer Science student at the University at Buffalo with a minor in Math. My focus is full-stack web development and embedded systems, and I'm always open to learning new areas of software and engineering.",
+    ],
+    facts: [
+      { label: 'Studying', value: 'B.S. Computer Science, minor in Math, University at Buffalo (expected May 2027)' },
+      { label: 'Focus', value: 'Full-stack web development and embedded systems' },
     ],
   },
   photos: {
@@ -28,6 +32,7 @@ export const site = {
 export const experience = [
   {
     id: 'ezesports',
+    repo: 'https://github.com/EZ-Esports/website', // public repo, shown as a View on GitHub link
     role: 'Full Stack Software Engineer',
     org: 'EZEsports',
     orgUrl: 'https://ezesports.org',
@@ -37,7 +42,7 @@ export const experience = [
     shape: 'burst',
     image: '/images/ezesports.webp', // screenshot of the public ezesports.org home page (shown in a window frame on the card)
     imageAlt: 'The ezesports.org home page: New York City High School Esports League',
-    summary: 'Currently spearheading the migration of [ezesports.org](https://ezesports.org) to a more modern stack with **Next.js**. Overseeing the initiative to normalize all player, staff and match data into **Supabase**.',
+    summary: "Full-stack development on the EZ Esports website ([ezesports.org](https://ezesports.org)) using Next.js, TypeScript and Supabase (PostgreSQL). Built PDF resume uploads with server-side validation, moved application data to a versioned JSONB schema, added site-wide security headers, and shipped the school manager portal's guided tour, season roster lock and student handbook page.",
     stats: [
       { n: '100%', l: 'server-side validated' },
       { n: '5', l: 'security headers' },
@@ -47,6 +52,7 @@ export const experience = [
   },
   {
     id: 'freelance',
+    repo: 'https://github.com/Isaac-Loc/portfolio-website',
     role: 'Freelance Software Engineer',
     org: 'Self-employed',
     orgUrl: 'https://isaac-loc.dev', // this site is the live example
@@ -55,12 +61,13 @@ export const experience = [
     art: 'web',
     shape: 'jag',
     image: null,
-    summary: 'Building fast, low-maintenance **personal and static websites** for clients, from design and content to hosting and a custom domain. This portfolio is a live example: **React** and **Vite**, deployed on **Azure** with automatic builds from **GitHub**.',
+    summary: "Design and development of personal and static websites for clients, including hosting and custom domains. This portfolio is a live reference: a React and Vite site on Azure Static Web Apps, deployed through GitHub Actions on a custom domain with managed HTTPS.",
     stats: [],
     tech: ['React', 'Vite', 'HTML/CSS', 'Azure', 'GitHub Actions'],
   },
   {
     id: 'ub-embedded',
+    repo: 'https://github.com/UB-CSE/LED-Video-Wall',
     role: 'Embedded Software Engineer',
     org: 'University at Buffalo',
     place: 'Buffalo, NY',
@@ -69,7 +76,7 @@ export const experience = [
     shape: 'jag',
     image: '/images/led-wall.webp', // the full team photo with the LED wall
     imageAlt: 'The team with the LED tile wall and the laptop running its control panel',
-    summary: 'Embedded development in **C++** on ESP32s, from firmware to the network commands that drive an LED tile array. A **Flask** API connects it all to the web frontend.',
+    summary: "Contributed to the UB LED Video Wall, a modular wall of WS2812B LED matrices driven by ESP32 microcontrollers. Developed C++ server features for text rendering, image scaling and real-time layer movement from the web interface, wrote the Python class that wraps the wall's commands for the Flask API, and updated the microcontroller client's host connection.",
     stats: [
       { n: '50+', l: 'LED tiles' },
       { n: '4', l: 'ESP32s' },
@@ -83,43 +90,43 @@ export const experience = [
 export const projects = [
   {
     id: 'automated-locker',
-    recent: false,
-    inProgress: true, // listed under the IN PROGRESS tab, with a COMING SOON badge of the Project Archive (and under 2026)
+    category: 'embedded', // which Projects tab it is under: 'fullstack' or 'embedded'
+    inProgress: true, // shows a COMING SOON badge next to the title in the Projects list
     date: 'Fall 2026 – Spring 2027', // CSE 450 (design) then CSE 453 (build), a two-semester project
     title: 'Automated Locker',
     art: 'locker',
     shape: 'jag',
     image: null,
     url: null,
-    summary: 'A two-semester **hardware/software** capstone for a real client, a high school special education teacher. The goal is a locker that students with special needs can open easily, without a combination lock.',
+    summary: "Two-semester capstone building a locker that students with special needs can open without a combination lock. Developed for a real client, a high school special education teacher.",
     stats: [],
     tech: ['Hardware/Software Integration', 'Assistive Technology'],
   },
   {
     id: 'vending-controller',
-    recent: false,
-    inProgress: true, // listed under the IN PROGRESS tab, with a COMING SOON badge of the Project Archive (and under 2026)
+    category: 'embedded', // which Projects tab it is under: 'fullstack' or 'embedded'
+    inProgress: true, // shows a COMING SOON badge next to the title in the Projects list
     date: 'Fall 2026', // CSE 493 (Intro to VLSI) group project, proposed October 2026
     title: 'Vending Machine Controller',
     art: 'vending',
     shape: 'jag',
     image: null,
     url: null,
-    summary: 'A vending machine controller that accepts coin inputs, tracks the total, dispenses the product once paid, and returns change. It is modeled with **transistor and gate logic** and tested in simulation.',
+    summary: "Vending machine controller that accepts coin inputs, tracks the running total, dispenses the product once paid and returns change. Modeled with transistor and gate logic and verified in simulation.",
     stats: [],
     tech: ['VLSI', 'Gate logic', 'Transistor-level design', 'Simulation'],
   },
   {
     id: 'medalert',
-    recent: false,
-    inProgress: true, // listed under the IN PROGRESS tab, with a COMING SOON badge of the Project Archive (and under 2026)
+    category: 'embedded', // which Projects tab it is under: 'fullstack' or 'embedded'
+    inProgress: true, // shows a COMING SOON badge next to the title in the Projects list
     date: 'Fall 2026', // CSE 321 semester project, due Nov 2026
     title: 'MedAlert',
     art: 'pill',
     shape: 'jag',
     image: null,
     url: null,
-    summary: 'A two-stage medication reminder on an **ESP32** running **FreeRTOS**. It beeps and lights an LED at dose time, and if nobody confirms within 10 minutes it sends a missed-dose alert to a caregiver over **Wi-Fi**.',
+    summary: "Two-stage medication reminder on an ESP32 running FreeRTOS. A beep and an LED signal each dose, and if nobody confirms within 10 minutes a missed-dose alert is sent to a caregiver over Wi-Fi.",
     stats: [
       { n: '4', l: 'RTOS tasks' },
       { n: '10 min', l: 'miss timeout' },
@@ -128,33 +135,33 @@ export const projects = [
   },
   {
     id: 'pm-tool',
-    recent: true, // shown on the main page; every project (recent or not) is in the Project Archive tab
-    date: 'August 2026', // shown under the title on the card and in the Project Archive
+    category: 'fullstack', // which Projects tab it is under: 'fullstack' or 'embedded'
+    date: 'August 2026', // first item of the caption line under the preview picture
     title: 'Project Management Tool',
     art: 'kanban',
     shape: 'burst8',
     image: '/images/project-tracker.jpg', // the project page; click it on the card for a bigger view. Shows member names (no emails): see SPEC.md
     imageAlt: 'A project page with its goal, latest status report, linked Google Drive folder and members',
     url: 'https://github.com/Theta-Tau-Mu-Gamma/Theta-Tau-Scrum',
-    summary: 'Full-stack development using **React** and **PHP/Slim**, from schema design to the API. A shared Kanban workspace for the whole chapter, with **Google Drive** built in.',
+    summary: "Project tracker for the Theta Tau chapter with scrum boards, task delegation, time tracking and Google Drive integration. React and Vite front end, PHP/Slim API and MySQL database, with Google Sign-In for authentication.",
     stats: [
       { n: '20+', l: 'members' },
       { n: '68', l: 'API endpoints' },
       { n: '6', l: 'Kanban stages' },
     ],
-    tech: ['React', 'PHP/Slim', 'MySQL'],
+    tech: ['React', 'Vite', 'PHP/Slim', 'MySQL', 'Google Drive API'],
   },
   {
     id: 'bidit',
-    recent: false,
-    date: 'March 2026', // shown under the title on the card and in the Project Archive
+    category: 'fullstack', // which Projects tab it is under: 'fullstack' or 'embedded'
+    date: 'March 2026', // first item of the caption line under the preview picture
     title: 'Bidit Auction Marketplace',
     art: 'auction',
     shape: 'jag',
     image: '/images/bidit.webp', // the marketplace browse page (sample listings, no personal data); click it for a bigger view
     imageAlt: 'The Bidit marketplace home page: category and condition filters, a price range, and a grid of listings with prices',
     url: null,
-    summary: 'A peer-to-peer marketplace built with **React**, **PHP** and **MySQL**. Handling listings, auctions and **real-time bidding** end to end.',
+    summary: "Peer-to-peer marketplace with live auctions and buy-it-now listings, built by a team of five in React, PHP and MySQL. Implemented the accepted-bid checkout with a 24-hour exclusive purchase window, order cancellation with seller approval, listing price adjustments and the seller messaging interface.",
     stats: [
       { n: '2', l: 'listing types' },
       { n: 'live', l: 'bid updates' },
@@ -163,7 +170,7 @@ export const projects = [
   },
   {
     id: 'burger-flipper',
-    recent: false,
+    category: 'embedded', // which Projects tab it is under: 'fullstack' or 'embedded'
     date: 'February 2025', // the repo was created Feb 2025 (last pushed Aug 2025)
     title: 'Autonomous Burger Flipping System',
     art: 'burger',
@@ -171,7 +178,7 @@ export const projects = [
     image: '/images/burger-flipper.jpg', // the machine only, cropped from a crowded event photo (people cropped out)
     imageAlt: 'The burger flipping machine on its tripod: a wooden base with the spatula rails, motors, and wiring underneath',
     url: 'https://github.com/Isaac-Loc/Autonomous-Burger-Flipping-System',
-    summary: 'Arduino firmware in **C++** for a robotic grill assistant. **DC motors** slide a spatula and temperature probe across the grill, laser sensors locate the patty, and a **servo** flips it.',
+    summary: "Arduino Mega firmware in C++ for an automated grill assistant. Two DC motors move a spatula and temperature probe across the grill, laser sensors locate the patty, and a servo flips it.",
     stats: [
       { n: '2', l: 'DC motors' },
       { n: '1', l: 'servo flipper' },
@@ -199,12 +206,13 @@ export const education = {
 
 export const leadership = {
   role: 'Brotherhood Outreach & Software Lead',
+  repo: 'https://github.com/Isaac-Loc/OT-LED-Wall',
   org: 'Theta Tau – Engineering Fraternity',
   dates: 'May 2025 – Present',
   art: 'calendar',
   shape: 'burst8',
   image: null,
-  summary: 'Plan chapter events and built an **LED wall** with C++ and ESP32s to draw people to our tabling.',
+  summary: "Plans chapter events and built the chapter's tabling LED wall: an ESP32-S3 driving four chained 64x64 HUB75 panels as a 256x64 display, programmed in C++ with PlatformIO.",
   stats: [
     { n: '15+', l: 'events' },
     { n: '40+', l: 'per event' },

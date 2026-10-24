@@ -1,12 +1,13 @@
-import Lock from './Lock.jsx'
-// A home-page section: pixel title, an optional ARCHIVE button that routes to the full page, then the content.
-export default function Section({ id, title, archive, archiveLabel = 'ARCHIVE', children }) {
+// A home-page section: a numbered label, the pixel title, then the content.
+export default function Section({ id, no, title, children }) {
   return (
     <section id={id} className="section">
       <div className="section-inner">
         <div className="section-head reveal">
-          <h2 className="section-title">{title}</h2>
-          {archive && <a className="tag tag-archive" href={`#${archive}`}><Lock />{archiveLabel} &gt;</a>}
+          <div>
+            {no && <p className="section-kicker">{no} / {title.toUpperCase()}</p>}
+            <h2 className="section-title">{title}</h2>
+          </div>
         </div>
         {children}
       </div>

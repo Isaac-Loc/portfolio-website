@@ -26,17 +26,17 @@ Deploys are split by branch: **`main` -> Azure Static Web Apps** (production, **
 ```
 index.html                 Vite entry (fonts loaded here, theme set before paint)
 src/main.jsx               React mount + global CSS import
-src/App.jsx                Header + route switch (the only tab is /projects (Project Archive); Home = Hero + Experience/Projects/Leadership/Skills + Contact footer)
+src/App.jsx                One page, no tabs: Header + Home = Hero + Experience/Projects/Leadership/Skills + Contact footer (hash routes exist but none are in use)
 src/data/site.js           ALL editable content, including resume data for sections not built yet
 src/hooks/                 useTheme (light/dark), useRoute (hash router), useTyper (hero typing)
 src/pages/                 EmptyPage placeholder; build each real page here
-src/components/            Header, Hero (retro window portrait), Socials (blinking @ widget next to the CTA), PixelPhoto (grain-to-sharp reveal), CommitGrid, Rich (**bold** text)
+src/components/            Header, Hero (retro window portrait), Socials (blinking @ widget next to the CTA), PixelPhoto (grain-to-sharp reveal), CommitGrid, ProjectList (Projects tabs + hover preview), Rich (link text)
 src/styles/style.css       All styling (single file, tokens at the top)
 public/images/             me.png (portrait)
 ```
 
 ## Conventions
-- Content goes in `src/data/site.js`, not hard-coded in components. Only show facts on the resume (`Isaac_Loc_Resume.pdf`).
+- Content goes in `src/data/site.js`, not hard-coded in components. Only show facts from the resume (`Isaac_Loc_Resume.pdf`) or the user's own GitHub repos for each role/project (allowed 2026-10-24); never private repo details, and credit only what Isaac did in team repos. Write in a formal, concise, impersonal register (verb-led sentences, no first-person chatter, no bold highlights).
 - NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive.
 - Plain CSS in one file; colours/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem` (fluid root font-size; primary target is a 1440p monitor).
 - Professional look: pixel-frame `.box` cards (square corners, 4px notched border via four box-shadows in `--frame`). NO cutout/clip-path shapes, tape, stickers, sparkles, stamps, doodles, custom cursors, paper grain, tilt or hero click widgets (user scratched them). Keep colours flat (no gradients/glows). The signature look is the retro **pixel font** (Press Start 2P) for titles and labels; the hero title is a typed animation (`useTyper`). The bubbled/outlined text was scrapped: do not bring it back.
