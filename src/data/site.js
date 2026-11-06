@@ -69,7 +69,7 @@ export const experience = [
     id: 'ub-embedded',
     repo: 'https://github.com/UB-CSE/LED-Video-Wall',
     role: 'Embedded Software Engineer',
-    org: 'UB CSE Course',
+    org: 'University at Buffalo | CSE 302',
     place: 'Buffalo, NY',
     dates: 'Aug 2025 – Dec 2025',
     art: 'ledwall',
