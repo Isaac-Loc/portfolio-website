@@ -97,8 +97,7 @@ export default function ContactPage({ site }) {
       <div className="section-inner contact-wrap">
         <header className="contact-head reveal">
           <div>
-            <p className="section-kicker"><span>No. 06</span><i className="rule" /><span>Contact</span></p>
-            <h1 className="contact-page-title">Get in touch</h1>
+            <h1 className="contact-page-title">Get in touch<sup className="section-no" aria-hidden="true">06</sup></h1>
           </div>
           <p className="contact-direct">
             <span>Or write directly</span>
