@@ -18,7 +18,7 @@ export default function App() {
   useReveal(route)
   return (
     <>
-      <Header name={site.name} resume={site.resume} />
+      <Header name={site.name} />
       <main>
         <Hero site={site} />
         <Marquee items={site.marquee} />

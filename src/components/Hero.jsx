@@ -37,9 +37,7 @@ export default function Hero({ site }) {
           </p>
           <p className="hero-tagline">{site.tagline}</p>
           <div className="hero-actions">
-            <a className="btn btn-solid" href="#experience" onClick={go('experience')}>View work</a>
-            <a className="btn btn-line" href={site.resume} target="_blank" rel="noopener noreferrer">Résumé</a>
-          </div>
+            <a className="btn btn-solid" href="#experience" onClick={go('experience')}>View work</a>          </div>
           <nav className="hero-links" aria-label="Contact">
             <a href={`mailto:${site.email}`}>Email</a>
             <a href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>

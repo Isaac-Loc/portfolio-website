@@ -9,7 +9,7 @@ const LINKS = [
   { id: 'contact', label: 'Contact' },
 ]
 
-export default function Header({ name, resume }) {
+export default function Header({ name }) {
   const [theme, toggleTheme] = useTheme()
   const dark = theme === 'dark'
   const go = (id) => (e) => {
@@ -25,7 +25,6 @@ export default function Header({ name, resume }) {
           {LINKS.map((l) => <a key={l.id} href={`#${l.id}`} onClick={go(l.id)}>{l.label}</a>)}
         </nav>
         <div className="header-actions">
-          <a className="btn btn-line btn-sm" href={resume} target="_blank" rel="noopener noreferrer">Résumé</a>
           <button
             type="button"
             className="theme-toggle"
