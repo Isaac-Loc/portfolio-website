@@ -52,7 +52,7 @@ Environment variables (secrets live only on the hosts, never in the repo or the 
 |---|---|---|
 | `RESEND_API_KEY` | yes | Resend API key (`re_...`) |
 | `CONTACT_TO` | yes | inbox that receives messages. Until a domain is verified in Resend this must be the Resend account's own email |
-| `CONTACT_FROM` | no | default `Portfolio <onboarding@resend.dev>` (Resend's shared test sender). After verifying isaac-loc.dev in Resend (DNS records at name.com), set e.g. `Portfolio <contact@isaac-loc.dev>` |
+| `CONTACT_FROM` | set | `Portfolio <contact@isaac-loc.dev>` (isaac-loc.dev is verified in Resend; send-only, there is no inbox behind it). Falls back to Resend's shared test sender if unset |
 
 Set them in: Azure (`az staticwebapp appsettings set -n isaac-portfolio -g portfolio_rg --setting-names KEY=value`, subscription "Azure subscription 1"; or portal -> the Static Web App -> Settings -> Environment variables); Vercel (`vercel env add NAME production|preview`; this folder is linked to the Vercel project `portfolio-website` via `vercel link`, `.vercel/` is git-ignored); locally in `.env` or `.env.local` (both git-ignored). Azure CLI sign-in: the Windows sign-in broker was turned off (`az config set core.enable_broker_on_windows=false`) because it rejected the personal account; use `az login` / `az login --use-device-code`. The pokeloc1223 "Default Directory" tenant has no subscription; the user set up the CLI with the account that owns the subscription. Without them the form answers "not configured yet" (HTTP 500) and points to the email address.
 
@@ -124,7 +124,6 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 - No scroll arrows; the user removed them in favour of the browser's own (themed) scrollbar.
 
 ## 8. Open items / TODO
-- [ ] Contact form is live on staging and production. Optional: verify isaac-loc.dev in Resend (DNS at name.com) and set `CONTACT_FROM` so mail comes from the domain instead of onboarding@resend.dev.
 - [ ] Get the user's feedback on the black-and-white redesign (wordmark arch strength, tee print look and caption, ticker words).
 - [ ] Update the GitHub repo's homepage field to https://isaac-loc.dev.
 - [ ] In the Vercel dashboard: make sure the project is still connected to the repo and set its Production Branch to `dev`.
@@ -297,3 +296,4 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 - **2026-11-10 (centring fixes)**: The tee panel's "IL" neck label is optically centred (the script ink sits ~.13em right of its box, so `.tee-label` pads `.25em .27em 0 0`). Section superscript numbers no longer collide with the script titles: their gap is tied to the title size (`--title-fs` on `.section-title` / `.contact-page-title`, `.section-no` margin-left = 31% of it), which clears the widest overhang (the "t" of About).
 - **2026-11-10 (release + env vars)**: Merged `dev` into `main` (user request); the Azure deploy succeeded and `/api/contact` is live on isaac-loc.dev. Linked the folder to the Vercel project and added `RESEND_API_KEY` and `CONTACT_TO` to Vercel Production and Preview via the CLI (values read from the git-ignored `.env`, never printed). `.gitignore` now also ignores `.env*` and `.vercel` (added by `vercel link`).
 - **2026-11-10 (contact form live on production)**: Added `RESEND_API_KEY` and `CONTACT_TO` to the Azure Static Web App `isaac-portfolio` (resource group `portfolio_rg`) via the CLI, values read from the git-ignored `.env` and never printed. Test sends through isaacloc.vercel.app and isaac-loc.dev both returned success from Resend.
+- **2026-11-10 (sending from the domain)**: Verified isaac-loc.dev in Resend (sending only; receiving off). DNS at name.com: TXT `resend._domainkey` (DKIM), CNAME `rsend` -> `rsend.forge.rmta.net` and CNAME `send` -> `send.forge.rmta.net` (Resend's CNAME-based SPF), TXT `_dmarc` = `v=DMARC1; p=none;`; the root CNAME to Azure is unchanged. Set `CONTACT_FROM` = `Portfolio <contact@isaac-loc.dev>` on Vercel (Production + Preview), Azure and `.env`. Note: on Windows, pass values containing `<` `>` to the Azure CLI via its python (`python.exe -IBm azure.cli ...`), not `az.cmd`, which treats them as redirects.
