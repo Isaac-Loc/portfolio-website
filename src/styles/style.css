@@ -331,40 +331,106 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .reveal.in { opacity: 1; transform: none; }
 .tee.reveal { transition-delay: .2s; }
 
-/* ===== Contact page (#/contact) ===== */
-.contact-page { padding-top: 6rem; min-height: calc(100svh - var(--header-h) - 6rem); }
-.contact-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 6rem; align-items: start; }
-.contact-aside .about-lede { font-size: 1.6rem; }
-.contact-aside dd { overflow-wrap: anywhere; }
-.contact-form { display: grid; gap: 2rem; }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.field { display: grid; gap: .5rem; }
-.field label { font-size: .62rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
-.field-opt { letter-spacing: .1em; text-transform: none; }
-.field input, .field textarea {
-  width: 100%; padding: .55rem 0 .7rem; border: 0; border-bottom: 1px solid var(--border); border-radius: 0;
-  background: transparent; color: var(--text); font: inherit; font-size: 1.05rem; outline: none;
-  transition: border-color .25s var(--ease);
+/* ===== Contact page (#/contact): a postcard that fits one screen ===== */
+.contact-page { display: flex; min-height: calc(100svh - var(--header-h)); padding: 2.4rem 0 2.6rem; }
+.contact-wrap { display: flex; flex-direction: column; gap: 1.6rem; }
+.contact-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; }
+.contact-head > div { flex: 1 1 auto; max-width: 40rem; }
+.contact-page-title { margin: 0; font-family: var(--font-script); font-weight: 400; font-size: clamp(3rem, 5.4vw, 4.8rem); line-height: 1.1; }
+.contact-direct { display: grid; justify-items: end; gap: .3rem; margin: 0 0 .5rem; text-align: right; font-size: .95rem; }
+.contact-direct > span:first-child { font-size: .6rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.contact-direct-links { display: flex; gap: 1.2rem; font-size: .6rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; }
+.contact-direct-links a { text-decoration: none; color: var(--muted); }
+.contact-direct-links a:hover { color: var(--text); }
+
+.postcard {
+  --ruled: 2.3rem;
+  position: relative; flex: 1 1 auto; min-height: 30rem;
+  display: grid; grid-template-columns: minmax(0, 1.2fr) 1px minmax(0, 1fr); gap: 0 3rem;
+  padding: 2.4rem 2.8rem 2.2rem;
+  background: var(--card); border: 1px solid var(--line);
+  box-shadow: .5rem .5rem 0 var(--text);
 }
-.field textarea { resize: vertical; min-height: 9rem; line-height: 1.6; }
-.field input:focus, .field textarea:focus { border-bottom-color: var(--text); }
-.field:focus-within label { color: var(--text); }
-.field.has-error input, .field.has-error textarea { border-bottom-color: var(--text); border-bottom-style: dashed; }
-.field-error { margin: 0; font-style: italic; font-family: var(--font-serif); font-size: 1.05rem; }
+.pc-divider { background: var(--border); }
+.pc-left, .pc-right { display: flex; flex-direction: column; min-height: 0; }
+.pc-label { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; font-size: .6rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.pc-label label { cursor: pointer; }
+.pc-label small { letter-spacing: .08em; text-transform: none; font-size: .62rem; }
+.pc-error { font-family: var(--font-serif); font-size: .98rem; letter-spacing: 0; text-transform: none; color: var(--text); }
+
+/* ruled writing lines */
+.pc-lines {
+  flex: 1 1 auto; min-height: calc(var(--ruled) * 4); width: 100%; margin-top: .3rem; padding: 0; border: 0; resize: none;
+  background: repeating-linear-gradient(to bottom, transparent 0 calc(var(--ruled) - 1px), var(--border) calc(var(--ruled) - 1px) var(--ruled));
+  background-attachment: local;
+  color: var(--text); font-family: var(--font-serif); font-size: 1.35rem; line-height: var(--ruled); outline: none;
+}
+.pc-lines::placeholder { font-family: var(--font-script); font-size: 1.9rem; color: var(--muted); opacity: .8; }
+.pc-sign { display: grid; grid-template-columns: auto 1fr; align-items: end; gap: 0 1.2rem; margin-top: 1.2rem; }
+.pc-sign .pc-label { padding-bottom: .9rem; }
+.pc-sign .pc-label .pc-error { display: none; }
+.pc-signature {
+  width: 100%; padding: 0 0 .1rem; border: 0; border-bottom: 1px solid var(--line); background: transparent; outline: none;
+  color: var(--text); font-family: var(--font-script); font-size: 2.3rem; line-height: 1.2;
+}
+.pc-signature::placeholder { color: var(--muted); opacity: .45; }
+.pc-sign:has([aria-invalid="true"]) .pc-signature { border-bottom-style: dashed; }
+.pc-sign:has([aria-invalid="true"])::after { content: "Please sign with your name."; grid-column: 2; margin-top: .3rem; font-family: var(--font-serif); font-style: italic; font-size: .98rem; }
+
+/* stamp corner */
+.pc-corner { position: relative; display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.6rem; }
+.pc-postage { margin: .2rem 0 0; font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; line-height: 1.1; }
+.pc-postage span { font-family: var(--font-body); font-style: normal; font-size: .55rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.pc-stamp {
+  --perf: 7px;
+  position: relative; width: 7.6rem; flex: 0 0 auto; padding: .5rem; background: var(--shirt);
+  -webkit-mask: radial-gradient(circle, #0000 calc(var(--perf) / 2 - .5px), #000 calc(var(--perf) / 2)) calc(var(--perf) / -2) calc(var(--perf) / -2) / var(--perf) var(--perf), linear-gradient(#000 0 0) center / calc(100% - var(--perf)) calc(100% - var(--perf)) no-repeat;
+          mask: radial-gradient(circle, #0000 calc(var(--perf) / 2 - .5px), #000 calc(var(--perf) / 2)) calc(var(--perf) / -2) calc(var(--perf) / -2) / var(--perf) var(--perf), linear-gradient(#000 0 0) center / calc(100% - var(--perf)) calc(100% - var(--perf)) no-repeat;
+  transform: rotate(2deg);
+}
+:root[data-theme="dark"] .pc-stamp { background: #262624; }
+.pc-stamp-inner { position: relative; padding: .4rem .4rem 1.1rem; border: 1px solid color-mix(in srgb, var(--print) 35%, transparent); color: var(--print); }
+.pc-stamp .print-canvas { width: 100%; }
+.pc-stamp-cap { position: absolute; right: .4rem; bottom: .3rem; font-size: .5rem; font-weight: 600; letter-spacing: .12em; }
+.postmark { position: absolute; top: 1.2rem; right: 3.6rem; width: 10.5rem; overflow: visible; pointer-events: none; opacity: 0; transform: scale(1.5) rotate(-14deg); }
+.postmark circle, .postmark .pm-wave { fill: none; stroke: var(--text); stroke-width: 2; }
+.postmark .pm-ring { font: 600 8.5px var(--font-body); letter-spacing: 2.1px; fill: var(--text); }
+.postmark .pm-date { font: 600 11px var(--font-body); letter-spacing: 1px; fill: var(--text); }
+.postcard.sent .postmark { animation: postmark .5s cubic-bezier(.3, 1.6, .5, 1) forwards; }
+@keyframes postmark { 0% { opacity: 0; transform: scale(1.5) rotate(-14deg); } 100% { opacity: .85; transform: scale(1) rotate(-8deg); } }
+
+/* address + reply fields on ruled lines */
+.pc-address { margin-bottom: 1.2rem; }
+.pc-to { margin: 0; padding: .2rem 0 .25rem; border-bottom: 1px solid var(--border); font-family: var(--font-serif); font-style: italic; font-size: 1.45rem; line-height: 1.5; }
+.pc-from { display: grid; gap: .35rem; }
+.pc-line { width: 100%; margin-bottom: .9rem; padding: .3rem 0 .45rem; border: 0; border-bottom: 1px solid var(--border); background: transparent; color: var(--text); font: inherit; font-size: 1rem; outline: none; transition: border-color .25s var(--ease); }
+.pc-line:focus, .pc-lines:focus { border-bottom-color: var(--text); }
+.pc-line[aria-invalid="true"] { border-bottom-color: var(--text); border-bottom-style: dashed; }
+.pc-left:focus-within > .pc-label, .pc-from:focus-within .pc-label { color: var(--text); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-.form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 2rem; }
-.form-foot .btn { border: 1px solid var(--line); cursor: pointer; font: inherit; }
-.form-foot .btn:disabled { opacity: .55; cursor: progress; }
-.form-status { margin: 0; font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; min-height: 1.5em; }
-.form-status.error { text-decoration: underline; text-decoration-style: dashed; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+.pc-send { margin-top: auto; padding-top: 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: .8rem 1.4rem; }
+.pc-send .btn { gap: .6rem; cursor: pointer; font: inherit; font-size: .68rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; }
+.pc-send .btn:disabled { opacity: .55; cursor: progress; }
+.form-status { flex: 1 1 10rem; margin: 0; font-family: var(--font-serif); font-style: italic; font-size: 1.15rem; line-height: 1.3; min-height: 1.3em; }
+.form-status.error { text-decoration: underline dashed 1px; text-underline-offset: .25em; }
+
 .nav a.active { color: var(--text); }
 .nav a.active::after { transform: scaleX(1); }
 .header-contact { display: none; }
 .contact.compact { margin-top: 6rem; padding: 2.2rem 0; }
 .contact.compact .contact-foot { padding-top: 0; border-top: 0; }
 @media (max-width: 1100px) { .header-contact { display: inline-flex; } }
-@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
-@media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } .contact-page { padding-top: 4rem; } }
+@media (max-height: 760px) and (min-width: 901px) { .contact-page { padding: 1.4rem 0 1.6rem; } .contact-wrap { gap: 1rem; } .contact-page-title { font-size: 3.2rem; } .postcard { padding: 1.8rem 2.2rem 1.6rem; --ruled: 2.1rem; } .pc-stamp { width: 6.4rem; } .pc-corner { margin-bottom: 1rem; } }
+@media (max-width: 900px) {
+  .contact-page { min-height: 0; }
+  .contact-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .contact-direct { justify-items: start; text-align: left; }
+  .postcard { grid-template-columns: 1fr; gap: 2rem; padding: 1.8rem 1.4rem; box-shadow: .35rem .35rem 0 var(--text); }
+  .pc-divider { height: 1px; }
+  .pc-lines { min-height: calc(var(--ruled) * 6); }
+  .postmark { width: 8rem; right: 6.6rem; top: 2.4rem; }
+}
+
 
 /* ===== Responsive ===== */
 @media (max-width: 1100px) {
