@@ -7,7 +7,7 @@ import Entry from './components/Entry.jsx'
 import ProjectList from './components/ProjectList.jsx'
 import CommitGrid from './components/CommitGrid.jsx'
 import Rich from './components/Rich.jsx'
-import Contact from './components/Contact.jsx'
+import Footer from './components/Footer.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
@@ -23,7 +23,7 @@ export default function App() {
       {route === '/contact' ? (
         <>
           <main><ContactPage site={site} /></main>
-          <Contact site={site} compact />
+          <Footer site={site} route={route} />
         </>
       ) : (
       <>
@@ -82,7 +82,7 @@ export default function App() {
           </div>
         </Section>
       </main>
-      <Contact site={site} />
+      <Footer site={site} route={route} />
       </>
       )}
     </>

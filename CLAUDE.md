@@ -25,10 +25,10 @@ Deploys are split by branch: **`main` -> Azure Static Web Apps** (production, **
 ```
 index.html                 Vite entry (fonts loaded here, theme set before paint)
 src/main.jsx               React mount + global CSS import
-src/App.jsx                Home (Hero, Marquee, About, Experience, Projects, Leadership, Skills + footer) and #/contact (ContactPage), via the hash router
+src/App.jsx                Home (Hero, Marquee, About, Experience, Projects, Leadership, Skills) and #/contact (ContactPage), via the hash router
 src/data/site.js           ALL editable content, including resume data for sections not built yet
 src/hooks/                 useTheme (light/dark), useRoute (hash router), useReveal (scroll reveal)
-src/components/            Header, Hero (arched wordmark), PrintPortrait (screen-print canvas), Marquee, Section, Entry, ProjectList, Shots (grayscale pic + lightbox), CommitGrid, Contact, Rich
+src/components/            Header, Hero (arched wordmark), PrintPortrait (screen-print canvas), Marquee, Section, Entry, ProjectList, Shots (grayscale pic + lightbox), CommitGrid, Footer (care-label footer), Rich; shared nav helpers in src/lib/nav.js
 src/styles/style.css       All styling (single file, tokens at the top)
 src/pages/ContactPage.jsx  Contact form -> POST /api/contact
 functions/                 Azure Functions app (contact API; lib/contact.js is the shared handler, Resend)
