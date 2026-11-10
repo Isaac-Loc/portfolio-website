@@ -54,7 +54,7 @@ Environment variables (secrets live only on the hosts, never in the repo or the 
 | `CONTACT_TO` | yes | inbox that receives messages. Until a domain is verified in Resend this must be the Resend account's own email |
 | `CONTACT_FROM` | no | default `Portfolio <onboarding@resend.dev>` (Resend's shared test sender). After verifying isaac-loc.dev in Resend (DNS records at name.com), set e.g. `Portfolio <contact@isaac-loc.dev>` |
 
-Set them in: Azure portal -> the Static Web App -> Settings -> Environment variables (Production, and preview environments if testing PRs); Vercel -> Project -> Settings -> Environment Variables; locally in `.env.local`. Without them the form answers "not configured yet" (HTTP 500) and points to the email address.
+Set them in: Azure (`az staticwebapp appsettings set -n <app> -g portfolio-rg --setting-names KEY=value`, or portal -> the Static Web App -> Settings -> Environment variables); Vercel (`vercel env add NAME production|preview`; this folder is linked to the Vercel project `portfolio-website` via `vercel link`, `.vercel/` is git-ignored); locally in `.env` or `.env.local` (both git-ignored). Azure CLI sign-in needs `az login --tenant 78922eff-9851-4a0c-8275-8573a529695a` (the tenant enforces MFA). Without them the form answers "not configured yet" (HTTP 500) and points to the email address.
 
 ## 4. Structure
 ```
@@ -124,7 +124,7 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 - No scroll arrows; the user removed them in favour of the browser's own (themed) scrollbar.
 
 ## 8. Open items / TODO
-- [ ] Contact form: add `RESEND_API_KEY` + `CONTACT_TO` in Azure and Vercel (and `.env.local` for dev), then send a test message on staging. Optionally verify isaac-loc.dev in Resend and set `CONTACT_FROM`.
+- [ ] Contact form: `RESEND_API_KEY` + `CONTACT_TO` are set in Vercel (Production + Preview) and locally; set them in Azure too and send a test on production. Optionally verify isaac-loc.dev in Resend and set `CONTACT_FROM`.
 - [ ] Get the user's feedback on the black-and-white redesign (wordmark arch strength, tee print look and caption, ticker words).
 - [ ] Update the GitHub repo's homepage field to https://isaac-loc.dev.
 - [ ] In the Vercel dashboard: make sure the project is still connected to the repo and set its Production Branch to `dev`.
@@ -295,3 +295,4 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 - **2026-11-10 (calmer Skills)**: User found the large serif skills list cluttered ("a bunch of words in my face"); Skills is now quiet label-style columns in small body text.
 - **2026-11-10 (denim accent)**: Third colour `--denim` (+ `--denim-soft`, `--denim-band`) for small accents (see Design direction); photos no longer grayscale, with a denim offset-shadow lift on hover; GitHub grid in denim steps; postcard pen ink and postmark in denim. Checked in light and dark.
 - **2026-11-10 (centring fixes)**: The tee panel's "IL" neck label is optically centred (the script ink sits ~.13em right of its box, so `.tee-label` pads `.25em .27em 0 0`). Section superscript numbers no longer collide with the script titles: their gap is tied to the title size (`--title-fs` on `.section-title` / `.contact-page-title`, `.section-no` margin-left = 31% of it), which clears the widest overhang (the "t" of About).
+- **2026-11-10 (release + env vars)**: Merged `dev` into `main` (user request); the Azure deploy succeeded and `/api/contact` is live on isaac-loc.dev. Linked the folder to the Vercel project and added `RESEND_API_KEY` and `CONTACT_TO` to Vercel Production and Preview via the CLI (values read from the git-ignored `.env`, never printed). `.gitignore` now also ignores `.env*` and `.vercel` (added by `vercel link`).
