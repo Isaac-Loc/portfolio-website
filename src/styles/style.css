@@ -317,51 +317,15 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .skill-group { padding-top: 1.4rem; border-top: 1px solid var(--line); }
 .skill-label { margin: 0 0 1.2rem; }
 
-/* ===== Footer (inverted band, styled like the inside of a garment) ===== */
-.footer { position: relative; margin-top: 8rem; padding: 5rem 0 0; background: var(--band); color: var(--on-band); overflow: hidden; }
+/* ===== Footer: one slim row ===== */
+.footer { margin-top: 8rem; border-top: 1px solid var(--border); }
 main:has(.contact-page) + .footer { margin-top: 0; }
-.footer-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .8fr) minmax(0, .8fr) minmax(0, 1.1fr); gap: 3rem; align-items: start; }
-.footer-head { margin: 0 0 1.1rem; font-size: .6rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; opacity: .55; }
-.footer-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
-.footer-col a { position: relative; text-decoration: none; font-family: var(--font-serif); font-size: 1.35rem; line-height: 1.25; transition: opacity .2s, padding .3s var(--ease); }
-.footer-col a:hover { padding-left: .6rem; opacity: .7; }
-.footer-col a[aria-current="page"] { font-style: italic; }
-.footer-note { margin: 0 0 1.6rem; max-width: 20rem; font-family: var(--font-serif); font-style: italic; font-size: 1.6rem; line-height: 1.3; }
-.footer-clock { display: flex; align-items: center; gap: .7rem; margin: 0; font-size: .62rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; }
-.footer-clock span { opacity: .6; }
-.footer-clock .dot { width: .45rem; height: .45rem; border-radius: 50%; background: currentColor; animation: clock-pulse 2s ease-in-out infinite; }
-@keyframes clock-pulse { 50% { opacity: .25; } }
-
-/* the care label: a woven tag with stitched edges */
-.care-label {
-  position: relative; justify-self: end; width: min(100%, 17rem);
-  padding: 1.4rem 1.4rem 1.2rem;
-  background: var(--on-band); color: var(--band);
-  font-size: .56rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; line-height: 1.5;
-  transform: rotate(-1.5deg);
-}
-.care-label::before { content: ""; position: absolute; inset: .4rem; border: 1px dashed color-mix(in srgb, var(--band) 45%, transparent); pointer-events: none; }
-.care-label::after { /* the fold where the tag is sewn in */
-  content: ""; position: absolute; left: 0; right: 0; top: -.5rem; height: .5rem;
-  background: color-mix(in srgb, var(--on-band) 70%, var(--band));
-}
-.care-size { margin: 0 0 .8rem; padding-bottom: .7rem; border-bottom: 1px solid color-mix(in srgb, var(--band) 30%, transparent); font-family: var(--font-script); font-size: 2rem; letter-spacing: 0; text-transform: none; line-height: 1; text-align: center; }
-.care-size span { font-family: var(--font-body); font-size: .6rem; letter-spacing: .2em; vertical-align: middle; margin-left: .3rem; }
-.care-label ul { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: .35rem; text-align: center; }
-.care-icons { display: flex; justify-content: center; gap: .7rem; padding-top: .8rem; border-top: 1px solid color-mix(in srgb, var(--band) 30%, transparent); }
-.care-icons svg { width: 1.7rem; height: 1.3rem; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linejoin: round; stroke-linecap: round; }
-.care-icons svg .fill { fill: currentColor; stroke: none; }
-.care-icons text { fill: currentColor; stroke: none; font: 600 7px var(--font-body); }
-
-.footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem 2rem; margin-top: 4.5rem; padding-top: 1.3rem; border-top: 1px solid color-mix(in srgb, var(--on-band) 22%, transparent); font-size: .58rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; }
-.footer-bottom > span { opacity: .6; }
-.footer-bottom a { text-decoration: none; }
-.footer-bottom a:hover { opacity: .7; }
-
-/* the oversized signature, cut off by the bottom edge */
-.footer-signature { margin-top: 1.5rem; height: clamp(5.5rem, 15vw, 15rem); overflow: hidden; pointer-events: none; }
-.footer-signature svg { display: block; width: 100%; height: auto; }
-.footer-signature text { font-family: var(--font-script); font-size: 250px; fill: currentColor; opacity: .95; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; padding: 1.4rem 0; }
+.footer-name { font-family: var(--font-script); font-size: 1.6rem; line-height: 1; text-decoration: none; padding-top: .2rem; }
+.footer-links, .footer-meta { display: flex; align-items: center; gap: 1.8rem; margin: 0; font-size: .6rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; }
+.footer-links a, .footer-meta a { text-decoration: none; color: var(--muted); transition: color .2s; }
+.footer-links a:hover, .footer-meta a:hover { color: var(--text); }
+.footer-meta span { color: var(--muted); }
 
 /* Scroll reveal (useReveal adds .in) */
 .reveal { opacity: 0; transform: translateY(1.6rem); transition: opacity .9s var(--ease), transform .9s var(--ease); }
@@ -472,7 +436,6 @@ main:has(.contact-page) + .footer { margin-top: 0; }
   .nav { display: none; }
   .hero-grid { gap: 3rem; }
 }
-@media (max-width: 1100px) and (min-width: 601px) { .footer-grid { grid-template-columns: 1fr 1fr; } .care-label { justify-self: start; } }
 @media (max-width: 900px) {
   .hero { min-height: 0; padding: 3rem 0 4rem; }
   .hero-grid { grid-template-columns: 1fr; }
@@ -501,17 +464,15 @@ main:has(.contact-page) + .footer { margin-top: 0; }
   .proj-inline { padding-left: 0; }
   .tee { padding: 2.6rem 1.4rem 1.8rem; }
   .tee-caption { right: 1.5rem; bottom: 1.5rem; }
-  .footer { margin-top: 5rem; padding-top: 3.5rem; }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem 1.5rem; }
-  .footer-intro, .care-label { grid-column: 1 / -1; }
-  .care-label { justify-self: start; }
-  .footer-bottom { flex-direction: column; margin-top: 3rem; }
+  .footer { margin-top: 5rem; }
+  .footer-inner { justify-content: center; text-align: center; }
+  .footer-links { gap: 1.2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .marquee-track, .footer-clock .dot { animation: none; }
+  .marquee-track { animation: none; }
   .role-word, .preview, .commit-card.loading .cell { animation: none; }
   .shot-pic img, .proj-item-title, .theme-toggle .half { transition: none; }
 }

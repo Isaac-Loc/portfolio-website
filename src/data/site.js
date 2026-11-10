@@ -15,8 +15,6 @@ export const site = {
   city: 'New York', // small caps under the hero's script wordmark (like the city line on the hoodie reference)
   // caption on the hero's tee-print portrait: a small line over a big date (expected graduation, from the resume)
   print: { kicker: 'Computer Science · University at Buffalo', date: '05.2027' },
-  // the footer's care label (garment-tag style lines; keep them true)
-  careLabel: ['100% Software Engineering', 'Made in New York · Buffalo', 'Built with React & Vite', 'Hosted on Azure', 'Set in Pinyon Script, Cormorant & Inter'],
   // the ticker band under the hero
   marquee: ['Full Stack Development', 'Embedded Systems', 'React & Next.js', 'C++ & ESP32', 'New York', 'Buffalo'],
   tagline: 'Software engineer from embedded firmware to full stack.',
