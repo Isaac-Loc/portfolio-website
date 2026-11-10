@@ -334,19 +334,16 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .lead-stats dd { margin: 0; color: var(--muted); font-size: .56rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; }
 .lead .chips { margin-bottom: 1.4rem; }
 
-/* Skills: typographic credits list */
-.credits { display: grid; }
-.credit { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 2rem; padding: 2rem 0; }
-.credit:first-child { padding-top: 0; }
-.credit + .credit { border-top: 1px solid var(--border); }
-.credit-head { display: flex; align-items: baseline; gap: .9rem; }
-.credit-count { font-family: var(--font-serif); font-style: italic; font-size: 1.3rem; color: var(--muted); }
-.credit-label { margin: 0; font-size: .62rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; }
-.credit-items { font-variant-numeric: lining-nums; display: flex; flex-wrap: wrap; margin: 0; padding: 0; list-style: none; font-family: var(--font-serif); font-size: 1.75rem; line-height: 1.35; }
-.credit-items li { transition: opacity .25s ease; }
-.credit-items li:not(:last-child)::after { content: "/"; margin: 0 .55em; color: var(--muted); opacity: .6; font-style: normal; }
-.credit-items:hover li { opacity: .35; }
-.credit-items li:hover { opacity: 1; font-style: italic; }
+/* Skills: quiet columns, one per group (Tools splits into two sub-columns) */
+.credits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 2fr); gap: 3rem; }
+.credit { min-width: 0; }
+.credit-head { display: flex; align-items: baseline; gap: .7rem; margin-bottom: 1.2rem; padding-bottom: .8rem; border-bottom: 1px solid var(--border); }
+.credit-count { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: var(--muted); }
+.credit-label { margin: 0; font-size: .6rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; }
+.credit-items { margin: 0; padding: 0; list-style: none; font-size: .92rem; line-height: 2; color: var(--muted); }
+.credit:last-child .credit-items { column-count: 2; column-gap: 3rem; }
+.credit-items li { break-inside: avoid; transition: color .2s ease; }
+.credit-items li:hover { color: var(--text); }
 
 /* ===== Footer: one slim row ===== */
 .footer { margin-top: 2.5rem; background: var(--band); color: var(--on-band); } /* inverted: black in light mode, cream in dark mode */
@@ -481,8 +478,8 @@ main:has(.contact-page) + .footer { margin-top: 0; }
   .proj-side { display: none; }
   .proj-inline { display: block; padding: 0 0 1.8rem 4rem; }
   .lead { grid-template-columns: 1fr; gap: 2.4rem; }
-  .credit { grid-template-columns: 1fr; gap: .9rem; }
-  .credit-items { font-size: 1.4rem; }
+  .credits { grid-template-columns: 1fr 1fr; gap: 2.5rem 2rem; }
+  .credit:last-child { grid-column: 1 / -1; }
 }
 @media (max-width: 600px) {
   :root { --page-w: calc(100vw - 2rem); --header-h: 3.5rem; }

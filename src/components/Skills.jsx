@@ -1,5 +1,5 @@
-// Skills as a typographic credits list: one row per group (italic count + label), the skills running as large serif
-// words separated by slashes. Hovering a word sets it in italic and dims the rest of its row.
+// Skills as quiet columns, like the ingredient list on a label: one column per group (italic count + small caps label
+// over a hairline), then a plain vertical list in small body text. The long last group (Tools) splits into two columns.
 export default function Skills({ groups }) {
   return (
     <div className="credits">
