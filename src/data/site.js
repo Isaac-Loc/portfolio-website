@@ -11,9 +11,14 @@ export const site = {
   resume: '/Isaac_Loc_Resume.pdf', // file lives in /public; opened in a new tab from the nav
   githubUser: 'Isaac-Loc', // drives the commit grid in the hero
   linkedin: 'https://www.linkedin.com/in/isaac-loc',
-  location: 'NYC / Buffalo, NY', // shown under the hero portrait as "Based in ..."
+  location: 'NYC / Buffalo, NY', // shown in the footer
+  city: 'New York', // small caps under the hero's script wordmark (like the city line on the hoodie reference)
+  // caption on the hero's tee-print portrait: a small line over a big date (expected graduation, from the resume)
+  print: { kicker: 'Computer Science · University at Buffalo', date: '05.2027' },
+  // the ticker band under the hero
+  marquee: ['Full Stack Development', 'Embedded Systems', 'React & Next.js', 'C++ & ESP32', 'New York', 'Buffalo'],
   tagline: 'Software engineer from embedded firmware to full stack.',
-  roles: ['Software Engineer', 'Full Stack Developer', 'Embedded Developer', 'Computer Science @\nUniversity at Buffalo'], // typed under the hero title
+  roles: ['Software Engineer', 'Full Stack Developer', 'Embedded Developer', 'Computer Science, University at Buffalo'], // cycled (fade) under the hero wordmark
   about: {
     // The About box in the hero: one plain paragraph, then short label/value rows.
     paragraphs: [

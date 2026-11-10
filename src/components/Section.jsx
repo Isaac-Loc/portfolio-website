@@ -1,14 +1,12 @@
-// A home-page section: a numbered label, the pixel title, then the content.
-export default function Section({ id, no, title, children }) {
+// A home-page section: a numbered kicker with a hairline rule, the script title, then the content.
+export default function Section({ id, no, title, label, children }) {
   return (
     <section id={id} className="section">
       <div className="section-inner">
-        <div className="section-head reveal">
-          <div>
-            {no && <p className="section-kicker">{no} / {title.toUpperCase()}</p>}
-            <h2 className="section-title">{title}</h2>
-          </div>
-        </div>
+        <header className="section-head reveal">
+          <p className="section-kicker"><span>No. {no}</span><i className="rule" /><span>{label ?? title}</span></p>
+          <h2 className="section-title">{title}</h2>
+        </header>
         {children}
       </div>
     </section>

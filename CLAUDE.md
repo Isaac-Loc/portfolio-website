@@ -1,9 +1,8 @@
 # CLAUDE.md
-
 Guidance for AI assistants (Claude Code or any other model) working in this repo.
 
 ## What this is
-Isaac's personal portfolio website. React + Vite single page, **being rebuilt from the ground up**: right now it is only the header and the hero. Look: clean and professional, patchy teal-blue palette from the user's Luffy tab icon, Press Start 2P (pixel) + Inter, a creamy white backdrop with the teal-blue as the accent, **retro pixel titles with a typing-animation hero**, white `.box` cards with a thin border and a teal top bar. No cutout shapes or decorative widgets.
+Isaac's personal portfolio website. React + Vite single long page. Look (since 2026-11-10): **clean black and white, editorial and a little fancy**, from two user references: a hoodie with an arched script wordmark over "NEW YORK" and a graphic tee with a dissolving screen-printed photo. Pinyon Script (wordmark, section titles) + Cormorant Garamond (serif titles) + Inter (body and small tracked caps). The hero portrait is a canvas "tee print" (`PrintPortrait.jsx`).
 
 **Read [SPEC.md](SPEC.md) first.** It is the source of truth for design decisions, structure, content, and history.
 
@@ -26,25 +25,24 @@ Deploys are split by branch: **`main` -> Azure Static Web Apps** (production, **
 ```
 index.html                 Vite entry (fonts loaded here, theme set before paint)
 src/main.jsx               React mount + global CSS import
-src/App.jsx                One page, no tabs: Header + Home = Hero + Experience/Projects/Leadership/Skills + Contact footer (hash routes exist but none are in use)
+src/App.jsx                One page: Header + Hero, Marquee, About, Experience, Projects, Leadership, Skills + Contact footer (hash router exists, no routes in use)
 src/data/site.js           ALL editable content, including resume data for sections not built yet
-src/hooks/                 useTheme (light/dark), useRoute (hash router), useTyper (hero typing)
-src/pages/                 EmptyPage placeholder; build each real page here
-src/components/            Header, Hero (retro window portrait), Socials (blinking @ widget next to the CTA), PixelPhoto (grain-to-sharp reveal), CommitGrid, ProjectList (Projects tabs + hover preview), Rich (link text)
+src/hooks/                 useTheme (light/dark), useRoute (hash router), useReveal (scroll reveal)
+src/components/            Header, Hero (arched wordmark), PrintPortrait (screen-print canvas), Marquee, Section, Entry, ProjectList, Shots (grayscale pic + lightbox), CommitGrid, Contact, Rich
 src/styles/style.css       All styling (single file, tokens at the top)
-public/images/             me.png (portrait)
+public/images/             me.webp (portrait, feeds the tee print) + project pictures
 ```
 
 ## Conventions
 - Content goes in `src/data/site.js`, not hard-coded in components. Only show facts from the resume (`Isaac_Loc_Resume.pdf`) or the user's own GitHub repos for each role/project (allowed 2026-10-24); never private repo details, and credit only what Isaac did in team repos. Write in a formal, concise, impersonal register (verb-led sentences, no first-person chatter, no bold highlights).
 - NEVER publish the user's phone number anywhere, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; do not replace it with the original from OneDrive.
 - Plain CSS in one file; colours/fonts are CSS variables in `:root`. No CSS framework. Sizes in `rem` (fluid root font-size; primary target is a 1440p monitor).
-- Professional look: pixel-frame `.box` cards (square corners, 4px notched border via four box-shadows in `--frame`). NO cutout/clip-path shapes, tape, stickers, sparkles, stamps, doodles, custom cursors, paper grain, tilt or hero click widgets (user scratched them). Keep colours flat (no gradients/glows). The signature look is the retro **pixel font** (Press Start 2P) for titles and labels; the hero title is a typed animation (`useTyper`). The bubbled/outlined text was scrapped: do not bring it back.
-- Palette: a rich red accent (`--primary`, `--accent`) on a creamy backdrop (`--paper`, `--ink`); variable names like `--teal` are historical and no longer teal-colored, just change their hex values. Fonts: Press Start 2P (all titles, tags and labels; it only has weight 400, so never set bold on it) and Inter (body). The light-theme backdrop is a creamy white (`--paper`); the red is the accent only.
-- The hero is one screen tall (below the header). Only the Home page (hero) has content; the nav pages are empty placeholders. Build one page at a time and ask about layout/look as you go. Use the `.box` class for cards. Respect `prefers-reduced-motion`. The user does NOT want dragging.
+- Look: black and white only, no colour accent (the accent is the ink). Hairline rules, numbered kickers, big script section titles, hairline chips, grayscale pictures that colour on hover, inverted bands (ticker, footer). Grain only lives inside the tee print. NO cutout/clip-path shapes, tape, stickers, sparkles, custom cursors, tilt, dragging or scroll arrows. The old red retro-pixel theme (Press Start 2P, `.box` pixel frames, typing hero) is scrapped: do not bring it back.
+- Tokens in `:root` / `[data-theme="dark"]`: `--paper`, `--card`, `--text` (= `--accent`, `--line`), `--muted`, `--border`, `--band`/`--on-band` (inverted bands), `--shirt`/`--print` (tee panel), `--font-script`, `--font-serif`, `--font-body`. Labels are Inter tracked caps via the shared selector list near the top of `style.css`.
+- The hero is one screen tall (below the header) on desktop. Respect `prefers-reduced-motion` (the print, ticker, role fade and reveals all have static fallbacks). Ask about layout/look as you go.
 
 ## Gotchas
-- Light/dark theme is variable-driven. Never hard-code surface/text colours: use `--card`, `--text`, `--accent`, `--line`, `--white`. Check new UI in both themes. Dark mode is soft gray surfaces with the blue only as the accent. Body/heading text is near-black (`--text`), not teal-tinted; keep the teal/`--primary` as a small accent, not the main text color.
+- Light/dark theme is variable-driven. Never hard-code surface/text colours; use the tokens. Check new UI in both themes (dark = near-black paper, cream ink; bands invert to cream).
 - The header is sticky. Anything sized to the screen must subtract `var(--header-h)`.
-- There are no scroll arrows (user removed them); navigation is the header plus an always-visible themed scrollbar (end of the "Visible scrollbar" block in `style.css`).
+- There are no scroll arrows; navigation is the header anchor links (hidden under 1100px) plus a thin themed scrollbar.
 - Images are placeholders until paths are set in `site.js`. Placeholders are intentional.

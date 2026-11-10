@@ -1,58 +1,59 @@
-import Rich from './Rich.jsx'
-import CommitGrid from './CommitGrid.jsx'
-import Socials from './Socials.jsx'
-import PixelPhoto from './PixelPhoto.jsx'
-import useTyper from '../hooks/useTyper.js'
+import { useEffect, useState } from 'react'
+import PrintPortrait from './PrintPortrait.jsx'
 
+const ROMAN = [[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']]
+const toRoman = (n) => ROMAN.reduce((s, [v, r]) => { while (n >= v) { s += r; n -= v } return s }, '')
+
+// Cycles through the roles with a soft fade (static first role under prefers-reduced-motion).
+function useRotate(list, ms = 2600) {
+  const [i, setI] = useState(0)
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+    const t = setInterval(() => setI((n) => (n + 1) % list.length), ms)
+    return () => clearInterval(t)
+  }, [list, ms])
+  return i
+}
+
+// Hero: the name set in an arched script like the lettering across the back of a hoodie, with the city in small
+// caps beneath it; on the right, the portrait as a screen-printed tee graphic.
 export default function Hero({ site }) {
-  const { photos } = site
-  const title = `Hi, I'm\n${site.firstName}`
-  const { titleText, roleText, phase } = useTyper(title, site.roles)
-  const [line1, line2 = ''] = titleText.split('\n')
-  const typingTitle = phase === 'title'
+  const i = useRotate(site.roles)
+  const go = (id) => (e) => { e.preventDefault(); document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }) }
   return (
     <section id="top" className="hero">
       <div className="hero-grid">
         <div className="hero-copy reveal">
-          <h1 className="hero-title" aria-label={title.replace('\n', ' ')}>
-            <span className="line" aria-hidden="true">{line1}{typingTitle && !titleText.includes('\n') && <i className="cursor" />}</span>
-            <span className="line name" aria-hidden="true">{line2}{typingTitle && titleText.includes('\n') && <i className="cursor" />}</span>
+          <p className="eyebrow"><span>Portfolio</span><i className="rule" /><span>{toRoman(Number(site.year))}</span></p>
+          <h1 className="wordmark" aria-label={site.name}>
+            <svg viewBox="0 0 1000 330" aria-hidden="true">
+              <path id="wordmark-arc" d="M 30 300 Q 500 60 970 300" fill="none" />
+              <text><textPath href="#wordmark-arc" startOffset="50%" textAnchor="middle">{site.name}</textPath></text>
+            </svg>
           </h1>
-          <p className="role" aria-label={site.roles.join(', ')}>
-            <span aria-hidden="true">&gt; {roleText}{!typingTitle && <i className="cursor" />}</span>
+          <p className="wordmark-sub">{site.city}</p>
+          <p className="hero-role" aria-live="off">
+            <span key={i} className="role-word">{site.roles[i]}</span>
           </p>
+          <p className="hero-tagline">{site.tagline}</p>
           <div className="hero-actions">
-          <a className="tag tag-cta" href="#experience" onClick={(e) => { e.preventDefault(); document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' }) }}>
-            &#9654; VIEW MY WORK
-          </a>
-          <Socials site={site} />
+            <a className="btn btn-solid" href="#experience" onClick={go('experience')}>View work</a>
+            <a className="btn btn-line" href={site.resume} target="_blank" rel="noopener noreferrer">Résumé</a>
           </div>
-          <div className="about-note">
-            <div className="section-kicker">01 / ABOUT ME</div>
-            {site.about.paragraphs.slice(0, 2).map((t) => <p key={t}><Rich text={t} /></p>)}
-            <dl className="about-facts">
-              {site.about.facts.map((f) => <div key={f.label}><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
-            </dl>
-          </div>
+          <nav className="hero-links" aria-label="Contact">
+            <a href={`mailto:${site.email}`}>Email</a>
+            <a href={site.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </nav>
         </div>
-        <div className="hero-media reveal">
-          <figure className="window">
-            <div className="window-bar">
-              <span>{site.name.replace(' ', '_').toUpperCase()}.PNG</span>
-              <i className="dots" aria-hidden="true"><b /><b /><b /></i>
-            </div>
-            <div className="window-body">
-              <div className="frame-pic"><PixelPhoto src={photos.me} alt={site.name} /></div>
-            </div>
-            <figcaption className="window-caption">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" /></svg>
-              <span>Based in {site.location}</span>
-            </figcaption>
-          </figure>
-          <CommitGrid user={site.githubUser} />
-          <span className="pixel-glyph glyph-1" aria-hidden="true" />
-        </div>
-        <span className="pixel-glyph glyph-2" aria-hidden="true" />
+        <figure className="tee reveal">
+          <span className="tee-label" aria-hidden="true">IL</span>
+          <PrintPortrait src={site.photos.me} alt={`Portrait of ${site.name}`} />
+          <figcaption className="tee-caption">
+            <span>{site.print.kicker}</span>
+            <b>{site.print.date}</b>
+          </figcaption>
+        </figure>
       </div>
     </section>
   )

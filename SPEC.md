@@ -3,30 +3,30 @@
 Living spec. Any AI/model starting a new chat should read this plus [CLAUDE.md](CLAUDE.md). Keep it current: add to the Changelog whenever something is implemented.
 
 ## 1. Goal
-A personal portfolio for Isaac (GitHub: [Isaac-Loc](https://github.com/Isaac-Loc)). Direction as of 2026-10-09: clean, professional, retro-pixel look with a rich red accent on a creamy backdrop. **The site is being rebuilt from the ground up, one section at a time** (user request): the live page today is only the header and the hero. The old green cutout/scrapbook-collage design, a later One Piece ocean theme, and a royal-blue theme were all tried and scrapped; don't bring any of them back (see Changelog for that history).
+A personal portfolio for Isaac (GitHub: [Isaac-Loc](https://github.com/Isaac-Loc)). Direction as of **2026-11-10**: a clean **black-and-white editorial** look with a "professional / fancy" streetwear touch, taken from two user-supplied references: a black hoodie with an arched calligraphic script wordmark and a small sans-serif "NEW YORK" line under it, and a graphic tee whose screen-printed photo of a figure dissolves into grain and ash, captioned with small tracked caps over a bold date. The page is one long home page (Hero, ticker, About, Experience, Projects, Leadership, Skills, Contact). Earlier looks (green cutout collage, One Piece ocean, royal blue, teal-blue, and the red retro-pixel theme with Press Start 2P, `.box` pixel frames, typing hero and sparkle background) were all scrapped; see the Changelog for that history and do not bring them back.
 
 ## 2. Design direction
-- **Backdrop**: flat creamy white (`--paper #fbf6ea` light / soft charcoal gray `#1c1c1e` dark). No gradients, blurs, glows or soft shadows anywhere - flat solid colours only.
-- **Accent**: a rich red (`--primary`, `--accent`) used sparingly - "Isaac" in the hero, links/highlighted words, the active nav tag, the window title bar, the Resume button, hover states, and the GitHub commit-grid squares. Body and heading text is near-black (`--text`), not accent-tinted.
-- **Typography**: **Press Start 2P** (8-bit pixel font, weight 400 only - never set it bold) for every title, tag, nav link and label; **Inter** for paragraph text. The hero title ("Hi, I'm / Isaac") and the role line underneath it type themselves out letter by letter with a blinking block cursor (`useTyper.js`), then the role line cycles through `site.roles`.
-- **Frames**: the signature visual motif is a retro 8-bit "window"/dialog-box frame - a 4px notched border drawn from four stacked `box-shadow`s (no `border-radius`), used for the About card, the GitHub commits card (`.box`) and the hero portrait (`.window`, which adds a coloured title bar reading `ISAAC_LOC.PNG` above the photo). No cutout/clip-path shapes, stickers, tape, sparkles, custom cursors, paper grain or rotation/tilt.
-- **Hero portrait**: `PixelPhoto.jsx` plays a one-time load animation - the real photo (`public/images/me.webp`) is drawn to a tiny, grain-added canvas and sharpened in steps (~0.6s) before handing off to the untouched original image. Respects `prefers-reduced-motion` (shows the clear photo immediately).
-- **Navigation**: a small sticky header (`--header-h`) with a logo tag, EXPERIENCE/PROJECTS/SKILLS/CONTACT nav tags, a Resume button and a light/dark toggle. Nav tags route via a tiny hash router (see Tech stack) to pages that, except Home, are still empty placeholders. No on-page scroll arrows; the page uses the browser's own (CSS-themed) scrollbar.
-- **Dark mode**: soft neutral gray surfaces, not a dark tint of the accent; the red stays the accent in dark mode too. Toggle is `useTheme.js`, persisted in `localStorage`, default light.
+- **Colour**: black and white only. Light theme = warm white paper `#fafaf7` with near-black ink `#0c0c0c`; dark theme = `#0b0b0b` with cream ink `#efede6`. No colour accent: the accent is the ink itself. Inverted bands (the ticker and the Contact footer) are black in light mode and cream in dark mode (`--band` / `--on-band`). Pictures are grayscale and return to colour on hover.
+- **Typography** (Google Fonts, loaded in `index.html`): **Pinyon Script** (`--font-script`) for the wordmark, the header logo, section titles and the footer sign-off, like the hoodie lettering; **Cormorant Garamond** (`--font-serif`) for entry/project titles, the About lede, figures and italic accents; **Inter** (`--font-body`) for body text and for every label, set as small tracked caps (500 weight, `.22em` letter-spacing, uppercase; the shared selector list near the top of `style.css`).
+- **Hero wordmark**: the name is SVG `<textPath>` text on a gentle arch (`#wordmark-arc`), with `site.city` ("New York") in wide-tracked caps beneath it, centred, like the hoodie. Above it a kicker "PORTFOLIO — MMXXVI" (year as Roman numerals). Below: a role line in Cormorant italic that cross-fades through `site.roles`, the tagline, a solid "View work" button, an outline "Résumé" button and Email/GitHub/LinkedIn text links.
+- **Tee print** (`PrintPortrait.jsx`, the shirt reference): the portrait photo rendered on a canvas as a screen-printed tee graphic, on a black "shirt" panel (`.tee`, 4:5) with a dashed stitching line, a round neck label with the "IL" monogram and a caption (`site.print`: small caps "Computer Science · University at Buffalo" over a bold "05.2027", the expected graduation). Rendering: crop around the subject, luminance + unsharp mask (local contrast so glasses, ear and collar survive), tone curve, stochastic grain dither (light = ink), a ragged noise mask around head + torso, and the right side (shoulder/back) burns away; ash specks drift up and to the right. On load the grain assembles from noise (~1.7s). Under `prefers-reduced-motion` it shows the finished print and nothing drifts. It only animates while on screen. Tunables: `CROP`, `BLOBS`, `TONE` at the top of the file.
+- **Layout motifs**: hairline rules (`--border`), numbered section kickers ("No. 02 ——— Experience"), big script section titles, entries as a three-column editorial list (italic number + dates / body / picture), hairline chips for tags, projects as a numbered list with a sticky preview. Projects without a picture get a "plate": the shirt-black panel with the title in script.
+- **Ticker** (`Marquee.jsx`): a slow band of tracked caps from `site.marquee`, separated by an italic serif "&"; stands still under reduced motion.
+- **Motion**: restrained. Scroll reveal (fade up), hover underlines, grayscale-to-colour pictures, the role cross-fade, the ticker and the print. Everything respects `prefers-reduced-motion`.
+- **Dark mode**: `useTheme.js`, persisted in `localStorage`, default light. The theme toggle is a half-filled circle that rotates.
 
 ### Design tokens (`src/styles/style.css` `:root`)
 | Token | Light | Dark | Use |
 |---|---|---|---|
-| `--paper` | `#fbf6ea` | `#1c1c1e` | page background |
-| `--card` | `#fffdf8` | `#272729` | box/window surfaces |
-| `--text` | `#1a1a1a` | `#ececee` | body/heading text |
-| `--ink` | `#1b1b1b` | - | tag backgrounds |
-| `--primary` / `--accent` | `#b3281f` / `#9c2b22` | `#e8766a` | the red accent |
-| `--border` / `--line` | `#e4dcc8` / `#2a2a2a` | `#303033` / `#85858b` | hairlines, frame colour |
-| `--cell0`...`--cell4` | tan -> near-black | gray -> near-white | GitHub commit-grid steps |
-| fonts | `--font-pixel` = Press Start 2P, `--font-body` = Inter | | |
-
-Variable names like `--teal` and `--soft` are historical (left over from an earlier teal-blue palette) and no longer teal-coloured - only their hex values changed when the palette moved to red. Don't rename them without reason; just update the value.
+| `--paper` | `#fafaf7` | `#0b0b0b` | page background |
+| `--card` | `#ffffff` | `#121212` | commit-grid card |
+| `--text` / `--accent` / `--line` | `#0c0c0c` | `#efede6` | ink, rules, button outlines |
+| `--muted` | `#6d6d69` | `#9a9993` | labels, secondary text |
+| `--border` | `#e2e1dc` | `#262624` | hairlines |
+| `--band` / `--on-band` | `#0c0c0c` / `#efede6` | `#efede6` / `#0b0b0b` | ticker + footer (inverted) |
+| `--shirt` / `--print` | `#111111` / `#ecebe4` | `#141414` / `#ecebe4` | tee panel + print ink, project plates |
+| `--cell0`...`--cell4` | light gray -> ink | dark gray -> cream | GitHub commit-grid steps |
+| fonts | `--font-script` Pinyon Script, `--font-serif` Cormorant Garamond, `--font-body` Inter | | |
 
 ## 3. Tech stack
 - React 19 + Vite 8 (`@vitejs/plugin-react`), plain JavaScript (JSX), plain CSS (one file, `src/styles/style.css`, imported from `main.jsx`). No CSS framework, no CSS-in-JS - the user explicitly asked to keep the stylesheet as a `.css` file, not convert it to JS.
@@ -42,24 +42,29 @@ Variable names like `--teal` and `--soft` are historical (left over from an earl
 
 ## 4. Structure
 ```
-index.html                 Vite entry: fonts (Press Start 2P, Inter), favicons, theme-init inline script
+index.html                 Vite entry: fonts (Pinyon Script, Cormorant Garamond, Inter), favicons, theme-init inline script
 src/main.jsx                React mount + global CSS import
-src/App.jsx                 Header + route switch: "/" (or no hash) = Hero, /experience|/projects|/skills|/contact = EmptyPage placeholders
-src/data/site.js             ALL content: site info, experience[], projects[], education, leadership, skills[] (most not wired into a page yet)
+src/App.jsx                 Header + <main>: Hero, Marquee, About (01), Experience (02), Projects (03), Leadership (04), Skills (05); Contact footer (06)
+src/data/site.js             ALL content: site info (city, print caption, marquee, roles, about), experience[], projects[], education, leadership, skills[]
 src/hooks/
   useTheme.js                light/dark toggle, persisted in localStorage
-  useRoute.js                tiny hash router
-  useTyper.js                hero's type-on-load + cycling-role animation
+  useRoute.js                tiny hash router (no routes in use; kept for later pages)
+  useReveal.js               scroll reveal (.reveal -> .in)
 src/components/
-  Header.jsx                 logo tag, nav tags (routed), Resume button, theme toggle
-  Hero.jsx                   typed title + role line, About box, portrait window, CommitGrid
-  PixelPhoto.jsx              grain-to-sharp photo reveal (draws to a canvas, then hands off to the real <img>)
+  Header.jsx                 script logo, section anchor nav (hidden under 1100px), Résumé button, theme toggle
+  Hero.jsx                   arched script wordmark + city, rotating role, CTAs, and the tee print figure
+  PrintPortrait.jsx           the screen-print portrait canvas (grain, burn, ash)
+  Marquee.jsx                 ticker band
+  Section.jsx                 numbered kicker + script title wrapper
+  Entry.jsx                   editorial entry (meta column, body, optional picture)
+  ProjectList.jsx             Projects tabs, numbered list, hover/focus preview (plates for picture-less projects)
+  Shots.jsx                   grayscale picture + caption, click to open a lightbox <dialog>
   CommitGrid.jsx              live GitHub contribution grid (fetched client-side, cached 6h in localStorage)
-  Rich.jsx                    renders **bold** markup
-src/pages/
-  EmptyPage.jsx                placeholder: just a pixel-font title; replace per-route as each page gets built
-src/styles/style.css         all styling, tokens at the top (plain CSS, not CSS-in-JS)
-public/images/me.webp         hero portrait (cat/car photos were removed at the user's request and are only in git history)
+  Contact.jsx                 inverted footer: script sign-off, email, links
+  Rich.jsx                    renders **bold** and [label](url) links
+src/styles/style.css         all styling, tokens at the top (plain CSS)
+public/images/               me.webp (portrait, feeds the tee print), project/experience pictures
+.claude/launch.json          `dev` preview server for the in-app browser
 ```
 
 ## 5. Content model (`src/data/site.js`)
@@ -71,11 +76,17 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 - Privacy: the user's phone number must NEVER be published, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; never replace it with the original from OneDrive.
 
 ## 6. Page sections (current, built)
-1. **Header**: sticky, small (`--header-h: 3.25rem`, 4.4rem on phones where it wraps). Logo tag goes home; EXPERIENCE/PROJECTS/SKILLS/CONTACT route to (currently empty) pages and highlight when active; Resume opens the PDF; a toggle switches light/dark.
-2. **Hero** (`id="top"`, route `/`): one viewport tall. Left column: typed "Hi, I'm / Isaac" title + cycling role line + the About box (`.box`, pixel-frame, resume-sourced paragraphs). Right column: the portrait window (`.window`: title bar + pixel-frame + `PixelPhoto`) and the GitHub commits box (`.box`, live contribution grid, links to the GitHub profile).
-3. **Empty pages** (routes `/experience`, `/projects`, `/skills`, `/contact`): just a pixel-font `<h1>` via `EmptyPage.jsx`. Build each one's real content here, one at a time, using the resume data already in `site.js`.
+1. **Header**: sticky (`--header-h: 4rem`, 3.5rem on phones), translucent paper with a hairline. Script "Isaac Loc" logo (scrolls to top), anchor links About/Experience/Projects/Leadership/Skills/Contact (smooth-scroll; hidden under 1100px), Résumé outline button, theme toggle.
+2. **Hero** (`#top`): one screen tall on desktop. Left: kicker, arched wordmark, city, rotating role, tagline, buttons, links. Right: the tee print. Stacks on phones.
+3. **Ticker**: inverted band under the hero.
+4. **About** (`#about`, No. 01): Cormorant lede paragraph + Studying/Focus rows on the left, the GitHub activity card on the right.
+5. **Experience** (`#experience`, No. 02), **Leadership** (`#leadership`, No. 04): `Entry` list.
+6. **Projects** (`#projects`, No. 03): Full Stack / Embedded & Hardware tabs, numbered list, sticky preview (inline under the row on phones).
+7. **Skills** (`#skills`, No. 05): two columns of groups, hairline chips.
+8. **Contact** (`#contact` footer, No. 06): inverted band, "Get in touch" script title, email, GitHub/LinkedIn/Résumé, copyright + location.
 
 ## 7. Decisions
+- 2026-11-10: Full theme switch at the user's request ("redo my entire website ... clean black and white with a professional/fancy touch like this hoodie, and a design like the shirt somewhere; be creative"). Chosen: black-and-white editorial (script + serif + tracked caps), the hoodie's arched script wordmark with "NEW YORK" under it, and the shirt's dissolving screen-print photo as the hero portrait. This supersedes the earlier rules about Press Start 2P, `.box` pixel frames, the typing hero, the red accent and "no paper grain" (grain now lives only inside the tee print). Still no dragging, no custom cursors, no scroll arrows.
 - 2026-10-11: Standing git rule: after every task the user gives, commit and push to `origin/dev` automatically (no need to ask). `main` is only touched when the user explicitly says so.
 - 2026-10-09: After trying (and scrapping, all same day) a One Piece ocean theme and a flat royal-blue theme, the user asked to go back to something closer to the ORIGINAL site's spirit but cleaner: no cutout shapes, a retro pixel font, a typing-animation hero, and colours sampled from the user's Luffy browser-tab icon (first a patchy teal-blue, later changed to a rich red). The site was then intentionally stripped down to just header + hero so it could be **rebuilt from the ground up, one section at a time** - do not add Experience/Projects/Education/Leadership/Skills/Contact content back in bulk; build and confirm one page at a time.
 - Keep `src/styles/style.css` as a plain `.css` file. The user was asked whether "entirely JavaScript" meant dropping the separate stylesheet (CSS-in-JS) and said no - leave it as CSS; it already works.
@@ -84,11 +95,11 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 - No scroll arrows; the user removed them in favour of the browser's own (themed) scrollbar.
 
 ## 8. Open items / TODO
-- [ ] Build the Experience, Projects, Education + Leadership, Skills and Contact pages (content already in `site.js`), one at a time with the user.
-- [ ] Decide whether `art`/`shape` illustration picks carry over to the rebuilt cards, or whether cards go photo-only / icon-only.
+- [ ] Get the user's feedback on the black-and-white redesign (wordmark arch strength, tee print look and caption, ticker words).
 - [ ] Update the GitHub repo's homepage field to https://isaac-loc.dev.
-- [ ] In the Vercel dashboard: make sure the project is still connected to the repo and set its Production Branch to `dev` (keep it; it is now the staging host, not something to switch off).
-- [ ] Check the hero and header on a real phone and on the user's 1440p monitor.
+- [ ] In the Vercel dashboard: make sure the project is still connected to the repo and set its Production Branch to `dev`.
+- [ ] Check the site on a real phone and on the user's 1440p monitor.
+- [ ] Education is still in `site.js` but not rendered (the About facts cover the degree).
 
 ## 9. Changelog
 - **2026-10-03**: Cloned repo (was a bare HTML/CSS template). Tried a Pinterest masonry card layout, then replaced it with the cutout-collage design. Converted to React + Vite (components, `site.js` content file, single stylesheet). Added CLAUDE.md and SPEC.md.
@@ -240,3 +251,4 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 - **2026-11-06 (CSE 302 label)**: The Embedded Software Engineer card org now reads "University at Buffalo | CSE 302" (was "UB CSE Course"), naming the real course (CSE 302, Intro to Experiential Learning, a team-based project course) at the user's request. Still keep this role out of formal employment-history forms.
 - **2026-11-06 (resume PDF refreshed)**: `public/Isaac_Loc_Resume.pdf` replaced with the new build (UB role now reads "University at Buffalo | CSE 302"). Verified no phone number in its text or links before committing.
 - **2026-11-10 (impact-style paragraphs)**: Rewrote the experience, project and leadership summaries in `site.js` as short paragraphs built from Google XYZ resume bullets (result, measure, method) but in flowing prose, using only resume or own-repo facts. Stats unchanged.
+- **2026-11-10 (black & white redesign)**: Rebuilt the whole look from the user's two references (hoodie + graphic tee). New fonts (Pinyon Script, Cormorant Garamond, Inter; Press Start 2P dropped), new B&W tokens and a fresh `style.css`. New components: `PrintPortrait` (screen-print portrait canvas), `Marquee` (ticker). Rewritten: `Hero` (arched SVG wordmark, city line, rotating role, tee figure), `Header` (script logo + anchor nav), `Section`, `Entry` (editorial three-column), `Shots` (grayscale picture + lightbox), `Contact` (inverted footer), `ProjectList` (numbered list, script plates instead of the pixel mosaic), `App` (About is now its own section with the commit grid). Removed `Background.jsx`, `PixelPhoto.jsx`, `Socials.jsx`, `useTyper.js`, `EmptyPage.jsx`. `site.js`: added `city`, `print`, `marquee`; the last role is now one line. Added `.claude/launch.json`. Checked at 1440px in light and dark and at phone width.
