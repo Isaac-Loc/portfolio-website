@@ -200,11 +200,11 @@ img { max-width: 100%; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ===== Sections ===== */
-.section { position: relative; padding: 9rem 0 1rem; }
+.section { position: relative; padding: 6.5rem 0 5.5rem; }
 /* between sections: whitespace and one short centred rule, nothing else */
-.section + .section::before { content: ""; position: absolute; top: 0; left: 50%; width: 3rem; height: 1px; background: var(--text); opacity: .5; transform: translateX(-50%); }
+.section + .section::before { content: ""; position: absolute; top: 0; left: 50%; width: var(--page-w); height: 1px; background: var(--text); opacity: .7; transform: translateX(-50%); }
 .section-inner { width: var(--page-w); margin: 0 auto; }
-.section-head { margin-bottom: 3rem; }
+.section-head { margin-bottom: 3rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--border); }
 .section-title { margin: 0; font-family: var(--font-script); font-weight: 400; font-size: clamp(3.6rem, 7vw, 6.4rem); line-height: 1.15; letter-spacing: 0; }
 .section-no { margin-left: .35rem; font-family: var(--font-serif); font-style: italic; font-size: 1.7rem; letter-spacing: .02em; color: var(--muted); vertical-align: 1.7em; line-height: 0; }
 
@@ -319,7 +319,7 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .skill-label { margin: 0 0 1.2rem; }
 
 /* ===== Footer: one slim row ===== */
-.footer { margin-top: 8rem; background: var(--band); color: var(--on-band); } /* inverted: black in light mode, cream in dark mode */
+.footer { margin-top: 2.5rem; background: var(--band); color: var(--on-band); } /* inverted: black in light mode, cream in dark mode */
 main:has(.contact-page) + .footer { margin-top: 0; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; padding: 1.4rem 0; }
 .footer-name { font-family: var(--font-script); font-size: 1.6rem; line-height: 1; text-decoration: none; padding-top: .2rem; }
@@ -454,7 +454,7 @@ main:has(.contact-page) + .footer { margin-top: 0; }
 @media (max-width: 600px) {
   :root { --page-w: calc(100vw - 2rem); --header-h: 3.5rem; }
   .logo { font-size: 1.6rem; }
-  .section { padding-top: 5.5rem; }
+  .section { padding: 4rem 0 3.5rem; }
   .section-head { margin-bottom: 2.2rem; }
   .hero-role { font-size: 1.4rem; }
   .about-lede { font-size: 1.5rem; }
@@ -466,7 +466,7 @@ main:has(.contact-page) + .footer { margin-top: 0; }
   .proj-inline { padding-left: 0; }
   .tee { padding: 2.6rem 1.4rem 1.8rem; }
   .tee-caption { right: 1.5rem; bottom: 1.5rem; }
-  .footer { margin-top: 5rem; }
+  .footer { margin-top: 1.5rem; }
   .footer-inner { justify-content: center; text-align: center; }
   .footer-links { gap: 1.2rem; }
 }
