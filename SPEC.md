@@ -59,7 +59,7 @@ Set them in: Azure portal -> the Static Web App -> Settings -> Environment varia
 ```
 index.html                 Vite entry: fonts (Pinyon Script, Cormorant Garamond, Inter), favicons, theme-init inline script
 src/main.jsx                React mount + global CSS import
-src/App.jsx                 Header + route switch: "/" = Hero, Marquee, About (01), Experience (02), Projects (03), Leadership (04), Skills (05); "/contact" = ContactPage; Footer on both
+src/App.jsx                 Header + route switch: "/" = Hero (includes the Marquee), About (01), Experience (02), Projects (03), Leadership (04), Skills (05); "/contact" = ContactPage; Footer on both
 src/data/site.js             ALL content: site info (city, print caption, marquee, roles, about), experience[], projects[], education, leadership, skills[]
 src/hooks/
   useTheme.js                light/dark toggle, persisted in localStorage
@@ -98,7 +98,7 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 ## 6. Page sections (current, built)
 1. **Header**: sticky (`--header-h: 4rem`, 3.5rem on phones), translucent paper with a hairline. Script "Isaac Loc" logo (scrolls to top), anchor links About/Experience/Projects/Leadership/Skills (smooth-scroll; from the Contact page they go home first) plus a Contact link to `#/contact` (underlined when active); under 1100px the links hide and a small Contact button shows; theme toggle. No Résumé button (user removed it); the PDF is linked only from the Contact footer.
 2. **Hero** (`#top`): one screen tall on desktop. Left: kicker, arched wordmark, city, rotating role, tagline, buttons, links. Right: the tee print. Stacks on phones.
-3. **Ticker**: inverted band under the hero.
+3. **Ticker**: inverted band rendered inside the hero (`Hero.jsx`), pinned to the bottom of the first screen (the hero is a flex column: grid on top, marquee at the bottom). The tee panel width is capped by the viewport height so the ticker always stays on the first screen on desktop; on phones the hero stacks and the ticker follows the portrait.
 4. **About** (`#about`, No. 01): Cormorant lede paragraph + Studying/Focus rows on the left, the GitHub activity card on the right.
 5. **Experience** (`#experience`, No. 02), **Leadership** (`#leadership`, No. 04): `Entry` list.
 6. **Projects** (`#projects`, No. 03): Full Stack / Embedded & Hardware tabs, numbered list, sticky preview (inline under the row on phones).
@@ -284,3 +284,4 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 - **2026-11-10 (inverted footer)**: The slim footer now uses the opposite theme colour (black in light mode, cream in dark mode) at the user's request.
 - **2026-11-10 (fewer separation lines)**: User felt there were too many lines (kicker rule + label + title were redundant, and a line sat between "Experience" and the first entry). Section heads are now the script title with a superscript number (also on the Contact page); removed `.section-kicker`; one short centred rule between sections; list hairlines only between items (entries, projects, About facts); dropped the projects-tabs underline and the skill-group top rules.
 - **2026-11-10 (lines back between sections and under titles)**: User asked for some lines back: a full-width ink rule now separates sections (replacing the short centred rule) and a hairline sits between each section title and its content. List hairlines stay between items only; no kicker rule. Section padding is now 6.5rem top / 5.5rem bottom (4rem / 3.5rem on phones) so the rule sits midway between sections; footer top margin 2.5rem.
+- **2026-11-10 (ticker in the hero)**: Moved the Marquee into the hero so it is visible on landing, along the bottom of the first screen; capped the tee panel by viewport height (`.hero .tee`). Verified at 1440x900 and 1280x720 (ticker bottom = viewport bottom) and 375px.

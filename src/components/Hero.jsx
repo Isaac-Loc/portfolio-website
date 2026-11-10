@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import PrintPortrait from './PrintPortrait.jsx'
+import Marquee from './Marquee.jsx'
 
 const ROMAN = [[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']]
 const toRoman = (n) => ROMAN.reduce((s, [v, r]) => { while (n >= v) { s += r; n -= v } return s }, '')
@@ -16,7 +17,8 @@ function useRotate(list, ms = 2600) {
 }
 
 // Hero: the name set in an arched script like the lettering across the back of a hoodie, with the city in small
-// caps beneath it; on the right, the portrait as a screen-printed tee graphic.
+// caps beneath it; on the right, the portrait as a screen-printed tee graphic. The ticker runs along the bottom of
+// the hero so it is part of the first screen.
 export default function Hero({ site }) {
   const i = useRotate(site.roles)
   const go = (id) => (e) => { e.preventDefault(); document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }) }
@@ -53,6 +55,7 @@ export default function Hero({ site }) {
           </figcaption>
         </figure>
       </div>
+      <Marquee items={site.marquee} />
     </section>
   )
 }

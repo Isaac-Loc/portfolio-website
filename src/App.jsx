@@ -1,7 +1,6 @@
 import { site, experience, projects, leadership, skills } from './data/site.js'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
-import Marquee from './components/Marquee.jsx'
 import Section from './components/Section.jsx'
 import Entry from './components/Entry.jsx'
 import ProjectList from './components/ProjectList.jsx'
@@ -29,7 +28,6 @@ export default function App() {
       <>
       <main>
         <Hero site={site} />
-        <Marquee items={site.marquee} />
         <Section id="about" no="01" title="About">
           <div className="about-grid">
             <div className="about-copy reveal">
