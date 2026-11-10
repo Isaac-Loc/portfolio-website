@@ -48,5 +48,5 @@ public/images/             me.webp (portrait, feeds the tee print) + project pic
 - Light/dark theme is variable-driven. Never hard-code surface/text colours; use the tokens. Check new UI in both themes (dark = near-black paper, cream ink; bands invert to cream).
 - The header is sticky. Anything sized to the screen must subtract `var(--header-h)`.
 - There are no scroll arrows; navigation is the header anchor links (hidden under 1100px) plus a thin themed scrollbar.
-- The contact API needs `RESEND_API_KEY` and `CONTACT_TO` set on Azure, Vercel and in `.env.local` (never commit keys). See SPEC.md "Contact form".
+- The contact API needs `RESEND_API_KEY` and `CONTACT_TO` (set on Azure `isaac-portfolio`/`portfolio_rg`, on Vercel, and locally in the git-ignored `.env`; never commit or print keys). See SPEC.md "Contact form".
 - Images are placeholders until paths are set in `site.js`. Placeholders are intentional.
