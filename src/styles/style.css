@@ -198,7 +198,7 @@ img { max-width: 100%; }
   position: absolute; top: 1.3rem; left: 50%; transform: translateX(-50%);
   width: 2.3rem; height: 2.3rem; border-radius: 50%; display: grid; place-items: center;
   background: color-mix(in srgb, var(--print) 82%, var(--shirt)); color: var(--shirt);
-  font-family: var(--font-script); font-size: 1.05rem; line-height: 1; padding-top: .2rem;
+  font-family: var(--font-script); font-size: 1.05rem; line-height: 1; padding: .25em .27em 0 0; /* optical centring: the script IL ink sits ~.13em right of its advance box */
 }
 .print-canvas { display: block; width: 100%; height: auto; image-rendering: pixelated; }
 .tee-caption { position: absolute; right: 2.4rem; bottom: 2.2rem; display: grid; justify-items: end; gap: .25rem; text-align: right; }
@@ -217,8 +217,8 @@ img { max-width: 100%; }
 .section { position: relative; padding: 6.5rem 0 5.5rem; }
 .section-inner { width: var(--page-w); margin: 0 auto; }
 .section-head { margin-bottom: 3rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--border); }
-.section-title { margin: 0; font-family: var(--font-script); font-weight: 400; font-size: clamp(3.6rem, 7vw, 6.4rem); line-height: 1.15; letter-spacing: 0; }
-.section-no { margin-left: .35rem; font-family: var(--font-serif); font-style: italic; font-size: 1.7rem; letter-spacing: .02em; color: var(--denim); vertical-align: 1.7em; line-height: 0; }
+.section-title { --title-fs: clamp(3.6rem, 7vw, 6.4rem); margin: 0; font-family: var(--font-script); font-weight: 400; font-size: var(--title-fs); line-height: 1.15; letter-spacing: 0; }
+.section-no { margin-left: calc(var(--title-fs, 4rem) * .31); /* clears the script's right overhang (About's t is the widest, ~.22em) */ font-family: var(--font-serif); font-style: italic; font-size: 1.7rem; letter-spacing: .02em; color: var(--denim); vertical-align: 1.7em; line-height: 0; }
 
 /* About */
 .about-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 5rem; align-items: start; }
@@ -379,7 +379,7 @@ main:has(.contact-page) + .footer { margin-top: 0; }
 .contact-wrap { display: flex; flex-direction: column; gap: 1.6rem; }
 .contact-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; }
 .contact-head > div { flex: 1 1 auto; max-width: 40rem; }
-.contact-page-title { margin: 0; font-family: var(--font-script); font-weight: 400; font-size: clamp(3rem, 5.4vw, 4.8rem); line-height: 1.1; }
+.contact-page-title { --title-fs: clamp(3rem, 5.4vw, 4.8rem); margin: 0; font-family: var(--font-script); font-weight: 400; font-size: var(--title-fs); line-height: 1.1; }
 .contact-direct { display: grid; justify-items: end; gap: .3rem; margin: 0 0 .5rem; text-align: right; font-size: .95rem; }
 .contact-direct > span:first-child { font-size: .6rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
 .contact-direct-links { display: flex; gap: 1.2rem; font-size: .6rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; }
@@ -461,7 +461,7 @@ main:has(.contact-page) + .footer { margin-top: 0; }
 .nav a.active::after { transform: scaleX(1); }
 .header-contact { display: none; }
 @media (max-width: 1100px) { .header-contact { display: inline-flex; } }
-@media (max-height: 760px) and (min-width: 901px) { .contact-page { padding: 1.4rem 0 1.6rem; } .contact-wrap { gap: 1rem; } .contact-page-title { font-size: 3.2rem; } .postcard { padding: 1.8rem 2.2rem 1.6rem; --ruled: 2.1rem; } .pc-stamp { width: 6.4rem; } .pc-corner { margin-bottom: 1rem; } }
+@media (max-height: 760px) and (min-width: 901px) { .contact-page { padding: 1.4rem 0 1.6rem; } .contact-wrap { gap: 1rem; } .contact-page-title { --title-fs: 3.2rem; } .postcard { padding: 1.8rem 2.2rem 1.6rem; --ruled: 2.1rem; } .pc-stamp { width: 6.4rem; } .pc-corner { margin-bottom: 1rem; } }
 @media (max-width: 900px) {
   .contact-page { min-height: 0; }
   .contact-head { flex-direction: column; align-items: flex-start; gap: 1rem; }
