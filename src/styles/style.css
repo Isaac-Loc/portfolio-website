@@ -321,7 +321,7 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .contact { margin-top: 8rem; padding: 7rem 0 2.2rem; background: var(--band); color: var(--on-band); }
 .contact .section-kicker { color: inherit; opacity: .7; }
 .contact-title { margin: .4rem 0 1.6rem; font-family: var(--font-script); font-weight: 400; font-size: clamp(4rem, 10vw, 9rem); line-height: 1.1; }
-.contact-email { display: inline-block; font-family: var(--font-serif); font-style: italic; font-size: clamp(1.6rem, 3.4vw, 2.8rem); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: .1rem; transition: opacity .2s; }
+.contact-email { display: inline-block; cursor: pointer; font-family: var(--font-serif); font-style: italic; font-size: clamp(1.6rem, 3.4vw, 2.8rem); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: .1rem; transition: opacity .2s; }
 .contact-email:hover { opacity: .7; }
 .contact-links { display: flex; flex-wrap: wrap; gap: 2.4rem; margin: 3rem 0 6rem; }
 .contact-foot { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding-top: 1.4rem; border-top: 1px solid color-mix(in srgb, var(--on-band) 25%, transparent); opacity: .75; font-size: .58rem; }
@@ -330,6 +330,41 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .reveal { opacity: 0; transform: translateY(1.6rem); transition: opacity .9s var(--ease), transform .9s var(--ease); }
 .reveal.in { opacity: 1; transform: none; }
 .tee.reveal { transition-delay: .2s; }
+
+/* ===== Contact page (#/contact) ===== */
+.contact-page { padding-top: 6rem; min-height: calc(100svh - var(--header-h) - 6rem); }
+.contact-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 6rem; align-items: start; }
+.contact-aside .about-lede { font-size: 1.6rem; }
+.contact-aside dd { overflow-wrap: anywhere; }
+.contact-form { display: grid; gap: 2rem; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.field { display: grid; gap: .5rem; }
+.field label { font-size: .62rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.field-opt { letter-spacing: .1em; text-transform: none; }
+.field input, .field textarea {
+  width: 100%; padding: .55rem 0 .7rem; border: 0; border-bottom: 1px solid var(--border); border-radius: 0;
+  background: transparent; color: var(--text); font: inherit; font-size: 1.05rem; outline: none;
+  transition: border-color .25s var(--ease);
+}
+.field textarea { resize: vertical; min-height: 9rem; line-height: 1.6; }
+.field input:focus, .field textarea:focus { border-bottom-color: var(--text); }
+.field:focus-within label { color: var(--text); }
+.field.has-error input, .field.has-error textarea { border-bottom-color: var(--text); border-bottom-style: dashed; }
+.field-error { margin: 0; font-style: italic; font-family: var(--font-serif); font-size: 1.05rem; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 2rem; }
+.form-foot .btn { border: 1px solid var(--line); cursor: pointer; font: inherit; }
+.form-foot .btn:disabled { opacity: .55; cursor: progress; }
+.form-status { margin: 0; font-family: var(--font-serif); font-style: italic; font-size: 1.2rem; min-height: 1.5em; }
+.form-status.error { text-decoration: underline; text-decoration-style: dashed; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+.nav a.active { color: var(--text); }
+.nav a.active::after { transform: scaleX(1); }
+.header-contact { display: none; }
+.contact.compact { margin-top: 6rem; padding: 2.2rem 0; }
+.contact.compact .contact-foot { padding-top: 0; border-top: 0; }
+@media (max-width: 1100px) { .header-contact { display: inline-flex; } }
+@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 3rem; } }
+@media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } .contact-page { padding-top: 4rem; } }
 
 /* ===== Responsive ===== */
 @media (max-width: 1100px) {

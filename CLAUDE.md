@@ -25,11 +25,14 @@ Deploys are split by branch: **`main` -> Azure Static Web Apps** (production, **
 ```
 index.html                 Vite entry (fonts loaded here, theme set before paint)
 src/main.jsx               React mount + global CSS import
-src/App.jsx                One page: Header + Hero, Marquee, About, Experience, Projects, Leadership, Skills + Contact footer (hash router exists, no routes in use)
+src/App.jsx                Home (Hero, Marquee, About, Experience, Projects, Leadership, Skills + footer) and #/contact (ContactPage), via the hash router
 src/data/site.js           ALL editable content, including resume data for sections not built yet
 src/hooks/                 useTheme (light/dark), useRoute (hash router), useReveal (scroll reveal)
 src/components/            Header, Hero (arched wordmark), PrintPortrait (screen-print canvas), Marquee, Section, Entry, ProjectList, Shots (grayscale pic + lightbox), CommitGrid, Contact, Rich
 src/styles/style.css       All styling (single file, tokens at the top)
+src/pages/ContactPage.jsx  Contact form -> POST /api/contact
+functions/                 Azure Functions app (contact API; lib/contact.js is the shared handler, Resend)
+api/contact.js             Vercel adapter for the same handler (staging)
 public/images/             me.webp (portrait, feeds the tee print) + project pictures
 ```
 
@@ -45,4 +48,5 @@ public/images/             me.webp (portrait, feeds the tee print) + project pic
 - Light/dark theme is variable-driven. Never hard-code surface/text colours; use the tokens. Check new UI in both themes (dark = near-black paper, cream ink; bands invert to cream).
 - The header is sticky. Anything sized to the screen must subtract `var(--header-h)`.
 - There are no scroll arrows; navigation is the header anchor links (hidden under 1100px) plus a thin themed scrollbar.
+- The contact API needs `RESEND_API_KEY` and `CONTACT_TO` set on Azure, Vercel and in `.env.local` (never commit keys). See SPEC.md "Contact form".
 - Images are placeholders until paths are set in `site.js`. Placeholders are intentional.

@@ -8,6 +8,7 @@ import ProjectList from './components/ProjectList.jsx'
 import CommitGrid from './components/CommitGrid.jsx'
 import Rich from './components/Rich.jsx'
 import Contact from './components/Contact.jsx'
+import ContactPage from './pages/ContactPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
 
@@ -18,7 +19,14 @@ export default function App() {
   useReveal(route)
   return (
     <>
-      <Header name={site.name} />
+      <Header name={site.name} route={route} />
+      {route === '/contact' ? (
+        <>
+          <main><ContactPage site={site} /></main>
+          <Contact site={site} compact />
+        </>
+      ) : (
+      <>
       <main>
         <Hero site={site} />
         <Marquee items={site.marquee} />
@@ -75,6 +83,8 @@ export default function App() {
         </Section>
       </main>
       <Contact site={site} />
+      </>
+      )}
     </>
   )
 }

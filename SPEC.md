@@ -40,15 +40,30 @@ A personal portfolio for Isaac (GitHub: [Isaac-Loc](https://github.com/Isaac-Loc
 
 **Staging (`dev` -> Vercel).** `vercel.json` (framework Vite, `npm ci`, `npm run build`, output `dist`, same headers as Azure) has `git.deploymentEnabled: { "main": false }`, so Vercel never builds `main`; every other branch, including `dev`, deploys there. In the Vercel dashboard the project's **Production Branch must be `dev`** (Settings -> Git), so `dev` pushes update the project's main `*.vercel.app` URL. Note: Vercel reads `vercel.json` from the commit it is building, so `main` only stops building on Vercel once this file has been merged into `main`; until then, a dashboard "Ignored Build Step" of `[ "$VERCEL_GIT_COMMIT_REF" = "main" ] && exit 0 || exit 1` does the same. `.vercel/` is gitignored.
 
+### Contact form
+The Contact page (`#/contact`, `src/pages/ContactPage.jsx`) POSTs JSON `{ name, email, subject, message, company }` to **`/api/contact`** (the same pattern as simon-chen.com, which uses a Cloudflare function; this site uses its own hosts' functions, no Cloudflare). One shared handler, `functions/lib/contact.js`, validates the fields (limits 100/254/200/5000, message ≥ 10 chars), drops spam (hidden honeypot field `company`, best-effort 5-per-10-minutes per-IP limit), and sends the email through the **Resend** HTTP API with `reply_to` set to the visitor. It answers `{ success: true }` or `{ success: false, error, fields? }`; the page shows field errors under the inputs and a status line. Adapters:
+- **Azure (production)**: `functions/` is the SWA managed Functions app (`api_location: "functions"` in the workflow; Node 20 via `platform.apiRuntime` in `public/staticwebapp.config.json`; v4 programming model, `functions/src/contact.js`).
+- **Vercel (staging)**: `api/contact.js` (Vercel picks up the root `api/` folder automatically).
+- **Dev**: `vite.config.js` middleware, reading `.env.local` (git-ignored).
+
+Environment variables (secrets live only on the hosts, never in the repo or the browser):
+| Variable | Required | Value |
+|---|---|---|
+| `RESEND_API_KEY` | yes | Resend API key (`re_...`) |
+| `CONTACT_TO` | yes | inbox that receives messages. Until a domain is verified in Resend this must be the Resend account's own email |
+| `CONTACT_FROM` | no | default `Portfolio <onboarding@resend.dev>` (Resend's shared test sender). After verifying isaac-loc.dev in Resend (DNS records at name.com), set e.g. `Portfolio <contact@isaac-loc.dev>` |
+
+Set them in: Azure portal -> the Static Web App -> Settings -> Environment variables (Production, and preview environments if testing PRs); Vercel -> Project -> Settings -> Environment Variables; locally in `.env.local`. Without them the form answers "not configured yet" (HTTP 500) and points to the email address.
+
 ## 4. Structure
 ```
 index.html                 Vite entry: fonts (Pinyon Script, Cormorant Garamond, Inter), favicons, theme-init inline script
 src/main.jsx                React mount + global CSS import
-src/App.jsx                 Header + <main>: Hero, Marquee, About (01), Experience (02), Projects (03), Leadership (04), Skills (05); Contact footer (06)
+src/App.jsx                 Header + route switch: "/" = Hero, Marquee, About (01), Experience (02), Projects (03), Leadership (04), Skills (05) + full footer; "/contact" = ContactPage + compact footer
 src/data/site.js             ALL content: site info (city, print caption, marquee, roles, about), experience[], projects[], education, leadership, skills[]
 src/hooks/
   useTheme.js                light/dark toggle, persisted in localStorage
-  useRoute.js                tiny hash router (no routes in use; kept for later pages)
+  useRoute.js                tiny hash router ("/" and "/contact")
   useReveal.js               scroll reveal (.reveal -> .in)
 src/components/
   Header.jsx                 script logo, section anchor nav (hidden under 1100px), theme toggle
@@ -60,9 +75,13 @@ src/components/
   ProjectList.jsx             Projects tabs, numbered list, hover/focus preview (plates for picture-less projects)
   Shots.jsx                   grayscale picture + caption, click to open a lightbox <dialog>
   CommitGrid.jsx              live GitHub contribution grid (fetched client-side, cached 6h in localStorage)
-  Contact.jsx                 inverted footer: script sign-off, email, links
+  Contact.jsx                 inverted footer: script sign-off, "Send a message" link to #/contact, profile links (`compact` = bottom row only)
+src/pages/
+  ContactPage.jsx             Contact page: intro + direct links, and the form posting to /api/contact
   Rich.jsx                    renders **bold** and [label](url) links
 src/styles/style.css         all styling, tokens at the top (plain CSS)
+functions/                   Azure Functions app: lib/contact.js (shared handler), src/contact.js, host.json, package.json
+api/contact.js               Vercel Function adapter for the same handler
 public/images/               me.webp (portrait, feeds the tee print), project/experience pictures
 .claude/launch.json          `dev` preview server for the in-app browser
 ```
@@ -76,16 +95,18 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 - Privacy: the user's phone number must NEVER be published, including inside PDFs/images in `public/`. `public/Isaac_Loc_Resume.pdf` is a redacted copy; never replace it with the original from OneDrive.
 
 ## 6. Page sections (current, built)
-1. **Header**: sticky (`--header-h: 4rem`, 3.5rem on phones), translucent paper with a hairline. Script "Isaac Loc" logo (scrolls to top), anchor links About/Experience/Projects/Leadership/Skills/Contact (smooth-scroll; hidden under 1100px), theme toggle. No Résumé button (user removed it); the PDF is linked only from the Contact footer.
+1. **Header**: sticky (`--header-h: 4rem`, 3.5rem on phones), translucent paper with a hairline. Script "Isaac Loc" logo (scrolls to top), anchor links About/Experience/Projects/Leadership/Skills (smooth-scroll; from the Contact page they go home first) plus a Contact link to `#/contact` (underlined when active); under 1100px the links hide and a small Contact button shows; theme toggle. No Résumé button (user removed it); the PDF is linked only from the Contact footer.
 2. **Hero** (`#top`): one screen tall on desktop. Left: kicker, arched wordmark, city, rotating role, tagline, buttons, links. Right: the tee print. Stacks on phones.
 3. **Ticker**: inverted band under the hero.
 4. **About** (`#about`, No. 01): Cormorant lede paragraph + Studying/Focus rows on the left, the GitHub activity card on the right.
 5. **Experience** (`#experience`, No. 02), **Leadership** (`#leadership`, No. 04): `Entry` list.
 6. **Projects** (`#projects`, No. 03): Full Stack / Embedded & Hardware tabs, numbered list, sticky preview (inline under the row on phones).
 7. **Skills** (`#skills`, No. 05): two columns of groups, hairline chips.
-8. **Contact** (`#contact` footer, No. 06): inverted band, "Get in touch" script title, email, GitHub/LinkedIn/Résumé, copyright + location.
+8. **Footer** (`#contact`, No. 06): inverted band, "Get in touch" script title, "Send a message →" (to the Contact page), Email/GitHub/LinkedIn/Résumé links, copyright + location.
+9. **Contact page** (`#/contact`): "Get in touch" script title; left: intro line and Email/GitHub/LinkedIn/Based-in rows; right: the form (Name, Reply-to email, optional Subject, Message; underline inputs, "Send message" button, sending/sent/error status). Compact footer below.
 
 ## 7. Decisions
+- 2026-11-10: Contact is a separate page (`#/contact`) with a form that emails Isaac. Chosen backend: the site's own `/api/contact` function (Azure managed Function in production, Vercel Function on staging) sending through Resend, rather than a third-party form service; the user created the Resend account. No Cloudflare needed.
 - 2026-11-10: Full theme switch at the user's request ("redo my entire website ... clean black and white with a professional/fancy touch like this hoodie, and a design like the shirt somewhere; be creative"). Chosen: black-and-white editorial (script + serif + tracked caps), the hoodie's arched script wordmark with "NEW YORK" under it, and the shirt's dissolving screen-print photo as the hero portrait. This supersedes the earlier rules about Press Start 2P, `.box` pixel frames, the typing hero, the red accent and "no paper grain" (grain now lives only inside the tee print). Still no dragging, no custom cursors, no scroll arrows.
 - 2026-10-11: Standing git rule: after every task the user gives, commit and push to `origin/dev` automatically (no need to ask). `main` is only touched when the user explicitly says so.
 - 2026-10-09: After trying (and scrapping, all same day) a One Piece ocean theme and a flat royal-blue theme, the user asked to go back to something closer to the ORIGINAL site's spirit but cleaner: no cutout shapes, a retro pixel font, a typing-animation hero, and colours sampled from the user's Luffy browser-tab icon (first a patchy teal-blue, later changed to a rich red). The site was then intentionally stripped down to just header + hero so it could be **rebuilt from the ground up, one section at a time** - do not add Experience/Projects/Education/Leadership/Skills/Contact content back in bulk; build and confirm one page at a time.
@@ -95,6 +116,7 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 - No scroll arrows; the user removed them in favour of the browser's own (themed) scrollbar.
 
 ## 8. Open items / TODO
+- [ ] Contact form: add `RESEND_API_KEY` + `CONTACT_TO` in Azure and Vercel (and `.env.local` for dev), then send a test message on staging. Optionally verify isaac-loc.dev in Resend and set `CONTACT_FROM`.
 - [ ] Get the user's feedback on the black-and-white redesign (wordmark arch strength, tee print look and caption, ticker words).
 - [ ] Update the GitHub repo's homepage field to https://isaac-loc.dev.
 - [ ] In the Vercel dashboard: make sure the project is still connected to the repo and set its Production Branch to `dev`.
@@ -253,3 +275,4 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 - **2026-11-10 (impact-style paragraphs)**: Rewrote the experience, project and leadership summaries in `site.js` as short paragraphs built from Google XYZ resume bullets (result, measure, method) but in flowing prose, using only resume or own-repo facts. Stats unchanged.
 - **2026-11-10 (black & white redesign)**: Rebuilt the whole look from the user's two references (hoodie + graphic tee). New fonts (Pinyon Script, Cormorant Garamond, Inter; Press Start 2P dropped), new B&W tokens and a fresh `style.css`. New components: `PrintPortrait` (screen-print portrait canvas), `Marquee` (ticker). Rewritten: `Hero` (arched SVG wordmark, city line, rotating role, tee figure), `Header` (script logo + anchor nav), `Section`, `Entry` (editorial three-column), `Shots` (grayscale picture + lightbox), `Contact` (inverted footer), `ProjectList` (numbered list, script plates instead of the pixel mosaic), `App` (About is now its own section with the commit grid). Removed `Background.jsx`, `PixelPhoto.jsx`, `Socials.jsx`, `useTyper.js`, `EmptyPage.jsx`. `site.js`: added `city`, `print`, `marquee`; the last role is now one line. Added `.claude/launch.json`. Checked at 1440px in light and dark and at phone width.
 - **2026-11-10 (no Résumé button)**: Removed the Résumé buttons from the header and the hero at the user's request. The résumé PDF is still linked as text in the Contact footer.
+- **2026-11-10 (contact page + form)**: Added the `#/contact` page with a form that sends an email via `/api/contact` -> Resend. New: `src/pages/ContactPage.jsx`, `functions/` (Azure Functions app with the shared handler), `api/contact.js` (Vercel), a dev middleware in `vite.config.js`. Workflow `api_location` is now `functions`; `staticwebapp.config.json` pins `node:20`; `.gitignore` covers `.env.local`. Header gets a Contact route link (and a Contact button under 1100px); the footer's email headline became "Send a message →". Tested locally: validation, honeypot and the not-configured response; a real send still needs the env vars.
