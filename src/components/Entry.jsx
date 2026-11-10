@@ -1,23 +1,31 @@
 import Rich from './Rich.jsx'
 import Shots from './Shots.jsx'
 
-// One resume card for the home page: title, meta line, optional summary, stat chips, and tag list (tech or coursework).
-// With `image`, the card becomes two columns and shows the screenshot in a retro window frame (title bar = imageLabel);
-// clicking the screenshot opens a larger view.
-export default function Entry({ title, meta, summary, stats = [], tech = [], tagsLabel, href, at, repo, image, imageAlt = '', imageLabel, badge }) {
+// One resume entry: a meta column (number, dates, place), the body (org, title, summary, figures, tags, repo link)
+// and, with `image`, a monochrome picture that can be enlarged.
+export default function Entry({ index, title, org, href, place, dates, summary, stats = [], tech = [], repo, image, imageAlt = '', imageLabel }) {
   return (
     <article className={`entry reveal${image ? ' has-image' : ''}`}>
+      <div className="entry-meta">
+        {index && <span className="entry-no">{index}</span>}
+        {dates && <span>{dates}</span>}
+        {place && <span>{place}</span>}
+      </div>
       <div className="entry-body">
-      {badge && <span className="entry-badge">{badge}</span>}
-      <h3 className="entry-title">
-        {href ? <a href={href} target="_blank" rel="noopener noreferrer">{title}{at && ` @ ${at}`}</a> : <>{title}{at && ` @ ${at}`}</>}
-      </h3>
-      {meta && <p className="entry-meta">{meta}</p>}
-      {summary && <p className="entry-summary"><Rich text={summary} /></p>}
-      {stats.length > 0 && <ul className="entry-stats">{stats.map((s) => <li key={s.l}><b>{s.n}</b> {s.l}</li>)}</ul>}
-      {tagsLabel && <p className="entry-tags-label">{tagsLabel}</p>}
-      <ul className="entry-tech">{tech.map((t) => <li key={t}>{t}</li>)}</ul>
-      {repo && <a className="preview-link entry-repo" href={repo} target="_blank" rel="noopener noreferrer">View on GitHub</a>}
+        {org && (
+          <p className="entry-org">
+            {href ? <a href={href} target="_blank" rel="noopener noreferrer">{org} <span aria-hidden="true">↗</span></a> : org}
+          </p>
+        )}
+        <h3 className="entry-title">{title}</h3>
+        {summary && <p className="entry-summary"><Rich text={summary} /></p>}
+        {stats.length > 0 && (
+          <dl className="entry-stats">
+            {stats.map((s) => <div key={s.l}><dt>{s.n}</dt><dd>{s.l}</dd></div>)}
+          </dl>
+        )}
+        {tech.length > 0 && <ul className="chips">{tech.map((t) => <li key={t}>{t}</li>)}</ul>}
+        {repo && <a className="text-link" href={repo} target="_blank" rel="noopener noreferrer">View on GitHub</a>}
       </div>
       {image && <Shots src={image} alt={imageAlt} label={imageLabel} />}
     </article>

@@ -4,47 +4,78 @@ import Hero from './components/Hero.jsx'
 import Section from './components/Section.jsx'
 import Entry from './components/Entry.jsx'
 import ProjectList from './components/ProjectList.jsx'
-import Contact from './components/Contact.jsx'
-import Background from './components/Background.jsx'
+import CommitGrid from './components/CommitGrid.jsx'
+import Rich from './components/Rich.jsx'
+import Footer from './components/Footer.jsx'
+import Leadership from './components/Leadership.jsx'
+import Skills from './components/Skills.jsx'
+import ContactPage from './pages/ContactPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
+
+const host = (url) => (url ? new URL(url).host : undefined)
 
 export default function App() {
   const route = useRoute()
   useReveal(route)
   return (
     <>
-      <Background />
-      <Header name={site.firstName} resume={site.resume} route={route} />
+      <Header name={site.name} route={route} />
+      {route === '/contact' ? (
         <>
-          <Hero site={site} />
-          <Section id="experience" no="02" title="Experience">
-            <div className="entry-grid single reveal-stagger">
-              {experience.map((e) => (
-                <Entry key={e.id} title={e.role} href={e.orgUrl} at={e.orgUrl ? new URL(e.orgUrl).host : undefined} meta={`${e.org} · ${e.place} · ${e.dates}`} summary={e.summary} stats={e.stats} tech={e.tech} repo={e.repo} image={e.image} imageAlt={e.imageAlt} imageLabel={e.orgUrl ? new URL(e.orgUrl).host.toUpperCase() : e.org.toUpperCase()} />
-              ))}
-            </div>
-          </Section>
-          <Section id="projects" no="03" title="Projects">
-            <ProjectList projects={projects} />
-          </Section>
-          <Section id="leadership" no="04" title="Leadership">
-            <div className="entry-grid">
-              <Entry title={leadership.role} meta={`${leadership.org} · ${leadership.dates}`} summary={leadership.summary} stats={leadership.stats} tech={leadership.tech} repo={leadership.repo} />
-            </div>
-          </Section>
-          <Section id="skills" no="05" title="Skills">
-            <div className="skill-groups">
-              {skills.map((g) => (
-                <div key={g.label} className="skill-group reveal">
-                  <h3 className="skill-label">{g.label}</h3>
-                  <ul className="entry-tech">{g.items.map((i) => <li key={i.name}>{i.name}</li>)}</ul>
-                </div>
-              ))}
-            </div>
-          </Section>
-          <Contact site={site} />
+          <main><ContactPage site={site} /></main>
+          <Footer site={site} route={route} />
         </>
+      ) : (
+      <>
+      <main>
+        <Hero site={site} />
+        <Section id="about" no="01" title="About">
+          <div className="about-grid">
+            <div className="about-copy reveal">
+              {site.about.paragraphs.map((t) => <p key={t} className="about-lede"><Rich text={t} /></p>)}
+              <dl className="about-facts">
+                {site.about.facts.map((f) => <div key={f.label}><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+              </dl>
+            </div>
+            <div className="reveal"><CommitGrid user={site.githubUser} /></div>
+          </div>
+        </Section>
+        <Section id="experience" no="02" title="Experience">
+          <div className="entry-list">
+            {experience.map((e, n) => (
+              <Entry
+                key={e.id}
+                index={String(n + 1).padStart(2, '0')}
+                title={e.role}
+                org={e.org}
+                href={e.orgUrl}
+                place={e.place}
+                dates={e.dates}
+                summary={e.summary}
+                stats={e.stats}
+                tech={e.tech}
+                repo={e.repo}
+                image={e.image}
+                imageAlt={e.imageAlt}
+                imageLabel={host(e.orgUrl) ?? e.org}
+              />
+            ))}
+          </div>
+        </Section>
+        <Section id="projects" no="03" title="Projects">
+          <ProjectList projects={projects} />
+        </Section>
+        <Section id="leadership" no="04" title="Leadership">
+          <Leadership item={leadership} />
+        </Section>
+        <Section id="skills" no="05" title="Skills">
+          <Skills groups={skills} />
+        </Section>
+      </main>
+      <Footer site={site} route={route} />
+      </>
+      )}
     </>
   )
 }

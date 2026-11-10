@@ -48,12 +48,12 @@ export default function CommitGrid({ user }) {
 
   return (
     <div
-      className={`box commit-card ${state.status}`}
+      className={`commit-card ${state.status}`}
       role="group"
       aria-label={`${user} on GitHub: ${label}`}
     >
       <div className="commit-head">
-        <span className="tag">GITHUB COMMITS</span>
+        <span className="commit-label">GitHub activity</span>
         <span className="commit-total">{state.status === 'ok' ? `${state.total} this year` : state.status === 'error' ? 'offline' : '...'}</span>
       </div>
       <div className="commit-grid" aria-hidden="true" onMouseLeave={() => setHover(null)}>

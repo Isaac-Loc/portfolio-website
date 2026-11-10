@@ -11,9 +11,14 @@ export const site = {
   resume: '/Isaac_Loc_Resume.pdf', // file lives in /public; opened in a new tab from the nav
   githubUser: 'Isaac-Loc', // drives the commit grid in the hero
   linkedin: 'https://www.linkedin.com/in/isaac-loc',
-  location: 'NYC / Buffalo, NY', // shown under the hero portrait as "Based in ..."
+  location: 'NYC / Buffalo, NY', // shown in the footer
+  city: 'New York', // small caps under the hero's script wordmark (like the city line on the hoodie reference)
+  // caption on the hero's tee-print portrait: a small line over a big date (expected graduation, from the resume)
+  print: { kicker: 'Computer Science · University at Buffalo', date: '05.2027' },
+  // the ticker band under the hero
+  marquee: ['Full Stack Development', 'Embedded Systems', 'React & Next.js', 'C++ & ESP32', 'New York', 'Buffalo'],
   tagline: 'Software engineer from embedded firmware to full stack.',
-  roles: ['Software Engineer', 'Full Stack Developer', 'Embedded Developer', 'Computer Science @\nUniversity at Buffalo'], // typed under the hero title
+  roles: ['Software Engineer', 'Full Stack Developer', 'Embedded Developer', 'Computer Science, University at Buffalo'], // cycled (fade) under the hero wordmark
   about: {
     // The About box in the hero: one plain paragraph, then short label/value rows.
     paragraphs: [
@@ -42,7 +47,7 @@ export const experience = [
     shape: 'burst',
     image: '/images/ezesports.webp', // screenshot of the public ezesports.org home page (shown in a window frame on the card)
     imageAlt: 'The ezesports.org home page: New York City High School Esports League',
-    summary: "Full-stack development on the EZ Esports website ([ezesports.org](https://ezesports.org)) using Next.js, TypeScript and Supabase (PostgreSQL). Built PDF resume uploads with server-side validation, moved application data to a versioned JSONB schema, added site-wide security headers, and shipped the school manager portal's guided tour, season roster lock and student handbook page.",
+    summary: "Full-stack work on the EZ Esports website ([ezesports.org](https://ezesports.org)) in Next.js, TypeScript and Supabase. Traced a production image outage to Vercel's 5,000/month transformation limit and ended it with WebP thumbnails up to 39x smaller. Closed a privilege-escalation hole that let non-owners grant the Owner role, and secured applicant data with server-validated PDF resume uploads in a private bucket and on-request erasure.",
     stats: [
       { n: '100%', l: 'server-side validated' },
       { n: '5', l: 'security headers' },
@@ -61,7 +66,7 @@ export const experience = [
     art: 'web',
     shape: 'jag',
     image: null,
-    summary: "Design and development of personal and static websites for clients, including hosting and custom domains. This portfolio is a live reference: a React and Vite site on Azure Static Web Apps, deployed through GitHub Actions on a custom domain with managed HTTPS.",
+    summary: "Builds fast, low-maintenance static websites for clients. This portfolio is the live reference: a React and Vite site whose JavaScript bundle is only about 79 KB gzipped, hosted on Azure with a custom domain and managed HTTPS. A GitHub Actions pipeline deploys every push to production and staging, and three HTTP security headers plus year-long caching of built assets keep it safe and quick.",
     stats: [],
     tech: ['React', 'Vite', 'HTML/CSS', 'Azure', 'GitHub Actions'],
   },
@@ -69,14 +74,14 @@ export const experience = [
     id: 'ub-embedded',
     repo: 'https://github.com/UB-CSE/LED-Video-Wall',
     role: 'Embedded Software Engineer',
-    org: 'University at Buffalo',
+    org: 'University at Buffalo | CSE 302',
     place: 'Buffalo, NY',
     dates: 'Aug 2025 – Dec 2025',
     art: 'ledwall',
     shape: 'jag',
     image: '/images/led-wall.webp', // the full team photo with the LED wall
     imageAlt: 'The team with the LED tile wall and the laptop running its control panel',
-    summary: "Contributed to the UB LED Video Wall, a modular wall of WS2812B LED matrices driven by ESP32 microcontrollers. Developed C++ server features for text rendering, image scaling and real-time layer movement from the web interface, wrote the Python class that wraps the wall's commands for the Flask API, and updated the microcontroller client's host connection.",
+    summary: "Contributed to the UB LED Video Wall, a modular wall of LED matrices driven by ESP32 microcontrollers. Extended its C++ server with five commands for live text and image scaling that apply between frames without interrupting playback, wrote the Python class that lets the Flask web server move and edit layers in real time, and updated the ESP32 client so each controller finds the wall's server on its own over HTTPS.",
     stats: [
       { n: '50+', l: 'LED tiles' },
       { n: '4', l: 'ESP32s' },
@@ -143,7 +148,7 @@ export const projects = [
     image: '/images/project-tracker.jpg', // the project page; click it on the card for a bigger view. Shows member names (no emails): see SPEC.md
     imageAlt: 'A project page with its goal, latest status report, linked Google Drive folder and members',
     url: 'https://github.com/Theta-Tau-Mu-Gamma/Theta-Tau-Scrum',
-    summary: "Project tracker for the Theta Tau chapter with scrum boards, task delegation, time tracking and Google Drive integration. React and Vite front end, PHP/Slim API and MySQL database, with Google Sign-In for authentication.",
+    summary: "Project tracker built for the Theta Tau chapter and used by 20+ members across several teams. A React front end and a PHP/Slim API with 68 endpoints sit on a 17-table MySQL database, with a six-stage Kanban board, a task dependency graph and Google Drive file access that refreshes its own OAuth tokens.",
     stats: [
       { n: '20+', l: 'members' },
       { n: '68', l: 'API endpoints' },
@@ -206,13 +211,14 @@ export const education = {
 
 export const leadership = {
   role: 'Brotherhood Outreach & Software Lead',
+  banner: 'THETA TAU', // text scrolled on the LED-wall recreation in the Leadership section (letters T H E A U and space are drawn)
   repo: 'https://github.com/Isaac-Loc/OT-LED-Wall',
   org: 'Theta Tau – Engineering Fraternity',
   dates: 'May 2025 – Present',
   art: 'calendar',
   shape: 'burst8',
   image: null,
-  summary: "Plans chapter events and built the chapter's tabling LED wall: an ESP32-S3 driving four chained 64x64 HUB75 panels as a 256x64 display, programmed in C++ with PlatformIO.",
+  summary: "Plans chapter events and led software for the chapter's tabling LED wall, which raised tabling attraction by 25%. An ESP32-S3 drives four chained 64x64 HUB75 panels as a 256x64 display, programmed in C++ with PlatformIO to scroll the banner with a chasing Pac-Man animation.",
   stats: [
     { n: '15+', l: 'events' },
     { n: '40+', l: 'per event' },

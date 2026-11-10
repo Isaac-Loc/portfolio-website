@@ -6,34 +6,32 @@ import Shots from './Shots.jsx'
 // the full text) that follows the project you hover or focus. On touch screens the preview opens under the tapped row.
 // Each project needs `category: 'fullstack' | 'embedded'` in site.js.
 const TABS = [
-  { id: 'fullstack', label: 'FULL STACK APPLICATIONS' },
-  { id: 'embedded', label: 'EMBEDDED / HARDWARE' },
+  { id: 'fullstack', label: 'Full Stack' },
+  { id: 'embedded', label: 'Embedded & Hardware' },
 ]
 const plain = (t) => t.replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
 const firstSentence = (t) => plain(t).split(/(?<=[.!?])\s+/)[0]
 
-// A pixel mosaic stands in for projects that have no picture yet (same colours every time for the same project)
-const MOSAIC = ['#b3281f', '#d4493a', '#e8998d', '#f0c9c3', '#1b1b1b', '#841e17', '#fbf6ea']
-function Mosaic({ seed }) {
-  let h = 0
-  for (const ch of seed) h = (h * 31 + ch.charCodeAt(0)) >>> 0
-  const cells = Array.from({ length: 40 }, () => {
-    h = (h * 1664525 + 1013904223) >>> 0
-    return MOSAIC[(h >>> 24) % MOSAIC.length]
-  })
-  return <div className="mosaic" aria-hidden="true">{cells.map((c, i) => <span key={i} style={{ background: c }} />)}</div>
+// Projects without a picture get a typographic plate instead: the title in script on the print-black panel.
+function Plate({ title, date }) {
+  return (
+    <div className="plate" aria-hidden="true">
+      <span className="plate-title">{title}</span>
+      <span className="plate-date">{date}</span>
+    </div>
+  )
 }
 
 function Preview({ project }) {
-  const { id, title, date, tech = [], summary, image, imageAlt = '', url } = project
+  const { title, date, tech = [], summary, image, imageAlt = '', url } = project
   return (
     <div className="preview">
       <div className="preview-pic">
-        {image ? <Shots src={image} alt={imageAlt} label={title.toUpperCase()} /> : <Mosaic seed={id} />}
+        {image ? <Shots src={image} alt={imageAlt} /> : <Plate title={title} date={date} />}
       </div>
-      <p className="preview-tags">{[date, ...tech].filter(Boolean).join(' · ').toUpperCase()}</p>
+      <p className="preview-tags">{[date, ...tech].filter(Boolean).join('  ·  ')}</p>
       <p className="preview-text"><Rich text={summary} /></p>
-      {url && <a className="preview-link" href={url} target="_blank" rel="noopener noreferrer">View on GitHub</a>}
+      {url && <a className="text-link" href={url} target="_blank" rel="noopener noreferrer">View on GitHub</a>}
     </div>
   )
 }
@@ -58,18 +56,19 @@ export default function ProjectList({ projects }) {
     <>
       <div className="proj-tabs" role="tablist" aria-label="Project type" onKeyDown={onKey}>
         {TABS.map((t) => (
-          <button key={t.id} id={`proj-tab-${t.id}`} type="button" role="tab" aria-selected={tab === t.id} aria-controls="proj-panel" tabIndex={tab === t.id ? 0 : -1} className={`tag proj-tab${tab === t.id ? ' active' : ''}`} onClick={() => pick(t.id)}>
+          <button key={t.id} id={`proj-tab-${t.id}`} type="button" role="tab" aria-selected={tab === t.id} aria-controls="proj-panel" tabIndex={tab === t.id ? 0 : -1} className={`proj-tab${tab === t.id ? ' active' : ''}`} onClick={() => pick(t.id)}>
             {t.label}<span className="proj-count">{projects.filter((p) => p.category === t.id).length}</span>
           </button>
         ))}
       </div>
       <div className="proj-split" id="proj-panel" role="tabpanel" aria-labelledby={`proj-tab-${tab}`}>
         <ul className="proj-items">
-          {list.map((p) => (
+          {list.map((p, n) => (
             <li key={p.id}>
               <button type="button" className={`proj-item${p.id === active.id ? ' active' : ''}`} aria-current={p.id === active.id ? 'true' : undefined} onMouseEnter={() => setActiveId(p.id)} onFocus={() => setActiveId(p.id)} onClick={() => setActiveId(p.id)}>
+                <span className="proj-no">{String(n + 1).padStart(2, '0')}</span>
                 <span className="proj-item-main">
-                  <span className="proj-item-title">{p.title}{p.inProgress && <span className="entry-badge">COMING SOON</span>}</span>
+                  <span className="proj-item-title">{p.title}{p.inProgress && <span className="badge">In progress</span>}</span>
                   <span className="proj-item-tease">{firstSentence(p.summary)}</span>
                 </span>
                 <span className="proj-plus" aria-hidden="true" />

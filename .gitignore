@@ -6,3 +6,7 @@ node_modules/
 .claude/
 dist/
 .vercel/
+.env.local
+.env.*.local
+functions/node_modules/
+functions/local.settings.json
