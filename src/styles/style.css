@@ -318,14 +318,15 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .skill-label { margin: 0 0 1.2rem; }
 
 /* ===== Footer: one slim row ===== */
-.footer { margin-top: 8rem; border-top: 1px solid var(--border); }
+.footer { margin-top: 8rem; background: var(--band); color: var(--on-band); } /* inverted: black in light mode, cream in dark mode */
 main:has(.contact-page) + .footer { margin-top: 0; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; padding: 1.4rem 0; }
 .footer-name { font-family: var(--font-script); font-size: 1.6rem; line-height: 1; text-decoration: none; padding-top: .2rem; }
 .footer-links, .footer-meta { display: flex; align-items: center; gap: 1.8rem; margin: 0; font-size: .6rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; }
-.footer-links a, .footer-meta a { text-decoration: none; color: var(--muted); transition: color .2s; }
-.footer-links a:hover, .footer-meta a:hover { color: var(--text); }
-.footer-meta span { color: var(--muted); }
+.footer-links a, .footer-meta a { text-decoration: none; color: inherit; opacity: .65; transition: opacity .2s; }
+.footer-links a:hover, .footer-meta a:hover { opacity: 1; }
+.footer-meta span { opacity: .65; }
+.footer :focus-visible { outline-color: var(--on-band); }
 
 /* Scroll reveal (useReveal adds .in) */
 .reveal { opacity: 0; transform: translateY(1.6rem); transition: opacity .9s var(--ease), transform .9s var(--ease); }
