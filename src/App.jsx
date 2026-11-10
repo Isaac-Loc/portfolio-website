@@ -7,6 +7,8 @@ import ProjectList from './components/ProjectList.jsx'
 import CommitGrid from './components/CommitGrid.jsx'
 import Rich from './components/Rich.jsx'
 import Footer from './components/Footer.jsx'
+import Leadership from './components/Leadership.jsx'
+import Skills from './components/Skills.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
@@ -65,19 +67,10 @@ export default function App() {
           <ProjectList projects={projects} />
         </Section>
         <Section id="leadership" no="04" title="Leadership">
-          <div className="entry-list">
-            <Entry index="01" title={leadership.role} org={leadership.org} dates={leadership.dates} summary={leadership.summary} stats={leadership.stats} tech={leadership.tech} repo={leadership.repo} />
-          </div>
+          <Leadership item={leadership} />
         </Section>
         <Section id="skills" no="05" title="Skills">
-          <div className="skill-groups">
-            {skills.map((g) => (
-              <div key={g.label} className="skill-group reveal">
-                <h3 className="skill-label">{g.label}</h3>
-                <ul className="chips">{g.items.map((i) => <li key={i.name}>{i.name}</li>)}</ul>
-              </div>
-            ))}
-          </div>
+          <Skills groups={skills} />
         </Section>
       </main>
       <Footer site={site} route={route} />

@@ -211,6 +211,7 @@ export const education = {
 
 export const leadership = {
   role: 'Brotherhood Outreach & Software Lead',
+  banner: 'THETA TAU', // text scrolled on the LED-wall recreation in the Leadership section (letters T H E A U and space are drawn)
   repo: 'https://github.com/Isaac-Loc/OT-LED-Wall',
   org: 'Theta Tau – Engineering Fraternity',
   dates: 'May 2025 – Present',
