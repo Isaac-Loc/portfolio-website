@@ -210,11 +210,13 @@ img { max-width: 100%; }
 .tee-flip-inner { position: relative; transform-style: preserve-3d; transition: transform .9s cubic-bezier(.45, .05, .25, 1); }
 .tee-flip[data-intro] .tee-flip-inner { transition-duration: 1.8s; transition-timing-function: cubic-bezier(.5, 0, .15, 1); }
 .tee-front, .tee-photo { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+/* photo side: the photo fills the panel (no black border); the dashed stitching, IL label and hint sit on top of it */
 .tee-photo { position: absolute; inset: 0; padding: 0; overflow: hidden; transform: rotateY(180deg); }
 .tee-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 56% 50%; }
-.tee-photo::before { z-index: 1; border-color: color-mix(in srgb, #fff 45%, transparent); }
+.tee-photo::before { z-index: 1; border-color: color-mix(in srgb, #fff 70%, transparent); }
+.tee-photo .tee-label { z-index: 1; }
+.tee-photo .tee-hint { color: #fff; text-shadow: 0 1px 4px #0009; opacity: .85; }
 .tee-hint { position: absolute; left: 1.5rem; bottom: 1.3rem; z-index: 1; font-size: .5rem; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; opacity: .55; transition: opacity .3s var(--ease); }
-.tee-photo .tee-hint { color: #fff; text-shadow: 0 1px 4px #0008; opacity: .8; }
 .tee-flip:hover .tee-hint, .tee-flip:focus-visible .tee-hint { opacity: 1; }
 .tee-caption b { font-family: var(--font-body); font-weight: 600; font-size: 1.05rem; letter-spacing: .12em; }
 
