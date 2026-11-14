@@ -10,7 +10,7 @@ Isaac's personal portfolio website. React + Vite single long page. Look (since 2
 1. **Update SPEC.md whenever you change something**: add a dated entry to its Changelog, and update any section (structure, tokens, content model, open items) that the change affects.
 2. If a design/tech decision was made in conversation, record it in SPEC.md "Decisions" so the next chat has it.
 3. Keep this file short. Put detail in SPEC.md.
-4. **Git workflow:** work on the `dev` branch. After EVERY task the user gives you, commit and push to `origin/dev` without asking (user's standing instruction, 2026-10-11). Never push to `main` unless the user explicitly says so. Don't create PRs unless asked.
+4. **Git workflow:** work on the `dev` branch. Do NOT commit or push on your own: after a task, ask the user whether it should be committed (and pushed to `origin/dev`), and only do it on their yes (user's instruction, 2026-11-14; replaces the old auto-commit rule). Never push to `main` unless the user explicitly says so. Don't create PRs unless asked.
 
 ## Commands
 ```bash
@@ -48,5 +48,5 @@ public/images/             me.webp (portrait, feeds the tee print) + project pic
 - Light/dark theme is variable-driven. Never hard-code surface/text colours; use the tokens. Check new UI in both themes (dark = near-black paper, cream ink; bands invert to cream).
 - The header is sticky. Anything sized to the screen must subtract `var(--header-h)`.
 - There are no scroll arrows; navigation is the header anchor links (hidden under 1100px) plus a thin themed scrollbar.
-- The contact API needs `RESEND_API_KEY` and `CONTACT_TO` set on Azure, Vercel and in `.env.local` (never commit keys). See SPEC.md "Contact form".
+- The contact API needs `RESEND_API_KEY` and `CONTACT_TO` (set on Azure `isaac-portfolio`/`portfolio_rg`, on Vercel, and locally in the git-ignored `.env`; never commit or print keys). See SPEC.md "Contact form".
 - Images are placeholders until paths are set in `site.js`. Placeholders are intentional.

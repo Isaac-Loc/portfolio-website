@@ -1,14 +1,40 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PrintPortrait from '../components/PrintPortrait.jsx'
 
 // The Contact page (#/contact), designed as a postcard that fits one screen: on the left, ruled lines for the
 // message ("Dear Isaac, ...") and a signature line where the sender's name is written in script; on the right, a
 // perforated stamp carrying the tee-print portrait, the printed address, the reply-to fields and the send button.
-// A successful send stamps a NEW YORK postmark over the stamp. The form POSTs to /api/contact (Azure Function in
+// While sending, airmail stripes march along the card's top and bottom edges. A successful send stamps a NEW YORK
+// postmark over the stamp; on desktop the card then shrinks and slides into an envelope, the flap folds shut with a
+// denim "IL" seal, and the envelope flies off to the top right (on phones the card flies off on its own). A fresh
+// blank card then slides back in. Under reduced motion the card just fades out and back. The form POSTs to /api/contact (Azure Function in
 // production, Vercel Function on staging, Vite middleware in dev); the server validates too and may answer with
 // per-field messages, which show next to the matching labels.
 const EMPTY = { name: '', email: '', subject: '', message: '', company: '' }
 const LIMITS = { name: 100, email: 254, subject: 200, message: 5000 }
+const STAMP_MS = 750 // postmark lands, then the card is posted
+const PACK_MS = 1900 // matches the `postcard-pack` / `env-*` animations in style.css
+const FLY_MS = 950 // matches the `postcard-fly` animation in style.css
+const BUSY = ['sending', 'stamped', 'packing', 'flying']
+const NO_ENVELOPE = '(max-width: 900px), (prefers-reduced-motion: reduce)'
+
+// The envelope the card is packed into. It sits around the card in three layers: the back (inside liner) behind
+// the card, the front pocket in front of it, and the flap, which starts open behind the card and folds down over it.
+function Envelope() {
+  return (
+    <>
+      <div className="env env-back" aria-hidden="true" />
+      <svg className="env env-front" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0 L50 52 L100 0 L100 100 L0 100 Z" />
+        <path className="env-fold" d="M0 100 L46 58 M100 100 L54 58" />
+      </svg>
+      <svg className="env-flap" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0 L50 100 L100 0 Z" />
+      </svg>
+      <span className="env-seal" aria-hidden="true">IL</span>
+    </>
+  )
+}
 
 function check(v) {
   const f = {}
@@ -44,7 +70,11 @@ function Postmark({ date }) {
 export default function ContactPage({ site }) {
   const [values, setValues] = useState(EMPTY)
   const [errors, setErrors] = useState({})
-  const [status, setStatus] = useState({ state: 'idle', message: '' }) // idle | sending | sent | error
+  const [status, setStatus] = useState({ state: 'idle', message: '' }) // idle | sending | stamped | flying | sent | error
+  const timers = useRef([])
+  useEffect(() => () => timers.current.forEach(clearTimeout), [])
+  const later = (ms, fn) => timers.current.push(setTimeout(fn, ms))
+  const busy = BUSY.includes(status.state)
   const today = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: '2-digit' }).replace(/\//g, '.')
 
   const set = (k) => (e) => {
@@ -64,7 +94,7 @@ export default function ContactPage({ site }) {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    if (status.state === 'sending') return
+    if (busy) return
     const found = check(values)
     setErrors(found)
     if (Object.keys(found).length) {
@@ -84,8 +114,18 @@ export default function ContactPage({ site }) {
         if (json.fields) setErrors(json.fields)
         throw new Error(json.error || 'The message could not be sent. Please try again.')
       }
-      setValues(EMPTY)
-      setStatus({ state: 'sent', message: 'Sent. Thank you for writing.' })
+      const pack = !window.matchMedia(NO_ENVELOPE).matches
+      setStatus({ state: 'stamped', message: 'Posted.', pack })
+      let t = STAMP_MS
+      if (pack) {
+        later(t, () => setStatus({ state: 'packing', message: 'Sealing the envelope…', pack }))
+        t += PACK_MS
+      }
+      later(t, () => setStatus({ state: 'flying', message: 'On its way…', pack }))
+      later(t + FLY_MS, () => {
+        setValues(EMPTY)
+        setStatus({ state: 'sent', message: 'Sent. Thank you for writing.' })
+      })
     } catch (err) {
       const msg = err?.name === 'TimeoutError' ? 'The request timed out. Please try again.' : err?.message
       setStatus({ state: 'error', message: msg || 'The message could not be sent. Please try again.' })
@@ -109,57 +149,61 @@ export default function ContactPage({ site }) {
           </p>
         </header>
 
-        <form className={`postcard reveal ${status.state}`} onSubmit={onSubmit} noValidate aria-label="Contact form">
-          <div className="pc-left">
-            <Label id="message" error={errors.message}>Message</Label>
-            <textarea className="pc-lines" placeholder={`Dear ${site.firstName},`} required {...input('message')} />
-            <div className="pc-sign">
-              <Label id="name" error={errors.name}>Yours,</Label>
-              <input className="pc-signature" type="text" autoComplete="name" placeholder="Your name" required {...input('name')} />
-            </div>
-          </div>
-
-          <i className="pc-divider" aria-hidden="true" />
-
-          <div className="pc-right">
-            <div className="pc-corner">
-              <p className="pc-postage" aria-hidden="true">Post card<br /><span>{site.city} · Buffalo</span></p>
-              <div className="pc-stamp" aria-hidden="true">
-                <div className="pc-stamp-inner">
-                  <PrintPortrait src={site.photos.me} alt="" />
-                  <span className="pc-stamp-cap">{site.print.date}</span>
-                </div>
+        <div className="pc-stage" data-state={status.state} data-pack={status.pack ? '' : undefined}>
+          <Envelope />
+          {/* state lives in data-state, not className: re-rendering className would wipe the `in` class useReveal adds */}
+          <form className="postcard reveal" data-state={status.state} onSubmit={onSubmit} noValidate aria-label="Contact form" aria-busy={busy}>
+            <div className="pc-left">
+              <Label id="message" error={errors.message}>Message</Label>
+              <textarea className="pc-lines" placeholder={`Dear ${site.firstName},`} required {...input('message')} />
+              <div className="pc-sign">
+                <Label id="name" error={errors.name}>Yours,</Label>
+                <input className="pc-signature" type="text" autoComplete="name" placeholder="Your name" required {...input('name')} />
               </div>
-              <Postmark date={today} />
             </div>
 
-            <div className="pc-address">
-              <span className="pc-label"><span>To</span></span>
-              <p className="pc-to">{site.name}</p>
-              <p className="pc-to">{site.city}, NY</p>
-            </div>
+            <i className="pc-divider" aria-hidden="true" />
 
-            <div className="pc-from">
-              <Label id="email" error={errors.email}>Reply-to email</Label>
-              <input className="pc-line" type="email" autoComplete="email" required {...input('email')} />
-              <Label id="subject" error={errors.subject}>Subject <small>(optional)</small></Label>
-              <input className="pc-line" type="text" {...input('subject')} />
-            </div>
+            <div className="pc-right">
+              <div className="pc-corner">
+                <p className="pc-postage" aria-hidden="true">Post card<br /><span>{site.city} · Buffalo</span></p>
+                <div className="pc-stamp" aria-hidden="true">
+                  <div className="pc-stamp-inner">
+                    <PrintPortrait src={site.photos.me} alt="" />
+                    <span className="pc-stamp-cap">{site.print.date}</span>
+                  </div>
+                </div>
+                <Postmark date={today} />
+              </div>
 
-            {/* honeypot: hidden from people, filled in by bots */}
-            <div className="hp" aria-hidden="true">
-              <label htmlFor="contact-company">Company</label>
-              <input id="contact-company" name="company" tabIndex={-1} autoComplete="off" value={values.company} onChange={set('company')} />
-            </div>
+              <div className="pc-address">
+                <span className="pc-label"><span>To</span></span>
+                <p className="pc-to">{site.name}</p>
+                <p className="pc-to">{site.city}, NY</p>
+              </div>
 
-            <div className="pc-send">
-              <p className={`form-status ${status.state}`} role="status" aria-live="polite">{status.message}</p>
-              <button type="submit" className="btn btn-solid" disabled={status.state === 'sending'}>
-                {status.state === 'sending' ? 'Sending…' : 'Send message'} <span aria-hidden="true">→</span>
-              </button>
+              <div className="pc-from">
+                <Label id="email" error={errors.email}>Reply-to email</Label>
+                <input className="pc-line" type="email" autoComplete="email" required {...input('email')} />
+                <Label id="subject" error={errors.subject}>Subject <small>(optional)</small></Label>
+                <input className="pc-line" type="text" {...input('subject')} />
+              </div>
+
+              {/* honeypot: hidden from people, filled in by bots */}
+              <div className="hp" aria-hidden="true">
+                <label htmlFor="contact-company">Company</label>
+                <input id="contact-company" name="company" tabIndex={-1} autoComplete="off" value={values.company} onChange={set('company')} />
+              </div>
+
+              <div className="pc-send">
+                <p className={`form-status ${status.state}`} role="status" aria-live="polite">{status.message}</p>
+                <button type="submit" className="btn btn-solid" disabled={busy}>
+                  {busy ? 'Sending…' : 'Send message'} <span aria-hidden="true">→</span>
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </section>
   )

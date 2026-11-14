@@ -10,3 +10,5 @@ dist/
 .env.*.local
 functions/node_modules/
 functions/local.settings.json
+.vercel
+.env*
