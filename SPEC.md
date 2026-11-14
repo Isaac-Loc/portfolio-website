@@ -308,3 +308,5 @@ Source of truth for content is the user's resume (`Isaac_Loc_Resume.pdf`). Only 
 - **2026-11-14 (photo side, thin border)**: The photo side now has only a thin black border with the dashed stitching around the photo (photo inset 1.4rem); the IL label and a white "Flip" hint sit over the photo.
 - **2026-11-14 (photo side, no black)**: User's final call: no black on the photo side at all. Full-bleed photo with just the dashed stitching (white) and the IL label over it; replaces the thin-border version.
 - **2026-11-14 (photo caption)**: The photo side of the portrait flip also shows the print's caption ("Computer Science · University at Buffalo" / "05.2027") bottom right, in white.
+- **2026-11-14 (release)**: Merged `dev` into `main` (user request): envelope sending animation, portrait flip with caption, diamond ticker separators. Azure deploy succeeded.
+- **2026-11-14 (intern title)**: At the user's request the UB CSE 302 role (`ub-embedded`) is now titled "Embedded Software Engineer Intern" (was "Embedded Software Engineer"). Merged to `main` the same day.
