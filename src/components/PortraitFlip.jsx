@@ -49,6 +49,10 @@ export default function PortraitFlip({ site }) {
         <figure className="tee tee-photo" aria-hidden={!photo}>
           <span className="tee-label" aria-hidden="true">IL</span>
           <img src={site.photos.me} alt={`Photo of ${site.name}`} decoding="async" />
+          <figcaption className="tee-caption">
+            <span>{site.print.kicker}</span>
+            <b>{site.print.date}</b>
+          </figcaption>
           <span className="tee-hint" aria-hidden="true">Flip ↻</span>
         </figure>
       </div>
