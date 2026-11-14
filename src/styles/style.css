@@ -439,8 +439,73 @@ main:has(.contact-page) + .footer { margin-top: 0; }
 .postmark circle, .postmark .pm-wave { fill: none; stroke: var(--denim); stroke-width: 2; }
 .postmark .pm-ring { font: 600 8.5px var(--font-body); letter-spacing: 2.1px; fill: var(--denim); }
 .postmark .pm-date { font: 600 11px var(--font-body); letter-spacing: 1px; fill: var(--denim); }
-.postcard.sent .postmark { animation: postmark .5s cubic-bezier(.3, 1.6, .5, 1) forwards; }
+.postcard:is([data-state="stamped"], [data-state="packing"], [data-state="flying"]) .postmark { animation: postmark .5s cubic-bezier(.3, 1.6, .5, 1) forwards; }
 @keyframes postmark { 0% { opacity: 0; transform: scale(1.5) rotate(-14deg); } 100% { opacity: .85; transform: scale(1) rotate(-8deg); } }
+
+/* sending animation: airmail stripes march along the top and bottom edges while the request is out; once it is
+   stamped the card winds up, flies off to the top right, and a fresh card slides back in (timings mirror
+   STAMP_MS / FLY_MS in ContactPage.jsx) */
+.postcard::before, .postcard::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 5px; pointer-events: none; opacity: 0; transition: opacity .3s var(--ease);
+  background: repeating-linear-gradient(-45deg, var(--denim) 0 10px, transparent 10px 20px, var(--text) 20px 30px, transparent 30px 40px) 0 0 / 56.57px 100%;
+}
+.postcard::before { top: 0; }
+.postcard::after { bottom: 0; animation-direction: reverse !important; }
+.postcard:is([data-state="sending"], [data-state="stamped"], [data-state="packing"], [data-state="flying"])::before, .postcard:is([data-state="sending"], [data-state="stamped"], [data-state="packing"], [data-state="flying"])::after { opacity: 1; animation: airmail .7s linear infinite; }
+@keyframes airmail { to { background-position: 56.57px 0; } }
+.pc-stage:not([data-pack]) > .postcard[data-state="flying"], .pc-stage[data-pack][data-state="flying"] { animation: postcard-fly .95s cubic-bezier(.55, 0, .75, .3) forwards; pointer-events: none; }
+@keyframes postcard-fly {
+  0% { transform: none; opacity: 1; }
+  22% { transform: translateY(.8rem) rotate(-1.5deg) scale(.98); opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translate(55vw, -115vh) rotate(16deg) scale(.6); opacity: 0; }
+}
+.postcard[data-state="sent"] { animation: postcard-arrive .6s cubic-bezier(.2, .8, .3, 1) both; }
+@keyframes postcard-fade { to { opacity: 0; } }
+@keyframes postcard-arrive { from { transform: translateY(2.5rem) rotate(.6deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* envelope (desktop only, see NO_ENVELOPE in ContactPage.jsx): the stage wraps the card; the envelope's back sits
+   behind the card, the front pocket in front, and the flap starts open behind the card and folds down over it
+   (z-index flips mid-fold). The card shrinks to half size centred, so it fits inside the 56% x 58% envelope.
+   Timeline = PACK_MS (1.9s); then the whole stage flies off with postcard-fly. */
+.pc-stage { position: relative; flex: 1 1 auto; display: flex; flex-direction: column; min-height: 0; }
+.pc-stage > .postcard { z-index: 2; }
+.env, .env-flap { position: absolute; left: 22%; width: 56%; top: 21%; pointer-events: none; opacity: 0; }
+.env { height: 58%; }
+.env-back { z-index: 1; border: 1px solid var(--line); background: repeating-linear-gradient(45deg, transparent 0 9px, color-mix(in srgb, var(--denim) 14%, transparent) 9px 10px), var(--denim-soft); }
+.env-front { z-index: 3; overflow: visible; }
+.env-front path, .env-flap path { fill: var(--card); stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.env-front .env-fold { fill: none; stroke: var(--border); }
+.env-flap { z-index: 1; height: calc(58% * .56); overflow: visible; transform-origin: top; transform: perspective(1200px) rotateX(180deg); }
+.env-seal {
+  position: absolute; z-index: 5; left: 50%; top: calc(21% + 58% * .56); width: 3.4rem; height: 3.4rem; margin: -1.7rem 0 0 -1.7rem;
+  display: grid; place-items: center; border-radius: 50%; background: var(--denim); color: var(--card);
+  font-family: var(--font-script); font-size: 1.7rem; line-height: 1; padding-right: .15em;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--denim) 35%, transparent); pointer-events: none; opacity: 0; transform: scale(0);
+}
+.pc-stage[data-pack]:is([data-state="packing"], [data-state="flying"]) .env { animation: env-in .5s cubic-bezier(.2, .8, .3, 1) forwards; }
+.pc-stage[data-pack]:is([data-state="packing"], [data-state="flying"]) .env-flap { animation: env-flap 1.9s linear forwards; }
+.pc-stage[data-pack]:is([data-state="packing"], [data-state="flying"]) .env-seal { animation: env-seal 1.9s linear forwards; }
+.pc-stage[data-pack]:is([data-state="packing"], [data-state="flying"]) > .postcard { animation: postcard-pack 1.9s cubic-bezier(.45, 0, .3, 1) forwards; pointer-events: none; }
+@keyframes env-in { from { opacity: 0; transform: translateY(2rem); } to { opacity: 1; transform: none; } }
+@keyframes env-flap {
+  0% { opacity: 0; z-index: 1; transform: perspective(1200px) translateY(2rem) rotateX(180deg); }
+  26% { opacity: 1; z-index: 1; transform: perspective(1200px) rotateX(180deg); }
+  72% { opacity: 1; z-index: 1; transform: perspective(1200px) rotateX(180deg); animation-timing-function: ease-in; }
+  82% { opacity: 1; z-index: 1; transform: perspective(1200px) rotateX(90.5deg); }
+  82.1% { opacity: 1; z-index: 4; transform: perspective(1200px) rotateX(89.5deg); animation-timing-function: cubic-bezier(.3, 1.5, .6, 1); }
+  92%, 100% { opacity: 1; z-index: 4; transform: perspective(1200px) rotateX(0deg); }
+}
+@keyframes env-seal {
+  0%, 90% { opacity: 0; transform: scale(1.8); }
+  95% { opacity: 1; transform: scale(.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes postcard-pack {
+  0% { transform: none; }
+  28%, 40% { transform: translateY(-30%) scale(.5); }
+  72%, 100% { transform: translateY(0) scale(.5); }
+}
 
 /* address + reply fields on ruled lines */
 .pc-address { margin-bottom: 1.2rem; }
@@ -521,4 +586,8 @@ main:has(.contact-page) + .footer { margin-top: 0; }
   .role-word, .preview, .commit-card.loading .cell { animation: none; }
   .shot-pic, .shot-pic img, .proj-item-title, .theme-toggle .half { transition: none; }
   .shot-pic:hover, .shot-pic:focus-visible { transform: none; }
+  .postcard::before, .postcard::after { animation: none !important; }
+  .postcard[data-state="flying"] { animation: postcard-fade .95s ease forwards; }
+  .postcard[data-state="sent"] { animation: postcard-fade .5s ease reverse both; }
+  .postcard:is([data-state="stamped"], [data-state="flying"]) .postmark { animation: none; opacity: .85; transform: rotate(-8deg); }
 }
