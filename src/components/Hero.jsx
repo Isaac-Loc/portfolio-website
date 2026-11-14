@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import PrintPortrait from './PrintPortrait.jsx'
+import PortraitFlip from './PortraitFlip.jsx'
 import Marquee from './Marquee.jsx'
 
 const ROMAN = [[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']]
@@ -17,7 +17,8 @@ function useRotate(list, ms = 2600) {
 }
 
 // Hero: the name set in an arched script like the lettering across the back of a hoodie, with the city in small
-// caps beneath it; on the right, the portrait as a screen-printed tee graphic. The ticker runs along the bottom of
+// caps beneath it; on the right, the portrait as a screen-printed tee graphic
+// that flips over to the real photo (PortraitFlip). The ticker runs along the bottom of
 // the hero so it is part of the first screen.
 export default function Hero({ site }) {
   const i = useRotate(site.roles)
@@ -46,14 +47,7 @@ export default function Hero({ site }) {
             <a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </nav>
         </div>
-        <figure className="tee reveal">
-          <span className="tee-label" aria-hidden="true">IL</span>
-          <PrintPortrait src={site.photos.me} alt={`Portrait of ${site.name}`} />
-          <figcaption className="tee-caption">
-            <span>{site.print.kicker}</span>
-            <b>{site.print.date}</b>
-          </figcaption>
-        </figure>
+        <PortraitFlip site={site} />
       </div>
       <Marquee items={site.marquee} />
     </section>
