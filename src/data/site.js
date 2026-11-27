@@ -140,6 +140,23 @@ export const projects = [
     tech: ['C++', 'ESP32', 'FreeRTOS', 'PlatformIO'],
   },
   {
+    id: 'storybookjam',
+    category: 'fullstack', // which Projects tab it is under: 'fullstack' or 'embedded'
+    date: 'November 2026', // repo created Nov 24, 2026
+    title: 'StorybookJam',
+    art: 'story',
+    shape: 'jag',
+    image: null,
+    url: 'https://github.com/Isaac-Loc/StorybookJam',
+    summary: "Multiplayer Mad Libs-style game where up to six players co-write an illustrated story without seeing it until the end. Claude drafts a six-page story with six blanks, each secretly dealt to one player, and the hidden text stays on the server so a browser never receives words it should not see. A second model pass swaps harmful words, then illustrations and narration are generated for each page. A server-only spend ledger and a kill switch cap generation cost.",
+    stats: [
+      { n: '6', l: 'players' },
+      { n: '6', l: 'story pages' },
+      { n: '75 s', l: 'round timer' },
+    ],
+    tech: ['TypeScript', 'DeepSpace', 'Claude API'],
+  },
+  {
     id: 'pm-tool',
     category: 'fullstack', // which Projects tab it is under: 'fullstack' or 'embedded'
     date: 'August 2026', // first item of the caption line under the preview picture
