@@ -146,7 +146,8 @@ export const projects = [
     title: 'StorybookJam',
     art: 'story',
     shape: 'jag',
-    image: null,
+    imageAlt: 'The StorybookJam landing page: the headline "Make a story. Make it weird.", Start playing and See a sample buttons, and an illustration of a ghost-haunted fax machine printing a story',
+    image: '/images/storybookjam.webp', // the live site's landing page (public), captured 2026-11-27
     url: 'https://github.com/Isaac-Loc/StorybookJam',
     liveUrl: 'https://storybookjam.app.space', // optional: shows a Visit live site link next to View on GitHub
     summary: "Multiplayer Mad Libs-style game where up to six players co-write an illustrated story without seeing it until the end. Claude drafts a six-page story with six blanks, each secretly dealt to one player, and the hidden text stays on the server so a browser never receives words it should not see. A second model pass swaps harmful words, then illustrations and narration are generated for each page. A server-only spend ledger and a kill switch cap generation cost.",
@@ -167,6 +168,7 @@ export const projects = [
     image: '/images/project-tracker.jpg', // the project page; click it on the card for a bigger view. Shows member names (no emails): see SPEC.md
     imageAlt: 'A project page with its goal, latest status report, linked Google Drive folder and members',
     url: 'https://github.com/Theta-Tau-Mu-Gamma/Theta-Tau-Scrum',
+    liveUrl: 'https://ubthetatau.com/PMTool/',
     summary: "Project tracker built for the Theta Tau chapter and used by 20+ members across several teams. A React front end and a PHP/Slim API with 68 endpoints sit on a 17-table MySQL database, with a six-stage Kanban board, a task dependency graph and Google Drive file access that refreshes its own OAuth tokens.",
     stats: [
       { n: '20+', l: 'members' },
