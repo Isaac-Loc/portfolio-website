@@ -148,6 +148,7 @@ export const projects = [
     shape: 'jag',
     image: null,
     url: 'https://github.com/Isaac-Loc/StorybookJam',
+    liveUrl: 'https://storybookjam.app.space', // optional: shows a Visit live site link next to View on GitHub
     summary: "Multiplayer Mad Libs-style game where up to six players co-write an illustrated story without seeing it until the end. Claude drafts a six-page story with six blanks, each secretly dealt to one player, and the hidden text stays on the server so a browser never receives words it should not see. A second model pass swaps harmful words, then illustrations and narration are generated for each page. A server-only spend ledger and a kill switch cap generation cost.",
     stats: [
       { n: '6', l: 'players' },

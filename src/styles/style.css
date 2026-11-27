@@ -374,6 +374,7 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 .preview-pic.portrait .shot-pic img { object-position: center; }
 .preview-tags { margin: 1.1rem 0 .7rem; color: var(--muted); font-size: .56rem; letter-spacing: .16em; }
 .preview-text { margin: 0 0 1rem; font-size: .95rem; }
+.preview .text-link + .text-link { margin-left: 1.6rem; }
 .plate { position: relative; aspect-ratio: 16 / 10; display: grid; place-items: center; padding: 2rem; background: var(--shirt); color: var(--print); text-align: center; }
 .plate::before { content: ""; position: absolute; inset: .6rem; border: 1px dashed color-mix(in srgb, var(--print) 28%, transparent); }
 .plate-title { font-family: var(--font-script); font-size: 2.8rem; line-height: 1.15; }
