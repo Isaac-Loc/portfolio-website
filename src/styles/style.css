@@ -181,6 +181,8 @@ img { max-width: 100%; }
 .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; }
 .hero-links { display: flex; gap: 1.8rem; margin-top: 1.8rem; color: var(--muted); }
 .hero-links a:hover { color: var(--text); }
+.hero-links a { display: inline-flex; align-items: center; gap: .55rem; }
+.link-ico { width: 1.05rem; height: 1.05rem; flex: none; }
 
 /* The tee print: a black panel with stitched edges, a neck label, the dithered portrait and the caption */
 .tee {
