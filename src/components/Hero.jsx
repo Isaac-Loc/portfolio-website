@@ -16,7 +16,7 @@ function useRotate(list, ms = 2600) {
   return i
 }
 
-// Hero: the name set in an arched script like the lettering across the back of a hoodie, with the city in small
+// Hero: the name set in a straight script line (was arched, straightened at the user's request 2026-11-27), with the city in small
 // caps beneath it; on the right, the portrait as a screen-printed tee graphic
 // that flips over to the real photo (PortraitFlip). The ticker runs along the bottom of
 // the hero so it is part of the first screen.
@@ -29,8 +29,8 @@ export default function Hero({ site }) {
         <div className="hero-copy reveal">
           <p className="eyebrow"><span>Portfolio</span><i className="rule" /><span>{toRoman(Number(site.year))}</span></p>
           <h1 className="wordmark" aria-label={site.name}>
-            <svg viewBox="0 0 1000 330" aria-hidden="true">
-              <path id="wordmark-arc" d="M 30 300 Q 500 60 970 300" fill="none" />
+            <svg viewBox="0 0 1000 290" aria-hidden="true">
+              <path id="wordmark-arc" d="M 30 215 L 970 215" fill="none" />
               <text><textPath href="#wordmark-arc" startOffset="50%" textAnchor="middle">{site.name}</textPath></text>
             </svg>
           </h1>

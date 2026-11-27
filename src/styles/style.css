@@ -273,6 +273,37 @@ img { max-width: 100%; }
 
 /* Entries (experience, leadership) */
 .entry-list { display: grid; }
+
+/* Experience timeline: dates | rail marker | role row that opens its details */
+.timeline { --rail: 1.9rem; list-style: none; margin: 0; padding: 0; }
+.tl-item { position: relative; display: grid; grid-template-columns: 11rem var(--rail) minmax(0, 1fr); column-gap: 1.2rem; }
+.tl-item::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(11rem + 1.2rem + var(--rail) / 2); width: 1px; background: var(--border); }
+.tl-item:first-child::before { top: 2.1rem; }
+.tl-item:last-child::before { bottom: auto; height: 2.1rem; }
+.tl-item:only-child::before { display: none; }
+.tl-dates { display: grid; justify-items: start; align-content: start; gap: .35rem; margin: 0; padding-top: 1.75rem; color: var(--muted); font-size: .6rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; line-height: 1.4; }
+.tl-no { font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; letter-spacing: 0; text-transform: none; line-height: 1; color: var(--denim); }
+.tl-now { color: var(--denim); }
+.tl-mark { position: relative; z-index: 1; justify-self: center; align-self: start; width: .7rem; height: .7rem; margin-top: 2rem; border: 1px solid var(--text); border-radius: 50%; background: var(--paper); transition: background-color .3s ease, border-color .3s ease, transform .3s var(--ease); }
+.tl-item[data-current] .tl-mark { border-color: var(--denim); background: var(--denim); }
+.tl-item[data-open] .tl-mark { transform: scale(1.35); }
+.tl-item + .tl-item .tl-main { border-top: 1px solid var(--border); }
+.tl-head { margin: 0; font: inherit; }
+.tl-toggle { position: relative; display: grid; gap: .35rem; width: 100%; padding: 1.5rem 3rem 1.5rem 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.tl-title { font-family: var(--font-serif); font-weight: 500; font-size: 2.1rem; line-height: 1.1; transition: color .25s ease; }
+.tl-toggle:hover .tl-title, .tl-item[data-open] .tl-title { color: var(--denim); }
+.tl-sub { color: var(--muted); font-size: .62rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; line-height: 1.5; }
+.tl-plus { position: absolute; right: .3rem; top: 50%; width: .9rem; height: .9rem; margin-top: -.45rem; }
+.tl-plus::before, .tl-plus::after { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: currentColor; transition: transform .35s var(--ease); }
+.tl-plus::after { transform: rotate(90deg); }
+.tl-item[data-open] .tl-plus::after { transform: rotate(0); }
+.tl-panel { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .45s var(--ease), visibility 0s linear .45s; }
+.tl-item[data-open] .tl-panel { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .45s var(--ease), visibility 0s; }
+.tl-panel-in { min-height: 0; overflow: hidden; }
+.tl-body { display: grid; gap: 2rem; padding: .2rem 0 2.6rem; }
+.tl-body.has-image { grid-template-columns: minmax(0, 1fr) minmax(0, 20rem); }
+.tl-org { margin-bottom: 1.1rem; }
+.tl-text .chips { margin-bottom: 1.4rem; }
 .entry { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 3rem; padding: 3rem 0; }
 .entry:first-child { padding-top: 0; }
 .entry + .entry { border-top: 1px solid var(--border); }
@@ -338,8 +369,12 @@ html:has(dialog.lightbox[open]) { overflow: hidden; }
 @keyframes preview-in { from { opacity: 0; transform: translateY(.5rem); } }
 .preview-pic .shot-pic { aspect-ratio: 16 / 10; }
 .preview-pic .shot-pic img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.preview-pic.portrait { max-width: 21rem; }
+.preview-pic.portrait .shot-pic { aspect-ratio: 3 / 4; }
+.preview-pic.portrait .shot-pic img { object-position: center; }
 .preview-tags { margin: 1.1rem 0 .7rem; color: var(--muted); font-size: .56rem; letter-spacing: .16em; }
 .preview-text { margin: 0 0 1rem; font-size: .95rem; }
+.preview .text-link + .text-link { margin-left: 1.6rem; }
 .plate { position: relative; aspect-ratio: 16 / 10; display: grid; place-items: center; padding: 2rem; background: var(--shirt); color: var(--print); text-align: center; }
 .plate::before { content: ""; position: absolute; inset: .6rem; border: 1px dashed color-mix(in srgb, var(--print) 28%, transparent); }
 .plate-title { font-family: var(--font-script); font-size: 2.8rem; line-height: 1.15; }
@@ -566,6 +601,18 @@ main:has(.contact-page) + .footer { margin-top: 0; }
   .tee-flip { width: min(100%, 26rem); margin: 0 auto; }
   .about-grid { grid-template-columns: 1fr; gap: 3rem; }
   .entry, .entry.has-image { grid-template-columns: 1fr; gap: 1.4rem; }
+  .timeline { --rail: 1.4rem; }
+  .tl-item { grid-template-columns: var(--rail) minmax(0, 1fr); column-gap: .8rem; }
+  .tl-item::before { left: calc(var(--rail) / 2); }
+  .tl-dates { grid-column: 2; grid-row: 1; display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .9rem; padding-top: 1.4rem; }
+  .tl-mark { grid-column: 1; grid-row: 1; margin-top: 1.5rem; }
+  .tl-main { grid-column: 2; grid-row: 2; }
+  .tl-item + .tl-item .tl-main { border-top: 0; }
+  .tl-item:first-child::before { top: 1.7rem; }
+  .tl-item:last-child::before { height: 1.7rem; }
+  .tl-toggle { padding: .6rem 2.4rem 1.4rem 0; }
+  .tl-title { font-size: 1.7rem; }
+  .tl-body.has-image { grid-template-columns: 1fr; }
   .entry-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem 1.2rem; }
   .entry-no { margin: 0 .4rem 0 0; font-size: 1.8rem; }
   .proj-split { grid-template-columns: 1fr; gap: 0; }
@@ -602,6 +649,7 @@ main:has(.contact-page) + .footer { margin-top: 0; }
   .tee-flip-inner { transition: none; }
   .role-word, .preview, .commit-card.loading .cell { animation: none; }
   .shot-pic, .shot-pic img, .proj-item-title, .theme-toggle .half { transition: none; }
+  .tl-panel, .tl-item[data-open] .tl-panel, .tl-mark, .tl-plus::before, .tl-plus::after, .tl-title { transition: none; }
   .shot-pic:hover, .shot-pic:focus-visible { transform: none; }
   .postcard::before, .postcard::after { animation: none !important; }
   .postcard[data-state="flying"] { animation: postcard-fade .95s ease forwards; }

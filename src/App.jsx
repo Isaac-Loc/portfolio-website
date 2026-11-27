@@ -2,7 +2,7 @@ import { site, experience, projects, leadership, skills } from './data/site.js'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import Section from './components/Section.jsx'
-import Entry from './components/Entry.jsx'
+import Timeline from './components/Timeline.jsx'
 import ProjectList from './components/ProjectList.jsx'
 import CommitGrid from './components/CommitGrid.jsx'
 import Rich from './components/Rich.jsx'
@@ -12,8 +12,6 @@ import Skills from './components/Skills.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import useRoute from './hooks/useRoute.js'
 import useReveal from './hooks/useReveal.js'
-
-const host = (url) => (url ? new URL(url).host : undefined)
 
 export default function App() {
   const route = useRoute()
@@ -42,26 +40,7 @@ export default function App() {
           </div>
         </Section>
         <Section id="experience" no="02" title="Experience">
-          <div className="entry-list">
-            {experience.map((e, n) => (
-              <Entry
-                key={e.id}
-                index={String(n + 1).padStart(2, '0')}
-                title={e.role}
-                org={e.org}
-                href={e.orgUrl}
-                place={e.place}
-                dates={e.dates}
-                summary={e.summary}
-                stats={e.stats}
-                tech={e.tech}
-                repo={e.repo}
-                image={e.image}
-                imageAlt={e.imageAlt}
-                imageLabel={host(e.orgUrl) ?? e.org}
-              />
-            ))}
-          </div>
+          <Timeline items={experience} />
         </Section>
         <Section id="projects" no="03" title="Projects">
           <ProjectList projects={projects} />

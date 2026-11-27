@@ -71,6 +71,19 @@ export const experience = [
     tech: ['React', 'Vite', 'HTML/CSS', 'Azure', 'GitHub Actions'],
   },
   {
+    id: 'ub-locker',
+    role: 'Embedded Software Engineer Intern',
+    org: 'University at Buffalo | CSE 450/453',
+    place: 'Buffalo, NY',
+    dates: 'Aug 2026 – Present', // two-semester capstone: CSE 450 design (Fall 2026), CSE 453 build (Spring 2027)
+    art: 'locker',
+    shape: 'jag',
+    image: null,
+    summary: "Two-semester capstone building an automated locker that students with special needs can open without a combination lock. Developed for a real client, a high school special education teacher.",
+    stats: [],
+    tech: ['Hardware/Software Integration', 'Assistive Technology'],
+  },
+  {
     id: 'ub-embedded',
     repo: 'https://github.com/UB-CSE/LED-Video-Wall',
     role: 'Embedded Software Engineer Intern',
@@ -94,32 +107,18 @@ export const experience = [
 // shape: 'burst' | 'burst8' | 'jag' | 'polaroid'
 export const projects = [
   {
-    id: 'automated-locker',
+    id: 'alu-4bit',
     category: 'embedded', // which Projects tab it is under: 'fullstack' or 'embedded'
     inProgress: true, // shows a COMING SOON badge next to the title in the Projects list
-    date: 'Fall 2026 – Spring 2027', // CSE 450 (design) then CSE 453 (build), a two-semester project
-    title: 'Automated Locker',
-    art: 'locker',
+    date: 'Fall 2026', // CSE 493 (Intro to VLSI) group project
+    title: '4-bit ALU',
+    art: 'chip',
     shape: 'jag',
     image: null,
     url: null,
-    summary: "Two-semester capstone building a locker that students with special needs can open without a combination lock. Developed for a real client, a high school special education teacher.",
+    summary: "Four-bit arithmetic logic unit built as a group project for CSE 493 (Intro to VLSI). Modeled with transistor and gate logic and verified in simulation.",
     stats: [],
-    tech: ['Hardware/Software Integration', 'Assistive Technology'],
-  },
-  {
-    id: 'vending-controller',
-    category: 'embedded', // which Projects tab it is under: 'fullstack' or 'embedded'
-    inProgress: true, // shows a COMING SOON badge next to the title in the Projects list
-    date: 'Fall 2026', // CSE 493 (Intro to VLSI) group project, proposed October 2026
-    title: 'Vending Machine Controller',
-    art: 'vending',
-    shape: 'jag',
-    image: null,
-    url: null,
-    summary: "Vending machine controller that accepts coin inputs, tracks the running total, dispenses the product once paid and returns change. Modeled with transistor and gate logic and verified in simulation.",
-    stats: [],
-    tech: ['VLSI', 'Gate logic', 'Transistor-level design', 'Simulation'],
+    tech: ['VLSI', 'Digital logic', 'Gate logic', 'Transistor-level design', 'Simulation'],
   },
   {
     id: 'medalert',
@@ -129,14 +128,35 @@ export const projects = [
     title: 'MedAlert',
     art: 'pill',
     shape: 'jag',
-    image: null,
-    url: null,
+    image: '/images/medalert.webp', // the ESP32 breadboard prototype (portrait photo)
+    imagePortrait: true, // tall photo: the preview shows it uncropped at 3:4
+    imageAlt: 'The MedAlert prototype: an ESP32 on a breadboard wired to an LED, a buzzer and a push button',
+    url: 'https://github.com/Isaac-Loc/Med-Alert', // CSE 321 team project (with Jian Xi Lu)
     summary: "Two-stage medication reminder on an ESP32 running FreeRTOS. A beep and an LED signal each dose, and if nobody confirms within 10 minutes a missed-dose alert is sent to a caregiver over Wi-Fi.",
     stats: [
       { n: '4', l: 'RTOS tasks' },
       { n: '10 min', l: 'miss timeout' },
     ],
     tech: ['C++', 'ESP32', 'FreeRTOS', 'PlatformIO'],
+  },
+  {
+    id: 'storybookjam',
+    category: 'fullstack', // which Projects tab it is under: 'fullstack' or 'embedded'
+    date: 'November 2026', // repo created Nov 24, 2026
+    title: 'StorybookJam',
+    art: 'story',
+    shape: 'jag',
+    imageAlt: 'The StorybookJam landing page: the headline "Make a story. Make it weird.", Start playing and See a sample buttons, and an illustration of a ghost-haunted fax machine printing a story',
+    image: '/images/storybookjam.webp', // the live site's landing page (public), captured 2026-11-27
+    url: 'https://github.com/Isaac-Loc/StorybookJam',
+    liveUrl: 'https://storybookjam.app.space', // optional: shows a Visit live site link next to View on GitHub
+    summary: "Multiplayer Mad Libs-style game where up to six players co-write an illustrated story without seeing it until the end. Claude drafts a six-page story with six blanks, each secretly dealt to one player, and the hidden text stays on the server so a browser never receives words it should not see. A second model pass swaps harmful words, then illustrations and narration are generated for each page. A server-only spend ledger and a kill switch cap generation cost.",
+    stats: [
+      { n: '6', l: 'players' },
+      { n: '6', l: 'story pages' },
+      { n: '75 s', l: 'round timer' },
+    ],
+    tech: ['TypeScript', 'DeepSpace', 'Claude API', 'fal', 'ElevenLabs'],
   },
   {
     id: 'pm-tool',
@@ -148,6 +168,7 @@ export const projects = [
     image: '/images/project-tracker.jpg', // the project page; click it on the card for a bigger view. Shows member names (no emails): see SPEC.md
     imageAlt: 'A project page with its goal, latest status report, linked Google Drive folder and members',
     url: 'https://github.com/Theta-Tau-Mu-Gamma/Theta-Tau-Scrum',
+    liveUrl: 'https://ubthetatau.com/PMTool/',
     summary: "Project tracker built for the Theta Tau chapter and used by 20+ members across several teams. A React front end and a PHP/Slim API with 68 endpoints sit on a 17-table MySQL database, with a six-stage Kanban board, a task dependency graph and Google Drive file access that refreshes its own OAuth tokens.",
     stats: [
       { n: '20+', l: 'members' },

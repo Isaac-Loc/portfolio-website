@@ -23,15 +23,16 @@ function Plate({ title, date }) {
 }
 
 function Preview({ project }) {
-  const { title, date, tech = [], summary, image, imageAlt = '', url } = project
+  const { title, date, tech = [], summary, image, imageAlt = '', imagePortrait, url, liveUrl } = project
   return (
     <div className="preview">
-      <div className="preview-pic">
+      <div className={`preview-pic${imagePortrait ? ' portrait' : ''}`}>
         {image ? <Shots src={image} alt={imageAlt} /> : <Plate title={title} date={date} />}
       </div>
       <p className="preview-tags">{[date, ...tech].filter(Boolean).join('  ·  ')}</p>
       <p className="preview-text"><Rich text={summary} /></p>
       {url && <a className="text-link" href={url} target="_blank" rel="noopener noreferrer">View on GitHub</a>}
+      {liveUrl && <a className="text-link" href={liveUrl} target="_blank" rel="noopener noreferrer">Visit live site <span aria-hidden="true">↗</span></a>}
     </div>
   )
 }
