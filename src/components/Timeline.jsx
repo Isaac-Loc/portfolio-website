@@ -13,7 +13,7 @@ function Item({ item, index, open, onToggle }) {
   const { role, org, orgUrl, place, dates, summary, stats = [], tech = [], repo, image, imageAlt = '' } = item
   const current = isCurrent(dates)
   return (
-    <li className={`tl-item reveal${open ? ' open' : ''}${current ? ' current' : ''}`}>
+    <li className="tl-item reveal" data-open={open ? '' : undefined} data-current={current ? '' : undefined}>
       <p className="tl-dates">
         <span className="tl-no">{String(index + 1).padStart(2, '0')}</span>
         <span>{dates}</span>
