@@ -47,11 +47,10 @@ export const experience = [
     shape: 'burst',
     image: '/images/ezesports.webp', // screenshot of the public ezesports.org home page (shown in a window frame on the card)
     imageAlt: 'The ezesports.org home page: New York City High School Esports League',
-    summary: "Full-stack work on the EZ Esports website ([ezesports.org](https://ezesports.org)) in Next.js, TypeScript and Supabase. Traced a production image outage to Vercel's 5,000/month transformation limit and ended it with WebP thumbnails up to 39x smaller. Closed a privilege-escalation hole that let non-owners grant the Owner role, and secured applicant data with server-validated PDF resume uploads in a private bucket and on-request erasure.",
+    summary: "Building and maintaining the website and onboarding workflow for a New York City high school esports league. Helping schools get their teams signed up, with public standings and schedules for the whole league.",
     stats: [
-      { n: '100%', l: 'server-side validated' },
-      { n: '5', l: 'security headers' },
-      { n: '∼70%', l: 'smaller form' },
+      { n: '135+', l: 'students onboarded' },
+      { n: '955', l: 'players' },
     ],
     tech: ['Next.js', 'TypeScript', 'Supabase', 'PostgreSQL', 'React'],
   },
@@ -66,7 +65,7 @@ export const experience = [
     art: 'web',
     shape: 'jag',
     image: null,
-    summary: "Builds fast, low-maintenance static websites for clients. This portfolio is the live reference: a React and Vite site whose JavaScript bundle is only about 79 KB gzipped, hosted on Azure with a custom domain and managed HTTPS. A GitHub Actions pipeline deploys every push to production and staging, and three HTTP security headers plus year-long caching of built assets keep it safe and quick.",
+    summary: "Launching websites for clients and keeping them fast and reliable. Handling everything from the domain to the hosting, with this portfolio as the live example.",
     stats: [],
     tech: ['React', 'Vite', 'HTML/CSS', 'Azure', 'GitHub Actions'],
   },
@@ -79,7 +78,7 @@ export const experience = [
     art: 'locker',
     shape: 'jag',
     image: null,
-    summary: "Two-semester capstone building an automated locker that students with special needs can open without a combination lock. Developed for a real client, a high school special education teacher.",
+    summary: "Designing a locker that students with special needs can open without a combination lock. Working with a real client through a two-semester capstone.",
     stats: [],
     tech: ['Hardware/Software Integration', 'Assistive Technology'],
   },
@@ -94,12 +93,8 @@ export const experience = [
     shape: 'jag',
     image: '/images/led-wall.webp', // the full team photo with the LED wall
     imageAlt: 'The team with the LED tile wall and the laptop running its control panel',
-    summary: "Contributed to the UB LED Video Wall, a modular wall of LED matrices driven by ESP32 microcontrollers. Extended its C++ server with five commands for live text and image scaling that apply between frames without interrupting playback, wrote the Python class that lets the Flask web server move and edit layers in real time, and updated the ESP32 client so each controller finds the wall's server on its own over HTTPS.",
-    stats: [
-      { n: '50+', l: 'LED tiles' },
-      { n: '4', l: 'ESP32s' },
-      { n: '10+', l: 'commands' },
-    ],
+    summary: "Helped build the UB LED Video Wall, a wall of LED panels controlled live from a web page. Made new text and images appear smoothly while it plays.",
+    stats: [],
     tech: ['C++', 'ESP-IDF', 'Python', 'Flask'],
   },
 ]
@@ -116,7 +111,7 @@ export const projects = [
     shape: 'jag',
     image: null,
     url: null,
-    summary: "Four-bit arithmetic logic unit built as a group project for CSE 493 (Intro to VLSI). Modeled with transistor and gate logic and verified in simulation.",
+    summary: "Modeling a four-bit arithmetic logic unit for a VLSI course. Working in a group to design it and test it in simulation.",
     stats: [],
     tech: ['VLSI', 'Digital logic', 'Gate logic', 'Transistor-level design', 'Simulation'],
   },
@@ -132,11 +127,8 @@ export const projects = [
     imagePortrait: true, // tall photo: the preview shows it uncropped at 3:4
     imageAlt: 'The MedAlert prototype: an ESP32 on a breadboard wired to an LED, a buzzer and a push button',
     url: 'https://github.com/Isaac-Loc/Med-Alert', // CSE 321 team project (with Jian Xi Lu)
-    summary: "Two-stage medication reminder on an ESP32 running FreeRTOS. A beep and an LED signal each dose, and if nobody confirms within 10 minutes a missed-dose alert is sent to a caregiver over Wi-Fi.",
-    stats: [
-      { n: '4', l: 'RTOS tasks' },
-      { n: '10 min', l: 'miss timeout' },
-    ],
+    summary: "Making a medication reminder that alerts a caregiver when a dose is missed. Combining a light, a buzzer and a button to prompt each dose on schedule.",
+    stats: [],
     tech: ['C++', 'ESP32', 'FreeRTOS', 'PlatformIO'],
   },
   {
@@ -150,12 +142,8 @@ export const projects = [
     image: '/images/storybookjam.webp', // the live site's landing page (public), captured 2026-11-27
     url: 'https://github.com/Isaac-Loc/StorybookJam',
     liveUrl: 'https://storybookjam.app.space', // optional: shows a Visit live site link next to View on GitHub
-    summary: "Multiplayer Mad Libs-style game where up to six players co-write an illustrated story without seeing it until the end. Claude drafts a six-page story with six blanks, each secretly dealt to one player, and the hidden text stays on the server so a browser never receives words it should not see. A second model pass swaps harmful words, then illustrations and narration are generated for each page. A server-only spend ledger and a kill switch cap generation cost.",
-    stats: [
-      { n: '6', l: 'players' },
-      { n: '6', l: 'story pages' },
-      { n: '75 s', l: 'round timer' },
-    ],
+    summary: "Created a multiplayer storytelling game that turns friends' answers into an illustrated story. Kept each player's part of the story hidden until the end and added narration and safety checks.",
+    stats: [],
     tech: ['TypeScript', 'DeepSpace', 'Claude API', 'fal', 'ElevenLabs'],
   },
   {
@@ -169,11 +157,9 @@ export const projects = [
     imageAlt: 'A project page with its goal, latest status report, linked Google Drive folder and members',
     url: 'https://github.com/Theta-Tau-Mu-Gamma/Theta-Tau-Scrum',
     liveUrl: 'https://ubthetatau.com/PMTool/',
-    summary: "Project tracker built for the Theta Tau chapter and used by 20+ members across several teams. A React front end and a PHP/Slim API with 68 endpoints sit on a 17-table MySQL database, with a six-stage Kanban board, a task dependency graph and Google Drive file access that refreshes its own OAuth tokens.",
+    summary: "Shipped a project tracker for the chapter, used by 20+ members. Gave teams a shared place to organize their tasks and files.",
     stats: [
       { n: '20+', l: 'members' },
-      { n: '68', l: 'API endpoints' },
-      { n: '6', l: 'Kanban stages' },
     ],
     tech: ['React', 'Vite', 'PHP/Slim', 'MySQL', 'Google Drive API'],
   },
@@ -187,11 +173,8 @@ export const projects = [
     image: '/images/bidit.webp', // the marketplace browse page (sample listings, no personal data); click it for a bigger view
     imageAlt: 'The Bidit marketplace home page: category and condition filters, a price range, and a grid of listings with prices',
     url: null,
-    summary: "Peer-to-peer marketplace with live auctions and buy-it-now listings, built by a team of five in React, PHP and MySQL. Implemented the accepted-bid checkout with a 24-hour exclusive purchase window, order cancellation with seller approval, listing price adjustments and the seller messaging interface.",
-    stats: [
-      { n: '2', l: 'listing types' },
-      { n: 'live', l: 'bid updates' },
-    ],
+    summary: "Developed an online marketplace for auctions and listings with a team. Handled checkout and messaging between buyers and sellers.",
+    stats: [],
     tech: ['React', 'PHP', 'MySQL'],
   },
   {
@@ -204,12 +187,8 @@ export const projects = [
     image: '/images/burger-flipper.jpg', // the machine only, cropped from a crowded event photo (people cropped out)
     imageAlt: 'The burger flipping machine on its tripod: a wooden base with the spatula rails, motors, and wiring underneath',
     url: 'https://github.com/Isaac-Loc/Autonomous-Burger-Flipping-System',
-    summary: "Arduino Mega firmware in C++ for an automated grill assistant. Two DC motors move a spatula and temperature probe across the grill, laser sensors locate the patty, and a servo flips it.",
-    stats: [
-      { n: '2', l: 'DC motors' },
-      { n: '1', l: 'servo flipper' },
-      { n: '1', l: 'temp probe' },
-    ],
+    summary: "Made a machine that finds and flips a burger on its own. Combined motors, sensors and a flipper to handle the whole cook.",
+    stats: [],
     tech: ['C++', 'Arduino', 'Arduino Mega'],
   },
 ]
@@ -239,10 +218,9 @@ export const leadership = {
   art: 'calendar',
   shape: 'burst8',
   image: null,
-  summary: "Plans chapter events and led software for the chapter's tabling LED wall, which raised tabling attraction by 25%. An ESP32-S3 drives four chained 64x64 HUB75 panels as a 256x64 display, programmed in C++ with PlatformIO to scroll the banner with a chasing Pac-Man animation.",
+  summary: "Leading the build of a display for the fraternity's recruiting table. Increasing tabling attraction by 25% at recruitment events.",
   stats: [
-    { n: '15+', l: 'events' },
-    { n: '40+', l: 'per event' },
+    { n: '40+', l: 'attendees per event' },
     { n: '25%', l: 'more tabling attraction' },
   ],
   tech: ['C++', 'PlatformIO', 'ESP32', 'HUB75'],
