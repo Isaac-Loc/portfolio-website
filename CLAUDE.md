@@ -2,7 +2,7 @@
 Guidance for AI assistants (Claude Code or any other model) working in this repo.
 
 ## What this is
-Isaac's personal portfolio website. React + Vite single long page. Look (since 2026-11-10): **clean black and white with a denim accent, editorial and a little fancy**, from two user references: a hoodie with an arched script wordmark over "NEW YORK" and a graphic tee with a dissolving screen-printed photo. Pinyon Script (wordmark, section titles) + Cormorant Garamond (serif titles) + Inter (body and small tracked caps). The hero portrait is a canvas "tee print" (`PrintPortrait.jsx`).
+Isaac's personal portfolio website. React + Vite single long page. Look (since 2026-11-10): **clean black and white with a denim accent, editorial and a little fancy**, from two user references: a hoodie with a script wordmark over "NEW YORK" and a graphic tee with a dissolving screen-printed photo. Pinyon Script (wordmark, section titles) + Cormorant Garamond (serif titles) + Inter (body and small tracked caps). The hero portrait is a canvas "tee print" (`PrintPortrait.jsx`).
 
 **Read [SPEC.md](SPEC.md) first.** It is the source of truth for design decisions, structure, content, and history.
 
@@ -28,7 +28,7 @@ src/main.jsx               React mount + global CSS import
 src/App.jsx                Home (Hero, Marquee, About, Experience, Projects, Leadership, Skills) and #/contact (ContactPage), via the hash router
 src/data/site.js           ALL editable content, including resume data for sections not built yet
 src/hooks/                 useTheme (light/dark), useRoute (hash router), useReveal (scroll reveal)
-src/components/            Header, Hero (arched wordmark), PrintPortrait (screen-print canvas), Marquee, Section, Timeline (Experience), Entry, Leadership + LedBanner (LED-wall canvas), Skills (credits list), ProjectList, Shots (grayscale pic + lightbox), CommitGrid, Footer (slim one-row footer; keep it small and simple), Rich; shared nav helpers in src/lib/nav.js
+src/components/            Header, Hero (script wordmark), PrintPortrait (screen-print canvas), Marquee, Section, Timeline (Experience), Entry, Leadership + LedBanner (LED-wall canvas), Skills (credits list), ProjectList, Shots (grayscale pic + lightbox), CommitGrid, Footer (slim one-row footer; keep it small and simple), Rich; shared nav helpers in src/lib/nav.js
 src/styles/style.css       All styling (single file, tokens at the top)
 src/pages/ContactPage.jsx  Contact form -> POST /api/contact
 functions/                 Azure Functions app (contact API; lib/contact.js is the shared handler, Resend)
