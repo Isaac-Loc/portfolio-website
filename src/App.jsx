@@ -28,7 +28,7 @@ export default function App() {
       <>
       <main>
         <Hero site={site} />
-        <Section id="about" no="01" title="About">
+        <Section id="about" title="About">
           <div className="about-grid">
             <div className="about-copy reveal">
               {site.about.paragraphs.map((t) => <p key={t} className="about-lede"><Rich text={t} /></p>)}
@@ -39,16 +39,16 @@ export default function App() {
             <div className="reveal"><CommitGrid user={site.githubUser} /></div>
           </div>
         </Section>
-        <Section id="experience" no="02" title="Experience">
+        <Section id="experience" title="Experience">
           <Timeline items={experience} />
         </Section>
-        <Section id="projects" no="03" title="Projects">
+        <Section id="projects" title="Projects">
           <ProjectList projects={projects} />
         </Section>
-        <Section id="leadership" no="04" title="Leadership">
+        <Section id="leadership" title="Leadership">
           <Leadership item={leadership} />
         </Section>
-        <Section id="skills" no="05" title="Skills">
+        <Section id="skills" title="Skills">
           <Skills groups={skills} />
         </Section>
       </main>
