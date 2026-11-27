@@ -156,7 +156,7 @@ export const projects = [
       { n: '6', l: 'story pages' },
       { n: '75 s', l: 'round timer' },
     ],
-    tech: ['TypeScript', 'DeepSpace', 'Claude API'],
+    tech: ['TypeScript', 'DeepSpace', 'Claude API', 'fal', 'ElevenLabs'],
   },
   {
     id: 'pm-tool',
